@@ -1,0 +1,43 @@
+# Target: Perplexity's public product language. Unofficial, outside-in.
+# First-party public sources only. No third-party coverage, no app automation.
+name: perplexity
+display_name: Perplexity
+
+# Seconds between requests to the same site. Never lower than 1.
+delay_seconds: 1.5
+
+# Sources in priority order. Only docs and the docs changelog are set up so far.
+# Still to add: help centre, plans and pricing, blog.
+sources:
+  - name: api-docs
+    surface: docs
+    index: https://docs.perplexity.ai/llms.txt
+  - name: api-changelog
+    surface: changelog
+    urls:
+      - https://docs.perplexity.ai/docs/resources/changelog.md
+
+# Which stage a page belongs to, matched against its URL. First match wins.
+# Anything unmatched is "other". Review these by hand.
+stages:
+  - match: /quickstart
+    stage: first-use
+  - match: /pricing
+    stage: upgrade
+  - match: /rate-limits-usage-tiers
+    stage: upgrade
+  - match: /error
+    stage: error
+  - match: /api-key-management
+    stage: settings
+  - match: /getting-started/projects
+    stage: settings
+
+# Lines repeated on every page that aren't product language.
+boilerplate:
+  - Documentation Index
+  - Fetch the complete documentation index
+  - Use this file to discover all available pages
+
+# Strings from my own use of the web and iOS apps, typed in by hand.
+typed_strings: data/perplexity/typed_strings.csv

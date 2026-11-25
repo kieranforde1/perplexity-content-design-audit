@@ -1,0 +1,27 @@
+# Full page text. `audit fetch` can rebuild it, so it never needs committing.
+cache/
+
+# Private notes. No code reads this folder, and a test fails if git tracks it.
+private/
+
+# Planning notes kept out of the repo.
+BRIEF.md
+
+# Secrets.
+.env
+
+# Reports stay local until they are ready to publish.
+reports/
+
+# Lock files record the package index URL, which differs between machines.
+# CI resolves from public PyPI instead.
+uv.lock
+
+# Python tooling.
+.venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+dist/
