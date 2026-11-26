@@ -41078,3 +41078,61 @@ cdf7cd0686c4,,nav,https://www.perplexity.ai/hub/pricing,pricing,upgrade,2026-11-
 8eff1e22292a,,nav,https://www.perplexity.ai/hub/pricing,pricing,upgrade,2026-11-26,crawl,e092d265a0214b2a
 481bf3b44bf7,,nav,https://www.perplexity.ai/hub/pricing,pricing,upgrade,2026-11-26,crawl,506ff394621596dd
 b4a8883f4c4c,,nav,https://www.perplexity.ai/hub/pricing,pricing,upgrade,2026-11-26,crawl,173f5f9f26b45592
+fe560c0e82ed,Upgrade plan,button,"iOS app, home screen",ios-app,upgrade,2026-11-26,typed,39b7ec1e84022198
+cfb6bce3dafb,Do anything…,label,"iOS app, home screen, ask box",ios-app,answering,2026-11-26,typed,defdc76f30ea7b0f
+a7789dbb6e14,Light,button,"iOS app, home screen, model picker",ios-app,answering,2026-11-26,typed,dbcd5e7bb7a0f538
+8144d8f07f03,Allow ad measurement?,heading,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,83804f417cb10b61
+dea440cda44e,Allowing ad measurement lets Perplexity use tools like SDKs and server-to-server integrations to measure how its ads perform…,sentence,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,f87b25d298fa4c09
+6aca8a9b51e8,These tools are never used to sell third-party ads.,sentence,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,26d63fd02e8c2bea
+31e7cec712ad,Allow,button,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,e213c161d5cefa52
+5d244dbd3d72,Not now,button,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,a0e63d7c7125d29a
+a0536d5f4fc6,You can change this anytime in settings.,sentence,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,d216f1f1797617a3
+f3fbe24da271,Privacy policy,nav,"iOS app, ad measurement sheet",ios-app,other,2026-11-26,typed,ba445cff3898a3f2
+e63e678ae989,Restore,button,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26,typed,a76e13b9839270eb
+99e20d8e3811,Upgrade to access Computer,heading,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26,typed,08fc7d9385bf11d1
+c665991bf314,"Hand off your projects to get polished, reliable deliverables around the clock",sentence,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26,typed,c4fddb1c01c3489c
+f7639c0a722b,Pro,button,"iOS app, Computer upgrade screen, plan switch",ios-app,upgrade,2026-11-26,typed,957b0b874524d09a
+1e99f507f5fe,Max,button,"iOS app, Computer upgrade screen, plan switch",ios-app,upgrade,2026-11-26,typed,a1a5936d3b0f8a69
+4e953efa9fda,Automate complex tasks,label,"iOS app, Computer upgrade screen, Pro and Max",ios-app,upgrade,2026-11-26,typed,1ed6533efe926401
+0c39e09ef904,"Edit reports, slides and spreadsheets",label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,8795b83e712960d9
+bc44f865d36a,"Create apps, websites and prototypes",label,"iOS app, Computer upgrade screen, Pro and Max",ios-app,upgrade,2026-11-26,typed,cd6d2184485de68d
+a0144ff4f8fc,Conduct expert-level research,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,eb35902fa4338eae
+4ac9e456e5de,Works with all your apps,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,31107d7741b8046c
+9279519c49ba,"Get 4,000 bonus credits",label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,ffece6cc3a7a9d5b
+3e5cf96ce194,Monthly,label,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26,typed,9b11f6b707d2a03e
+7385e15f2135,Yearly,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,6e69b59ed34d42ef
+51feb18a3be9,-17%,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,59dfa5fcbee13efe
+e22ba5fa2e57,£20 /mo,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,e02c16b181d0688b
+b55aaf77bfe1,£240/yr,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,c42f38509e0935ee
+04a905459d53,Get Pro,button,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26,typed,12657108fe5682e9
+c19519fb8c16,"Get 35,000 bonus credits and 10,000 monthly credits",label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26,typed,83475ff1c2b8111c
+a0ce58d4bbe4,Make polished slides and reports,label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26,typed,25f4b50b71cc46ce
+cdba13c09904,Conduct expert-level data analysis,label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26,typed,e1a886977fbb3113
+d91bef1d3884,Integrate your favourite apps,label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26,typed,6323e86d3e455a46
+b2a2b66623f3,Get Max,button,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26,typed,19c2abc8300d1dc9
+239268e91c52,Light mode is best for everyday tasks. Upgrade for more advanced models.,sentence,"iOS app, Light mode pop-up",ios-app,upgrade,2026-11-26,typed,0b26818f38f40c03
+c22b0fda94cb,Upgrade to Pro,button,"iOS app, Light mode pop-up",ios-app,upgrade,2026-11-26,typed,acb320d7f3e39b16
+adc323489040,Artifacts,nav,"iOS app, side menu",ios-app,other,2026-11-26,typed,314ae71b8c8dc9c9
+b59e169bc403,Automations,nav,"iOS app, side menu",ios-app,other,2026-11-26,typed,ad1fb9ec0cb3c7a4
+a9346f62fa25,Plugins,nav,"iOS app, side menu",ios-app,other,2026-11-26,typed,9514b7ff4860ead7
+1a36190eb056,Teammates,nav,"iOS app, side menu",ios-app,other,2026-11-26,typed,3b7ad4908d80e2e1
+63dce40ef8dc,Hire your first teammate,heading,"iOS app, side menu, Teammates card",ios-app,first-use,2026-11-26,typed,9cddfdb519d441a6
+de9d805bdcb2,Teammates are persistent agents that work for you,sentence,"iOS app, side menu, Teammates card",ios-app,first-use,2026-11-26,typed,63ea466fb72b21b3
+8ca5f074caa6,Create new teammate,button,"iOS app, side menu, Teammates card",ios-app,first-use,2026-11-26,typed,2136f41ffd8655d4
+5b4f91a6e094,Projects,nav,"iOS app, side menu",ios-app,other,2026-11-26,typed,04e2a9728af75840
+0aac18796a1e,Sessions,nav,"iOS app, side menu",ios-app,other,2026-11-26,typed,6fa3cbf451b2a1d5
+b9a5f9c9969b,New,button,"iOS app, side menu",ios-app,other,2026-11-26,typed,18fdd549b2ed367a
+e3cfb61da93b,Introducing Teammates,heading,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26,typed,60552f2893b875c1
+48b1c7db2c1f,Teammates are autonomous agents that work while you’re away.,sentence,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26,typed,f08bdf1ae0dc6701
+d7f3c931b676,Working…,label,"iOS app, Teammates intro, page 1, example",ios-app,first-use,2026-11-26,typed,5474eef8d0f179c7
+f9ea1928b6fe,Connecting to Datadog monitors,label,"iOS app, Teammates intro, page 1, example",ios-app,first-use,2026-11-26,typed,2d096328acdc15e9
+fd3d064202e9,Reading your last 20 merged PRs,label,"iOS app, Teammates intro, page 1, example",ios-app,first-use,2026-11-26,typed,0a71bdb04ff84725
+df802d59104f,"Take my on-call shift tonight. When an alert fires, pull the logs and traces, find the root cause…",sentence,"iOS app, Teammates intro, page 1, example prompt",ios-app,first-use,2026-11-26,typed,2d230017a54d6378
+30a1161321ab,Continue,button,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26,typed,31fbef162594de01
+84a7c8a010d5,Requires Perplexity Max,label,"iOS app, Teammates intro",ios-app,upgrade,2026-11-26,typed,3c98cd8741de0cb1
+1f4fa2530d98,Storefront Manager,label,"iOS app, Teammates intro, page 3, example",ios-app,first-use,2026-11-26,typed,7ea9cca7c280a99f
+32019fba72de,Compare our Shopify assortment with e-commerce brands that have similar best-sellers.,sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26,typed,5c090a7bff741924
+38aa097ee8db,Send me a weekly Slack update on products and categories we should add to grow GMV…,sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26,typed,edf08725dd7c3c0e
+2fef68b7793a,Thinking…,label,"iOS app, Teammates intro, page 3, example",ios-app,first-use,2026-11-26,typed,a02f1cea3c1d6c6e
+e324c4fa58b3,"They have access to your tools, skills, and context, and a computer of their own.",sentence,"iOS app, Teammates intro, page 3",ios-app,first-use,2026-11-26,typed,fae8239ada159613
+54464cebb9d2,Try Teammates,button,"iOS app, Teammates intro, page 3",ios-app,first-use,2026-11-26,typed,7861a1e167c416a1

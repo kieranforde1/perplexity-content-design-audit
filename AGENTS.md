@@ -36,7 +36,8 @@ being audited.
   "design system" reconstructions, or leaked or compiled prompts.
 - Never use anything behind a sign-in or an organisation-only page, even if an account
   could open it.
-- Never automate the company's apps. App text is typed in by hand (see below).
+- Never automate the company's apps. App text is typed in by hand, or transcribed from
+  the owner's own screenshots (see below). Screenshots are never committed.
 - Fetch politely. `audit fetch` obeys robots.txt, waits at least a second between
   requests and names a contact in its user agent. Don't work around any of that, and
   don't crawl from CI.
@@ -122,10 +123,12 @@ the glossary columns, change (`update` an existing term or `add` a new one), evi
 note and decision (blank, accept, reject, or `applied` once "Apply accepted" has written
 it into `glossary.csv`, after the same check as `audit glossary --check`).
 
-`typed_strings.csv` holds app text a person typed in by hand: text, kind, source_url,
+`typed_strings.csv` holds app text from normal use of the product, typed in by hand or
+transcribed from the owner's screenshots and checked by the owner: text, kind, source_url,
 surface, stage, captured_on. 20 words at most per string. `source_url` is a web address,
 or a short description such as "web app, sign-up screen". `audit typed --check` checks
-the file. Never add strings a person didn't type.
+the file. Never add strings that didn't come from a person's own use of the product, and
+leave out anything personal: usernames, account details and the person's own chats.
 
 ## How people take part
 
