@@ -17,6 +17,7 @@ Every finding lists the IDs of every snippet it counts, so each one can be trace
 from __future__ import annotations
 
 import hashlib
+import re
 from collections import Counter, defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -37,9 +38,25 @@ class Use:
     start: int
 
 
-def uses_of(term: str, texts: list[Text], company: str) -> list[Use]:
+def spans_of(phrases: tuple[str, ...], text: str) -> list[tuple[int, int]]:
+    """Where each phrase appears in the text, in any case."""
+    found = []
+    for phrase in phrases:
+        for m in re.finditer(re.escape(phrase), text, re.IGNORECASE):
+            found.append((m.start(), m.end()))
+    return found
+
+
+def is_inside(start: int, end: int, spans: list[tuple[int, int]]) -> bool:
+    return any(s <= start and end <= e for s, e in spans)
+
+
+def uses_of(
+    term: str, texts: list[Text], company: str, other_things: tuple[str, ...] = ()
+) -> list[Use]:
     """Every use of a term in prose, in any spelling. Code parameters and matches inside
-    file names, URLs or IDs don't count."""
+    file names, URLs or IDs don't count. Neither do matches inside a phrase that names
+    something else (the config's `other_things`), like "RTX PRO" for Perplexity Pro."""
     pattern = terms.form_pattern(term, company)
     words = terms.strip_company(term.replace("-", " ").split(), company)
     first = words[0].lower()
@@ -50,10 +67,42 @@ def uses_of(term: str, texts: list[Text], company: str) -> list[Use]:
             continue
         if not {first, stem, stem + "s"} & t.tokens:
             continue
+        elsewhere = spans_of(other_things, t.text)
         for match in pattern.finditer(t.text):
-            if not terms.inside_identifier(t.text, match.start(), match.end()):
-                found.append(Use(t, match.group(), match.start()))
+            if terms.inside_identifier(t.text, match.start(), match.end()):
+                continue
+            if is_inside(match.start(), match.end(), elsewhere):
+                continue
+            found.append(Use(t, match.group(), match.start()))
     return found
+
+
+def is_plural(form: str) -> bool:
+    last = terms.strip_possessive(form).split()[-1] if form.split() else ""
+    return len(last) > 3 and last.endswith("s") and not last.endswith("ss")
+
+
+def longer_uses(
+    entry: dict[str, str],
+    entries: list[dict[str, str]],
+    texts: list[Text],
+    target: Target,
+) -> dict[str, list[tuple[int, int]]]:
+    """Where longer glossary terms that contain this one appear, by snippet ID.
+
+    "API Portal" and "portal" are both in the glossary. A use of "portal" inside "API
+    Portal" is already counted under the longer term, so counting it again would report
+    the same words twice."""
+    own = entry["term"].lower()
+    spans: dict[str, list[tuple[int, int]]] = defaultdict(list)
+    for other in entries:
+        term = other["term"]
+        if len(term) <= len(own) or own not in term.lower():
+            continue
+        phrases = target.check.other_things.get(term, ())
+        for use in uses_of(term, texts, target.display_name, phrases):
+            spans[use.text.snippet.id].append((use.start, use.start + len(use.form)))
+    return spans
 
 
 def title_case(text: str) -> str:
@@ -97,11 +146,40 @@ def glossary_note(entry: dict[str, str]) -> str:
     return f"Glossary: {entry['status']}{instead} ({entry['basis']})."
 
 
-def avoid_findings(entry: dict[str, str], texts: list[Text], company: str) -> list[Finding]:
+def is_correct_in_context(entry: dict[str, str], text: Text, target: Target) -> bool:
+    """True where the name has to be said, so saying it isn't a mistake:
+
+    - on a changelog or other record of the past, where it was right on the day
+    - on the page that announces the rename (the glossary row's source_url)
+    - on pages about moving off the old name (the config's `rename_pages`)
+    """
+    snippet = text.snippet
+    if snippet.surface in target.check.history_surfaces:
+        return True
+    if entry["status"] != "deprecated":
+        return False
+    if entry["source_url"] and snippet.source_url == entry["source_url"]:
+        return True
+    return any(fragment in snippet.source_url for fragment in target.check.rename_pages)
+
+
+def avoid_findings(
+    entry: dict[str, str],
+    texts: list[Text],
+    target: Target,
+    entries: list[dict[str, str]],
+) -> list[Finding]:
     """Where a word to avoid, or a retired name, still appears. One finding per surface."""
     term = entry["term"]
+    company = target.display_name
+    inside_longer = longer_uses(entry, entries, texts, target)
     by_surface: dict[str, list[Use]] = defaultdict(list)
-    for use in uses_of(term, texts, company):
+    phrases = target.check.other_things.get(term, ())
+    for use in uses_of(term, texts, company, phrases):
+        if is_correct_in_context(entry, use.text, target):
+            continue
+        if is_inside(use.start, use.start + len(use.form), inside_longer[use.text.snippet.id]):
+            continue
         # A retired name is a name, so lowercase "space" is the general word, not the old
         # product. Words to avoid count in any case.
         is_lowercase = use.form == use.form.lower() and term != term.lower()
@@ -131,17 +209,26 @@ def avoid_findings(entry: dict[str, str], texts: list[Text], company: str) -> li
     return findings
 
 
-def spelling_findings(entry: dict[str, str], texts: list[Text], company: str) -> list[Finding]:
+def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) -> list[Finding]:
     """Other spellings of a term to use, with labels and running text kept apart."""
     term = entry["term"]
+    company = target.display_name
     by_group: dict[str, list[Use]] = defaultdict(list)
     as_glossary: Counter[str] = Counter()
-    for use in uses_of(term, texts, company):
+    for use in uses_of(term, texts, company, target.check.other_things.get(term, ())):
         group = terms.group_of(use.text.snippet.kind)
         if group is None:
             continue
         written = terms.shape(use.form, company)
         if written == written.lower() and term != term.lower():
+            continue
+        # ALL CAPS is styling, usually a header, not a different spelling.
+        if len(written) > 1 and written == written.upper() and term != term.upper():
+            continue
+        # "AI Assistant" is the name of one thing, not a variant of "AI assistants". Only
+        # this direction is skipped: a plural of a singular term ("API Keys") still has
+        # its capitals to compare.
+        if is_plural(term) and not is_plural(use.form):
             continue
         at_start = not terms.is_mid_sentence(use.text.text, use.start)
         if written in expected_shapes(term, group, at_start, company):
@@ -185,15 +272,14 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     entries = glossary.read(target.glossary)
     if not entries:
         raise FileNotFoundError(f"No glossary rows in {target.glossary}")
-    company = target.display_name
     texts = terms.load_texts(target)
 
     findings: list[Finding] = []
     for entry in entries:
         if entry["status"] in ("avoid", "deprecated"):
-            findings += avoid_findings(entry, texts, company)
+            findings += avoid_findings(entry, texts, target, entries)
         else:
-            findings += spelling_findings(entry, texts, company)
+            findings += spelling_findings(entry, texts, target)
 
     rows = [f.row() for f in findings]
     path = target.data_dir / "findings.csv"

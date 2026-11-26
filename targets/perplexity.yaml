@@ -234,6 +234,40 @@ terms:
   # A term on fewer pages than this is "too few to tell", not "consistent".
   consistent_min_pages: 3
 
+# Exceptions for `audit check`, where a match isn't a mistake.
+check:
+  # A changelog records the past, so an old name there was right when it was written.
+  history_surfaces:
+    - changelog
+  # Pages about moving off an old name have to say it. The page that announces a rename
+  # (the glossary row's source_url) is skipped without being listed here.
+  rename_pages:
+    - /migrate-from-sonar/
+  # Glossary term -> phrases that contain the term but name something else.
+  other_things:
+    # NVIDIA graphics cards.
+    Perplexity Pro:
+      - RTX PRO
+    # The verb, as in "monitor API usage".
+    Monitor API:
+      - monitor API usage
+      - monitor API activity
+    # Search APIs in general, not this company's.
+    Search API:
+      - web search APIs
+    # Other portals: sign-in and billing pages for Enterprise accounts, other companies'
+    # portals, and a trust site. None of them is the API Portal.
+    portal:
+      - admin portal
+      - subscription portal
+      - Support Portal
+      - Stripe portal
+      - HubSpot portal
+      - customer portals
+      - security portal
+      - self-serve portal
+      - billing portal
+
 # The committed snippets table only fills in excerpts for evidence rows. A test fails if
 # it holds more than this many.
 max_committed_excerpts: 500
