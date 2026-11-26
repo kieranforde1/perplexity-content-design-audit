@@ -3,22 +3,23 @@
 Every step reads the snippets table and writes its own table. Adding a step means adding
 a file, not rebuilding.
 
-```text
-sources → snippets → terms → standards → findings → recommendations
-                   ↘ patterns, style, tone (pass 2) ↗
-```
-
 ## Phases
 
-1. **Fetch and extract.** Done: 210 API docs and changelog pages became 20,044 snippets.
-2. **`audit terms` and `audit view`.** Built: 60 terms proposed, with variants, sources and
-   a question for each. Done when about 30 have been reviewed and defined.
-3. **Standards, checks and recommendations.** Done when `audit recommend` produces
-   recommendations that each link to their evidence, and the viewer shows them.
-4. **Stubs, README and example target.** Done when someone new can clone the repo, run
+1. **Fetch and extract.** Done when fetch and extract run on the docs index. Done.
+2. **`audit terms` and `audit view`.** Done when the viewer shows about 30 reviewed terms
+   with sources. Built, and waiting on review.
+3. **Stubs, README and example target.** Done when someone new can clone the repo, run
    the example, and follow the steps in the README.
 
-## Phase 3: standards, checks and recommendations
+## Second pass
+
+`audit patterns`, `audit style` and `audit tone` print "Not built yet" for now. Their
+output formats will be written here, so they fit without changing earlier steps.
+
+## Later
+
+These are paused. They're kept here so they can be picked up without starting again.
+`audit check`, `audit recommend` and `audit skill` print "Not built yet" until then.
 
 ### Standards register: `targets/<target>.standards.yaml`
 
@@ -52,7 +53,7 @@ finding_id, standard_id, observation, count, surfaces, snippet_ids
 
 - `observation` is a neutral sentence starting "Observed:".
 - `snippet_ids` lists every snippet the finding counts, so each one can be traced.
-- Tutorial and example-app pages (such as `/docs/cookbook/`) are left out of checks by a
+- Tutorial and example-app pages are left out of checks by the `analysis_exclude`
   config setting, because they aren't product language.
 
 First checks:
@@ -87,16 +88,7 @@ why the company made its decisions.
 
 ### `audit skill` → `data/<target>/skill/`
 
-The last `system`-level recommendation: a content-standards skill that applies the audit's
-standards to new text. It's filled from `templates/content-skill/SKILL.md` with the term
-list, the standards register and the check results. Its gates run the same checks as
-`audit check`, so the audit and the skill can't drift apart.
-
-Rule sections stay marked "pending" until the audit has the evidence for them.
-
-## Second pass
-
-`audit patterns`, `audit style` and `audit tone` print "Not built yet" for now. Their
-output formats will be written here in phase 4, so they fit without changing earlier
-steps. Tone scoring will use the published brand principles in the standards register as
-its anchor.
+A content-standards skill that applies the audit's standards to new text. It would be
+filled from `later/content-skill-template.md` with the term list, the standards register
+and the check results. Its gates would run the same checks as `audit check`, so the audit
+and the skill can't drift apart.

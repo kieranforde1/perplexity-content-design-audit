@@ -136,22 +136,37 @@ def write_target(root: Path) -> None:
     )
 
 
-def test_run_writes_both_tables(tmp_path: Path) -> None:
+def test_run_writes_the_local_table_and_a_committed_copy(tmp_path: Path) -> None:
     write_target(tmp_path)
     target = config.load("example", tmp_path)
     extract.run(target, log=lambda _: None)
 
-    rows = snippets.read(tmp_path / "data" / "example" / "snippets.csv")
-    header = (tmp_path / "data" / "example" / "snippets.csv").read_text().splitlines()[0]
+    local = snippets.read(target.local_snippets)
+    header = target.public_snippets.read_text().splitlines()[0]
     assert header == ",".join(snippets.COLUMNS)
-    assert {r.method for r in rows} == {"crawl", "typed"}
-    crawled = [r for r in rows if r.method == "crawl"]
+    assert {r.method for r in local} == {"crawl", "typed"}
+    crawled = [r for r in local if r.method == "crawl"]
     assert {r.stage for r in crawled} == {"first-use"}
-    assert all(len(r.excerpt.split()) <= snippets.EXCERPT_MAX_WORDS + 1 for r in rows)
+    assert all(r.excerpt for r in local)
 
-    full = (tmp_path / "cache" / "example" / "snippets_full.csv").read_text()
+    # The committed copy keeps every row, but with no terms.csv yet only typed strings
+    # are evidence, so only they keep their excerpt.
+    public = snippets.read(target.public_snippets)
+    assert [r.id for r in public] == [r.id for r in local]
+    assert {r.method for r in public if r.excerpt} == {"typed"}
+
+    full = target.full_text.read_text()
     assert "Invalid API key provided" in full
-    assert len(full.splitlines()) == len(rows) + 1
+    assert len(full.splitlines()) == len(local) + 1
+
+
+def test_bad_typed_strings_are_skipped_with_their_line(tmp_path: Path) -> None:
+    write_target(tmp_path)
+    with (tmp_path / "data" / "example" / "typed_strings.csv").open("a") as f:
+        f.write("Too far,button,https://app.example.com/,billboard,first-use,2026-11-20\n")
+    messages: list[str] = []
+    extract.run(config.load("example", tmp_path), log=messages.append)
+    assert any("line 3" in m and "surface" in m for m in messages)
 
 
 def test_run_dry_run_writes_nothing(tmp_path: Path) -> None:
@@ -159,4 +174,5 @@ def test_run_dry_run_writes_nothing(tmp_path: Path) -> None:
     target = config.load("example", tmp_path)
     found = extract.run(target, dry_run=True, log=lambda _: None)
     assert found
-    assert not (tmp_path / "data" / "example" / "snippets.csv").exists()
+    assert not target.public_snippets.exists()
+    assert not target.local_snippets.exists()

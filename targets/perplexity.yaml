@@ -64,26 +64,24 @@ terms:
     - old: Sonar
       current: Agent API
       source: https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
-  # Capitalised words that aren't this company's terms: other companies' products,
-  # languages, formats and generic words. Logged as rejected, never dropped silently.
+  # Capitalised words that aren't this company's terms: generic technical words,
+  # languages, standards and formats. Logged as rejected, never dropped silently.
+  # Month names, units and file formats are rejected by a rule in terms.py, so they
+  # don't need listing here.
   not_terms:
     - API
     - APIs
     - SDK
     - SDKs
-    - JSON
-    - JSONL
     - HTTP
     - HTTPS
     - URL
     - URLs
+    - URI
     - ID
     - IDs
     - UTC
     - ISO
-    - CSV
-    - PDF
-    - HTML
     - CSS
     - SQL
     - LLM
@@ -92,31 +90,24 @@ terms:
     - MCP
     - CLI
     - OK
+    - OAuth
     - Python
     - TypeScript
     - JavaScript
+    - JS
     - Node
     - Bash
-    - OpenAI
-    - Anthropic
-    - Google
-    - Gemini
-    - Claude
-    - Claude Code
-    - Cursor
-    - GitHub
-    - AWS
+    - PowerShell
+    - Unix
     - Mac
     - macOS
     - Windows
     - Linux
     - Markdown
-    # Date formats, HTTP methods and headers, and other standards.
     - DD
     - MM
     - YYYY
     - RFC
-    - JS
     - GET
     - POST
     - PUT
@@ -125,47 +116,58 @@ terms:
     - Authorization
     - Retry-After
     - Idempotency-Key
+    - Content-Type
     - HTTPS URL
     - JSON Schema
     - Model Context Protocol
+    - Streamable HTTP
+    - UTF-8
     - FAQ
     - RAG
-    - UTF-8
-    - Content-Type
-    - PowerShell
-    - Unix
-    # Other companies' products and SDKs.
-    - Apple
-    - NVIDIA
-    - GLM
-    - OpenAI SDK
-    - OpenAI Responses
-    - OpenAI Responses API
-    - Anthropic SDK
-    - Gemini SDK
-    - Stripe
-    - Moonshot AI
-    - OpenAI Chat Completions
-    - Python SDK
-    - TypeScript SDK
-    # Generic technical words.
-    - OAuth
-    - MB
-    - URI
-    - Streamable HTTP
+    - Word
     - API call
     - API response
     - JSON response
-    - USD
-    - JPEG
-    - Word
-    - December
+    - Python SDK
+    - TypeScript SDK
+  # Other companies' products, services and SDKs.
+  third_party:
+    - OpenAI
+    - OpenAI SDK
+    - OpenAI Responses
+    - OpenAI Responses API
+    - OpenAI Chat Completions
+    - Anthropic
+    - Anthropic SDK
+    - Anthropic Messages
+    - Claude
+    - Claude Code
+    - Google
+    - Gemini
+    - Gemini SDK
+    - Google Gemini Flash
+    - Cursor
     - VS Code
     - Codex
-    - Google Gemini Flash
-    - Anthropic Messages
+    - GitHub
+    - AWS
+    - Apple
+    - NVIDIA
+    - GLM
+    - Stripe
+    - Moonshot AI
+  # Excerpts approved as boilerplate: each counts on one page only, not once per page.
+  # `audit terms` lists candidates (text on more than 10 pages) in
+  # cache/perplexity/repeated_text.csv. Add the ones you approve here.
+  repeated_text: []
   # Most terms to propose for review. The rest stay in term_candidates.csv.
   max_proposed: 60
+  # A term on fewer pages than this is "too few to tell", not "consistent".
+  consistent_min_pages: 3
+
+# The committed snippets table only fills in excerpts for evidence rows. A test fails if
+# it holds more than this many.
+max_committed_excerpts: 500
 
 # Strings from my own use of the web and iOS apps, typed in by hand.
 typed_strings: data/perplexity/typed_strings.csv

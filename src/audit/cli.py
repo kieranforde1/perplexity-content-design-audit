@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from audit import config, extract, fetch, terms, view
+from audit import config, extract, fetch, review, terms, typed, view
 
 NOT_BUILT = "Not built yet. See ROADMAP.md"
 
@@ -37,6 +37,17 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("extract", help="Turn cached pages into data/<target>/snippets.csv")
     _add_target(p)
     p.add_argument("--dry-run", action="store_true", help="Count snippets without writing")
+
+    p = sub.add_parser("typed", help="Help with typed app strings")
+    _add_target(p)
+    what = p.add_mutually_exclusive_group(required=True)
+    what.add_argument("--template", action="store_true", help="Print the header and examples")
+    what.add_argument("--check", action="store_true", help="Check typed_strings.csv by line")
+
+    p = sub.add_parser("review", help="Review terms and add app strings in your browser")
+    _add_target(p)
+    p.add_argument("--port", type=int, default=review.DEFAULT_PORT, help="Port on 127.0.0.1")
+    p.add_argument("--no-browser", action="store_true", help="Don't open a browser tab")
 
     for name, help_text in (
         ("terms", "Build the term map"),
@@ -72,6 +83,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 0
         if args.command == "view":
             view.run(config.load(args.target, args.root))
+            return 0
+        if args.command == "typed":
+            if args.template:
+                print(typed.template())
+                return 0
+            path = config.load(args.target, args.root).typed_strings
+            found = typed.check_file(path)
+            for line, problem in found:
+                print(f"line {line}: {problem}")
+            rows = len(typed.read(path))
+            print(f"{path}: {rows} rows, {len(found)} problems." if path else "")
+            return 1 if found else 0
+        if args.command == "review":
+            target = config.load(args.target, args.root)
+            review.run(target, port=args.port, open_browser=not args.no_browser)
             return 0
         print(NOT_BUILT)
         return 0
