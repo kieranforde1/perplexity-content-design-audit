@@ -152,6 +152,33 @@ def test_robots_server_error_blocks_everything(tmp_path: Path) -> None:
     assert "https://docs.example.com/changelog.md" in report.blocked
 
 
+def test_a_dropped_connection_skips_the_page_not_the_crawl(tmp_path: Path) -> None:
+    web = FakeWeb()
+
+    def flaky(url: str, agent: str) -> Response:
+        if url.endswith("a.md"):
+            raise fetch.FetchError("Could not reach a.md: connection reset")
+        return web(url, agent)
+
+    report = fetch.run(target(tmp_path), "me@example.com", get=flaky, throttle=NoWait(), log=quiet)
+    assert ("https://docs.example.com/a.md", 0) in report.failed
+    assert "https://docs.example.com/changelog.md" in report.fetched
+
+
+def test_robots_crawl_delay_raises_the_wait(tmp_path: Path) -> None:
+    web = FakeWeb()
+
+    def slow_robots(url: str, agent: str) -> Response:
+        if url.endswith("robots.txt"):
+            return Response(200, "text/plain", "User-agent: *\nCrawl-delay: 5\n")
+        return web(url, agent)
+
+    throttle = NoWait()
+    fetch.run(target(tmp_path), "me@example.com", get=slow_robots, throttle=throttle, log=quiet)
+    page_waits = [d for u, d in throttle.waits if not u.endswith("robots.txt")]
+    assert page_waits and set(page_waits) == {5.0}
+
+
 def test_contact_is_required(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("AUDIT_CONTACT", raising=False)
     with pytest.raises(fetch.FetchError, match="AUDIT_CONTACT"):

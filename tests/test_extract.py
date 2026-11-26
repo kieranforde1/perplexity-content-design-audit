@@ -57,6 +57,32 @@ def test_markdown_error_messages_come_from_code_but_code_does_not() -> None:
     assert not any("code sample" in p.text for p in pieces)
 
 
+def test_longer_fence_is_not_closed_by_a_shorter_one() -> None:
+    page = (
+        "# Page\n\n"
+        "````yaml\n"
+        "example: |\n"
+        "  ```\n"
+        "  components: schemas: Request\n"
+        "````\n\n"
+        "This sentence comes after the code block.\n"
+    )
+    pieces = extract_markdown(page)
+    assert not any("components" in p.text for p in pieces)
+    assert Piece("sentence", "This sentence comes after the code block.") in pieces
+
+
+def test_error_messages_allow_escaped_quotes_and_skip_single_words() -> None:
+    page = (
+        "```json\n"
+        '{"message": "Field \\"model\\" is required", "detail": "slow"}\n'
+        "```\n"
+    )
+    pieces = extract_markdown(page)
+    assert Piece("error", 'Field "model" is required') in pieces
+    assert not any(p.text == "slow" for p in pieces)
+
+
 def test_markdown_code_inside_quoted_blocks_is_skipped() -> None:
     assert not any("third-party page title" in p.text for p in md_pieces())
 

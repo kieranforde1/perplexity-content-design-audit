@@ -77,7 +77,21 @@ def test_variants_share_a_key() -> None:
 def test_identifiers_are_not_uses() -> None:
     assert inside_identifier("Open SKILL.md now", 5, 10)
     assert inside_identifier("Use sonar-deep-research here", 10, 23)
+    assert inside_identifier("Set model to sonar-pro now", 13, 22)
     assert not inside_identifier("Use Deep Research here", 4, 17)
+
+
+def test_possessives_share_the_key() -> None:
+    assert term_key("Agent API's", "Example") == term_key("Agent API", "Example")
+    assert term_key("Computer’s", "Example") == term_key("Computer", "Example")
+
+
+def test_preferred_form_skips_surfaces_with_only_lowercase() -> None:
+    cluster = terms.Cluster("deepresearch")
+    cluster.form_by_surface["pricing"]["deep research"] = 1
+    cluster.form_by_surface["docs"]["Deep Research"] = 50
+    cluster.uses.update({"deep research": 1, "Deep Research": 50})
+    assert terms.preferred_form(cluster, "Example") == "Deep Research"
 
 
 def test_names_are_proposed_with_their_variants(tmp_path: Path) -> None:
@@ -128,3 +142,70 @@ def test_reviewer_edits_survive_a_rerun(tmp_path: Path) -> None:
     again = by_term(terms.run(target, log=lambda _: None))
     assert again["Search API"]["review"] == "accept"
     assert again["Search API"]["definition"] == "Returns ranked web results for a query."
+
+
+def edit_row(path: Path, which: str, **changes: str) -> None:
+    with path.open() as f:
+        rows = list(csv.DictReader(f))
+    for row in rows:
+        if row["term"] == which:
+            row.update(changes)
+    with path.open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=terms.TERM_COLUMNS)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def test_edits_survive_renaming_the_term_cell(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    terms.run(target, log=lambda _: None)
+    path = target.data_dir / "terms.csv"
+    edit_row(
+        path, "Search API", term="Search API (web)", review="accept", definition="Web results."
+    )
+    again = by_term(terms.run(target, log=lambda _: None))
+    assert again["Search API (web)"]["definition"] == "Web results."
+
+
+def test_edits_survive_a_term_dropping_out_for_a_run(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    terms.run(target, log=lambda _: None)
+    path = target.data_dir / "terms.csv"
+    edit_row(path, "Search API", review="accept", definition="Web results.")
+
+    # Hide the term for one run by putting it on the not_terms list.
+    yaml = tmp_path / "targets" / "example.yaml"
+    original = yaml.read_text()
+    yaml.write_text(original.replace("not_terms: [Python]", "not_terms: [Python, Search API]"))
+    hidden = by_term(terms.run(config.load("example", tmp_path), log=lambda _: None))
+    assert hidden["Search API"]["definition"] == "Web results."
+    assert "Not proposed this run (on the not_terms list)" in hidden["Search API"]["question"]
+
+    yaml.write_text(original)
+    back = by_term(terms.run(config.load("example", tmp_path), log=lambda _: None))
+    assert back["Search API"]["review"] == "accept"
+    assert back["Search API"]["pages"] == "2"
+
+
+def test_questions_quote_forms_that_appear(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    rows = by_term(terms.run(target, log=lambda _: None))
+    question = rows["Search API"]["question"]
+    assert "('search API', 1 time)" in question
+    assert "1 times" not in question
+
+
+def test_title_only_labels_are_not_terms(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    rows = snippets.read(target.data_dir / "snippets.csv")
+    extra = [
+        snippets.build("Use Search", "title", url, "docs", "other", "2026-11-25", "crawl")
+        for url in ("https://docs.example.com/c.md", "https://docs.example.com/d.md")
+    ]
+    snippets.write(target.data_dir / "snippets.csv", rows + extra)
+    with (target.cache_dir / "snippets_full.csv").open("a", newline="") as f:
+        csv.writer(f).writerows([(s.id, "Use Search") for s in extra])
+    terms.run(target, log=lambda _: None)
+    found = candidates(target)
+    assert found["usesearch"]["decision"] == "rejected"
+    assert "never capitalised in running text" in found["usesearch"]["reason"]

@@ -3,18 +3,20 @@
 How it works, step by step:
 
 1. **Candidates.** A run of capitalised words ("Search API", "Deep Research") is a
-   candidate if it's capitalised somewhere other than the start of a snippet. That rules
-   out ordinary sentence-case first words, like "Create" in "Create an API key".
-   Seeds from the config are always considered. Parameter names are listed separately.
-2. **Cluster.** Forms that differ only by case, hyphens, spaces, a plural "s" or a
-   leading company name share one key. "Perplexity Search APIs" and "search-api" are
-   both forms of "Search API".
+   candidate if it's capitalised mid-sentence, or in a page title or nav label. Seeds from
+   the config are always considered. Parameter names are listed separately.
+2. **Cluster.** Forms that differ only by case, hyphens, spaces, a plural "s", a
+   possessive "'s" or a leading company name share one key. "Perplexity Search APIs" and
+   "search API's" are both forms of "Search API".
 3. **Count** every form in every analysed snippet, using the full text, not the excerpt.
+   Matches inside file names, URLs and code IDs (like "sonar-pro") don't count.
 4. **Propose** a term if it's in a title or nav label, or on 2 or more pages, or on 2 or
-   more surfaces, and it isn't on the config's not_terms list. Every candidate is logged
-   with its decision and the reason, including rejected ones.
+   more surfaces. It's rejected if it's on the config's not_terms list, if it's usually
+   lowercase mid-sentence (a general word), or if it's never capitalised in running text
+   (a page title, not a name). Every candidate is logged with its decision and reason.
 5. **Write** term_candidates.csv (everything) and terms.csv (proposed terms, for review).
-   Edits to the `review` and `definition` columns in terms.csv are kept on every re-run.
+   Edits to the `review` and `definition` columns are matched on the `key` column, so
+   they survive every re-run, even if the term drops off the list for a while.
 """
 
 from __future__ import annotations
@@ -33,7 +35,8 @@ from audit.snippets import Snippet
 # When sources disagree, the higher one wins. Changelog sits with the blog.
 AUTHORITY = ("pricing", "docs", "help", "blog", "changelog", "web-app", "ios-app", "comet")
 
-CAP_WORD = r"[A-Z][A-Za-z0-9]*(?:[-'][A-Za-z0-9]+)*"
+# No apostrophes inside a word, so "Agent API's" is read as "Agent API".
+CAP_WORD = r"[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)*"
 CAP_RUN = re.compile(rf"\b{CAP_WORD}(?:[ -]{CAP_WORD}){{0,3}}\b")
 TOKEN = re.compile(r"[a-z0-9]+")
 # A capital straight after one of these is a sentence start, not evidence of a name.
@@ -50,25 +53,31 @@ def is_mid_sentence(text: str, start: int) -> bool:
 
 
 def inside_identifier(text: str, start: int, end: int) -> bool:
-    """True for a match that's part of a file name, URL or code identifier, like the
-    "SKILL" in SKILL.md or the "deep-research" in sonar-deep-research."""
+    """True for a match that's part of a file name, URL or code ID rather than prose.
+
+    Examples: the "SKILL" in "SKILL.md", the "deep-research" in "sonar-deep-research",
+    and "sonar-pro" on its own (a lowercase name joined by a hyphen is a model or tool ID).
+    """
+    matched = text[start:end]
     before = text[start - 1] if start > 0 else ""
     after = text[end] if end < len(text) else ""
     after_next = text[end + 1] if end + 1 < len(text) else ""
-    return (
-        before in "-_/."
-        and before != ""
-        or after in "-_/"
-        and after != ""
-        or (after == "." and after_next.isalnum())
-    )
+    if before and before in "-_/.":
+        return True
+    if after and after in "-_/":
+        return True
+    if after == "." and after_next.isalnum():
+        return True
+    if "-" in matched and matched == matched.lower():
+        return True
+    return False
 
 CANDIDATE_COLUMNS = (
     "key", "form", "type", "pages", "surfaces", "in_title_or_nav", "seed", "decision", "reason",
 )
 TERM_COLUMNS = (
     "term", "review", "definition", "preferred_form", "status", "question", "variants",
-    "uses", "pages", "surfaces", "sources", "example_ids",
+    "uses", "pages", "surfaces", "sources", "example_ids", "key",
 )
 # Columns a person fills in. They survive every re-run.
 HUMAN_COLUMNS = ("review", "definition")
@@ -80,9 +89,18 @@ def strip_company(words: list[str], company: str) -> list[str]:
     return words
 
 
+def strip_possessive(form: str) -> str:
+    return re.sub(r"['’]s$", "", form)
+
+
+def plural(n: int, word: str) -> str:
+    return f"{n} {word}" if n == 1 else f"{n} {word}s"
+
+
 def term_key(form: str, company: str) -> str:
-    """Everything that doesn't change the name: case, spaces, hyphens, plural, company prefix."""
-    words = strip_company(form.replace("-", " ").split(), company)
+    """Everything that doesn't change the name: case, spaces, hyphens, plural, possessive
+    and company prefix."""
+    words = strip_company(strip_possessive(form).replace("-", " ").split(), company)
     key = "".join(words).lower()
     if len(key) > 3 and key.endswith("s") and not key.endswith("ss"):
         key = key[:-1]
@@ -190,8 +208,9 @@ def count_uses(clusters: dict[str, Cluster], texts: list[Text], company: str) ->
             by_token[token].append(t)
 
     company_prefix = re.compile(rf"^{re.escape(company)}\s+", re.IGNORECASE)
-    # Longer names are counted first and claim their place in the text, so "Agent" doesn't
-    # also count every "Agent API".
+    # Longer names are counted first and claim their place in the text. Example: in
+    # "Call the Agent API Models endpoint", "Agent API Models" is counted and claims those
+    # characters, so "Agent API" and "Agent" don't count the same words again.
     claimed: dict[int, list[tuple[int, int]]] = defaultdict(list)
     longest_first = sorted(clusters.values(), key=lambda c: -len(c.label.split()))
 
@@ -217,7 +236,9 @@ def count_uses(clusters: dict[str, Cluster], texts: list[Text], company: str) ->
                         cluster.mid_capitalised += 1
                     else:
                         cluster.mid_lowercase += 1
-                if len(words) > 1 and mid and all(w[:1].isupper() for w in name_part.split()):
+                # Only a written-as-a-name match claims its place. "with Comet" mustn't hide
+                # a use of "Comet".
+                if len(words) > 1 and all(w[:1].isupper() for w in name_part.split()):
                     claimed[id(t)].append((start, end))
                 cluster.uses[form] += 1
                 cluster.pages.add(t.snippet.source_url)
@@ -245,6 +266,8 @@ def decide(cluster: Cluster, target: Target) -> tuple[str, str]:
             f"capitalised in only {cluster.capitalised_share:.0%} of {mid_uses} mid-sentence "
             "uses, so probably a general word"
         )
+    if not cluster.seed and cluster.mid_capitalised == 0:
+        return "rejected", "never capitalised in running text, so a title or label, not a name"
     if not cluster.seed and len(cluster.label.split()) >= 3 and mid_uses < MIN_MID_SENTENCE_USES:
         return "rejected", "a page title or label, rarely used in running text"
     if cluster.in_title_or_nav:
@@ -260,18 +283,25 @@ def preferred_form(cluster: Cluster, company: str) -> str:
     """The most used capitalised spelling on the highest-authority surface that uses it.
 
     Plurals and the company prefix are grouped first, so "Skills" and "Skill" together
-    outweigh "SKILL". The most common form in the winning group is returned.
+    outweigh "SKILL". The most common form in the winning group is returned. A surface
+    that only uses lowercase forms is skipped, so one lowercase use on a pricing page can't
+    outrank fifty capitalised uses in the docs.
     """
-    for surface in AUTHORITY:
-        forms = cluster.form_by_surface.get(surface)
-        if not forms:
-            continue
-        capitalised = {f: n for f, n in forms.items() if f[:1].isupper()} or dict(forms)
+
+    def best_of(forms: dict[str, int]) -> str:
         by_shape: dict[str, Counter[str]] = defaultdict(Counter)
-        for form, n in capitalised.items():
+        for form, n in forms.items():
             by_shape[shape(form, company)][form] += n
         best = max(by_shape.values(), key=lambda c: (sum(c.values()), c.most_common(1)[0][1]))
         return best.most_common(1)[0][0]
+
+    for surface in AUTHORITY:
+        forms = cluster.form_by_surface.get(surface, Counter())
+        capitalised = {f: n for f, n in forms.items() if f[:1].isupper()}
+        if capitalised:
+            return best_of(capitalised)
+    if cluster.uses:
+        return best_of(dict(cluster.uses))
     return cluster.label
 
 
@@ -281,24 +311,29 @@ def status_and_question(
     company = target.display_name
     questions = []
 
-    shapes: Counter[str] = Counter()
+    # Group the real forms by shape, and quote the most common real form of each group,
+    # so a question never quotes a spelling that doesn't appear in the text.
+    groups: dict[str, Counter[str]] = defaultdict(Counter)
     for form, n in cluster.uses.items():
-        shapes[shape(form, company)] += n
-    capitalised = [s for s in shapes if s[:1].isupper()]
-    lowercase = [s for s in shapes if not s[:1].isupper()]
+        groups[shape(form, company)][form] += n
+    ranked = sorted(groups.values(), key=lambda c: -sum(c.values()))
+    capitalised = [g for g in ranked if g.most_common(1)[0][0][:1].isupper()]
+    lowercase = [g for g in ranked if not g.most_common(1)[0][0][:1].isupper()]
+
+    def quote(group: Counter[str]) -> str:
+        return f"'{group.most_common(1)[0][0]}' ({sum(group.values())})"
+
     if len(capitalised) > 1:
-        listed = ", ".join(
-            f"'{s}' ({n})" for s, n in shapes.most_common() if s in capitalised
-        )
+        listed = ", ".join(quote(g) for g in capitalised)
         questions.append(f"Written {len(capitalised)} ways: {listed}. Which form should be used?")
     if lowercase and not capitalised:
-        questions.append(
-            f"Only ever written in lowercase ('{lowercase[0]}'). Is this a product name?"
-        )
+        form = lowercase[0].most_common(1)[0][0]
+        questions.append(f"Only ever written in lowercase ('{form}'). Is this a product name?")
     elif lowercase:
-        n = sum(shapes[s] for s in lowercase)
+        n = sum(sum(g.values()) for g in lowercase)
+        form = lowercase[0].most_common(1)[0][0]
         questions.append(
-            f"Also written in lowercase ('{lowercase[0]}', {n} times). "
+            f"Also written in lowercase ('{form}', {plural(n, 'time')}). "
             "Is that the product name or the general word?"
         )
     for legacy in target.terms.legacy_names:
@@ -307,15 +342,16 @@ def status_and_question(
             pages = len(old.pages) if old else 0
             if pages:
                 questions.append(
-                    f"'{legacy.old}' still appears on {pages} pages. The docs describe moving "
-                    f"from {legacy.old} to {legacy.current} ({legacy.source}). "
-                    f"Which of those pages should still say {legacy.old}?"
+                    f"'{legacy.old}' still appears on {plural(pages, 'page')}. The docs "
+                    f"describe moving from {legacy.old} to {legacy.current} "
+                    f"({legacy.source}). Which of those pages should still say {legacy.old}?"
                 )
     if questions:
         return "question", " ".join(questions)
+    pages = len(cluster.pages)
+    where = "on its only page" if pages == 1 else f"on all {pages} pages"
     return "consistent", (
-        f"Written as '{preferred}' on all {len(cluster.pages)} pages. "
-        "Where do readers first learn what it means?"
+        f"Written as '{preferred}' {where}. Where do readers first learn what it means?"
     )
 
 
@@ -353,11 +389,16 @@ def parameter_candidates(texts: list[Text], company: str) -> list[dict[str, str]
 
 
 def read_human_edits(path: Path, company: str) -> dict[str, dict[str, str]]:
+    """Every row a person has filled in, keyed by the `key` column.
+
+    The key never changes, so editing the `term` cell doesn't lose the edits. Older files
+    without a key column fall back to working the key out from the term.
+    """
     if not path.exists():
         return {}
     with path.open(newline="", encoding="utf-8") as f:
         return {
-            term_key(row["term"], company): {c: row.get(c, "") for c in HUMAN_COLUMNS}
+            (row.get("key") or term_key(row["term"], company)): dict(row)
             for row in csv.DictReader(f)
             if any(row.get(c) for c in HUMAN_COLUMNS)
         }
@@ -412,7 +453,7 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
         status, question = status_and_question(cluster, preferred, target, clusters)
         human = edits.get(cluster.key, {})
         term_rows.append({
-            "term": preferred,
+            "term": human.get("term") or preferred,
             "review": human.get("review", ""),
             "definition": human.get("definition", ""),
             "preferred_form": preferred,
@@ -424,6 +465,23 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
             "surfaces": " ".join(s for s in AUTHORITY if s in cluster.surfaces),
             "sources": " | ".join(sources_for(cluster, surface_of)),
             "example_ids": " ".join(cluster.example_ids),
+            "key": cluster.key,
+        })
+
+    # A reviewed term that isn't proposed this run stays in the file, so the review work
+    # is never lost. The question says why it dropped out.
+    reasons = {row["key"]: row["reason"] for row in candidate_rows}
+    shown = {c.key for c in keep}
+    for key, human in edits.items():
+        if key in shown:
+            continue
+        reason = reasons.get(key, "not found in this run's snippets")
+        term_rows.append({
+            **{c: "" for c in TERM_COLUMNS},
+            **{c: human.get(c, "") for c in ("term", *HUMAN_COLUMNS)},
+            "status": "question",
+            "question": f"Not proposed this run ({reason}). Keep it, or reject it?",
+            "key": key,
         })
 
     candidate_rows += parameter_candidates(texts, company)

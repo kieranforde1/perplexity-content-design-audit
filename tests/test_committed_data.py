@@ -64,6 +64,15 @@ def test_values_are_ones_the_table_allows(path: Path) -> None:
             assert row[column] in values, f"{row['id']}: unknown {column} {row[column]!r}"
 
 
+@pytest.mark.parametrize(
+    "path", sorted(REPO_ROOT.glob("data/*/typed_strings.csv")), ids=lambda p: p.parent.name
+)
+def test_typed_app_strings_are_short(path: Path) -> None:
+    limit = snippets.EXCERPT_MAX_WORDS
+    too_long = [r["text"] for r in rows(path) if len(r["text"].split()) > limit]
+    assert not too_long, f"typed strings over {snippets.EXCERPT_MAX_WORDS} words: {too_long}"
+
+
 @pytest.mark.parametrize("path", SNIPPET_FILES, ids=lambda p: p.parent.name)
 def test_ids_are_unique(path: Path) -> None:
     ids = [r["id"] for r in rows(path)]
