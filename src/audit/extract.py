@@ -4,10 +4,14 @@ From each page we keep the pieces of text a reader meets: the title, headings,
 navigation and button labels, parameter names, error messages and sentences.
 Code samples are skipped, except for error messages inside them.
 
-Two files come out:
-- data/<target>/snippets.csv: committed. Short excerpts only.
-- cache/<target>/snippets_full.csv: gitignored. Full text by snippet ID, so later
-  steps (like counting term variants) see whole sentences, not cut-off excerpts.
+Three files come out:
+- cache/<target>/snippets.csv: the full table, every excerpt. Local only.
+- cache/<target>/full_text.csv: full text by snippet ID, so later steps (like counting
+  term variants) see whole sentences, not cut-off excerpts. Local only.
+- data/<target>/snippets.csv: the committed copy, with excerpts only for evidence rows.
+  See evidence.py.
+
+Typed app strings that break the rules in typed.py are skipped, with a message.
 """
 
 from __future__ import annotations
@@ -20,7 +24,7 @@ from dataclasses import dataclass
 from html.parser import HTMLParser
 from pathlib import Path
 
-from audit import snippets
+from audit import evidence, snippets, typed
 from audit.config import Target
 from audit.fetch import read_manifest
 from audit.snippets import Snippet
@@ -271,13 +275,19 @@ def snippets_from_cache(target: Target) -> tuple[list[Snippet], dict[str, str]]:
     return found, full_text
 
 
-def snippets_from_typed(path: Path | None) -> tuple[list[Snippet], dict[str, str]]:
+def snippets_from_typed(
+    path: Path | None, log: Callable[[str], None] = print
+) -> tuple[list[Snippet], dict[str, str]]:
     if path is None or not path.exists():
         return [], {}
     found: list[Snippet] = []
     full_text: dict[str, str] = {}
     with path.open(newline="", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
+        for line, row in enumerate(csv.DictReader(f), start=2):
+            wrong = typed.problems(row)
+            if wrong:
+                log(f"Skipped typed string on line {line}: {'; '.join(wrong)}")
+                continue
             s = snippets.build(
                 text=row["text"],
                 kind=row["kind"],
@@ -297,13 +307,13 @@ def run(
     target: Target, *, dry_run: bool = False, log: Callable[[str], None] = print
 ) -> list[Snippet]:
     crawled, crawled_text = snippets_from_cache(target)
-    typed, typed_text = snippets_from_typed(target.typed_strings)
-    all_snippets = crawled + [s for s in typed if s.id not in crawled_text]
+    typed_rows, typed_text = snippets_from_typed(target.typed_strings, log)
+    all_snippets = crawled + [s for s in typed_rows if s.id not in crawled_text]
     full_text = {**typed_text, **crawled_text}
 
     by_kind = Counter(s.kind for s in all_snippets)
     by_surface = Counter(s.surface for s in all_snippets)
-    log(f"{len(all_snippets)} snippets ({len(crawled)} crawled, {len(typed)} typed)")
+    log(f"{len(all_snippets)} snippets ({len(crawled)} crawled, {len(typed_rows)} typed)")
     log("  by surface: " + ", ".join(f"{k} {v}" for k, v in by_surface.most_common()))
     log("  by kind: " + ", ".join(f"{k} {v}" for k, v in by_kind.most_common()))
 
@@ -311,14 +321,13 @@ def run(
         log("Dry run: nothing written.")
         return all_snippets
 
-    out = target.data_dir / "snippets.csv"
-    snippets.write(out, all_snippets)
-    full_path = target.cache_dir / "snippets_full.csv"
-    full_path.parent.mkdir(parents=True, exist_ok=True)
-    with full_path.open("w", newline="", encoding="utf-8") as f:
+    snippets.write(target.local_snippets, all_snippets)
+    with target.full_text.open("w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["id", "text"])
         for s in all_snippets:
             writer.writerow([s.id, full_text[s.id]])
-    log(f"Wrote {out} and {full_path}")
+    filled = evidence.write_public_copy(target, all_snippets, log=log)
+    log(f"Wrote {target.local_snippets} and {target.full_text} (local only)")
+    log(f"Wrote {target.public_snippets} (committed, {filled} evidence excerpts)")
     return all_snippets

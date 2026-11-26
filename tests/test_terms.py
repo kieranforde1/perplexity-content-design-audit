@@ -1,7 +1,10 @@
 import csv
 from pathlib import Path
 
+import pytest
+
 from audit import config, snippets, terms
+from audit.cli import main
 from audit.terms import inside_identifier, term_key
 
 SENTENCES = {
@@ -27,7 +30,7 @@ SENTENCES = {
 
 
 def write_target(root: Path) -> config.Target:
-    (root / "targets").mkdir()
+    (root / "targets").mkdir(parents=True)
     (root / "targets" / "example.yaml").write_text(
         "name: example\n"
         "display_name: Example\n"
@@ -51,9 +54,8 @@ def write_target(root: Path) -> config.Target:
             s = snippets.build(text, kind, url, "docs", "other", "2026-11-25", "crawl")
             rows.append(s)
             full[s.id] = text
-    snippets.write(target.data_dir / "snippets.csv", rows)
-    target.cache_dir.mkdir(parents=True)
-    with (target.cache_dir / "snippets_full.csv").open("w", newline="") as f:
+    snippets.write(target.local_snippets, rows)
+    with target.full_text.open("w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["id", "text"])
         writer.writerows(full.items())
@@ -195,15 +197,105 @@ def test_questions_quote_forms_that_appear(tmp_path: Path) -> None:
     assert "1 times" not in question
 
 
+def add_rows(target: config.Target, pieces: list[tuple[str, str, str]]) -> None:
+    """Add (kind, text, url) snippets to the local tables."""
+    rows = snippets.read(target.local_snippets)
+    extra = [snippets.build(t, k, u, "docs", "other", "2026-11-25", "crawl") for k, t, u in pieces]
+    snippets.write(target.local_snippets, rows + extra)
+    with target.full_text.open("a", newline="") as f:
+        csv.writer(f).writerows([(s.id, s.excerpt) for s in extra])
+
+
+def test_labels_and_running_text_are_compared_separately(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    pages = [f"https://docs.example.com/ref{i}.md" for i in range(3)]
+    add_rows(target, [("nav", "API Reference", u) for u in pages])
+    add_rows(target, [("sentence", f"See the API reference for page {i}.", u)
+                      for i, u in enumerate(pages)])
+    rows = by_term(terms.run(target, log=lambda _: None))
+    ref = next(r for k, r in rows.items() if k.lower() == "api reference")
+    # The case difference between nav and sentences is a note, not a question.
+    assert ref["status"] == "consistent"
+    assert "ways" not in ref["question"]
+    assert ref["note"] == (
+        "Labels use title case ('API Reference') and running text uses sentence case "
+        "('API reference')."
+    )
+
+
+def test_months_units_and_formats_are_rejected_by_rule(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    pages = [f"https://docs.example.com/m{i}.md" for i in range(2)]
+    add_rows(target, [("sentence", f"Released in November with a PNG export of 5 MiB {i}.", u)
+                      for i, u in enumerate(pages)])
+    terms.run(target, log=lambda _: None)
+    found = candidates(target)
+    assert found["november"]["reason"] == "a month name"
+    assert found["png"]["reason"] == "a file format"
+    assert found["mib"]["reason"] == "a unit"
+
+
+def test_thin_evidence_is_too_few_to_tell(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    pages = [f"https://docs.example.com/c{i}.md" for i in range(2)]
+    add_rows(target, [("sentence", f"Open the Control Room on page {i}.", u)
+                      for i, u in enumerate(pages)])
+    rows = by_term(terms.run(target, log=lambda _: None))
+    assert rows["Control Room"]["status"] == "too few to tell"
+    assert "too few to tell" in rows["Control Room"]["question"]
+
+
+def test_a_form_counts_once_per_page_and_excerpt(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    url = "https://docs.example.com/twice.md"
+    add_rows(target, [
+        ("sentence", "The Agent API calls the Agent API again for you.", url),
+        ("heading", "The Agent API calls the Agent API again for you.", url),
+    ])
+    before = int(by_term(terms.run(write_target(tmp_path / "plain"), log=lambda _: None))
+                 ["Agent API"]["uses"])
+    after = int(by_term(terms.run(target, log=lambda _: None))["Agent API"]["uses"])
+    assert after == before + 1
+
+
+def test_approved_repeated_text_counts_on_one_page(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    pages = [f"https://docs.example.com/n{i}.md" for i in range(12)]
+    add_rows(target, [("nav", "Fleet Manager", u) for u in pages])
+    add_rows(target, [("sentence", "Use the Fleet Manager to see runs.", pages[0])])
+    terms.run(target, log=lambda _: None)
+    with (target.cache_dir / "repeated_text.csv").open() as f:
+        repeats = {r["text"]: r for r in csv.DictReader(f)}
+    assert repeats["Fleet Manager"]["pages"] == "12"
+    assert repeats["Fleet Manager"]["approved"] == ""
+
+    yaml = tmp_path / "targets" / "example.yaml"
+    approved = "terms:\n  repeated_text: [Fleet Manager]\n"
+    yaml.write_text(yaml.read_text().replace("terms:\n", approved))
+    rows = by_term(terms.run(config.load("example", tmp_path), log=lambda _: None))
+    assert rows["Fleet Manager"]["uses"] == "2"
+
+
+def test_terms_without_the_local_table_says_what_to_run(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    target = write_target(tmp_path)
+    target.local_snippets.unlink()
+    assert main(["terms", "--target", "example", "--root", str(tmp_path)]) == 2
+    err = capsys.readouterr().err
+    assert "Run `audit fetch --target example` and then `audit extract" in err
+    assert "Traceback" not in err
+
+
 def test_title_only_labels_are_not_terms(tmp_path: Path) -> None:
     target = write_target(tmp_path)
-    rows = snippets.read(target.data_dir / "snippets.csv")
+    rows = snippets.read(target.local_snippets)
     extra = [
         snippets.build("Use Search", "title", url, "docs", "other", "2026-11-25", "crawl")
         for url in ("https://docs.example.com/c.md", "https://docs.example.com/d.md")
     ]
-    snippets.write(target.data_dir / "snippets.csv", rows + extra)
-    with (target.cache_dir / "snippets_full.csv").open("a", newline="") as f:
+    snippets.write(target.local_snippets, rows + extra)
+    with target.full_text.open("a", newline="") as f:
         csv.writer(f).writerows([(s.id, "Use Search") for s in extra])
     terms.run(target, log=lambda _: None)
     found = candidates(target)

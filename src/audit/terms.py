@@ -9,12 +9,18 @@ How it works, step by step:
    possessive "'s" or a leading company name share one key. "Perplexity Search APIs" and
    "search API's" are both forms of "Search API".
 3. **Count** every form in every analysed snippet, using the full text, not the excerpt.
-   Matches inside file names, URLs and code IDs (like "sonar-pro") don't count.
+   Each form counts once per page and excerpt. Matches inside file names, URLs and code
+   IDs (like "sonar-pro") don't count. Approved boilerplate counts on one page only.
 4. **Propose** a term if it's in a title or nav label, or on 2 or more pages, or on 2 or
-   more surfaces. It's rejected if it's on the config's not_terms list, if it's usually
-   lowercase mid-sentence (a general word), or if it's never capitalised in running text
-   (a page title, not a name). Every candidate is logged with its decision and reason.
-5. **Write** term_candidates.csv (everything) and terms.csv (proposed terms, for review).
+   more surfaces. It's rejected if it's on the not_terms or third_party list, if it's a
+   single word that is a month, unit or file format, if it's usually lowercase
+   mid-sentence (a general word), or if it's never capitalised in running text (a page
+   title, not a name). Every candidate is logged with its decision and reason.
+5. **Compare like with like.** Variants are compared within labels (titles, headings,
+   nav, buttons) and within running text (sentences, errors), never across them. A
+   difference between the two becomes a neutral note. A term on fewer pages than
+   consistent_min_pages is "too few to tell", not "consistent".
+6. **Write** term_candidates.csv (everything) and terms.csv (proposed terms, for review).
    Edits to the `review` and `definition` columns are matched on the `key` column, so
    they survive every re-run, even if the term drops off the list for a while.
 """
@@ -28,7 +34,7 @@ from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from audit import snippets
+from audit import evidence, snippets
 from audit.config import Target
 from audit.snippets import Snippet
 
@@ -46,6 +52,36 @@ SENTENCE_BREAK = re.compile(r"[.!?:;\"'“(\[]\s*$")
 MIN_CAPITALISED_SHARE = 0.5
 # ...judged only once it has appeared mid-sentence at least this many times.
 MIN_MID_SENTENCE_USES = 3
+
+# Labels and running text use case differently on purpose ("API Reference" in nav,
+# "API reference" in a sentence), so variants are only compared within a group.
+LABELS = ("title", "heading", "nav", "button")
+RUNNING_TEXT = ("sentence", "error")
+GROUP_NAMES = {"labels": "labels", "running": "running text"}
+
+# Single words that are never this company's terms, whatever the company.
+MONTHS = {
+    "january", "february", "march", "april", "may", "june", "july", "august",
+    "september", "october", "november", "december",
+}
+UNITS = {
+    "kb", "mb", "gb", "tb", "kib", "mib", "gib", "tib", "ms", "px", "pt", "em", "rem",
+    "usd", "eur", "gbp",
+}
+FILE_FORMATS = {
+    "png", "jpg", "jpeg", "gif", "svg", "webp", "pdf", "csv", "json", "jsonl", "yaml",
+    "yml", "xml", "html", "txt", "md", "mp3", "mp4", "wav", "zip", "docx", "xlsx",
+}
+# Text on more than this many pages is listed as a boilerplate candidate for review.
+REPEATED_ON_PAGES = 10
+
+
+def group_of(kind: str) -> str | None:
+    if kind in LABELS:
+        return "labels"
+    if kind in RUNNING_TEXT:
+        return "running"
+    return None
 
 
 def is_mid_sentence(text: str, start: int) -> bool:
@@ -72,12 +108,13 @@ def inside_identifier(text: str, start: int, end: int) -> bool:
         return True
     return False
 
+
 CANDIDATE_COLUMNS = (
     "key", "form", "type", "pages", "surfaces", "in_title_or_nav", "seed", "decision", "reason",
 )
 TERM_COLUMNS = (
-    "term", "review", "definition", "preferred_form", "status", "question", "variants",
-    "uses", "pages", "surfaces", "sources", "example_ids", "key",
+    "term", "review", "definition", "preferred_form", "status", "question", "note",
+    "variants", "uses", "pages", "surfaces", "sources", "example_ids", "key",
 )
 # Columns a person fills in. They survive every re-run.
 HUMAN_COLUMNS = ("review", "definition")
@@ -139,9 +176,15 @@ class Cluster:
     pages: set[str] = field(default_factory=set)
     surfaces: Counter[str] = field(default_factory=Counter)
     form_by_surface: dict[str, Counter[str]] = field(default_factory=lambda: defaultdict(Counter))
+    # Forms split into labels and running text, so like is compared with like.
+    form_by_group: dict[str, Counter[str]] = field(default_factory=lambda: defaultdict(Counter))
     example_ids: list[str] = field(default_factory=list)
     mid_capitalised: int = 0
     mid_lowercase: int = 0
+    # (page, excerpt, form) already counted, so each form counts once per page and excerpt.
+    counted: set[tuple[str, str, str]] = field(default_factory=set)
+    # Approved repeated text already counted on one page.
+    repeated_counted: set[str] = field(default_factory=set)
 
     @property
     def label(self) -> str:
@@ -161,11 +204,16 @@ class Text:
 
 
 def load_texts(target: Target) -> list[Text]:
-    rows = snippets.read(target.data_dir / "snippets.csv")
-    full_path = target.cache_dir / "snippets_full.csv"
-    if not full_path.exists():
-        raise FileNotFoundError(f"{full_path} is missing. Run `audit extract` first.")
-    with full_path.open(newline="", encoding="utf-8") as f:
+    """Every analysed snippet with its full text, from the local tables extract writes."""
+    if not target.local_snippets.exists() or not target.full_text.exists():
+        raise FileNotFoundError(
+            f"The local snippets table isn't there yet ({target.local_snippets}). "
+            f"The committed copy only has evidence excerpts, so terms can't count from it. "
+            f"Run `audit fetch --target {target.name}` and then "
+            f"`audit extract --target {target.name}` first."
+        )
+    rows = snippets.read(target.local_snippets)
+    with target.full_text.open(newline="", encoding="utf-8") as f:
         full = {row["id"]: row["text"] for row in csv.DictReader(f)}
     return [
         Text(s, full[s.id], frozenset(TOKEN.findall(full[s.id].lower())))
@@ -201,7 +249,19 @@ def find_candidates(texts: Iterable[Text], target: Target) -> dict[str, Cluster]
     return clusters
 
 
-def count_uses(clusters: dict[str, Cluster], texts: list[Text], company: str) -> None:
+def count_uses(
+    clusters: dict[str, Cluster],
+    texts: list[Text],
+    company: str,
+    repeated: Iterable[str] = (),
+) -> None:
+    """Count every form of every cluster.
+
+    Each form counts once per page and excerpt, so a heading that says "Agent API Agent
+    API" counts once. Text a person has approved as repeated boilerplate (the config's
+    repeated_text) counts on one page only, not once per page it appears on.
+    """
+    approved = {" ".join(r.split()) for r in repeated}
     by_token: dict[str, list[Text]] = defaultdict(list)
     for t in texts:
         for token in t.tokens:
@@ -230,22 +290,55 @@ def count_uses(clusters: dict[str, Cluster], texts: list[Text], company: str) ->
                     continue
                 form = match.group()
                 name_part = company_prefix.sub("", form)
+                # Only a written-as-a-name match claims its place. "with Comet" mustn't hide
+                # a use of "Comet". This happens before the checks below, so a skipped
+                # duplicate still stops shorter names counting inside it.
+                if len(words) > 1 and all(w[:1].isupper() for w in name_part.split()):
+                    claimed[id(t)].append((start, end))
+                once = (t.snippet.source_url, t.text, form)
+                if once in cluster.counted:
+                    continue
+                if t.text in approved and t.text in cluster.repeated_counted:
+                    continue
+                cluster.counted.add(once)
+                if t.text in approved:
+                    cluster.repeated_counted.add(t.text)
                 mid = t.snippet.kind == "sentence" and is_mid_sentence(t.text, start)
                 if mid:
                     if name_part[:1].isupper():
                         cluster.mid_capitalised += 1
                     else:
                         cluster.mid_lowercase += 1
-                # Only a written-as-a-name match claims its place. "with Comet" mustn't hide
-                # a use of "Comet".
-                if len(words) > 1 and all(w[:1].isupper() for w in name_part.split()):
-                    claimed[id(t)].append((start, end))
                 cluster.uses[form] += 1
                 cluster.pages.add(t.snippet.source_url)
                 cluster.surfaces[t.snippet.surface] += 1
                 cluster.form_by_surface[t.snippet.surface][form] += 1
+                group = group_of(t.snippet.kind)
+                if group:
+                    cluster.form_by_group[group][form] += 1
                 if len(cluster.example_ids) < 5 and t.snippet.id not in cluster.example_ids:
                     cluster.example_ids.append(t.snippet.id)
+
+
+def general_word(cluster: Cluster, target: Target) -> str:
+    """Why a single word can't be this company's term, or "" if it might be.
+
+    Month names, units and file formats never are, whatever the company. Third-party
+    products come from the config's third_party list.
+    """
+    third_party = {term_key(n, target.display_name) for n in target.terms.third_party}
+    if cluster.key in third_party:
+        return "a third-party product, on the third_party list"
+    if len(cluster.label.split()) != 1:
+        return ""
+    word = cluster.label.lower()
+    if word in MONTHS or cluster.key in MONTHS:
+        return "a month name"
+    if word in UNITS or cluster.key in UNITS:
+        return "a unit"
+    if word in FILE_FORMATS or cluster.key in FILE_FORMATS:
+        return "a file format"
+    return ""
 
 
 def decide(cluster: Cluster, target: Target) -> tuple[str, str]:
@@ -254,6 +347,9 @@ def decide(cluster: Cluster, target: Target) -> tuple[str, str]:
         return "rejected", "on the not_terms list"
     if cluster.key == term_key(target.display_name, ""):
         return "rejected", "the company name itself"
+    general = general_word(cluster, target)
+    if general:
+        return "rejected", general
     if not cluster.uses:
         return "rejected", "seed not found in first-party snippets" if cluster.seed else "no uses"
     mid_uses = cluster.mid_capitalised + cluster.mid_lowercase
@@ -305,37 +401,81 @@ def preferred_form(cluster: Cluster, company: str) -> str:
     return cluster.label
 
 
+def spellings(forms: Counter[str], company: str) -> list[Counter[str]]:
+    """Real forms grouped by shape, most used first.
+
+    Each group's most common real form is what gets quoted, so a question never quotes a
+    spelling that doesn't appear in the text.
+    """
+    groups: dict[str, Counter[str]] = defaultdict(Counter)
+    for form, n in forms.items():
+        groups[shape(form, company)][form] += n
+    return sorted(groups.values(), key=lambda c: -sum(c.values()))
+
+
+def top(group: Counter[str]) -> str:
+    return group.most_common(1)[0][0]
+
+
+def quote(group: Counter[str]) -> str:
+    return f"'{top(group)}' ({sum(group.values())})"
+
+
+def is_title_case(form: str, company: str) -> bool:
+    words = strip_company(form.split(), company)
+    return len(words) > 1 and all(w[:1].isupper() for w in words)
+
+
 def status_and_question(
     cluster: Cluster, preferred: str, target: Target, clusters: dict[str, Cluster]
-) -> tuple[str, str]:
+) -> tuple[str, str, str]:
+    """The term's status, the question to ask, and a neutral note.
+
+    Variants are compared within labels and within running text, never across them,
+    because labels often use title case on purpose. A difference between the two groups
+    becomes a note, not a question.
+    """
     company = target.display_name
     questions = []
 
-    # Group the real forms by shape, and quote the most common real form of each group,
-    # so a question never quotes a spelling that doesn't appear in the text.
-    groups: dict[str, Counter[str]] = defaultdict(Counter)
-    for form, n in cluster.uses.items():
-        groups[shape(form, company)][form] += n
-    ranked = sorted(groups.values(), key=lambda c: -sum(c.values()))
-    capitalised = [g for g in ranked if g.most_common(1)[0][0][:1].isupper()]
-    lowercase = [g for g in ranked if not g.most_common(1)[0][0][:1].isupper()]
+    # Lowercase uses ("create a connector") are the general word or a slip, whatever the
+    # group, so they're one question. Capitalised spellings are compared within a group.
+    running = spellings(cluster.form_by_group["running"], company)
+    labels = spellings(cluster.form_by_group["labels"], company)
+    running_caps = [g for g in running if top(g)[:1].isupper()]
+    label_caps = [g for g in labels if top(g)[:1].isupper()]
+    lowercase = spellings(
+        Counter({f: n for f, n in cluster.uses.items() if not f[:1].isupper()}), company
+    )
 
-    def quote(group: Counter[str]) -> str:
-        return f"'{group.most_common(1)[0][0]}' ({sum(group.values())})"
-
-    if len(capitalised) > 1:
-        listed = ", ".join(quote(g) for g in capitalised)
-        questions.append(f"Written {len(capitalised)} ways: {listed}. Which form should be used?")
-    if lowercase and not capitalised:
-        form = lowercase[0].most_common(1)[0][0]
-        questions.append(f"Only ever written in lowercase ('{form}'). Is this a product name?")
+    for name, caps in (("running text", running_caps), ("labels", label_caps)):
+        if len(caps) > 1:
+            listed = ", ".join(quote(g) for g in caps)
+            questions.append(
+                f"In {name}, written {len(caps)} ways: {listed}. Which form should be used?"
+            )
+    if lowercase and not (running_caps or label_caps):
+        questions.append(
+            f"Only ever written in lowercase ('{top(lowercase[0])}'). Is this a product name?"
+        )
     elif lowercase:
         n = sum(sum(g.values()) for g in lowercase)
-        form = lowercase[0].most_common(1)[0][0]
         questions.append(
-            f"Also written in lowercase ('{form}', {plural(n, 'time')}). "
+            f"Also written in lowercase ('{top(lowercase[0])}', {plural(n, 'time')}). "
             "Is that the product name or the general word?"
         )
+
+    note = ""
+    if running_caps and label_caps:
+        label_form, text_form = top(label_caps[0]), top(running_caps[0])
+        if shape(label_form, company) != shape(text_form, company):
+            if is_title_case(label_form, company) and not is_title_case(text_form, company):
+                note = (
+                    f"Labels use title case ('{label_form}') and running text uses sentence "
+                    f"case ('{text_form}')."
+                )
+            else:
+                note = f"Labels use '{label_form}' and running text uses '{text_form}'."
     for legacy in target.terms.legacy_names:
         if term_key(legacy.current, company) == cluster.key:
             old = clusters.get(term_key(legacy.old, company))
@@ -347,12 +487,17 @@ def status_and_question(
                     f"({legacy.source}). Which of those pages should still say {legacy.old}?"
                 )
     if questions:
-        return "question", " ".join(questions)
+        return "question", " ".join(questions), note
     pages = len(cluster.pages)
-    where = "on its only page" if pages == 1 else f"on all {pages} pages"
+    if pages < target.terms.consistent_min_pages:
+        return "too few to tell", (
+            f"Only on {plural(pages, 'page')}, which is too few to tell whether it's used "
+            "consistently."
+        ), note
     return "consistent", (
-        f"Written as '{preferred}' {where}. Where do readers first learn what it means?"
-    )
+        f"Written as '{preferred}' on all {pages} pages. "
+        "Where do readers first learn what it means?"
+    ), note
 
 
 def sources_for(cluster: Cluster, texts_by_url_surface: dict[str, str]) -> list[str]:
@@ -412,12 +557,34 @@ def write_csv(path: Path, columns: tuple[str, ...], rows: list[dict[str, str]]) 
         writer.writerows(rows)
 
 
+def repeated_text(texts: list[Text], target: Target) -> list[dict[str, str]]:
+    """Excerpts on more than REPEATED_ON_PAGES pages: candidates for a person to approve
+    as boilerplate. Approved ones go in the config's repeated_text list."""
+    pages: dict[str, set[str]] = defaultdict(set)
+    kinds: dict[str, set[str]] = defaultdict(set)
+    for t in texts:
+        if t.snippet.kind != "parameter":
+            pages[t.text].add(t.snippet.source_url)
+            kinds[t.text].add(t.snippet.kind)
+    approved = set(target.terms.repeated_text)
+    return [
+        {
+            "text": text,
+            "pages": str(len(urls)),
+            "kinds": " ".join(sorted(kinds[text])),
+            "approved": "yes" if text in approved else "",
+        }
+        for text, urls in sorted(pages.items(), key=lambda item: (-len(item[1]), item[0]))
+        if len(urls) > REPEATED_ON_PAGES
+    ]
+
+
 def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str, str]]:
     company = target.display_name
     texts = load_texts(target)
     surface_of = {t.snippet.source_url: t.snippet.surface for t in texts}
     clusters = find_candidates(texts, target)
-    count_uses(clusters, texts, company)
+    count_uses(clusters, texts, company, target.terms.repeated_text)
 
     candidate_rows = []
     proposed: list[Cluster] = []
@@ -450,7 +617,7 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     term_rows = []
     for cluster in keep:
         preferred = preferred_form(cluster, company)
-        status, question = status_and_question(cluster, preferred, target, clusters)
+        status, question, note = status_and_question(cluster, preferred, target, clusters)
         human = edits.get(cluster.key, {})
         term_rows.append({
             "term": human.get("term") or preferred,
@@ -459,6 +626,7 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
             "preferred_form": preferred,
             "status": status,
             "question": question,
+            "note": note,
             "variants": "; ".join(f"{f} ({n})" for f, n in cluster.uses.most_common()),
             "uses": str(sum(cluster.uses.values())),
             "pages": str(len(cluster.pages)),
@@ -488,6 +656,14 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     write_csv(target.data_dir / "term_candidates.csv", CANDIDATE_COLUMNS, candidate_rows)
     write_csv(target.data_dir / "terms.csv", TERM_COLUMNS, term_rows)
 
+    # Repeated text holds full excerpts, so the list stays on this computer.
+    repeats = repeated_text(texts, target)
+    write_csv(target.cache_dir / "repeated_text.csv", ("text", "pages", "kinds", "approved"),
+              repeats)
+
+    # The term map decides which snippets are evidence, so the committed copy is redone.
+    filled = evidence.write_public_copy(target, snippets.read(target.local_snippets), log=log)
+
     decisions = Counter(r["decision"] for r in candidate_rows)
     statuses = Counter(r["status"] for r in term_rows)
     log(
@@ -495,5 +671,11 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
         + ", ".join(f"{k} {v}" for k, v in decisions.most_common())
     )
     log(f"{len(term_rows)} terms for review: " + ", ".join(f"{k} {v}" for k, v in statuses.items()))
+    waiting = sum(1 for r in repeats if not r["approved"])
+    log(
+        f"{len(repeats)} excerpts appear on more than {REPEATED_ON_PAGES} pages ({waiting} not "
+        f"yet approved as boilerplate). See {target.cache_dir / 'repeated_text.csv'}."
+    )
     log(f"Wrote {target.data_dir / 'terms.csv'} and {target.data_dir / 'term_candidates.csv'}")
+    log(f"Wrote {target.public_snippets} (committed, {filled} evidence excerpts)")
     return term_rows

@@ -1,7 +1,9 @@
 """Checks on the data that's actually published in this repo, not just the code that writes it.
 
-The rules come from how the audit handles other people's text: short excerpts only, every
-crawled snippet links to a real public page, and the table's shape never drifts.
+The rules come from how the audit handles other people's text: the repo commits evidence,
+not a copy of the company's pages. So only a capped number of excerpts are filled in,
+each one is short, every crawled snippet links to a real public page, and the table's
+shape never drifts.
 """
 
 import csv
@@ -9,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import snippets
+from audit import config, snippets
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SNIPPET_FILES = sorted(REPO_ROOT.glob("data/*/snippets.csv"))
@@ -29,6 +31,13 @@ def test_columns_match_the_snippets_table(path: Path) -> None:
     with path.open(newline="", encoding="utf-8") as f:
         header = next(csv.reader(f))
     assert tuple(header) == snippets.COLUMNS
+
+
+@pytest.mark.parametrize("path", SNIPPET_FILES, ids=lambda p: p.parent.name)
+def test_only_evidence_excerpts_are_committed(path: Path) -> None:
+    limit = config.load(path.parent.name, REPO_ROOT).max_committed_excerpts
+    filled = sum(1 for r in rows(path) if r["excerpt"])
+    assert filled <= limit, f"{filled} excerpts committed, over the limit of {limit}"
 
 
 @pytest.mark.parametrize("path", SNIPPET_FILES, ids=lambda p: p.parent.name)

@@ -101,11 +101,33 @@
   }
   .empty { padding: 24px; color: var(--muted); }
   footer { color: var(--muted); font-size: 13px; padding-top: 24px; padding-bottom: 32px; }
+  .review { min-width: 240px; }
+  .review select, .review textarea, .string-form input, .string-form select, .string-form textarea {
+    font: inherit; font-size: 14px; padding: 4px 6px; border: 1px solid var(--line);
+    border-radius: 6px; background: var(--bg); color: var(--text); width: 100%;
+  }
+  .review textarea { margin-top: 6px; min-height: 56px; resize: vertical; }
+  .review .row-actions { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+  .save {
+    font: inherit; font-size: 13px; padding: 3px 10px; border-radius: 6px; cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: var(--surface);
+  }
+  .status { font-size: 12px; color: var(--muted); }
+  .status.error { color: var(--question-text); }
+  .string-form {
+    display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; margin-bottom: 16px;
+  }
+  .string-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+  .string-form .wide { grid-column: 1 / -1; }
+  .string-form .form-actions { grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; }
+  .hint { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
   [hidden] { display: none !important; }
 </style>
 </head>
 <body>
-<div class="banner" role="note">Outside-in, public sources, unofficial. No affiliation with the company audited.</div>
+<div class="banner" role="note" id="banner">Outside-in, public sources, unofficial. No affiliation with the company audited.</div>
 <header>
   <h1 id="title">Content audit</h1>
   <p class="summary" id="summary"></p>
@@ -114,6 +136,7 @@
   <div role="tablist" aria-label="Audit views">
     <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="true">Terms</button>
     <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Snippets</button>
+    <button role="tab" id="tab-strings" aria-controls="panel-strings" aria-selected="false" tabindex="-1" hidden>App strings</button>
     <button role="tab" aria-disabled="true" tabindex="-1">Findings<small>Coming in phase 3</small></button>
     <button role="tab" aria-disabled="true" tabindex="-1">Recommendations<small>Coming in phase 3</small></button>
     <button role="tab" aria-disabled="true" tabindex="-1">Patterns<small>Coming in pass 2</small></button>
@@ -130,6 +153,7 @@
         <option value="">All statuses</option>
         <option value="question">Question</option>
         <option value="consistent">Consistent</option>
+        <option value="too few to tell">Too few to tell</option>
       </select>
       <label for="term-review" hidden>Review</label>
       <select id="term-review">
@@ -142,7 +166,7 @@
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr>
+        <thead><tr id="term-head">
           <th scope="col">Term</th><th scope="col">Status</th><th scope="col">Question to ask</th>
           <th scope="col">Variants found</th><th scope="col">Pages</th><th scope="col">Sources</th>
           <th scope="col">Examples</th>
@@ -178,6 +202,39 @@
     </div>
     <div class="more"><button id="snippet-more" hidden>Show more</button></div>
   </section>
+
+  <section role="tabpanel" id="panel-strings" aria-labelledby="tab-strings" hidden>
+    <p class="hint">Text you saw while using the app, typed in by hand. 20 words at most.
+      After adding strings, run <code>audit extract</code> and <code>audit terms</code> to include them.</p>
+    <form class="string-form" id="string-form" novalidate>
+      <label class="wide">Text, exactly as shown
+        <textarea id="s-text" rows="2" required></textarea>
+        <span class="status" id="s-words" aria-live="polite">0 of 20 words</span>
+      </label>
+      <label>Kind<select id="s-kind"></select></label>
+      <label>Surface<select id="s-surface"></select></label>
+      <label>Stage<select id="s-stage"></select></label>
+      <label>Captured on<input type="date" id="s-date" required></label>
+      <label class="wide">Where you saw it: a web address, or a short description
+        <input type="text" id="s-url" placeholder="https://www.perplexity.ai/settings or: iOS app, settings screen" required>
+      </label>
+      <div class="form-actions">
+        <button class="save" type="submit">Add string</button>
+        <span class="status" id="s-status" role="status"></span>
+      </div>
+    </form>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Text</th><th scope="col">Kind</th><th scope="col">Surface</th>
+          <th scope="col">Stage</th><th scope="col">Where</th><th scope="col">Captured</th>
+          <th scope="col"><span hidden>Remove</span></th>
+        </tr></thead>
+        <tbody id="string-rows"></tbody>
+      </table>
+      <p class="empty" id="string-empty" hidden>No app strings yet.</p>
+    </div>
+  </section>
 </main>
 <footer id="footer"></footer>
 
@@ -185,7 +242,16 @@
 <script>
 (function () {
   "use strict";
-  var data = JSON.parse(document.getElementById("audit-data").textContent);
+  var raw = document.getElementById("audit-data").textContent.trim();
+  // Opened the template itself? Say what to open instead. The placeholder is split in two
+  // so `audit view` doesn't replace this check when it fills in the data.
+  if (raw === "__AUDIT" + "_DATA__") {
+    document.querySelector("main").textContent =
+      "This is the viewer template, with no data in it. Run `uv run audit view --target perplexity` " +
+      "and open viewer/perplexity/index.html, or run `uv run audit review --target perplexity`.";
+    return;
+  }
+  var data = JSON.parse(raw);
   var PAGE = 100;
   var shown = PAGE;
   var idFilter = null;
@@ -213,8 +279,30 @@
   document.getElementById("summary").textContent = data.summary;
   document.getElementById("footer").textContent = data.footer;
 
+  // Review mode: served by `audit review`, which saves edits to the files in data/.
+  function save(path, body) {
+    return fetch(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Audit-Review": "1" },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) throw new Error(j.error || ("Save failed (" + r.status + ")"));
+        return j;
+      });
+    });
+  }
+  if (data.editable) {
+    document.getElementById("banner").textContent =
+      "Review mode. Edits save to the data folder on this computer. Outside-in, public sources, unofficial.";
+    document.getElementById("tab-strings").hidden = false;
+    // The review column goes straight after the term, so it's on screen without scrolling.
+    var head = document.getElementById("term-head");
+    head.insertBefore(el("th", { scope: "col", text: "Your review" }), head.children[1]);
+  }
+
   // Tabs
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]:not([aria-disabled])'));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]:not([aria-disabled]):not([hidden])'));
   function selectTab(tab) {
     tabs.forEach(function (t) {
       var on = t === tab;
@@ -269,6 +357,7 @@
       ]);
       body.appendChild(el("tr", {}, [
         termCell,
+        data.editable ? reviewCell(t) : null,
         el("td", {}, [el("span", { className: "badge " + t.status, text: t.status })]),
         el("td", { className: "question-text", text: t.question }),
         variants,
@@ -281,6 +370,113 @@
     document.getElementById("term-count").textContent = rows.length + " of " + data.terms.length + " terms";
   }
   [termSearch, termStatus, termReview].forEach(function (c) { c.addEventListener("input", renderTerms); });
+
+  function reviewCell(t) {
+    var label = "Review for " + t.term;
+    var select = el("select", { "aria-label": label });
+    [["", "Not reviewed"], ["accept", "Accept"], ["reject", "Reject"]].forEach(function (o) {
+      var option = el("option", { value: o[0], text: o[1] });
+      if (t.review === o[0]) option.selected = true;
+      select.appendChild(option);
+    });
+    var definition = el("textarea", { "aria-label": "Definition of " + t.term, placeholder: "Definition, in your own words", maxlength: "400" });
+    definition.value = t.definition || "";
+    var status = el("span", { className: "status", role: "status" });
+    var button = el("button", { className: "save", type: "button", text: "Save" });
+    button.addEventListener("click", function () {
+      status.className = "status";
+      status.textContent = "Saving…";
+      save("/api/term", { key: t.key, review: select.value, definition: definition.value })
+        .then(function (row) {
+          t.review = row.review;
+          t.definition = row.definition;
+          status.textContent = "Saved";
+        })
+        .catch(function (e) {
+          status.className = "status error";
+          status.textContent = e.message;
+        });
+    });
+    return el("td", { className: "review" }, [
+      select, definition, el("div", { className: "row-actions" }, [button, status])
+    ]);
+  }
+
+  // App strings (review mode only)
+  function fillSelect(id, values, chosen) {
+    var select = document.getElementById(id);
+    values.forEach(function (v) {
+      var option = el("option", { value: v, text: v });
+      if (v === chosen) option.selected = true;
+      select.appendChild(option);
+    });
+  }
+  function wordCount(text) { return text.trim() ? text.trim().split(/\s+/).length : 0; }
+
+  function renderStrings() {
+    var body = document.getElementById("string-rows");
+    body.textContent = "";
+    data.typed_strings.forEach(function (s) {
+      var remove = el("button", { className: "linkish", type: "button", text: "Remove", "aria-label": "Remove " + s.text });
+      remove.addEventListener("click", function () {
+        save("/api/strings/remove", s).then(function () {
+          data.typed_strings = data.typed_strings.filter(function (x) { return x !== s; });
+          renderStrings();
+        }).catch(function (e) { alert(e.message); });
+      });
+      body.appendChild(el("tr", {}, [
+        el("td", { text: s.text }),
+        el("td", { text: s.kind }),
+        el("td", { text: s.surface }),
+        el("td", { text: s.stage }),
+        el("td", { className: "sources" }, [sourceLink(s.source_url)]),
+        el("td", { className: "nowrap", text: s.captured_on }),
+        el("td", {}, [remove])
+      ]));
+    });
+    document.getElementById("string-empty").hidden = data.typed_strings.length > 0;
+  }
+
+  if (data.editable) {
+    var appSurfaces = data.allowed.surface.filter(function (v) { return ["web-app", "ios-app", "comet"].indexOf(v) !== -1; });
+    fillSelect("s-kind", data.allowed.kind.filter(function (v) { return v !== "parameter"; }), "button");
+    fillSelect("s-surface", appSurfaces, "web-app");
+    fillSelect("s-stage", data.allowed.stage, "other");
+    document.getElementById("s-date").value = data.today;
+    var text = document.getElementById("s-text");
+    var words = document.getElementById("s-words");
+    text.addEventListener("input", function () {
+      var n = wordCount(text.value);
+      words.textContent = n + " of 20 words";
+      words.className = n > 20 ? "status error" : "status";
+    });
+    document.getElementById("string-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var status = document.getElementById("s-status");
+      var entry = {
+        text: text.value,
+        kind: document.getElementById("s-kind").value,
+        surface: document.getElementById("s-surface").value,
+        stage: document.getElementById("s-stage").value,
+        captured_on: document.getElementById("s-date").value,
+        source_url: document.getElementById("s-url").value
+      };
+      status.className = "status";
+      status.textContent = "Adding…";
+      save("/api/strings/add", entry).then(function (row) {
+        data.typed_strings.push(row);
+        renderStrings();
+        text.value = "";
+        words.textContent = "0 of 20 words";
+        status.textContent = "Added. The rest of the form is kept for the next string.";
+        text.focus();
+      }).catch(function (err) {
+        status.className = "status error";
+        status.textContent = err.message;
+      });
+    });
+    renderStrings();
+  }
 
   // Snippets
   var snippetSearch = document.getElementById("snippet-search");
@@ -314,8 +510,12 @@
     var body = document.getElementById("snippet-rows");
     body.textContent = "";
     rows.slice(0, shown).forEach(function (s) {
+      // Only evidence excerpts are committed. Other rows still show where the text is.
+      var excerpt = s.excerpt
+        ? el("td", { text: s.excerpt })
+        : el("td", { className: "definition", text: "Excerpt not committed. Open the source to read it." });
       body.appendChild(el("tr", {}, [
-        el("td", { text: s.excerpt }),
+        excerpt,
         el("td", { text: s.kind }),
         el("td", { text: s.surface }),
         el("td", { text: s.stage }),

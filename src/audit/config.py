@@ -47,7 +47,10 @@ class TermSettings:
     seeds: tuple[str, ...] = ()
     legacy_names: tuple[LegacyName, ...] = ()
     not_terms: tuple[str, ...] = ()
+    third_party: tuple[str, ...] = ()
+    repeated_text: tuple[str, ...] = ()
     max_proposed: int = 60
+    consistent_min_pages: int = 3
 
 
 @dataclass(frozen=True)
@@ -62,6 +65,7 @@ class Target:
     root: Path
     analysis_exclude: tuple[str, ...] = ()
     terms: TermSettings = TermSettings()
+    max_committed_excerpts: int = 500
 
     def stage_for(self, url: str) -> str:
         """First rule whose `match` text appears in the URL wins. No match means 'other'."""
@@ -81,6 +85,21 @@ class Target:
     @property
     def data_dir(self) -> Path:
         return self.root / "data" / self.name
+
+    @property
+    def local_snippets(self) -> Path:
+        """The full snippets table, every excerpt filled in. Gitignored."""
+        return self.cache_dir / "snippets.csv"
+
+    @property
+    def public_snippets(self) -> Path:
+        """The committed snippets table. Excerpts only for evidence rows."""
+        return self.data_dir / "snippets.csv"
+
+    @property
+    def full_text(self) -> Path:
+        """Each snippet's full text by ID, for counting. Gitignored."""
+        return self.cache_dir / "full_text.csv"
 
 
 class ConfigError(ValueError):
@@ -130,7 +149,10 @@ def load(name: str, root: Path = Path(".")) -> Target:
         seeds=tuple(raw_terms.get("seeds", [])),
         legacy_names=tuple(legacy),
         not_terms=tuple(raw_terms.get("not_terms", [])),
+        third_party=tuple(raw_terms.get("third_party", [])),
+        repeated_text=tuple(raw_terms.get("repeated_text", [])),
         max_proposed=int(raw_terms.get("max_proposed", 60)),
+        consistent_min_pages=int(raw_terms.get("consistent_min_pages", 3)),
     )
 
     return Target(
@@ -144,4 +166,5 @@ def load(name: str, root: Path = Path(".")) -> Target:
         root=root,
         analysis_exclude=tuple(raw.get("analysis_exclude", [])),
         terms=term_settings,
+        max_committed_excerpts=int(raw.get("max_committed_excerpts", 500)),
     )
