@@ -50,7 +50,14 @@ TABLE_SEPARATOR = re.compile(r"^\s*\|?\s*:?-{2,}")
 BLOCKQUOTE = re.compile(r"^\s*(?:>\s?)+")
 # Docs-site components written as a marker at the start of a line, like "[card] [Title](url)".
 COMPONENT = re.compile(r"^\[(card|accordion|tab)\]\s*(.*)$")
+# Images are swapped for their alt text first, so a linked screenshot, [![alt](img)](url),
+# leaves only the alt text.
+IMAGE = re.compile(r"!\[([^\]]*)\]\([^)]*\)")
 LINK = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
+# A backslash before punctuation shows the character literally, as in "\*" or "\-".
+ESCAPED = re.compile(r"\\([\\`*_{}\[\]()#+\-.!|<>~$&])")
+# YAML front matter at the top of a page: settings, not text a reader sees.
+FRONT_MATTER = re.compile(r"\A---\n.*?\n---\n", re.DOTALL)
 CODE_SPAN = re.compile(r"`([^`]+)`")
 BOLD = re.compile(r"\*\*([^*]+)\*\*")
 STAR_EMPHASIS = re.compile(r"(\*\*|\*)(?=\S)(.+?)(?<=\S)\1")
@@ -73,11 +80,13 @@ NAV_VERBS = ("open", "go to", "navigate to", "visit")
 
 def plain(text: str) -> str:
     """Markdown and inline HTML stripped down to the words a reader sees."""
+    text = IMAGE.sub(r"\1", text)
     text = LINK.sub(r"\1", text)
     text = CODE_SPAN.sub(r"\1", text)
     text = STAR_EMPHASIS.sub(r"\2", text)
     text = UNDERSCORE_EMPHASIS.sub(r"\2", text)
     text = TAG.sub(" ", text)
+    text = ESCAPED.sub(r"\1", text)
     return " ".join(text.split())
 
 
@@ -117,7 +126,7 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
         marker, rest = fence.group(1), fence.group(2)
         return marker[0] == open_fence[0] and len(marker) >= len(open_fence) and not rest.strip()
 
-    for raw_line in text.splitlines():
+    for raw_line in FRONT_MATTER.sub("", text).splitlines():
         # Strip quote marks first: code samples often sit inside quoted blocks.
         line = BLOCKQUOTE.sub("", raw_line).strip()
         fence = FENCE.match(line)
@@ -136,6 +145,11 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
             flush()
             open_fence = fence.group(1)
             continue
+
+        # A backslash at the end of a line is a line break, so the next line is new text.
+        line_break = line.endswith("\\") and not line.endswith("\\\\")
+        if line_break:
+            line = line[:-1].rstrip()
 
         if not line or any(b in line for b in boilerplate):
             flush()
@@ -164,6 +178,8 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
             paragraph.append(LIST_ITEM.sub("", line))
         else:
             paragraph.append(line)
+        if line_break:
+            flush()
     flush()
     return [p for p in found if p.text]
 
@@ -178,6 +194,11 @@ class _HtmlPieces(HTMLParser):
     SKIP = {"script", "style", "noscript", "svg", "template"}
     CAPTURE = {"title", "h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "td", "th", "dd",
                "dt", "button", "label", "summary", "figcaption", "a"}
+    # Layout boxes. Pricing cards keep plan names, prices and feature lines in these, so
+    # their own text is kept as a label, unless a sentence or heading already holds it.
+    BOXES = {"div", "span"}
+    # Longer text in a box is running text, so it's split into sentences instead.
+    LABEL_MAX_WORDS = 12
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
@@ -188,10 +209,13 @@ class _HtmlPieces(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         self._open.append(tag)
+        attributes = {k: v or "" for k, v in attrs}
+        # A logo drawn as an image, like a plan name, is read by its accessible name.
+        if tag == "svg" and attributes.get("role") == "img" and attributes.get("aria-label"):
+            self.handle_data(" " + attributes["aria-label"] + " ")
         if tag in self.SKIP:
             self._skip_depth += 1
             return
-        attributes = {k: v or "" for k, v in attrs}
         kind = self._kind(tag, attributes)
         if kind:
             self._frames.append((tag, kind, []))
@@ -209,6 +233,8 @@ class _HtmlPieces(HTMLParser):
             return "nav" if "nav" in self._open else None
         if tag in self.CAPTURE:
             return "sentence"
+        if tag in self.BOXES and all(kind == "label" for _, kind, _ in self._frames):
+            return "label"
         return None
 
     def handle_endtag(self, tag: str) -> None:
@@ -231,6 +257,11 @@ class _HtmlPieces(HTMLParser):
     def _emit(self, kind: str, text: str) -> None:
         if not text:
             return
+        # One character on its own is an icon or a font sample, not words.
+        if kind in {"label", "button"} and len(text) <= 1:
+            return
+        if kind == "label" and len(text.split()) > self.LABEL_MAX_WORDS:
+            kind = "sentence"
         if kind == "sentence":
             self.found += [Piece("sentence", s) for s in split_sentences(text)]
         else:

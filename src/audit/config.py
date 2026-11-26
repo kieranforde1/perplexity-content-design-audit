@@ -27,6 +27,9 @@ class Source:
     index: str | None
     # Pages to fetch directly.
     urls: tuple[str, ...]
+    # Keep only index links whose URL contains this text, such as one language's pages
+    # from an index that lists every language.
+    include: str | None = None
 
 
 @dataclass(frozen=True)
@@ -125,6 +128,7 @@ def load(name: str, root: Path = Path(".")) -> Target:
                 surface=surface,
                 index=s.get("index"),
                 urls=tuple(s.get("urls", [])),
+                include=s.get("include"),
             )
         )
 

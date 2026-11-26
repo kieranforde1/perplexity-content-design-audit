@@ -301,3 +301,7 @@ def test_title_only_labels_are_not_terms(tmp_path: Path) -> None:
     found = candidates(target)
     assert found["usesearch"]["decision"] == "rejected"
     assert "never capitalised in running text" in found["usesearch"]["reason"]
+
+
+def test_every_surface_has_a_place_in_the_authority_order() -> None:
+    assert sorted(terms.AUTHORITY) == sorted(snippets.SURFACES)

@@ -95,9 +95,9 @@ After adding strings, run `extract` and `terms` again to include them.
 | --- | --- |
 | id | Short ID. Stays the same when the same text is re-crawled. |
 | excerpt | The text, cut to 20 words at most. |
-| kind | title, heading, nav, button, parameter, error or sentence |
+| kind | title, heading, nav, button, label, parameter, error or sentence |
 | source_url | Where the text was found |
-| surface | docs, help, pricing, blog, changelog, web-app, ios-app or comet |
+| surface | docs, help, pricing, blog, brand, changelog, web-app, ios-app or comet |
 | stage | sign-up, first-use, answering, error, upgrade, settings or other |
 | captured_on | Date fetched or typed |
 | method | crawl or typed |

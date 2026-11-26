@@ -11,9 +11,11 @@ import hashlib
 from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 
-SURFACES = ("docs", "help", "pricing", "blog", "changelog", "web-app", "ios-app", "comet")
+SURFACES = (
+    "docs", "help", "pricing", "blog", "brand", "changelog", "web-app", "ios-app", "comet",
+)
 STAGES = ("sign-up", "first-use", "answering", "error", "upgrade", "settings", "other")
-KINDS = ("title", "heading", "nav", "button", "parameter", "error", "sentence")
+KINDS = ("title", "heading", "nav", "button", "label", "parameter", "error", "sentence")
 METHODS = ("crawl", "typed")
 
 # Committed data keeps excerpts short. The full text stays in the gitignored cache.

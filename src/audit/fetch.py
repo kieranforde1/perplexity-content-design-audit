@@ -19,7 +19,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import quote, urlsplit
 from urllib.robotparser import RobotFileParser
 
 from audit import REPO_URL, __version__
@@ -47,9 +47,15 @@ class Response:
 Getter = Callable[[str, str], Response]
 
 
+def ascii_url(url: str) -> str:
+    """Percent-encode any non-ASCII characters, which HTTP can't send as they are.
+    Characters that are already ASCII, including existing %-escapes, are left alone."""
+    return quote(url, safe=":/?#[]@!$&'()*+,;=%~")
+
+
 def http_get(url: str, user_agent: str) -> Response:
     request = urllib.request.Request(
-        url,
+        ascii_url(url),
         headers={
             "User-Agent": user_agent,
             "Accept": "text/markdown, text/plain, text/html;q=0.9",
@@ -221,7 +227,11 @@ def run(
             report.failed.append((source.index, response.status))
             log(f"Index {source.index} returned {response.status}. Skipping {source.name}.")
             continue
-        indexed += [(url, source.surface) for url in urls_from_index(response.text, source.index)]
+        indexed += [
+            (url, source.surface)
+            for url in urls_from_index(response.text, source.index)
+            if source.include is None or source.include in url
+        ]
 
     planned_urls: set[str] = set()
     for url, surface in named + indexed:

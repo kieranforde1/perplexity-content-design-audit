@@ -38,8 +38,11 @@ from audit import evidence, snippets
 from audit.config import Target
 from audit.snippets import Snippet
 
-# When sources disagree, the higher one wins. Changelog sits with the blog.
-AUTHORITY = ("pricing", "docs", "help", "blog", "changelog", "web-app", "ios-app", "comet")
+# When sources disagree, the higher one wins. The Brand Hub is the company's own published
+# guidance, so it comes first. Changelog sits with the blog.
+AUTHORITY = (
+    "brand", "pricing", "docs", "help", "blog", "changelog", "web-app", "ios-app", "comet",
+)
 
 # No apostrophes inside a word, so "Agent API's" is read as "Agent API".
 CAP_WORD = r"[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)*"
@@ -55,7 +58,7 @@ MIN_MID_SENTENCE_USES = 3
 
 # Labels and running text use case differently on purpose ("API Reference" in nav,
 # "API reference" in a sentence), so variants are only compared within a group.
-LABELS = ("title", "heading", "nav", "button")
+LABELS = ("title", "heading", "nav", "button", "label")
 RUNNING_TEXT = ("sentence", "error")
 GROUP_NAMES = {"labels": "labels", "running": "running text"}
 
