@@ -1,223 +1,212 @@
 key,form,type,pages,surfaces,in_title_or_nav,seed,decision,reason
-the,The,name,152,changelog docs,,,rejected,"capitalised in only 0% of 5073 mid-sentence uses, so probably a general word"
-and,AND,name,144,changelog docs,,,rejected,"capitalised in only 0% of 2876 mid-sentence uses, so probably a general word"
-is,Is,name,127,changelog docs,,,rejected,"capitalised in only 0% of 1023 mid-sentence uses, so probably a general word"
-use,Use,name,119,changelog docs,yes,,rejected,"capitalised in only 0% of 449 mid-sentence uses, so probably a general word"
-request,Request,name,115,changelog docs,yes,,rejected,"capitalised in only 0% of 866 mid-sentence uses, so probably a general word"
-your,Your,name,111,changelog docs,,,rejected,"capitalised in only 2% of 760 mid-sentence uses, so probably a general word"
-response,Responses,name,109,changelog docs,,,rejected,"capitalised in only 5% of 451 mid-sentence uses, so probably a general word"
-that,That,name,109,changelog docs,,,rejected,"capitalised in only 0% of 635 mid-sentence uses, so probably a general word"
-api,API,name,108,changelog docs,yes,,rejected,on the not_terms list
-model,Model,name,97,changelog docs,yes,,rejected,"capitalised in only 3% of 1133 mid-sentence uses, so probably a general word"
-perplexity,Perplexity,name,90,changelog docs,yes,,rejected,the company name itself
+the,The,name,152,changelog docs,,,rejected,"capitalised in only 0% of 5054 mid-sentence uses, so probably a general word"
+and,AND,name,144,changelog docs,,,rejected,"capitalised in only 0% of 2870 mid-sentence uses, so probably a general word"
+is,Is,name,126,changelog docs,,,rejected,"capitalised in only 0% of 1013 mid-sentence uses, so probably a general word"
+use,Use,name,118,changelog docs,yes,,rejected,"capitalised in only 0% of 448 mid-sentence uses, so probably a general word"
+request,Request,name,114,changelog docs,yes,,rejected,"capitalised in only 0% of 861 mid-sentence uses, so probably a general word"
+your,Your,name,110,changelog docs,,,rejected,"capitalised in only 2% of 759 mid-sentence uses, so probably a general word"
+response,Responses,name,108,changelog docs,,,rejected,"capitalised in only 5% of 447 mid-sentence uses, so probably a general word"
+that,That,name,108,changelog docs,,,rejected,"capitalised in only 0% of 631 mid-sentence uses, so probably a general word"
+api,API,name,102,changelog docs,yes,,rejected,on the not_terms list
+model,Model,name,97,changelog docs,yes,,rejected,"capitalised in only 2% of 1129 mid-sentence uses, so probably a general word"
+perplexity,Perplexity,name,89,changelog docs,yes,,rejected,the company name itself
 set,Set,name,88,changelog docs,,,rejected,"capitalised in only 1% of 199 mid-sentence uses, so probably a general word"
-one,One,name,86,changelog docs,,,rejected,"capitalised in only 0% of 364 mid-sentence uses, so probably a general word"
-example,Examples,name,85,changelog docs,yes,,rejected,"capitalised in only 3% of 199 mid-sentence uses, so probably a general word"
+example,Examples,name,84,changelog docs,yes,,rejected,"capitalised in only 2% of 197 mid-sentence uses, so probably a general word"
 run,Run,name,84,changelog docs,yes,,rejected,"capitalised in only 2% of 532 mid-sentence uses, so probably a general word"
-agent,Agent,name,83,changelog docs,yes,,rejected,"capitalised in only 23% of 214 mid-sentence uses, so probably a general word"
-search,Search,name,81,changelog docs,yes,,rejected,"capitalised in only 20% of 421 mid-sentence uses, so probably a general word"
-get,GET,name,80,changelog docs,yes,,rejected,on the not_terms list
 if,If,name,79,changelog docs,,,rejected,"capitalised in only 1% of 94 mid-sentence uses, so probably a general word"
-page,Page,name,78,changelog docs,yes,,rejected,"capitalised in only 10% of 401 mid-sentence uses, so probably a general word"
+page,Page,name,77,changelog docs,yes,,rejected,"capitalised in only 10% of 391 mid-sentence uses, so probably a general word"
 tool,Tools,name,77,changelog docs,yes,,rejected,"capitalised in only 0% of 595 mid-sentence uses, so probably a general word"
 any,Any,name,76,changelog docs,,,rejected,"capitalised in only 1% of 153 mid-sentence uses, so probably a general word"
-key,Key,name,76,changelog docs,,,rejected,"capitalised in only 2% of 442 mid-sentence uses, so probably a general word"
-result,Results,name,76,changelog docs,,,rejected,"capitalised in only 0% of 423 mid-sentence uses, so probably a general word"
-list,List,name,74,changelog docs,yes,,rejected,"capitalised in only 2% of 136 mid-sentence uses, so probably a general word"
+result,Results,name,76,changelog docs,,,rejected,"capitalised in only 0% of 409 mid-sentence uses, so probably a general word"
+key,Key,name,75,changelog docs,,,rejected,"capitalised in only 1% of 435 mid-sentence uses, so probably a general word"
+search,Search,name,75,changelog docs,yes,,rejected,"capitalised in only 16% of 390 mid-sentence uses, so probably a general word"
 url,URL,name,74,changelog docs,yes,,rejected,on the not_terms list
 no,No,name,73,changelog docs,,,rejected,"capitalised in only 0% of 266 mid-sentence uses, so probably a general word"
 agentapi,Agent API,name,72,changelog docs,yes,yes,proposed,in a page title or nav label
+list,List,name,72,changelog docs,yes,,rejected,"capitalised in only 2% of 135 mid-sentence uses, so probably a general word"
 next,Next,name,72,changelog docs,,,rejected,"capitalised in only 2% of 43 mid-sentence uses, so probably a general word"
 overview,Overview,name,72,changelog docs,yes,,rejected,"capitalised in only 0% of 6 mid-sentence uses, so probably a general word"
-work,Work,name,72,changelog docs,,,rejected,"capitalised in only 3% of 112 mid-sentence uses, so probably a general word"
-include,Include,name,71,changelog docs,,,rejected,"capitalised in only 1% of 154 mid-sentence uses, so probably a general word"
-error,Error,name,70,changelog docs,,,rejected,"capitalised in only 3% of 214 mid-sentence uses, so probably a general word"
-web,Web,name,70,changelog docs,,,rejected,"capitalised in only 1% of 209 mid-sentence uses, so probably a general word"
+get,GET,name,70,changelog docs,yes,,rejected,on the not_terms list
 call,Call,name,69,changelog docs,,,rejected,"capitalised in only 0% of 333 mid-sentence uses, so probably a general word"
+error,Error,name,69,changelog docs,,,rejected,"capitalised in only 3% of 212 mid-sentence uses, so probably a general word"
 same,Same,name,69,changelog docs,,,rejected,"capitalised in only 0% of 213 mid-sentence uses, so probably a general word"
-code,Code,name,66,changelog docs,,,rejected,"capitalised in only 10% of 210 mid-sentence uses, so probably a general word"
-how,How,name,66,changelog docs,yes,,rejected,"capitalised in only 0% of 70 mid-sentence uses, so probably a general word"
-output,Output,name,64,changelog docs,,,rejected,"capitalised in only 1% of 204 mid-sentence uses, so probably a general word"
+web,Web,name,68,changelog docs,,,rejected,"capitalised in only 1% of 205 mid-sentence uses, so probably a general word"
+work,Work,name,65,changelog docs,,,rejected,"capitalised in only 3% of 111 mid-sentence uses, so probably a general word"
 add,Add,name,63,changelog docs,yes,,rejected,"capitalised in only 9% of 110 mid-sentence uses, so probably a general word"
-apikey,API Keys,name,63,changelog docs,yes,,proposed,in a page title or nav label
-http,HTTP,name,62,changelog docs,,,rejected,on the not_terms list
+agent,Agent,name,63,changelog docs,yes,,rejected,"capitalised in only 23% of 212 mid-sentence uses, so probably a general word"
+output,Output,name,63,changelog docs,,,rejected,"capitalised in only 1% of 203 mid-sentence uses, so probably a general word"
+apikey,API Keys,name,62,changelog docs,yes,,proposed,in a page title or nav label
+code,Code,name,62,changelog docs,,,rejected,"capitalised in only 3% of 185 mid-sentence uses, so probably a general word"
 through,Through,name,61,changelog docs,,,rejected,"capitalised in only 0% of 151 mid-sentence uses, so probably a general word"
-limit,Limits,name,60,changelog docs,,,rejected,"capitalised in only 1% of 249 mid-sentence uses, so probably a general word"
+how,How,name,60,changelog docs,yes,,rejected,"capitalised in only 0% of 70 mid-sentence uses, so probably a general word"
+http,HTTP,name,59,changelog docs,,,rejected,on the not_terms list
+limit,Limits,name,59,changelog docs,,,rejected,"capitalised in only 1% of 245 mid-sentence uses, so probably a general word"
 keep,Keep,name,58,changelog docs,yes,,rejected,"capitalised in only 0% of 123 mid-sentence uses, so probably a general word"
 usage,Usage,name,58,changelog docs,,,rejected,"capitalised in only 3% of 184 mid-sentence uses, so probably a general word"
 answer,Answer,name,57,changelog docs,yes,,rejected,"capitalised in only 1% of 192 mid-sentence uses, so probably a general word"
-create,Create,name,57,changelog docs,yes,,rejected,"capitalised in only 9% of 94 mid-sentence uses, so probably a general word"
-all,All,name,56,changelog docs,,,rejected,"capitalised in only 2% of 120 mid-sentence uses, so probably a general word"
-id,ID,name,56,changelog docs,,,rejected,on the not_terms list
-token,Token,name,56,changelog docs,,,rejected,"capitalised in only 1% of 364 mid-sentence uses, so probably a general word"
+token,Token,name,56,changelog docs,,,rejected,"capitalised in only 1% of 363 mid-sentence uses, so probably a general word"
+all,All,name,55,changelog docs,,,rejected,"capitalised in only 3% of 116 mid-sentence uses, so probably a general word"
+id,ID,name,55,changelog docs,,,rejected,on the not_terms list
 support,Support,name,55,changelog docs,,,rejected,"capitalised in only 3% of 144 mid-sentence uses, so probably a general word"
-message,Messages,name,53,docs,,,rejected,"capitalised in only 9% of 118 mid-sentence uses, so probably a general word"
-pricing,Pricing,name,52,changelog docs,yes,,rejected,"capitalised in only 18% of 112 mid-sentence uses, so probably a general word"
-start,Start,name,52,changelog docs,,,rejected,"capitalised in only 2% of 96 mid-sentence uses, so probably a general word"
-content,Content,name,51,changelog docs,,,rejected,"capitalised in only 3% of 148 mid-sentence uses, so probably a general word"
-data,Data,name,51,changelog docs,,,rejected,"capitalised in only 4% of 133 mid-sentence uses, so probably a general word"
+message,Messages,name,52,docs,,,rejected,"capitalised in only 9% of 117 mid-sentence uses, so probably a general word"
+data,Data,name,51,changelog docs,,,rejected,"capitalised in only 3% of 132 mid-sentence uses, so probably a general word"
+pricing,Pricing,name,51,changelog docs,yes,,rejected,"capitalised in only 19% of 113 mid-sentence uses, so probably a general word"
+start,Start,name,51,changelog docs,,,rejected,"capitalised in only 2% of 96 mid-sentence uses, so probably a general word"
+content,Content,name,50,changelog docs,,,rejected,"capitalised in only 2% of 146 mid-sentence uses, so probably a general word"
+create,Create,name,49,changelog docs,yes,,rejected,"capitalised in only 9% of 94 mid-sentence uses, so probably a general word"
 setting,Settings,name,48,changelog docs,yes,,rejected,"capitalised in only 9% of 102 mid-sentence uses, so probably a general word"
-text,Text,name,48,changelog docs,,,rejected,"capitalised in only 1% of 183 mid-sentence uses, so probably a general word"
 check,Check,name,47,changelog docs,,,rejected,"capitalised in only 1% of 111 mid-sentence uses, so probably a general word"
-filter,Filters,name,47,changelog docs,yes,,rejected,"capitalised in only 3% of 134 mid-sentence uses, so probably a general word"
 question,Questions,name,47,changelog docs,,,rejected,"capitalised in only 1% of 183 mid-sentence uses, so probably a general word"
-array,Array,name,46,changelog docs,,,rejected,"capitalised in only 1% of 107 mid-sentence uses, so probably a general word"
 change,Change,name,46,changelog docs,,,rejected,"capitalised in only 1% of 155 mid-sentence uses, so probably a general word"
 effort,Effort,name,46,changelog docs,yes,,rejected,"capitalised in only 2% of 294 mid-sentence uses, so probably a general word"
-input,Input,name,46,changelog docs,,,rejected,"capitalised in only 1% of 180 mid-sentence uses, so probably a general word"
-access,Access,name,44,changelog docs,,,rejected,"capitalised in only 5% of 99 mid-sentence uses, so probably a general word"
-format,Formats,name,44,changelog docs,yes,,rejected,"capitalised in only 1% of 122 mid-sentence uses, so probably a general word"
-sdk,SDK,name,44,changelog docs,yes,,rejected,on the not_terms list
-rate,Rate,name,43,changelog docs,,,rejected,"capitalised in only 1% of 181 mid-sentence uses, so probably a general word"
-websearch,Web Search,name,43,changelog docs,yes,,rejected,"capitalised in only 11% of 92 mid-sentence uses, so probably a general word"
-generate,Generate,name,42,changelog docs,,,rejected,"capitalised in only 6% of 17 mid-sentence uses, so probably a general word"
-json,JSON,name,42,changelog docs,,,rejected,on the not_terms list
-level,Levels,name,42,changelog docs,,,rejected,"capitalised in only 2% of 219 mid-sentence uses, so probably a general word"
-python,Python,name,42,changelog docs,,,rejected,on the not_terms list
+filter,Filters,name,46,changelog docs,yes,,rejected,"capitalised in only 3% of 130 mid-sentence uses, so probably a general word"
+array,Array,name,45,changelog docs,,,rejected,"capitalised in only 1% of 105 mid-sentence uses, so probably a general word"
+input,Input,name,45,changelog docs,,,rejected,"capitalised in only 1% of 180 mid-sentence uses, so probably a general word"
+access,Access,name,43,changelog docs,,,rejected,"capitalised in only 5% of 99 mid-sentence uses, so probably a general word"
+format,Formats,name,43,changelog docs,yes,,rejected,"capitalised in only 1% of 121 mid-sentence uses, so probably a general word"
+level,Levels,name,42,changelog docs,,,rejected,"capitalised in only 0% of 214 mid-sentence uses, so probably a general word"
+websearch,Web Search,name,42,changelog docs,yes,,rejected,"capitalised in only 11% of 90 mid-sentence uses, so probably a general word"
 fail,Fail,name,41,changelog docs,,,rejected,"capitalised in only 3% of 91 mid-sentence uses, so probably a general word"
-file,Files,name,41,changelog docs,yes,,rejected,"capitalised in only 3% of 246 mid-sentence uses, so probably a general word"
-prompt,Prompt,name,41,changelog docs,yes,,rejected,"capitalised in only 0% of 129 mid-sentence uses, so probably a general word"
+file,Files,name,41,changelog docs,yes,,rejected,"capitalised in only 1% of 242 mid-sentence uses, so probably a general word"
+generate,Generate,name,41,changelog docs,,,rejected,"capitalised in only 6% of 17 mid-sentence uses, so probably a general word"
+json,JSON,name,41,changelog docs,,,rejected,on the not_terms list
+sdk,SDK,name,41,changelog docs,yes,,rejected,on the not_terms list
 window,Windows,name,41,changelog docs,,,rejected,on the not_terms list
-date,Date,name,40,changelog docs,yes,,rejected,"capitalised in only 5% of 134 mid-sentence uses, so probably a general word"
-single,Single,name,40,changelog docs,,,rejected,"capitalised in only 3% of 61 mid-sentence uses, so probably a general word"
-true,True,name,40,changelog docs,,,rejected,"capitalised in only 16% of 45 mid-sentence uses, so probably a general word"
+date,Date,name,40,changelog docs,yes,,rejected,"capitalised in only 4% of 123 mid-sentence uses, so probably a general word"
+prompt,Prompt,name,40,changelog docs,yes,,rejected,"capitalised in only 0% of 129 mid-sentence uses, so probably a general word"
 configuration,Configuration,name,39,changelog docs,yes,,rejected,"capitalised in only 3% of 120 mid-sentence uses, so probably a general word"
-effortlevel,Effort Levels,name,39,changelog docs,yes,,rejected,"capitalised in only 3% of 192 mid-sentence uses, so probably a general word"
+python,Python,name,39,changelog docs,,,rejected,on the not_terms list
+single,Single,name,39,changelog docs,,,rejected,"capitalised in only 3% of 60 mid-sentence uses, so probably a general word"
+true,True,name,39,changelog docs,,,rejected,"capitalised in only 16% of 44 mid-sentence uses, so probably a general word"
 application,Applications,name,38,changelog docs,,,rejected,"capitalised in only 4% of 82 mid-sentence uses, so probably a general word"
 current,Current,name,38,changelog docs,,,rejected,"capitalised in only 2% of 83 mid-sentence uses, so probably a general word"
-guide,Guide,name,38,changelog docs,,,rejected,"capitalised in only 2% of 53 mid-sentence uses, so probably a general word"
-openai,OpenAI,name,38,changelog docs,yes,,rejected,on the not_terms list
-quickstart,Quickstart,name,38,changelog docs,yes,,rejected,"capitalised in only 17% of 24 mid-sentence uses, so probably a general word"
+effortlevel,Effort Levels,name,38,changelog docs,yes,,rejected,"capitalised in only 3% of 191 mid-sentence uses, so probably a general word"
+openai,OpenAI,name,37,changelog docs,yes,,rejected,on the not_terms list
 post,POST,name,37,changelog docs,,,rejected,on the not_terms list
 apireference,API Reference,name,36,docs,yes,,proposed,in a page title or nav label
-domain,Domain,name,36,changelog docs,,,rejected,"capitalised in only 1% of 81 mid-sentence uses, so probably a general word"
-report,Report,name,36,changelog docs,yes,,rejected,"capitalised in only 1% of 79 mid-sentence uses, so probably a general word"
+report,Report,name,36,changelog docs,yes,,rejected,"capitalised in only 0% of 78 mid-sentence uses, so probably a general word"
 specific,Perplexity-specific,name,36,changelog docs,,,rejected,"capitalised in only 0% of 55 mid-sentence uses, so probably a general word"
-count,Count,name,35,changelog docs,,,rejected,"capitalised in only 0% of 88 mid-sentence uses, so probably a general word"
+domain,Domain,name,35,changelog docs,,,rejected,"capitalised in only 1% of 80 mid-sentence uses, so probably a general word"
 searchapi,Search API,name,35,changelog docs,yes,yes,proposed,in a page title or nav label
 service,Service,name,35,changelog docs,,,rejected,"capitalised in only 4% of 168 mid-sentence uses, so probably a general word"
+count,Count,name,34,changelog docs,,,rejected,"capitalised in only 0% of 87 mid-sentence uses, so probably a general word"
 enable,Enable,name,34,changelog docs,,,rejected,"capitalised in only 6% of 31 mid-sentence uses, so probably a general word"
 give,Give,name,34,changelog docs,yes,,rejected,"capitalised in only 7% of 41 mid-sentence uses, so probably a general word"
-learn,Learn,name,34,changelog docs,,,rejected,"capitalised in only 14% of 7 mid-sentence uses, so probably a general word"
 custom,Custom,name,33,changelog docs,yes,,rejected,"capitalised in only 4% of 70 mid-sentence uses, so probably a general word"
+learn,Learn,name,33,changelog docs,,,rejected,"capitalised in only 17% of 6 mid-sentence uses, so probably a general word"
 may,May,name,33,changelog docs,,,rejected,"capitalised in only 2% of 55 mid-sentence uses, so probably a general word"
 resource,Resources,name,33,changelog docs,,,rejected,"capitalised in only 20% of 15 mid-sentence uses, so probably a general word"
-update,Update,name,33,changelog docs,yes,,rejected,"capitalised in only 5% of 102 mid-sentence uses, so probably a general word"
 about,About,name,32,changelog docs,,,rejected,"capitalised in only 0% of 62 mid-sentence uses, so probably a general word"
 back,Back,name,32,changelog docs,,,rejected,"capitalised in only 4% of 54 mid-sentence uses, so probably a general word"
-day,Days,name,32,changelog docs,,,rejected,"capitalised in only 2% of 88 mid-sentence uses, so probably a general word"
 event,Event,name,32,changelog docs,,,rejected,"capitalised in only 1% of 150 mid-sentence uses, so probably a general word"
 organization,Organization,name,32,changelog docs,yes,,rejected,"capitalised in only 2% of 161 mid-sentence uses, so probably a general word"
-reasoning,Reasoning,name,32,changelog docs,yes,,rejected,"capitalised in only 5% of 125 mid-sentence uses, so probably a general word"
-anthropic,Anthropic,name,31,changelog docs,,,rejected,on the not_terms list
+reasoning,Reasoning,name,32,changelog docs,yes,,rejected,"capitalised in only 3% of 123 mid-sentence uses, so probably a general word"
+update,Update,name,32,changelog docs,yes,,rejected,"capitalised in only 5% of 102 mid-sentence uses, so probably a general word"
 ask,Ask,name,31,changelog docs,,,rejected,"capitalised in only 16% of 45 mid-sentence uses, so probably a general word"
+day,Days,name,31,changelog docs,,,rejected,"capitalised in only 2% of 87 mid-sentence uses, so probably a general word"
 failed,Failed,name,31,changelog docs,,,rejected,"capitalised in only 2% of 59 mid-sentence uses, so probably a general word"
 show,Show,name,31,docs,,,rejected,"capitalised in only 2% of 49 mid-sentence uses, so probably a general word"
-mode,Mode,name,30,changelog docs,,,rejected,"capitalised in only 8% of 62 mid-sentence uses, so probably a general word"
-number,Number,name,30,changelog docs,,,rejected,"capitalised in only 2% of 41 mid-sentence uses, so probably a general word"
-ratelimit,Rate Limits,name,30,changelog docs,yes,,rejected,"capitalised in only 16% of 69 mid-sentence uses, so probably a general word"
+anthropic,Anthropic,name,30,changelog docs,,,rejected,on the not_terms list
 structured,Structured,name,30,changelog docs,,,rejected,"capitalised in only 4% of 51 mid-sentence uses, so probably a general word"
 user,Perplexity-User,name,30,changelog docs,,,rejected,"capitalised in only 1% of 77 mid-sentence uses, so probably a general word"
 integration,Integrations,name,29,changelog docs,,,rejected,"capitalised in only 5% of 56 mid-sentence uses, so probably a general word"
-server,Server,name,29,changelog docs,,,rejected,"capitalised in only 3% of 197 mid-sentence uses, so probably a general word"
-typescript,TypeScript,name,29,changelog docs,,,rejected,on the not_terms list
+mode,Mode,name,29,changelog docs,,,rejected,"capitalised in only 3% of 59 mid-sentence uses, so probably a general word"
+number,Number,name,29,changelog docs,,,rejected,"capitalised in only 2% of 40 mid-sentence uses, so probably a general word"
 alway,Always,name,28,changelog docs,,,rejected,"capitalised in only 11% of 27 mid-sentence uses, so probably a general word"
 install,Install,name,28,docs,yes,,rejected,"capitalised in only 4% of 26 mid-sentence uses, so probably a general word"
-last,Last,name,28,changelog docs,,,rejected,"capitalised in only 4% of 45 mid-sentence uses, so probably a general word"
+ratelimit,Rate Limits,name,28,changelog docs,yes,,rejected,"capitalised in only 16% of 61 mid-sentence uses, so probably a general word"
+server,Server,name,28,changelog docs,,,rejected,"capitalised in only 1% of 194 mid-sentence uses, so probably a general word"
 store,Store,name,28,changelog docs,,,rejected,"capitalised in only 3% of 31 mid-sentence uses, so probably a general word"
 streaming,Streaming,name,28,changelog docs,yes,,rejected,"capitalised in only 3% of 39 mid-sentence uses, so probably a general word"
-system,System,name,28,changelog docs,,,rejected,"capitalised in only 2% of 52 mid-sentence uses, so probably a general word"
 where,Where,name,28,changelog docs,,,rejected,"capitalised in only 3% of 37 mid-sentence uses, so probably a general word"
 billing,Billing,name,27,changelog docs,yes,,rejected,"capitalised in only 22% of 90 mid-sentence uses, so probably a general word"
 continue,Continue,name,27,changelog docs,,,rejected,"capitalised in only 19% of 72 mid-sentence uses, so probably a general word"
-monitor,Monitor,name,27,changelog docs,,,rejected,"capitalised in only 1% of 185 mid-sentence uses, so probably a general word"
+last,Last,name,27,changelog docs,,,rejected,"capitalised in only 5% of 44 mid-sentence uses, so probably a general word"
 project,Project,name,27,changelog docs,yes,yes,proposed,in a page title or nav label
 retry,Retry,name,27,docs,,,rejected,"capitalised in only 9% of 44 mid-sentence uses, so probably a general word"
+typescript,TypeScript,name,27,changelog docs,,,rejected,on the not_terms list
 agentapimodel,Agent API Models,name,26,changelog docs,yes,,proposed,in a page title or nav label
-ai,AI,name,26,changelog docs,,,rejected,on the not_terms list
 citation,Citation,name,26,changelog docs,,,rejected,"capitalised in only 2% of 64 mid-sentence uses, so probably a general word"
-invalid,Invalid,name,25,docs,,,rejected,"capitalised in only 8% of 36 mid-sentence uses, so probably a general word"
-searchresult,Search Results,name,25,changelog docs,,,rejected,"capitalised in only 19% of 48 mid-sentence uses, so probably a general word"
+quickstart,Quickstart,name,26,changelog docs,yes,,rejected,"capitalised in only 13% of 23 mid-sentence uses, so probably a general word"
+system,System,name,26,changelog docs,,,rejected,"capitalised in only 2% of 51 mid-sentence uses, so probably a general word"
 second,Second,name,25,changelog docs,,,rejected,"capitalised in only 2% of 60 mid-sentence uses, so probably a general word"
 tier,Tier,name,25,changelog docs,,,rejected,"capitalised in only 14% of 136 mid-sentence uses, so probably a general word"
+ai,AI,name,24,changelog docs,,,rejected,on the not_terms list
 background,Background,name,24,changelog docs,yes,,rejected,"capitalised in only 7% of 43 mid-sentence uses, so probably a general word"
+invalid,Invalid,name,24,docs,,,rejected,"capitalised in only 6% of 33 mid-sentence uses, so probably a general word"
+monitor,Monitor,name,24,changelog docs,,,rejected,"capitalised in only 1% of 185 mid-sentence uses, so probably a general word"
+searchresult,Search Results,name,24,changelog docs,,,rejected,"capitalised in only 20% of 46 mid-sentence uses, so probably a general word"
 expose,Expose,name,23,docs,,,rejected,"capitalised in only 3% of 30 mid-sentence uses, so probably a general word"
-fast,Fast,name,23,changelog docs,,,rejected,"capitalised in only 3% of 36 mid-sentence uses, so probably a general word"
 path,Path,name,23,changelog docs,,,rejected,"capitalised in only 9% of 44 mid-sentence uses, so probably a general word"
 retrieve,Retrieve,name,23,changelog docs,yes,,rejected,"capitalised in only 5% of 19 mid-sentence uses, so probably a general word"
 sandbox,Sandbox,name,23,changelog docs,yes,,rejected,"capitalised in only 15% of 86 mid-sentence uses, so probably a general word"
 apiconsole,API Console,name,22,docs,yes,,proposed,in a page title or nav label
 errorhandling,Error Handling,name,22,docs,yes,,rejected,"capitalised in only 21% of 14 mid-sentence uses, so probably a general word"
-google,Google,name,22,changelog docs,,,rejected,on the not_terms list
-ranked,Ranked,name,22,changelog docs,,,rejected,"capitalised in only 7% of 29 mid-sentence uses, so probably a general word"
+ranked,Ranked,name,22,changelog docs,,,rejected,"capitalised in only 4% of 28 mid-sentence uses, so probably a general word"
 connection,Connection,name,21,changelog docs,,,rejected,"capitalised in only 0% of 42 mid-sentence uses, so probably a general word"
 feature,Feature,name,21,changelog docs,yes,,rejected,"capitalised in only 7% of 46 mid-sentence uses, so probably a general word"
+google,Google,name,21,changelog docs,,,rejected,on the not_terms list
 image,Image,name,21,changelog docs,yes,,rejected,"capitalised in only 0% of 114 mid-sentence uses, so probably a general word"
 manage,Manage,name,21,changelog docs,,,rejected,"capitalised in only 11% of 36 mid-sentence uses, so probably a general word"
-maximum,Maximum,name,21,changelog docs,,,rejected,"capitalised in only 12% of 16 mid-sentence uses, so probably a general word"
 mcp,MCP,name,21,changelog docs,yes,,rejected,on the not_terms list
-saved,Saved,name,21,changelog docs,,,rejected,"capitalised in only 2% of 44 mid-sentence uses, so probably a general word"
-chatcompletion,Chat Completions,name,20,changelog docs,,,proposed,on 20 pages
 connect,Connect,name,20,changelog docs,,,rejected,"capitalised in only 8% of 36 mid-sentence uses, so probably a general word"
 conversation,Conversation,name,20,changelog docs,yes,,rejected,"capitalised in only 6% of 70 mid-sentence uses, so probably a general word"
-doc,DOC,name,20,changelog docs,yes,,rejected,"capitalised in only 15% of 20 mid-sentence uses, so probably a general word"
-realtime,Real-Time,name,20,changelog docs,,,rejected,"capitalised in only 4% of 26 mid-sentence uses, so probably a general word"
-whether,Whether,name,20,changelog docs,,,rejected,"capitalised in only 9% of 23 mid-sentence uses, so probably a general word"
+fast,Fast,name,20,changelog docs,,,rejected,"capitalised in only 3% of 34 mid-sentence uses, so probably a general word"
+maximum,Maximum,name,20,changelog docs,,,rejected,"capitalised in only 7% of 15 mid-sentence uses, so probably a general word"
+saved,Saved,name,20,changelog docs,,,rejected,"capitalised in only 2% of 43 mid-sentence uses, so probably a general word"
 yourorganization,Your Organization,name,20,changelog docs,,,rejected,"capitalised in only 4% of 52 mid-sentence uses, so probably a general word"
 apiportal,API Portal,name,19,changelog docs,yes,,proposed,in a page title or nav label
 base,Base,name,19,docs,,,rejected,"capitalised in only 3% of 35 mid-sentence uses, so probably a general word"
-chat,Chat,name,19,changelog docs,,,rejected,"capitalised in only 11% of 28 mid-sentence uses, so probably a general word"
 raw,Raw,name,19,changelog docs,,,rejected,"capitalised in only 4% of 23 mid-sentence uses, so probably a general word"
 score,Score,name,19,changelog docs,yes,,rejected,"capitalised in only 0% of 42 mid-sentence uses, so probably a general word"
 timeout,Timeouts,name,19,docs,,,rejected,"capitalised in only 0% of 26 mid-sentence uses, so probably a general word"
 view,View,name,19,changelog docs,yes,,rejected,"capitalised in only 10% of 10 mid-sentence uses, so probably a general word"
-bestpractice,Best Practices,name,18,changelog docs,yes,,rejected,"capitalised in only 11% of 9 mid-sentence uses, so probably a general word"
+whether,Whether,name,19,changelog docs,,,rejected,"capitalised in only 9% of 23 mid-sentence uses, so probably a general word"
 credit,Credits,name,18,changelog docs,,,rejected,"capitalised in only 4% of 121 mid-sentence uses, so probably a general word"
-decision,Decisions,name,18,changelog docs,yes,,rejected,"capitalised in only 10% of 59 mid-sentence uses, so probably a general word"
 failure,Failures,name,18,docs,,,rejected,"capitalised in only 0% of 33 mid-sentence uses, so probably a general word"
 go,Go,name,18,docs,,,rejected,"capitalised in only 0% of 23 mid-sentence uses, so probably a general word"
-publication,Publication,name,18,changelog docs,,,rejected,"capitalised in only 3% of 32 mid-sentence uses, so probably a general word"
 stop,Stop,name,18,changelog docs,,,rejected,"capitalised in only 6% of 32 mid-sentence uses, so probably a general word"
 test,Test,name,18,changelog docs,yes,,rejected,"capitalised in only 7% of 29 mid-sentence uses, so probably a general word"
-thirdparty,Third-party,name,18,changelog docs,,,rejected,"capitalised in only 4% of 26 mid-sentence uses, so probably a general word"
+decision,Decisions,name,17,changelog docs,yes,,rejected,"capitalised in only 10% of 59 mid-sentence uses, so probably a general word"
 direct,Direct,name,17,changelog docs,,,rejected,"capitalised in only 4% of 26 mid-sentence uses, so probably a general word"
-download,Download,name,17,changelog docs,yes,,rejected,"capitalised in only 3% of 34 mid-sentence uses, so probably a general word"
 email,Email,name,17,changelog docs,,,rejected,"capitalised in only 7% of 60 mid-sentence uses, so probably a general word"
-faq,FAQ,name,17,docs,yes,,rejected,on the not_terms list
 function,Function,name,17,docs,yes,,rejected,"capitalised in only 0% of 44 mid-sentence uses, so probably a general word"
 mcpserver,Perplexity MCP Server,name,17,changelog docs,yes,,proposed,in a page title or nav label
-none,None,name,17,changelog docs,,,rejected,"capitalised in only 12% of 33 mid-sentence uses, so probably a general word"
 terminal,Terminal,name,17,changelog docs,,,rejected,"capitalised in only 8% of 26 mid-sentence uses, so probably a general word"
 usagetier,Usage Tiers,name,17,changelog docs,yes,,rejected,"capitalised in only 27% of 51 mid-sentence uses, so probably a general word"
 we,We,name,17,changelog docs,,,rejected,"capitalised in only 7% of 28 mid-sentence uses, so probably a general word"
 admin,Admin,name,16,docs,,,rejected,"capitalised in only 35% of 34 mid-sentence uses, so probably a general word"
 agentapiquickstart,Agent API Quickstart,name,16,changelog docs,yes,,proposed,in a page title or nav label
 allow,Allow,name,16,changelog docs,,,rejected,"capitalised in only 7% of 29 mid-sentence uses, so probably a general word"
-apiresponse,API Responses,name,16,changelog docs,,,proposed,on 16 pages
+apiresponse,API Responses,name,16,changelog docs,,,rejected,on the not_terms list
 credential,Credentials,name,16,changelog docs,yes,,rejected,"capitalised in only 3% of 36 mid-sentence uses, so probably a general word"
-embedding,Embeddings,name,16,changelog docs,yes,,rejected,"capitalised in only 30% of 54 mid-sentence uses, so probably a general word"
+download,Download,name,16,changelog docs,yes,,rejected,"capitalised in only 3% of 33 mid-sentence uses, so probably a general word"
+faq,FAQ,name,16,docs,yes,,rejected,on the not_terms list
 freshness,Freshness,name,16,changelog docs,yes,,rejected,"capitalised in only 12% of 25 mid-sentence uses, so probably a general word"
-getapikey,Get API Key,name,16,docs,yes,,rejected,"a page title or label, rarely used in running text"
+getapikey,Get API Key,name,16,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 jsonschema,JSON Schema,name,16,docs,,,rejected,on the not_terms list
+none,None,name,16,changelog docs,,,rejected,"capitalised in only 12% of 32 mid-sentence uses, so probably a general word"
 orchestratorapi,Orchestrator API,name,16,changelog docs,yes,,proposed,in a page title or nav label
 skill,Skills,name,16,docs,yes,yes,proposed,in a page title or nav label
-apicall,API Calls,name,15,changelog docs,,,proposed,on 15 pages
+apicall,API Calls,name,15,changelog docs,,,rejected,on the not_terms list
 authorization,Authorization,name,15,docs,,,rejected,on the not_terms list
 capabilitie,Capabilities,name,15,changelog docs,,,rejected,"capitalised in only 4% of 24 mid-sentence uses, so probably a general word"
+chatcompletion,Chat Completions,name,15,changelog docs,,,proposed,on 15 pages
 define,Define,name,15,changelog docs,yes,,rejected,"capitalised in only 6% of 17 mid-sentence uses, so probably a general word"
-domainfilter,Domain Filter,name,15,changelog docs,yes,,rejected,"capitalised in only 11% of 9 mid-sentence uses, so probably a general word"
-peoplesearch,People Search,name,15,docs,yes,,proposed,in a page title or nav label
 product,Product,name,15,docs,,,rejected,"capitalised in only 5% of 19 mid-sentence uses, so probably a general word"
 routing,Routing,name,15,changelog docs,yes,,rejected,"capitalised in only 4% of 45 mid-sentence uses, so probably a general word"
 structure,Structure,name,15,changelog docs,yes,,rejected,"capitalised in only 7% of 15 mid-sentence uses, so probably a general word"
 webhook,Webhooks,name,15,changelog docs,,,rejected,"capitalised in only 3% of 71 mid-sentence uses, so probably a general word"
 working,Working,name,15,changelog docs,yes,,rejected,"capitalised in only 14% of 21 mid-sentence uses, so probably a general word"
+bestpractice,Best Practices,name,14,changelog docs,yes,,rejected,"capitalised in only 11% of 9 mid-sentence uses, so probably a general word"
 cache,Cache,name,14,changelog docs,,,rejected,"capitalised in only 7% of 96 mid-sentence uses, so probably a general word"
-fastsearch,Fast Search,name,14,changelog docs,yes,,proposed,in a page title or nav label
+chat,Chat,name,14,changelog docs,,,rejected,"capitalised in only 11% of 28 mid-sentence uses, so probably a general word"
+domainfilter,Domain Filter,name,14,changelog docs,yes,,rejected,"capitalised in only 11% of 9 mid-sentence uses, so probably a general word"
+embedding,Embeddings,name,14,changelog docs,yes,,rejected,"capitalised in only 25% of 51 mid-sentence uses, so probably a general word"
 pause,Pause,name,14,docs,yes,,rejected,"capitalised in only 5% of 37 mid-sentence uses, so probably a general word"
+peoplesearch,People Search,name,14,docs,yes,,proposed,in a page title or nav label
 profile,Profiles,name,14,docs,yes,,rejected,"capitalised in only 3% of 65 mid-sentence uses, so probably a general word"
 theperplexitysdk,The Perplexity SDK,name,14,docs,,,rejected,"capitalised in only 5% of 20 mid-sentence uses, so probably a general word"
-thirdpartymodel,Third-Party Model,name,14,changelog docs,,,rejected,"capitalised in only 10% of 21 mid-sentence uses, so probably a general word"
 track,Track,name,14,changelog docs,yes,,rejected,"capitalised in only 0% of 14 mid-sentence uses, so probably a general word"
 delete,Delete,name,13,docs,yes,,rejected,on the not_terms list
 eachmodel,Each Model,name,13,changelog docs,,,rejected,"capitalised in only 0% of 16 mid-sentence uses, so probably a general word"
@@ -228,58 +217,55 @@ portal,Portal,name,13,changelog docs,,,rejected,"capitalised in only 6% of 17 mi
 threshold,THRESHOLD,name,13,changelog docs,,,rejected,"capitalised in only 3% of 30 mid-sentence uses, so probably a general word"
 utc,UTC,name,13,changelog docs,,,rejected,on the not_terms list
 wait,Wait,name,13,docs,,,rejected,"capitalised in only 5% of 20 mid-sentence uses, so probably a general word"
+fastsearch,Fast Search,name,12,changelog docs,yes,,proposed,in a page title or nav label
 free,Free,name,12,changelog docs,,,rejected,"capitalised in only 11% of 19 mid-sentence uses, so probably a general word"
 ids,IDs,name,12,changelog docs,,,rejected,on the not_terms list
 inputtoken,Input Tokens,name,12,changelog docs,,,rejected,"capitalised in only 2% of 57 mid-sentence uses, so probably a general word"
-library,Library,name,12,changelog docs,,,rejected,"capitalised in only 0% of 21 mid-sentence uses, so probably a general word"
 max,Max,name,12,changelog docs,,,rejected,"capitalised in only 14% of 14 mid-sentence uses, so probably a general word"
 monitorapi,Monitor API,name,12,changelog docs,yes,,proposed,in a page title or nav label
 note,Notes,name,12,changelog docs,,,rejected,"capitalised in only 21% of 14 mid-sentence uses, so probably a general word"
-rfc,RFC,name,12,changelog docs,,,rejected,on the not_terms list
-security,Security,name,12,changelog docs,yes,,rejected,"capitalised in only 22% of 32 mid-sentence uses, so probably a general word"
 skip,Skip,name,12,changelog docs,,,rejected,"capitalised in only 18% of 11 mid-sentence uses, so probably a general word"
-us,US,name,12,changelog docs,,,rejected,"capitalised in only 31% of 13 mid-sentence uses, so probably a general word"
 auto,Auto,name,11,changelog docs,,,rejected,"capitalised in only 22% of 9 mid-sentence uses, so probably a general word"
 connector,Connectors,name,11,changelog docs,yes,yes,proposed,in a page title or nav label
 contextapi,Context API,name,11,changelog docs,yes,,proposed,in a page title or nav label
 criteria,Criteria,name,11,changelog docs,yes,,rejected,"capitalised in only 3% of 32 mid-sentence uses, so probably a general word"
+library,Library,name,11,changelog docs,,,rejected,"capitalised in only 0% of 20 mid-sentence uses, so probably a general word"
 local,Local,name,11,changelog docs,,,rejected,"capitalised in only 3% of 32 mid-sentence uses, so probably a general word"
 minute,Minute,name,11,docs,,,rejected,"capitalised in only 4% of 23 mid-sentence uses, so probably a general word"
 openaisdk,OpenAI SDK,name,11,docs,yes,,rejected,on the not_terms list
-pro,Pro,name,11,changelog docs,,,proposed,on 11 pages
 resume,Resume,name,11,docs,yes,,rejected,"capitalised in only 0% of 29 mid-sentence uses, so probably a general word"
 retryafter,Retry-After,name,11,docs,,,rejected,on the not_terms list
-sonar,Sonar,name,11,changelog docs,yes,yes,proposed,in a page title or nav label
+rfc,RFC,name,11,changelog docs,,,rejected,on the not_terms list
+security,Security,name,11,changelog docs,yes,,rejected,"capitalised in only 22% of 32 mid-sentence uses, so probably a general word"
 try,Try,name,11,changelog docs,yes,,rejected,"capitalised in only 0% of 9 mid-sentence uses, so probably a general word"
-typescriptsdk,TypeScript SDK,name,11,changelog docs,,,proposed,on 11 pages
+typescriptsdk,TypeScript SDK,name,11,changelog docs,,,rejected,on the not_terms list
+us,US,name,11,changelog docs,,,rejected,"capitalised in only 25% of 12 mid-sentence uses, so probably a general word"
 youragent,Your Agent,name,11,changelog docs,yes,,rejected,"capitalised in only 0% of 12 mid-sentence uses, so probably a general word"
 zerodataretention,Zero Data Retention,name,11,changelog docs,,,rejected,"capitalised in only 24% of 17 mid-sentence uses, so probably a general word"
 approval,Approvals,name,10,changelog docs,,,rejected,"capitalised in only 1% of 67 mid-sentence uses, so probably a general word"
 authenticate,Authenticate,name,10,docs,,,rejected,"capitalised in only 8% of 13 mid-sentence uses, so probably a general word"
-cancel,Cancel,name,10,changelog docs,yes,,rejected,"capitalised in only 7% of 14 mid-sentence uses, so probably a general word"
 cursor,Cursor,name,10,changelog docs,yes,,rejected,on the not_terms list
 markdown,Markdown,name,10,changelog docs,,,rejected,on the not_terms list
 member,Member,name,10,docs,yes,,rejected,"capitalised in only 15% of 55 mid-sentence uses, so probably a general word"
-orchestrator,Orchestrator,name,10,changelog docs,,,proposed,on 10 pages
 outputcontrol,Output Control,name,10,changelog docs,yes,,proposed,in a page title or nav label
-reasoningtoken,Reasoning Tokens,name,10,changelog docs,,,rejected,"capitalised in only 4% of 26 mid-sentence uses, so probably a general word"
+reasoningtoken,Reasoning Tokens,name,10,changelog docs,,,rejected,"capitalised in only 4% of 25 mid-sentence uses, so probably a general word"
 role,Role,name,10,docs,,,rejected,"capitalised in only 0% of 16 mid-sentence uses, so probably a general word"
 sign,Sign,name,10,changelog docs,,,rejected,"capitalised in only 15% of 20 mid-sentence uses, so probably a general word"
 backgroundmode,Background Mode,name,9,changelog docs,yes,,rejected,"capitalised in only 33% of 6 mid-sentence uses, so probably a general word"
-claude,Claude,name,9,changelog docs,,,rejected,on the not_terms list
+cancel,Cancel,name,9,changelog docs,yes,,rejected,"capitalised in only 7% of 14 mid-sentence uses, so probably a general word"
 community,Community,name,9,changelog docs,yes,,rejected,"capitalised in only 12% of 17 mid-sentence uses, so probably a general word"
 contextwindow,Context Windows,name,9,changelog docs,,,rejected,"capitalised in only 0% of 14 mid-sentence uses, so probably a general word"
 enterprise,Perplexity Enterprise,name,9,changelog docs,,,rejected,"capitalised in only 44% of 16 mid-sentence uses, so probably a general word"
 evidence,Evidence,name,9,changelog docs,,,rejected,"capitalised in only 6% of 18 mid-sentence uses, so probably a general word"
-fetchurl,Fetch URL,name,9,docs,yes,,proposed,in a page title or nav label
 fetchurlcontent,Fetch URL Content,name,9,docs,yes,,proposed,in a page title or nav label
 financesearch,Finance Search,name,9,changelog docs,yes,,proposed,in a page title or nav label
 hosted,Perplexity-hosted,name,9,changelog docs,,,rejected,"capitalised in only 0% of 25 mid-sentence uses, so probably a general word"
 modelcontextprotocol,Model Context Protocol,name,9,docs,,,rejected,on the not_terms list
-outputtoken,Output Tokens,name,9,changelog docs,,,rejected,"capitalised in only 3% of 34 mid-sentence uses, so probably a general word"
+outputtoken,Output Tokens,name,9,changelog docs,,,rejected,"capitalised in only 3% of 29 mid-sentence uses, so probably a general word"
 performance,Performance,name,9,changelog docs,yes,,rejected,"capitalised in only 5% of 19 mid-sentence uses, so probably a general word"
 previou,Previous,name,9,changelog docs,,,rejected,"capitalised in only 6% of 17 mid-sentence uses, so probably a general word"
 searchtool,Perplexity Search Tool,name,9,docs,yes,,rejected,"capitalised in only 30% of 10 mid-sentence uses, so probably a general word"
+sonar,Sonar,name,9,changelog docs,yes,yes,proposed,in a page title or nav label
 tell,Tell,name,9,docs,,,rejected,"capitalised in only 9% of 11 mid-sentence uses, so probably a general word"
 timemachine,Time Machine,name,9,changelog docs,yes,,proposed,in a page title or nav label
 upload,Upload,name,9,changelog docs,yes,,rejected,"capitalised in only 0% of 28 mid-sentence uses, so probably a general word"
@@ -287,43 +273,43 @@ apiplatform,Perplexity API Platform,name,8,changelog docs,,,proposed,on 8 pages
 caching,Caching,name,8,changelog docs,yes,,rejected,"capitalised in only 20% of 15 mid-sentence uses, so probably a general word"
 cli,CLI,name,8,docs,yes,,rejected,on the not_terms list
 decisionsapi,Decisions API,name,8,changelog docs,yes,,proposed,in a page title or nav label
-deepresearch,Deep Research,name,8,docs,,yes,proposed,on 8 pages
 embeddingsapi,Embeddings API,name,8,changelog docs,yes,,proposed,in a page title or nav label
 explain,Explain,name,8,docs,,,rejected,"capitalised in only 0% of 8 mid-sentence uses, so probably a general word"
-explore,Explore,name,8,docs,yes,,proposed,in a page title or nav label
-gemini,Gemini,name,8,changelog docs,,,rejected,on the not_terms list
+explore,Explore,name,8,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 howsearchwork,How Search Works,name,8,docs,yes,,rejected,"a page title or label, rarely used in running text"
 html,HTML,name,8,changelog docs,,,rejected,on the not_terms list
 issue,Issue,name,8,docs,,,rejected,"capitalised in only 0% of 12 mid-sentence uses, so probably a general word"
 linux,Linux,name,8,docs,,,rejected,on the not_terms list
 openaicompatibility,OpenAI Compatibility,name,8,changelog docs,yes,,proposed,in a page title or nav label
-openaicompatible,OpenAI-compatible,name,8,changelog docs,,,proposed,on 8 pages
 pdf,PDF,name,8,changelog docs,,,rejected,on the not_terms list
-pythonsdk,Python SDK,name,8,changelog docs,,,proposed,on 8 pages
+pro,Pro,name,8,changelog docs,,,proposed,on 8 pages
+pythonsdk,Python SDK,name,8,changelog docs,,,rejected,on the not_terms list
 region,Region,name,8,changelog docs,,,rejected,"capitalised in only 6% of 18 mid-sentence uses, so probably a general word"
 reliability,Reliability,name,8,changelog docs,yes,,rejected,"capitalised in only 43% of 7 mid-sentence uses, so probably a general word"
 space,Spaces,name,8,changelog docs,,yes,proposed,on 8 pages
-usesearch,Use Search,name,8,docs,yes,,proposed,in a page title or nav label
 visit,Visit,name,8,changelog docs,yes,,rejected,"capitalised in only 0% of 8 mid-sentence uses, so probably a general word"
-analytic,Analytics,name,7,changelog docs,,,rejected,"capitalised in only 13% of 15 mid-sentence uses, so probably a general word"
+anthropicsdk,Anthropic SDK,name,7,docs,yes,,rejected,on the not_terms list
 business,Business,name,7,changelog docs,,,rejected,"capitalised in only 0% of 6 mid-sentence uses, so probably a general word"
+claude,Claude,name,7,changelog docs,,,rejected,on the not_terms list
 claudecode,Claude Code,name,7,changelog docs,yes,,rejected,on the not_terms list
 customfunction,Custom Functions,name,7,docs,yes,,rejected,"capitalised in only 0% of 8 mid-sentence uses, so probably a general word"
+deepresearch,Deep Research,name,7,docs,,yes,proposed,on 7 pages
+doc,DOC,name,7,changelog docs,yes,,rejected,"capitalised in only 15% of 20 mid-sentence uses, so probably a general word"
 github,GitHub,name,7,docs,,,rejected,on the not_terms list
 httpsurl,HTTPS URL,name,7,docs,,,rejected,on the not_terms list
 idempotencykey,Idempotency-Key,name,7,docs,,,rejected,on the not_terms list
-iso,ISO,name,7,docs,,,rejected,on the not_terms list
 modelfallback,Model Fallback,name,7,changelog docs,yes,,rejected,"capitalised in only 40% of 5 mid-sentence uses, so probably a general word"
+openaicompatible,OpenAI-compatible,name,7,changelog docs,,,proposed,on 7 pages
 optimized,Perplexity-optimized,name,7,docs,,,rejected,"capitalised in only 0% of 10 mid-sentence uses, so probably a general word"
 privacy,Privacy,name,7,docs,yes,,rejected,"capitalised in only 44% of 9 mid-sentence uses, so probably a general word"
 quota,Quotas,name,7,docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
-searchtype,Search Types,name,7,docs,yes,,rejected,"capitalised in only 38% of 8 mid-sentence uses, so probably a general word"
 since,Since,name,7,changelog docs,,,rejected,"capitalised in only 8% of 13 mid-sentence uses, so probably a general word"
 sonarchatcompletion,Sonar Chat Completions,name,7,changelog docs,,,proposed,on 7 pages
+thirdpartymodel,Third-Party Model,name,7,changelog docs,,,proposed,on 7 pages
 timefilter,Time Filters,name,7,docs,yes,,rejected,"capitalised in only 40% of 5 mid-sentence uses, so probably a general word"
 typesafety,Type Safety,name,7,docs,yes,,rejected,"capitalised in only 0% of 7 mid-sentence uses, so probably a general word"
 agentapieffortlevel,Agent API Effort Levels,name,6,docs,yes,,proposed,in a page title or nav label
-anthropicsdk,Anthropic SDK,name,6,docs,yes,,rejected,on the not_terms list
+analytic,Analytics,name,6,docs,,,rejected,"capitalised in only 13% of 15 mid-sentence uses, so probably a general word"
 audit,Audit,name,6,changelog docs,,,rejected,"capitalised in only 12% of 24 mid-sentence uses, so probably a general word"
 browsing,Browsing,name,6,docs,,,rejected,"capitalised in only 0% of 7 mid-sentence uses, so probably a general word"
 bucket,Buckets,name,6,docs,,,rejected,"capitalised in only 0% of 26 mid-sentence uses, so probably a general word"
@@ -331,30 +317,26 @@ buy,Buy,name,6,docs,,,rejected,"capitalised in only 17% of 6 mid-sentence uses, 
 changelog,Changelog,name,6,changelog docs,yes,,rejected,"capitalised in only 0% of 8 mid-sentence uses, so probably a general word"
 compliance,Compliance,name,6,changelog docs,,,rejected,"capitalised in only 12% of 8 mid-sentence uses, so probably a general word"
 dataset,Datasets,name,6,changelog docs,,,rejected,"capitalised in only 5% of 19 mid-sentence uses, so probably a general word"
-desktop,Desktop,name,6,changelog docs,,,rejected,"capitalised in only 33% of 6 mid-sentence uses, so probably a general word"
 exponential,Exponential,name,6,docs,,,rejected,"capitalised in only 10% of 10 mid-sentence uses, so probably a general word"
-geminisdk,Gemini SDK,name,6,docs,yes,,rejected,on the not_terms list
+gemini,Gemini,name,6,changelog docs,,,rejected,on the not_terms list
 generateapikey,Generate API Key,name,6,docs,yes,,rejected,"a page title or label, rarely used in running text"
 glm,GLM,name,6,changelog docs,,,rejected,on the not_terms list
-invalidapi,Invalid API,name,6,docs,,,rejected,"capitalised in only 14% of 7 mid-sentence uses, so probably a general word"
+iso,ISO,name,6,docs,,,rejected,on the not_terms list
 login,Login,name,6,docs,,,rejected,"capitalised in only 18% of 11 mid-sentence uses, so probably a general word"
 metric,Metrics,name,6,docs,,,rejected,"capitalised in only 0% of 8 mid-sentence uses, so probably a general word"
 migrate,Migrate,name,6,docs,yes,,rejected,"capitalised in only 0% of 4 mid-sentence uses, so probably a general word"
 network,Network,name,6,docs,,,rejected,"capitalised in only 17% of 6 mid-sentence uses, so probably a general word"
-nvidia,NVIDIA,name,6,changelog docs,,,rejected,on the not_terms list
 ok,OK,name,6,docs,,,rejected,on the not_terms list
-openairesponse,OpenAI Responses,name,6,changelog docs,,,rejected,on the not_terms list
 openairesponsesapi,OpenAI Responses API,name,6,docs,,,rejected,on the not_terms list
 powershell,PowerShell,name,6,docs,,,rejected,on the not_terms list
 promptcaching,Prompt Caching,name,6,changelog docs,yes,,proposed,in a page title or nav label
 rag,RAG,name,6,docs,,,rejected,on the not_terms list
 ratelimiting,Rate Limiting,name,6,docs,,,rejected,"capitalised in only 0% of 10 mid-sentence uses, so probably a general word"
+realtime,Real-Time,name,6,changelog docs,,,rejected,"capitalised in only 25% of 4 mid-sentence uses, so probably a general word"
 revision,REVISION,name,6,docs,,,rejected,"capitalised in only 10% of 20 mid-sentence uses, so probably a general word"
 searchapiquickstart,Search API Quickstart,name,6,docs,yes,,rejected,"a page title or label, rarely used in running text"
-signin,Sign-In,name,6,changelog docs,,,rejected,"capitalised in only 9% of 44 mid-sentence uses, so probably a general word"
-sonarpro,Sonar Pro,name,6,changelog docs,,,proposed,on 6 pages
+searchtype,Search Types,name,6,docs,yes,,rejected,"capitalised in only 29% of 7 mid-sentence uses, so probably a general word"
 unix,Unix,name,6,docs,,,rejected,on the not_terms list
-utf8,UTF-8,name,6,docs,,,rejected,on the not_terms list
 websearchtool,Web Search Tool,name,6,docs,yes,,rejected,"capitalised in only 0% of 6 mid-sentence uses, so probably a general word"
 analyticsapi,Analytics API,name,5,changelog docs,yes,,proposed,in a page title or nav label
 apple,Apple,name,5,changelog docs,,,rejected,on the not_terms list
@@ -367,114 +349,115 @@ computer,Computer,name,5,changelog docs,yes,yes,proposed,in a page title or nav 
 contenttype,Content-Type,name,5,changelog docs,,,rejected,on the not_terms list
 customize,Customize,name,5,docs,yes,,proposed,in a page title or nav label
 deprecated,Deprecated,name,5,changelog docs,,,rejected,"capitalised in only 0% of 7 mid-sentence uses, so probably a general word"
+geminisdk,Gemini SDK,name,5,docs,yes,,rejected,on the not_terms list
 logging,Logging,name,5,changelog docs,,,rejected,"capitalised in only 0% of 7 mid-sentence uses, so probably a general word"
-mb,MB,name,5,docs,,,proposed,on 5 pages
-moonshotai,Moonshot AI,name,5,changelog docs,,,proposed,on 5 pages
+mb,MB,name,5,docs,,,rejected,on the not_terms list
+moonshotai,Moonshot AI,name,5,changelog docs,,,rejected,on the not_terms list
 node,Node,name,5,changelog docs,yes,,rejected,on the not_terms list
-oauth,OAuth,name,5,changelog docs,,,proposed,on 5 pages
-openaichatcompletion,OpenAI Chat Completions,name,5,changelog docs,,,proposed,on 5 pages
-pageurl,Page URL,name,5,changelog docs,,,rejected,"capitalised in only 43% of 7 mid-sentence uses, so probably a general word"
-playground,Playground,name,5,changelog docs,,,proposed,on 5 pages
+nvidia,NVIDIA,name,5,changelog docs,,,rejected,on the not_terms list
+oauth,OAuth,name,5,changelog docs,,,rejected,on the not_terms list
+openaichatcompletion,OpenAI Chat Completions,name,5,changelog docs,,,rejected,on the not_terms list
+openairesponse,OpenAI Responses,name,5,changelog docs,,,rejected,on the not_terms list
+orchestrator,Orchestrator,name,5,docs,,,proposed,on 5 pages
 port,Port,name,5,docs,,,rejected,"capitalised in only 9% of 11 mid-sentence uses, so probably a general word"
 ready,Ready,name,5,docs,,,rejected,"capitalised in only 46% of 13 mid-sentence uses, so probably a general word"
 removed,Removed,name,5,changelog docs,,,rejected,"capitalised in only 6% of 18 mid-sentence uses, so probably a general word"
 revoke,Revokes,name,5,docs,,,rejected,"capitalised in only 10% of 10 mid-sentence uses, so probably a general word"
 sale,Sales,name,5,docs,,,rejected,"capitalised in only 43% of 7 mid-sentence uses, so probably a general word"
 searchfilter,Search Filters,name,5,changelog docs,yes,,proposed,in a page title or nav label
-sonardeepresearch,Sonar Deep Research,name,5,changelog docs,,,proposed,on 5 pages
-sonarreasoningpro,Sonar Reasoning Pro,name,5,changelog docs,,,rejected,"capitalised in only 25% of 4 mid-sentence uses, so probably a general word"
-streamablehttp,Streamable HTTP,name,5,changelog docs,,,proposed,on 5 pages
-stripe,Stripe,name,5,docs,,,proposed,on 5 pages
-troubleshooting,Troubleshooting,name,5,docs,,,proposed,on 5 pages
+signin,Sign-In,name,5,changelog docs,,,rejected,"capitalised in only 29% of 14 mid-sentence uses, so probably a general word"
+streamablehttp,Streamable HTTP,name,5,changelog docs,,,rejected,on the not_terms list
+stripe,Stripe,name,5,docs,,,rejected,on the not_terms list
+troubleshooting,Troubleshooting,name,5,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 unauthorized,Unauthorized,name,5,docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
-uri,URI,name,5,changelog docs,,,proposed,on 5 pages
-usd,USD,name,5,docs,,,not shown,on 5 pages; outside the top 60
+uri,URI,name,5,changelog docs,,,rejected,on the not_terms list
+usd,USD,name,5,docs,,,rejected,on the not_terms list
+usesearch,Use Search,name,5,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+utf8,UTF-8,name,5,docs,,,rejected,on the not_terms list
 vector,Vector,name,5,docs,,,rejected,"capitalised in only 8% of 12 mid-sentence uses, so probably a general word"
-vscode,VS Code,name,5,changelog docs,,,not shown,on 5 pages; outside the top 60
-word,Word,name,5,changelog docs,,,not shown,on 5 pages; outside the top 60
-yyyymmdd,YYYY-MM-DD,name,5,docs,,,not shown,on 5 pages; outside the top 60
-zdr,ZDR,name,5,docs,,,not shown,on 5 pages; outside the top 60
-agentapi',Agent API's,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
-anthropicmessage,Anthropic Messages,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
-apikeymanagement,API Key Management,name,4,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
-apimcpserver,Perplexity API MCP Server,name,4,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
-aws,AWS,name,4,changelog docs,,,rejected,on the not_terms list
-awsmarketplace,AWS Marketplace,name,4,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
+vscode,VS Code,name,5,changelog docs,,,rejected,on the not_terms list
+word,Word,name,5,changelog docs,,,rejected,on the not_terms list
+zdr,ZDR,name,5,docs,,,proposed,on 5 pages
+anthropicmessage,Anthropic Messages,name,4,changelog docs,,,rejected,on the not_terms list
+apikeymanagement,API Key Management,name,4,changelog docs,yes,,proposed,in a page title or nav label
+apimcpserver,Perplexity API MCP Server,name,4,changelog docs,yes,,proposed,in a page title or nav label
+awsmarketplace,AWS Marketplace,name,4,changelog docs,yes,,proposed,in a page title or nav label
 bash,Bash,name,4,docs,,,rejected,on the not_terms list
-bugreport,Bug Reports,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
-codex,Codex,name,4,docs,,,not shown,on 4 pages; outside the top 60
-conversationstate,Conversation State,name,4,docs,yes,,not shown,in a page title or nav label; outside the top 60
+bugreport,Bug Reports,name,4,changelog docs,,,proposed,on 4 pages
+codex,Codex,name,4,docs,,,rejected,on the not_terms list
+conversationstate,Conversation State,name,4,docs,yes,,proposed,in a page title or nav label
 csv,CSV,name,4,docs,,,rejected,on the not_terms list
-december,December,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
+december,December,name,4,changelog docs,,,rejected,on the not_terms list
 design,Design,name,4,docs,,,rejected,"capitalised in only 40% of 5 mid-sentence uses, so probably a general word"
-featurerequest,Feature Requests,name,4,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
-functioncalling,Function Calling,name,4,docs,,,not shown,on 4 pages; outside the top 60
-googlegeminiflash,Google Gemini Flash,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
+desktop,Desktop,name,4,changelog docs,,,rejected,"capitalised in only 0% of 4 mid-sentence uses, so probably a general word"
+featurerequest,Feature Requests,name,4,changelog docs,yes,,proposed,in a page title or nav label
+googlegeminiflash,Google Gemini Flash,name,4,changelog docs,,,rejected,on the not_terms list
 grouping,Grouping,name,4,changelog docs,,,rejected,"capitalised in only 33% of 9 mid-sentence uses, so probably a general word"
-imageattachment,Image Attachments,name,4,docs,yes,,not shown,in a page title or nav label; outside the top 60
+imageattachment,Image Attachments,name,4,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 incident,Incidents,name,4,docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
 invoice,Invoice,name,4,docs,,,rejected,"capitalised in only 25% of 8 mid-sentence uses, so probably a general word"
-jpeg,JPEG,name,4,docs,,,not shown,on 4 pages; outside the top 60
+jpeg,JPEG,name,4,docs,,,rejected,on the not_terms list
 jsonl,JSONL,name,4,changelog docs,,,rejected,on the not_terms list
-jsonresponse,JSON Responses,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
-languagefilter,Language Filter,name,4,docs,yes,,not shown,in a page title or nav label; outside the top 60
-limitation,Limitations,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
-listmodel,List Models,name,4,docs,yes,,not shown,in a page title or nav label; outside the top 60
-manualrun,Manual Run,name,4,docs,,,not shown,on 4 pages; outside the top 60
-mib,MiB,name,4,docs,,,not shown,on 4 pages; outside the top 60
+jsonresponse,JSON Responses,name,4,changelog docs,,,rejected,on the not_terms list
+limitation,Limitations,name,4,changelog docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+listmodel,List Models,name,4,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+manualrun,Manual Run,name,4,docs,,,proposed,on 4 pages
+mib,MiB,name,4,docs,,,proposed,on 4 pages
 modelfamily,Model Family,name,4,changelog docs,,,rejected,"capitalised in only 29% of 7 mid-sentence uses, so probably a general word"
-november,November,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
-openaicompatibilityguide,OpenAI Compatibility Guide,name,4,docs,,,not shown,on 4 pages; outside the top 60
-openairesponsescompatible,OpenAI-Responses-compatible,name,4,docs,,,not shown,on 4 pages; outside the top 60
-orchestratormodel,Orchestrator Models,name,4,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
+november,November,name,4,changelog docs,,,proposed,on 4 pages
+openaicompatibilityguide,OpenAI Compatibility Guide,name,4,docs,,,proposed,on 4 pages
+openairesponsescompatible,OpenAI-Responses-compatible,name,4,docs,,,proposed,on 4 pages
+orchestratormodel,Orchestrator Models,name,4,changelog docs,yes,,proposed,in a page title or nav label
+pageurl,Page URL,name,4,changelog docs,,,proposed,on 4 pages
 paymentmethod,Payment Methods,name,4,docs,,,rejected,"capitalised in only 7% of 14 mid-sentence uses, so probably a general word"
-png,PNG,name,4,docs,,,not shown,on 4 pages; outside the top 60
-promptguide,Prompt Guide,name,4,docs,yes,,not shown,in a page title or nav label; outside the top 60
-prosearch,Pro Search,name,4,changelog docs,,,rejected,"capitalised in only 33% of 6 mid-sentence uses, so probably a general word"
+png,PNG,name,4,docs,,,proposed,on 4 pages
+promptguide,Prompt Guide,name,4,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 searchsdk,Perplexity Search SDK,name,4,docs,yes,,rejected,"a page title or label, rarely used in running text"
 signingin,Signing In,name,4,docs,yes,,rejected,"capitalised in only 0% of 7 mid-sentence uses, so probably a general word"
-slack,Slack,name,4,docs,,,not shown,on 4 pages; outside the top 60
-sourcecode,Source Code,name,4,docs,yes,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
+slack,Slack,name,4,docs,,,proposed,on 4 pages
+sonardeepresearch,Sonar Deep Research,name,4,changelog docs,,,proposed,on 4 pages
 sse,SSE,name,4,changelog docs,,,not shown,on 4 pages; outside the top 60
 usageanalytic,Usage Analytics,name,4,docs,yes,,rejected,"capitalised in only 0% of 4 mid-sentence uses, so probably a general word"
 webp,WEBP,name,4,docs,,,not shown,on 4 pages; outside the top 60
+yyyymmdd,YYYY-MM-DD,name,4,docs,,,not shown,on 4 pages; outside the top 60
 zip,ZIP,name,4,docs,,,not shown,on 4 pages; outside the top 60
-agentskill,Agent Skills,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
-aisdk,AI SDK,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
+agentskill,Agent Skill,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
 annotation,Annotations,name,3,docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
 apiterm,API Terms,name,3,docs,,,not shown,on 3 pages; outside the top 60
 auditapi,Audit API,name,3,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
+aws,AWS,name,3,changelog docs,,,rejected,on the not_terms list
 box,Box,name,3,changelog docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
 claudedesktop,Claude Desktop,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
 claudefable,Claude Fable,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
-component,Components,name,3,docs,,,rejected,"capitalised in only 12% of 8 mid-sentence uses, so probably a general word"
 contentdisposition,Content-Disposition,name,3,docs,,,not shown,on 3 pages; outside the top 60
 contextapipricing,Context API Pricing,name,3,docs,yes,,rejected,"a page title or label, rarely used in running text"
 debugging,Debugging,name,3,changelog docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
 decider,Decider,name,3,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
 deepseek,DeepSeek,name,3,docs,,,not shown,on 3 pages; outside the top 60
 ecosystem,Ecosystem,name,3,changelog docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
-efficiency,Efficiency,name,3,docs,,,not shown,on 3 pages; outside the top 60
-emptywhen,Empty When,name,3,docs,,,not shown,on 3 pages; outside the top 60
-firsttoken,First Token,name,3,docs,,,not shown,on 3 pages; outside the top 60
+efficiency,Efficiency,name,3,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+emptywhen,Empty When,name,3,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+fetchurl,Fetch URL,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+firsttoken,First Token,name,3,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 flash,Flash,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
+functioncalling,Function Calling,name,3,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 git,Git,name,3,docs,,,rejected,"capitalised in only 11% of 9 mid-sentence uses, so probably a general word"
-global,Global,name,3,docs,,,rejected,"capitalised in only 33% of 9 mid-sentence uses, so probably a general word"
+global,Global,name,3,docs,,,rejected,"capitalised in only 25% of 8 mid-sentence uses, so probably a general word"
 ide,IDE,name,3,docs,,,not shown,on 3 pages; outside the top 60
 imagesearch,Image Search,name,3,changelog docs,yes,,rejected,"capitalised in only 33% of 6 mid-sentence uses, so probably a general word"
 invite,Invite,name,3,docs,,,rejected,"capitalised in only 25% of 4 mid-sentence uses, so probably a general word"
 ip,IP,name,3,docs,,,not shown,on 3 pages; outside the top 60
 langchain,LangChain,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
+languagefilter,Language Filter,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
 lastmodified,Last-Modified,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
 llmprovider,LLM Provider,name,3,docs,,,not shown,on 3 pages; outside the top 60
-makeyourfirstrequest,Make Your First Request,name,3,docs,yes,,rejected,"a page title or label, rarely used in running text"
-managing,Managing,name,3,docs,,,not shown,on 3 pages; outside the top 60
-marketplace,Marketplace,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
+makeyourfirstrequest,Make Your First Request,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+managing,Managing,name,3,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 modelfallbackchain,Model Fallback Chain,name,3,changelog docs,yes,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
-newfeature,New Feature,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
+newfeature,New Feature,name,3,changelog docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 nocontent,No Content,name,3,docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
-openresponse,Open Responses,name,3,docs,,,not shown,on 3 pages; outside the top 60
 organizationsetting,Organization Settings,name,3,docs,,,not shown,on 3 pages; outside the top 60
+playground,Playground,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
 promptinjection,Prompt Injection,name,3,docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
 proxy,Proxy,name,3,docs,,,rejected,"capitalised in only 20% of 5 mid-sentence uses, so probably a general word"
 pypi,PyPI,name,3,docs,,,not shown,on 3 pages; outside the top 60
@@ -484,22 +467,27 @@ responsesapi,Responses API,name,3,docs,,,not shown,on 3 pages; outside the top 6
 retrieving,Retrieving,name,3,docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
 router,Router,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
 sanfrancisco,San Francisco,name,3,docs,,,not shown,on 3 pages; outside the top 60
-scorepage,Score Pages,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
+scorepage,Score Pages,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 searchapiparameterreference,Search API Parameter Reference,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
-searchbestpractice,Search Best Practices,name,3,docs,yes,,rejected,"a page title or label, rarely used in running text"
+searchbestpractice,Search Best Practices,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+searchdomainfilter,Search Domain Filter,name,3,changelog docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 sonarapi,Sonar API,name,3,docs,,,not shown,on 3 pages; outside the top 60
-subscribe,Subscribe,name,3,docs,,,not shown,on 3 pages; outside the top 60
+sonarpro,Sonar Pro,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
+sonarreasoningpro,Sonar Reasoning Pro,name,3,changelog docs,,,rejected,"a page title or label, rarely used in running text"
+sourcecode,Source Code,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+subscribe,Subscribe,name,3,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+thirdparty,Third-party,name,3,docs,,,not shown,on 3 pages; outside the top 60
 toomanyrequest,Too Many Requests,name,3,docs,,,rejected,"a page title or label, rarely used in running text"
 touch,Touch,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
-trackapi,Track API,name,3,docs,yes,,not shown,in a page title or nav label; outside the top 60
+trackapi,Track API,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 ttl,TTL,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
 ui,UI,name,3,docs,,,not shown,on 3 pages; outside the top 60
 ultra,Ultra,name,3,changelog docs,,,rejected,"capitalised in only 14% of 7 mid-sentence uses, so probably a general word"
 useragent,User-Agent,name,3,docs,,,not shown,on 3 pages; outside the top 60
-usesearchapi,Use Search API,name,3,docs,yes,,rejected,"a page title or label, rarely used in running text"
+usesearchapi,Use Search API,name,3,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 uuid,UUID,name,3,docs,,,not shown,on 3 pages; outside the top 60
-vercel,Vercel,name,3,changelog docs,,,not shown,on 3 pages; outside the top 60
-acookbook,A Cookbook,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
+acookbook,A Cookbook,name,2,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+aisdk,AI SDK,name,2,docs,,,not shown,on 2 pages; outside the top 60
 anthropicmessagesapi,Anthropic Messages API,name,2,docs,,,not shown,on 2 pages; outside the top 60
 antigravity,Antigravity,name,2,docs,,,not shown,on 2 pages; outside the top 60
 antigravitymcp,Antigravity MCP,name,2,docs,,,not shown,on 2 pages; outside the top 60
@@ -516,16 +504,14 @@ checkout,Checkout,name,2,docs,,,not shown,on 2 pages; outside the top 60
 ci,CI,name,2,docs,,,not shown,on 2 pages; outside the top 60
 citationtoken,Citation Tokens,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 city,City,name,2,docs,,,rejected,"capitalised in only 25% of 4 mid-sentence uses, so probably a general word"
-claudecode',Claude Code's,name,2,docs,,,not shown,on 2 pages; outside the top 60
 claudeopu,Claude Opus,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 claudesonnet,Claude Sonnet,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 comet,Comet,name,2,docs,,yes,proposed,on 2 pages
-commandlinetool,Command Line Tools,name,2,docs,,,not shown,on 2 pages; outside the top 60
-computermcp,Computer MCP,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
+component,Components,name,2,docs,,,rejected,"capitalised in only 14% of 7 mid-sentence uses, so probably a general word"
 computermcpserver,Perplexity Computer MCP Server,name,2,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
 contextualembedding,Contextual Embeddings,name,2,docs,,,not shown,on 2 pages; outside the top 60
-createcontextualizedembedding,Create Contextualized Embeddings,name,2,docs,yes,,rejected,"a page title or label, rarely used in running text"
-createembedding,Create Embeddings,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
+createcontextualizedembedding,Create Contextualized Embeddings,name,2,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+createembedding,Create Embeddings,name,2,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 createresponse,Create Response,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
 crm,CRM,name,2,docs,,,not shown,on 2 pages; outside the top 60
 customercontent,Customer Content,name,2,docs,,,not shown,on 2 pages; outside the top 60
@@ -534,10 +520,10 @@ decisionsquickstart,Decisions Quickstart,name,2,docs,yes,,not shown,in a page ti
 deepseekv4pro,DeepSeek V4 Pro,name,2,changelog docs,,,rejected,"a page title or label, rarely used in running text"
 deepwikimcp,DeepWiki MCP,name,2,docs,,,not shown,on 2 pages; outside the top 60
 docker,Docker,name,2,docs,,,not shown,on 2 pages; outside the top 60
-docslookup,Docs Lookup,name,2,docs,,,not shown,on 2 pages; outside the top 60
+docslookup,Docs Lookup,name,2,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 docsmcp,Perplexity Docs MCP,name,2,docs,,,not shown,on 2 pages; outside the top 60
 docx,DOCX,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
-emailsupport,Email Support,name,2,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
+emailsupport,Email Support,name,2,changelog docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 embeddingsquickstart,Embeddings Quickstart,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
 english,English,name,2,docs,,,not shown,on 2 pages; outside the top 60
 enterpriseapi,Enterprise APIs,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
@@ -554,7 +540,7 @@ gpt,GPT,name,2,docs,,,not shown,on 2 pages; outside the top 60
 gpt5,GPT-5,name,2,docs,,,not shown,on 2 pages; outside the top 60
 grok,Grok,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 haiku,Haiku,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
-hardconstraint,Hard Constraints,name,2,docs,,,not shown,on 2 pages; outside the top 60
+hardconstraint,Hard Constraints,name,2,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 head,Head,name,2,docs,,,not shown,on 2 pages; outside the top 60
 helpcenter,Perplexity Help Center,name,2,docs,,,not shown,on 2 pages; outside the top 60
 hipaagapassessment,HIPAA Gap Assessment,name,2,docs,,,rejected,"a page title or label, rarely used in running text"
@@ -570,20 +556,21 @@ mcpcompatible,MCP-compatible,name,2,docs,,,not shown,on 2 pages; outside the top
 mcptask,MCP Tasks,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 mcpurl,MCP URL,name,2,docs,,,not shown,on 2 pages; outside the top 60
 messagesapi,Messages API,name,2,docs,,,not shown,on 2 pages; outside the top 60
-moonshotai',Moonshot AI's,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 neon,Neon,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 notion,Notion,name,2,docs,,,not shown,on 2 pages; outside the top 60
-notprose,Not Prose,name,2,docs,,,not shown,on 2 pages; outside the top 60
+notprose,Not Prose,name,2,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 ohlcv,OHLCV,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 openaicompatiblesdk,OpenAI-compatible SDK,name,2,docs,,,not shown,on 2 pages; outside the top 60
 openclaw,OpenClaw,name,2,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
 opencode,OpenCode,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
+openresponse,Open Responses,name,2,docs,,,not shown,on 2 pages; outside the top 60
 openresponsesprovider,Open Responses Provider,name,2,docs,yes,,rejected,"a page title or label, rarely used in running text"
 patch,PATCH,name,2,docs,,,rejected,on the not_terms list
-promptinjectioncookbook,Prompt Injection Cookbook,name,2,docs,yes,,rejected,"a page title or label, rarely used in running text"
+promptinjectioncookbook,Prompt Injection Cookbook,name,2,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+prosearch,Pro Search,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 providerrouting,Provider Routing,name,2,docs,,,not shown,on 2 pages; outside the top 60
 pydantic,Pydantic,name,2,docs,,,not shown,on 2 pages; outside the top 60
-readinglistq,Reading List Q,name,2,docs,yes,,rejected,"a page title or label, rarely used in running text"
+readinglistq,Reading List Q,name,2,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 routerule,Route Rules,name,2,docs,,,not shown,on 2 pages; outside the top 60
 rtf,RTF,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 saa,SaaS,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
@@ -591,9 +578,7 @@ safetyidentifier,Perplexity-Safety-Identifier,name,2,docs,yes,,not shown,in a pa
 sdkguide,Perplexity SDK Guide,name,2,docs,,,rejected,"a page title or label, rarely used in running text"
 sdkoverview,Perplexity SDK Overview,name,2,docs,yes,,rejected,"a page title or label, rarely used in running text"
 searchapirequestscount,Search API Requests Count,name,2,docs,,,not shown,on 2 pages; outside the top 60
-searchdomainfilter,SearchDomainFilter,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
 searchprovider,Search Provider,name,2,changelog docs,,,rejected,"capitalised in only 17% of 6 mid-sentence uses, so probably a general word"
-searchrecencyfilter,SearchRecencyFilter,name,2,docs,,,not shown,on 2 pages; outside the top 60
 sec,SEC,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 september,September,name,2,docs,,,not shown,on 2 pages; outside the top 60
 serveraction,Server Action,name,2,docs,,,not shown,on 2 pages; outside the top 60
@@ -606,28 +591,29 @@ stopurl,Stop URL,name,2,changelog docs,,,not shown,on 2 pages; outside the top 6
 super,Super,name,2,changelog docs,,,not shown,on 2 pages; outside the top 60
 systemstatu,System Status,name,2,docs,yes,,not shown,in a page title or nav label; outside the top 60
 teammate,Teammates,name,2,docs,,yes,proposed,on 2 pages
-timeouterror,Timeout Errors,name,2,docs,,,not shown,on 2 pages; outside the top 60
+timeouterror,Timeout Errors,name,2,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 trustcenter,Perplexity Trust Center,name,2,docs,yes,,rejected,"a page title or label, rarely used in running text"
 twoletteriso,Two-letter ISO,name,2,docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
 typeiireport,Type II Report,name,2,docs,,,rejected,"a page title or label, rarely used in running text"
 vercelaisdk,Vercel AI SDK,name,2,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
+webinterface,Web Interface,name,2,docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
 websearchprovider,Web Search Provider,name,2,changelog docs,,,rejected,"capitalised in only 0% of 3 mid-sentence uses, so probably a general word"
 windsurf,Windsurf,name,2,docs,,,not shown,on 2 pages; outside the top 60
 academicfilterguide,Academic Filter Guide,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
-accessbillingdashboard,Access Billing Dashboard,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+accessbillingdashboard,Access Billing Dashboard,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 acl,ACL,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 addmember,Add Member,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-affectmyrequest,Affect My Requests,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+affectmyrequest,Affect My Requests,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 ag2,AG2,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
 agentapionly,Agent-API-only,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-agentapiplayground,Agent API Playground,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+agentapiplayground,Agent API Playground,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 agentapiwebsearch,Agent API Web Search,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 agentconfiguration,Agent Configuration,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 agentplugin,Agent Plugins,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 agentsdk,Agent SDK,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 agno,Agno,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-agnodoc,Agno Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-agnoopenairesponsesdoc,Agno OpenAIResponses Docs,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+agnodoc,Agno Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+agnoopenairesponsesdoc,Agno OpenAIResponses Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 aifirst,AI-first,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 aiindustry,AI-industry,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 airtable,Airtable,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -635,35 +621,31 @@ allownetworkaccess,Allow Network Access,name,1,docs,,,rejected,"a page title or 
 allsuperbotfight,All Super Bot Fight,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 alluser,All Users,name,1,changelog,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
 alphabet,Alphabet,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-alternatepath,Alternate Path,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+alternatepath,Alternate Path,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 anaipowered,An AI-powered,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 anelectronbased,An Electron-based,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 anthropicapi,Anthropic API,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 anthropicapimcp,Anthropic API MCP,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-anthropicsdk',Anthropic SDK's,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 anythingllm,AnythingLLM,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-anythingllmdoc,AnythingLLM Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-anythingllmperplexitydoc,AnythingLLM Perplexity Docs,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-apibeused,API Be Used,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+anythingllmdoc,AnythingLLM Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+anythingllmperplexitydoc,AnythingLLM Perplexity Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+apibeused,API Be Used,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 apiconnectiontimeouterror,APIConnectionTimeoutError,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apiconsole'spricing,API Console's Pricing,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 apicookbook,API Cookbook,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apicurrentlysupportweb,API Currently Support Web,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-apidifferent,API Different,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+apicurrentlysupportweb,API Currently Support Web,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apidifferent,API Different,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 apienforced,API-enforced,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 apierror,APIError,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apihave,API Have,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apiidentical,API Identical,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+apihave,API Have,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apiidentical,API Identical,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 apikeybased,API-key-based,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 apionly,API-only,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apiopenaicompatible,API OpenAI Compatible,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-apisearcherrorresponse,ApiSearchErrorResponse,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apisearchpage,ApiSearchPage,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apistatu,API Status,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apisupportstreamingresponse,API Support Streaming Responses,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-apisupporttool,API Support Tool,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-apiupdate,API Updates,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-apiusecontentfiltering,API Use Content Filtering,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+apiopenaicompatible,API OpenAI Compatible,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apistatu,API Status,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apisupportstreamingresponse,API Support Streaming Responses,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apisupporttool,API Support Tool,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apiupdate,API Updates,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+apiusecontentfiltering,API Use Content Filtering,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 appdata,APPDATA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 appleid,Apple ID,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 april,April,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -677,16 +659,17 @@ awsenterprisediscountprogram,AWS Enterprise Discount Program,name,1,docs,,,rejec
 awswaf,AWS WAF,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 azuread,Azure AD,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 bashcompatible,Bash-compatible,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-beginner,Beginner,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-bestway,Best Way,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+bestway,Best Way,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 bi,BI,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+botfightmode,Bot Fight Mode,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 brandb,Brand B,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 browsecomp,BrowseComp,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 byok,BYOK,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 camel,CAMEL,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 camelai,CAMEL-AI,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-camelaidoc,CAMEL-AI Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-cancelagentresponse,Cancel Agent Response,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+camelaidoc,CAMEL-AI Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+cancelagentresponse,Cancel Agent Response,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+cascade,Cascade,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 ccpa,CCPA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 chatagent,ChatAgent,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 chatcompletionsapirequest,Chat Completions API Requests,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
@@ -702,38 +685,39 @@ clazar,Clazar,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav 
 cloudflare,Cloudflare,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 cloudflarewaf,Cloudflare WAF,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 cmd,Cmd,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+commandlinetool,Command Line Tools,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 completionapi,Completion APIs,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-compliancecertificationsdoe,Compliance Certifications Does,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+compliancecertificationsdoe,Compliance Certifications Does,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 composio,Composio,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-composiodoc,Composio Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+composiodoc,Composio Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 composioperplexity,Composio Perplexity,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 composioperplexitytoolkit,Composio Perplexity Toolkit,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-compromised,Compromised,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+compromised,Compromised,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+computermcp,Computer MCP,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 confluence,Confluence,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 connectedaccount,Connected Accounts,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-contactsalesteam,Contact Sales Team,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+contactsalesteam,Contact Sales Team,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 cookbookcommunityshowcase,Cookbook Community Showcase,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 coordinate,Coordinates,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 copilot,Copilot,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 copilotglobal,Copilot Global,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 copyapiurl,Copy API URL,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 copyexample,Copy Example,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-cot,CoTs,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-crawler,Perplexity Crawlers,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-createagentresponse,Create Agent Response,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-createchatcompletion,Create Chat Completion,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-createmessage,Create Message,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+cot,CoTs,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+crawler,Perplexity Crawlers,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+createagentresponse,Create Agent Response,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+createchatcompletion,Create Chat Completion,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+createmessage,Create Message,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 creditsource,Credit Source,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 crewai,CrewAI,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 crlf,CRLF,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 ctrl,Ctrl,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-cuda,CUDA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-cursormodel,Cursor Model,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+cuda,CUDA,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+cursormodel,Cursor Model,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 customizingeffortlevel,Customizing Effort Levels,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 cve,CVE,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 databrick,Databricks,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 dataprocessingaddendum,Data Processing Addendum,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-datefilter,DateFilters,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 daterangefilterguide,Date Range Filter Guide,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 debian,Debian,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 dec,Dec,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -744,21 +728,21 @@ devop,DevOps,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav l
 dict,Dict,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 digitalworker,Digital Worker,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 discord,Discord,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-discordcommunity,Discord Community,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+discordcommunity,Discord Community,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 dmg,DMG,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 dns,DNS,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 dock,Dock,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-downloadagentresponsefile,Download Agent Response File,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-downloaddecider,Download Decider,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+downloadagentresponsefile,Download Agent Response File,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+downloaddecider,Download Decider,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 downloaded,Downloaded,name,1,docs,,,rejected,"capitalised in only 25% of 4 mid-sentence uses, so probably a general word"
 dpa,DPA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 dropbox,Dropbox,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-effortlevelisupdated,Effort Level Is Updated,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+effortlevelisupdated,Effort Level Is Updated,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 enterprisepro,Enterprise Pro,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 eps,EPS,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 errortrigger,Error Trigger,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-examplescript,Example Script,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-explainnvidia'sgpu,Explain NVIDIA's GPU,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+examplescript,Example Script,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+explainnvidia,Explain NVIDIA,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 faceid,Face ID,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 faileddependency,Failed Dependency,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 fastsearchapirequest,Fast Search API Requests,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
@@ -767,11 +751,11 @@ fileupload,File Uploads,name,1,docs,,,rejected,"on 1 page only, and not in a tit
 flashlite,Flash Lite,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 flashlitepreview,Flash Lite Preview,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 french,French,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-frequency,Frequency,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-frequentlyaskedquestion,Frequently Asked Questions,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-fulltypescript,Full Typescript,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+frequency,Frequency,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+frequentlyaskedquestion,Frequently Asked Questions,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+fulltypescript,Full Typescript,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 functiondeclaration,FunctionDeclaration,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-generateauthtoken,Generate Auth Token,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+generateauthtoken,Generate Auth Token,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 gguf,GGUF,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 gil,GIL,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 githubmcpserver,GitHub MCP Server,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
@@ -781,22 +765,22 @@ gmt,GMT,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 gmv,GMV,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 goldchunk,Gold Chunk,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 googleadk,Google ADK,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-googleantigravity',Google Antigravity's,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 googledoc,Google Docs,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-googlegeminisdk,Google Gemini SDK,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+googlegeminisdk,Google Gemini SDK,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 googleworkspace,Google Workspace,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 googleworkspacesaml,Google Workspace SAML,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 gpt6,GPT-6,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
+gpu,GPU,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 haystack,Haystack,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-haystackdoc,Haystack Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-haystackintegration,Haystack Integrations,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+haystackdoc,Haystack Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+haystackintegration,Haystack Integrations,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 healthcare,Healthcare,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 herme,Hermes,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
 hermesagent,Hermes Agent,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 hermespr,Hermes PR,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 hidemyemail,Hide My Email,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 hipaa,HIPAA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-hitratelimit,Hit Rate Limits,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+hitratelimit,Hit Rate Limits,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 hmacsha256,HMAC-SHA256,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 howselectionwork,How Selection Works,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 httpapi,HTTP API,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -810,39 +794,40 @@ increaseddefaultratelimit,Increased Default Rate Limits,name,1,changelog,,,rejec
 integrationguide,Integration Guide,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 intelligentvisualcontent,Intelligent Visual Content,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 intelmac,Intel Mac,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-internetdataaccessprovided,Internet Data Access Provided,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+internetdataaccessprovided,Internet Data Access Provided,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 javascriptheavy,JavaScript-heavy,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 jira,Jira,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 kib,KiB,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 kubernete,Kubernetes,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 l2normalize,L2-normalize,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 langgraph,LangGraph,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-langgraphdoc,LangGraph Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+langgraphdoc,LangGraph Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 latestupdatedfield,Latest Updated Field,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 lf,LF,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 linear,Linear,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 linuxvm,Linux VM,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-listagentresponsefile,List Agent Response Files,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-litellmdoc,LiteLLM Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-litellmperplexitydoc,LiteLLM Perplexity Docs,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+listagentresponsefile,List Agent Response Files,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+litellmdoc,LiteLLM Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+litellmperplexitydoc,LiteLLM Perplexity Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 livekit,LiveKit,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 livekitagent,LiveKit Agents,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-livekitagentsdoc,LiveKit Agents Docs,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+livekitagentsdoc,LiveKit Agents Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 livekitagentsession,LiveKit AgentSession,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 llama3,Llama-3,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 llamaindex,LlamaIndex,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 llmpowered,LLM-powered,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 llmpreference,LLM Preference,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-longwaitbefore,Long Wait Before,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+longwaitbefore,Long Wait Before,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 lts,LTS,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 luna,Luna,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 maintainingagentskill,Maintaining Agent Skills,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-managingmember,Managing Members,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+managingmember,Managing Members,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 manualsetup,Manual Setup,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+marketplace,Marketplace,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 mastraagent,Mastra Agent,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 mastraai,Mastra AI,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 mastracompatible,Mastra-compatible,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-mastradoc,Mastra Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+mastradoc,Mastra Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 mastraperplexity,Mastra Perplexity,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 mcpheavy,MCP-heavy,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 mcpsdk,MCP SDK,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -853,16 +838,16 @@ mfa,MFA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 microsoft,Microsoft,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 microsoftteam,Microsoft Teams,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 mintplexlab,Mintplex Labs,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-mocking,Mocking,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+mocking,Mocking,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 modeldeprecationnoticeplease,Model Deprecation Notice Please,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 modelpicker,Model Picker,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-modeltraining,Model Training,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+modeltraining,Model Training,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 monday,Monday,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 mrl,MRL,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 nasa,NASA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-needhigherratelimit,Need Higher Rate Limits,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+needhigherratelimit,Need Higher Rate Limits,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 newyork,New York,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-nextusagetier,Next Usage Tier,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+nextusagetier,Next Usage Tier,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 nix,Nix,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 nvidianemotron,NVIDIA Nemotron,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 oauthurl,OAuth URL,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -872,52 +857,53 @@ oidcidp,OIDC IdPs,name,1,docs,,,rejected,"on 1 page only, and not in a title or 
 onedrive,OneDrive,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 openaiagentssdk,OpenAI Agents SDK,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 openailistmodel,OpenAI List Models,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-openaipluginsource,OpenAI Plugin Source,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-openaisdk',OpenAI SDK's,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+openaipluginsource,OpenAI Plugin Source,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 openaistyle,OpenAI-style,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-openclawdocumentation,OpenClaw Documentation,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+openclawdocumentation,OpenClaw Documentation,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 openclawmcp,OpenClaw MCP,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 opencodeai,OpenCode AI,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-opencodedoc,OpenCode Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+opencodedoc,OpenCode Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 opencodeprovider,OpenCode Providers,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
 openconfigfile,Open Config File,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 openrouter,OpenRouter,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 openwebui,Open WebUI,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-orchestratorapifaq,Orchestrator API FAQ,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+orchestratorapifaq,Orchestrator API FAQ,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 orchestratorchatcompletion,Orchestrator Chat Completions,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 organizationmanagement,Organization Management,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
-otherpurpose,Other Purposes,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+otherpurpose,Other Purposes,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 outlook,Outlook,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 outlookcalendar,Outlook Calendar,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-ownproviderapikey,Own Provider API Keys,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+ownproviderapikey,Own Provider API Keys,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 paymentrequired,Payment Required,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-performanceoptimization,Performance Optimization,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+performanceoptimization,Performance Optimization,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 perplexitybot,PerplexityBot,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 perplexitydocumentembedder,PerplexityDocumentEmbedder,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 perplexityerror,PerplexityError,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+perplexitysearchtoolkit,PerplexitySearchToolkit,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 perplexitytextembedder,PerplexityTextEmbedder,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-perworkspace,Per-workspace,name,1,docs,,,rejected,"capitalised in only 33% of 3 mid-sentence uses, so probably a general word"
+perworkspace,Per-workspace,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 pipedream,Pipedream,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-pipedreamdoc,Pipedream Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-pipedreamperplexityapp,Pipedream Perplexity App,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+pipedreamdoc,Pipedream Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+pipedreamperplexityapp,Pipedream Perplexity App,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 pitchbook,PitchBook,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 pkce,PKCE,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 plaid,Plaid,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 podman,Podman,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 powerpoint,PowerPoint,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-primarycodingmodel,Primary Coding Model,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-progressupdate,Progress Updates,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+primarycodingmodel,Primary Coding Model,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+progressupdate,Progress Updates,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 projectbrain,Project Brain,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 propreview,Pro Preview,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 prosearchapirequest,Pro Search API Requests,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 publishedip,Published IP,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 pydanticai,Pydantic AI,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-pypipackage,PyPI Package,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+pypipackage,PyPI Package,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 pythonpackage,Python Package,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
 qa,QA,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 qps,QPS,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-qualityassurancessuch,Quality Assurances Such,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+qualityassurancessuch,Quality Assurances Such,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 quitdecider,Quit Decider,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+r1,R1,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 r11776,R1-1776,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 ramp,Ramp,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 react,React,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -925,16 +911,16 @@ readme,README,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav 
 reconfigure,Reconfigure,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 reddit,Reddit,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 refining,Refining,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-replacingclaudecode',Replacing Claude Code's,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+replacingclaudecode,Replacing Claude Code,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 requiresso,Require SSO,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-responsedownstream,Response Downstream,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+responsedownstream,Response Downstream,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 responsesllm,Responses LLM,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-retrieveagentresponse,Retrieve Agent Response,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-retrievemodel,Retrieve Model,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-reviewpricing,Review Pricing,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-revokeauthtoken,Revoke Auth Token,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+retrieveagentresponse,Retrieve Agent Response,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+retrievemodel,Retrieve Model,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+reviewpricing,Review Pricing,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+revokeauthtoken,Revoke Auth Token,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 richtextformat,Rich Text Format,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
-rightapi,Right API,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+rightapi,Right API,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 routehandler,Route Handler,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 rss,RSS,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 runagent,Run Agent,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -944,28 +930,27 @@ s3post,S3 POST,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav
 safesearch,SafeSearch,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 salesforce,Salesforce,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 saml,SAML,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-scholarlyresearchwe're,Scholarly Research We're,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
+scholarlyresearchwe,Scholarly Research We,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 scraping,Scraping,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 screenrecording,Screen Recording,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 sdkquickstartguide,SDK Quickstart Guide,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
-searchapi',Search API's,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-searchapibestpractice,Search API Best Practices,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-searchapipython,Perplexity Search API Python,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-searchdate,Search Date,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-searchlanguagefilter,Search Language Filter,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+searchapibestpractice,Search API Best Practices,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+searchapipython,Perplexity Search API Python,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+searchdate,Search Date,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+searchlanguagefilter,Search Language Filter,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 searchtoolkit,SearchToolkit,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-searchyourdocsfolder,Search Your Docs Folder,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+searchyourdocsfolder,Search Your Docs Folder,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 secedgar,SEC EDGAR,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 secguide,SEC Guide,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
-serviceuptime,Service Uptime,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+serviceuptime,Service Uptime,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 sethuggingfacetoken,Set Hugging Face Token,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-setupbilling,Set Up Billing,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+setupbilling,Set Up Billing,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 setupdecider,Set Up Decider,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-setupyourproject,Set Up Your Project,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+setupyourproject,Set Up Your Project,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 sharepoint,SharePoint,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 showmodelfile,Show Model Files,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 siem,SIEM,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-signinoption,Sign-In Option,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+signinoption,Sign-In Option,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 singlesignon,Single Sign-On,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 snowflake,Snowflake,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 solfast,Sol Fast,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -973,25 +958,25 @@ sonarproreasoning,Sonar Pro Reasoning,name,1,changelog,,,rejected,"a page title 
 sso,SSO,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 standardwebhook,Standard Webhooks,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 statista,Statista,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-stayup,Stay Up,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-stayupdated,Stay Updated,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+stayup,Stay Up,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+stayupdated,Stay Updated,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 streamablehttpmcp,Streamable HTTP MCP,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 stripeproject,Stripe Projects,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
 stripeprojectscli,Stripe Projects CLI,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
 stripeverified,Stripe-verified,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 supabase,Supabase,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 superplane,SuperPlane,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-superplanedoc,SuperPlane Docs,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-superplaneperplexitycomponent,SuperPlane Perplexity Component,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
+superplanedoc,SuperPlane Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
+superplaneperplexitycomponent,SuperPlane Perplexity Component,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 systemsetting,System Settings,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-targetrecoverytime,Target Recovery Time,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-tensorcore,Tensor Cores,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+targetrecoverytime,Target Recovery Time,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+tensorcore,Tensor Cores,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 terra,Terra,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 thu,Thu,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 tls,TLS,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 tokyo,Tokyo,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-toolprovider,Tool Provider,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-toolsource,Tool Source,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+toolprovider,Tool Provider,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
+toolsource,Tool Source,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 tooluseblock,ToolUseBlock,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 touchid,Touch ID,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 tph,TPH,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -999,7 +984,7 @@ tpm,TPM,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 trello,Trello,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 txt,TXT,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
 typeii,Type II,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-typescriptpackage,TypeScript Package,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
+typescriptpackage,TypeScript Package,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 urlonly,URL-only,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 userprofile,USERPROFILE,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 utciso,UTC ISO,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
@@ -1007,72 +992,31 @@ utf8txt,UTF-8 TXT,name,1,docs,,,rejected,"on 1 page only, and not in a title or 
 ux,UX,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 valueerror,ValueError,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 vcs,VCs,name,1,changelog,,,rejected,"on 1 page only, and not in a title or nav label"
-vercelaisdkdoc,Vercel AI SDK Docs,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
-vscode',VS Code's,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+vercel,Vercel,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+vercelaisdkdoc,Vercel AI SDK Docs,name,1,docs,yes,,rejected,"never capitalised in running text, so a title or label, not a name"
 vscodecopilot,VS Code Copilot,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 vscodemcp,VS Code MCP,name,1,changelog,,,rejected,"a page title or label, rarely used in running text"
 waf,WAF,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 wandr,WANDR,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 webapplicationfirewall,Web Application Firewall,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
-whathappensafterward,What Happens Afterward,name,1,docs,,,rejected,"a page title or label, rarely used in running text"
+whathappensafterward,What Happens Afterward,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 wikimedia,Wikimedia,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 wikipedia,Wikipedia,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 workspacellmprovider,Workspace LLM Provider,name,1,docs,yes,,rejected,"a page title or label, rarely used in running text"
 workspacesetting,Workspace Settings,name,1,docs,yes,,not shown,in a page title or nav label; outside the top 60
-wsl,WSL,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
+wsl,WSL,name,1,docs,,,rejected,"never capitalised in running text, so a title or label, not a name"
 xrequestid,X-Request-ID,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
 yaml,YAML,name,1,docs,,,rejected,"on 1 page only, and not in a title or nav label"
-ag2'sperplexity,AG2's Perplexity,name,0,,,,rejected,no uses
-agno'sopenairesponse,Agno's OpenAI Responses,name,0,,,,rejected,no uses
-agno'sopenairesponsescompatible,Agno's OpenAI Responses-compatible,name,0,,,,rejected,no uses
-anthropic',Anthropic's,name,0,,,,rejected,no uses
-anthropic'sclaude,Anthropic's Claude,name,0,,,,rejected,no uses
-antigravity',Antigravity's,name,0,,,,rejected,no uses
-anythingllm'sai,AnythingLLM's AI,name,0,,,,rejected,no uses
-api',API's,name,0,,,,rejected,no uses
 applicationsupport,Application Support,name,0,,,,rejected,no uses
-camel',CAMEL's,name,0,,,,rejected,no uses
-cascade'smcp,Cascade's MCP,name,0,,,,rejected,no uses
 cdpipeline,CD-Pipeline,name,0,,,,rejected,no uses
 chess,Chess,name,0,,,,rejected,no uses
-computer',Computer's,name,0,,,,rejected,no uses
-cursor',Cursor's,name,0,,,,rejected,no uses
-cursor'smcp,Cursor's MCP,name,0,,,,rejected,no uses
 dd,DD,name,0,,,,rejected,on the not_terms list
-deepwiki',DeepWiki's,name,0,,,,rejected,no uses
-google',Google's,name,0,,,,rejected,no uses
-google'smcp,Google's MCP,name,0,,,,rejected,no uses
-hermes',Hermes's,name,0,,,,rejected,no uses
 js,JS,name,0,,,,rejected,on the not_terms list
-langchain',LangChain's,name,0,,,,rejected,no uses
-litellm',LiteLLM's,name,0,,,,rejected,no uses
 mm,MM,name,0,,,,rejected,on the not_terms list
 myspend,My Spend,name,0,,,,rejected,no uses
-nvidia',NVIDIA's,name,0,,,,rejected,no uses
-openai',OpenAI's,name,0,,,,rejected,no uses
-openai'sapi,OpenAI's API,name,0,,,,rejected,no uses
-openai'sbatchapi,OpenAI's Batch API,name,0,,,,rejected,no uses
-openai'sresponsesapi,OpenAI's Responses API,name,0,,,,rejected,no uses
-openclaw',OpenClaw's,name,0,,,,rejected,no uses
-perplexity',Perplexity's,name,0,,,,rejected,no uses
-perplexity'sagent,Perplexity's Agent,name,0,,,,rejected,no uses
-perplexity'sagentapi,Perplexity's Agent API,name,0,,,,rejected,no uses
-perplexity'sapi,Perplexity's APIs,name,0,,,,rejected,no uses
-perplexity'ssearch,Perplexity's Search,name,0,,,,rejected,no uses
-perplexity'ssearchapi,Perplexity's Search API,name,0,,,,rejected,no uses
-perplexity'ssonar,Perplexity's Sonar,name,0,,,,rejected,no uses
-perplexity'strustcenter,Perplexity's Trust Center,name,0,,,,rejected,no uses
-perplexity'swebinterface,Perplexity's Web Interface,name,0,,,,rejected,no uses
-perplexity'swebsearch,Perplexity's Web Search,name,0,,,,rejected,no uses
 pipedreamnode,Pipedream Node,name,0,,,,rejected,no uses
-python',Python's,name,0,,,,rejected,no uses
-r1',R1's,name,0,,,,rejected,no uses
-sdk',SDK's,name,0,,,,rejected,no uses
-sdk'sagentskill,SDK's Agent Skill,name,0,,,,rejected,no uses
-sonar',Sonar's,name,0,,,,rejected,no uses
 tlsconfiguration,TLS Configuration,name,0,,,,rejected,no uses
 twitter,Twitter,name,0,,,,rejected,no uses
-url',URL's,name,0,,,,rejected,no uses
 yyyy,YYYY,name,0,,,,rejected,on the not_terms list
 z0,Z0,name,0,,,,rejected,no uses
 sharefile,share_file,parameter,5,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1080,7 +1024,7 @@ fileid,file_id,parameter,2,,,,listed,"parameter names are listed for review, not
 id,id,parameter,33,,,,listed,"parameter names are listed for review, not proposed as terms"
 contenttype,Content-Type | content_type,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
 store,store,parameter,7,,,,listed,"parameter names are listed for review, not proposed as terms"
-true,true,parameter,17,,,,listed,"parameter names are listed for review, not proposed as terms"
+true,true,parameter,16,,,,listed,"parameter names are listed for review, not proposed as terms"
 cancelling,cancelling,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 cancelled,cancelled,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
 validating,validating,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1157,7 +1101,7 @@ choices,choices,parameter,2,,,,listed,"parameter names are listed for review, no
 usage,usage,parameter,15,,,,listed,"parameter names are listed for review, not proposed as terms"
 type,type,parameter,31,,,,listed,"parameter names are listed for review, not proposed as terms"
 invalidrequesterror,invalid_request_error,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
-invalidapikey,invalid_api_key,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
+invalidapikey,invalid_api_key,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 ratelimiterror,rate_limit_error,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 retryafter,Retry-After,parameter,11,,,,listed,"parameter names are listed for review, not proposed as terms"
 servererror,server_error,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1217,7 +1161,7 @@ responseoutputtextdelta,response.output_text.delta,parameter,2,,,,listed,"parame
 responsecompleted,response.completed,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 error,error,parameter,18,,,,listed,"parameter names are listed for review, not proposed as terms"
 responsefailed,response.failed,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
-invalidrequest,invalid_request,parameter,7,,,,listed,"parameter names are listed for review, not proposed as terms"
+invalidrequest,invalid_request,parameter,6,,,,listed,"parameter names are listed for review, not proposed as terms"
 notfound,not_found | NOT_FOUND,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
 toomanyrequests,too_many_requests,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 active,active,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1271,7 +1215,7 @@ errorcurrentrunid,error.current_run_id,parameter,2,,,,listed,"parameter names ar
 name,name,parameter,12,,,,listed,"parameter names are listed for review, not proposed as terms"
 targets,targets,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
 schedule,schedule,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
-maxresults,max_results | maxResults,parameter,17,,,,listed,"parameter names are listed for review, not proposed as terms"
+maxresults,max_results | maxResults,parameter,16,,,,listed,"parameter names are listed for review, not proposed as terms"
 effort,effort,parameter,15,,,,listed,"parameter names are listed for review, not proposed as terms"
 profile,profile,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
 low,low,parameter,20,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1286,19 +1230,6 @@ networkerror,network_error,parameter,1,,,,listed,"parameter names are listed for
 tlscertificate,tls_certificate,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 webhookfailing,webhook_failing,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 apiperplexityai,api.perplexity.ai,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
-searchrecencyfilter,search_recency_filter | searchRecencyFilter,parameter,11,,,,listed,"parameter names are listed for review, not proposed as terms"
-errortype,error.type,parameter,6,,,,listed,"parameter names are listed for review, not proposed as terms"
-invalidlanguagecode,invalid_language_code,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
-invalidcountrycode,invalid_country_code,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
-web,web,parameter,6,,,,listed,"parameter names are listed for review, not proposed as terms"
-fast,fast,parameter,17,,,,listed,"parameter names are listed for review, not proposed as terms"
-people,people,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
-us,US,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
-en,en,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
-fr,fr,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
-servertime,server_time,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
-searchtype,search_type,parameter,7,,,,listed,"parameter names are listed for review, not proposed as terms"
-snapshotasof,snapshot_as_of,parameter,11,,,,listed,"parameter names are listed for review, not proposed as terms"
 skillmd,SKILL.md,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 expectedrevision,expected_revision,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
 revision,revision,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1375,6 +1306,7 @@ computer,Computer,parameter,1,,,,listed,"parameter names are listed for review, 
 groupby,group_by,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 results,results,parameter,11,,,,listed,"parameter names are listed for review, not proposed as terms"
 featuredisabled,feature_disabled,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+errortype,error.type,parameter,5,,,,listed,"parameter names are listed for review, not proposed as terms"
 tokenratelimitexceeded,token_rate_limit_exceeded,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 tpm,TPM,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 tph,TPH,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1394,6 +1326,7 @@ estimatedresumeinseconds,estimated_resume_in_seconds,parameter,1,,,,listed,"para
 estimatedresumeat,estimated_resume_at,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 sequencenumber,sequence_number,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
 startingafter,starting_after,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
+snapshotasof,snapshot_as_of,parameter,10,,,,listed,"parameter names are listed for review, not proposed as terms"
 param,param,parameter,5,,,,listed,"parameter names are listed for review, not proposed as terms"
 urls,urls,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 perplexitysafetyidentifier,Perplexity-Safety-Identifier,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1462,6 +1395,7 @@ exitcode,exit_code,parameter,2,,,,listed,"parameter names are listed for review,
 schema,schema,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 role,role,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
 assistant,assistant,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
+fast,fast,parameter,16,,,,listed,"parameter names are listed for review, not proposed as terms"
 medium,medium,parameter,15,,,,listed,"parameter names are listed for review, not proposed as terms"
 high,high,parameter,14,,,,listed,"parameter names are listed for review, not proposed as terms"
 xhigh,xhigh,parameter,11,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1479,6 +1413,7 @@ imageurl,image_url,parameter,2,,,,listed,"parameter names are listed for review,
 content,content | Content,parameter,6,,,,listed,"parameter names are listed for review, not proposed as terms"
 responseoutputtext,response.output_text,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
 deltacontent,delta.content,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+searchrecencyfilter,search_recency_filter | searchRecencyFilter,parameter,10,,,,listed,"parameter names are listed for review, not proposed as terms"
 searchdomainfilter,search_domain_filter | searchDomainFilter,parameter,11,,,,listed,"parameter names are listed for review, not proposed as terms"
 sonar,sonar,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
 sonarpro,sonar-pro,parameter,4,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1491,8 +1426,10 @@ websearchoptionssearchcontextsize,web_search_options.search_context_size,paramet
 enablesearchclassifier,enable_search_classifier,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 disablesearch,disable_search,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 searchmode,search_mode,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+web,web,parameter,5,,,,listed,"parameter names are listed for review, not proposed as terms"
 academic,academic,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 sec,sec,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+searchtype,search_type,parameter,6,,,,listed,"parameter names are listed for review, not proposed as terms"
 fastsearch,fast-search,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 returnrelatedquestions,return_related_questions,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 returnimages,return_images,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1697,6 +1634,7 @@ document,document,parameter,3,,,,listed,"parameter names are listed for review, 
 documentpdf,document.pdf,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 responseid,response.id,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 pplx,pplx,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+us,US,parameter,3,,,,listed,"parameter names are listed for review, not proposed as terms"
 out/web/,out/web/,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 savedto,saved_to,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 pplxoutputdir,PPLX_OUTPUT_DIR,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -1836,6 +1774,7 @@ searchtoolkitsearchperplexity,SearchToolkit.search_perplexity,parameter,1,,,,lis
 openai,openai,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 openaiapikey,OPENAI_API_KEY,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 extraparams,extra_params,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+servertime,server_time,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 valueerror,ValueError,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 dotenv,dotenv,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 pnpm,pnpm,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -2036,6 +1975,8 @@ mcpconfigjson,mcp_config.json,parameter,1,,,,listed,"parameter names are listed 
 embeddings,Embeddings,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 openclawjson,openclaw.json,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 de,DE | de,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
+en,en,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
+fr,fr,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 dateafter,date_after,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 datebefore,date_before,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 agentsdefaultsmodels,agents.defaults.models,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
@@ -2309,4 +2250,5 @@ he,he,parameter,1,,,,listed,"parameter names are listed for review, not proposed
 th,th,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 vi,vi,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
 uk,uk,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"
+people,people,parameter,2,,,,listed,"parameter names are listed for review, not proposed as terms"
 displayservertime,display_server_time,parameter,1,,,,listed,"parameter names are listed for review, not proposed as terms"

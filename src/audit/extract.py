@@ -37,7 +37,9 @@ class Piece:
 # Short sentences under this many words are usually fragments ("See below.").
 MIN_SENTENCE_WORDS = 3
 
-FENCE = re.compile(r"^\s*(```|~~~)")
+# A code fence is 3 or more backticks or tildes. A block only closes on a fence of the
+# same character that is at least as long, so ```` can wrap an example containing ```.
+FENCE = re.compile(r"^(`{3,}|~{3,})(.*)$")
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 LIST_ITEM = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
 TABLE_SEPARATOR = re.compile(r"^\s*\|?\s*:?-{2,}")
@@ -52,7 +54,11 @@ STAR_EMPHASIS = re.compile(r"(\*\*|\*)(?=\S)(.+?)(?<=\S)\1")
 UNDERSCORE_EMPHASIS = re.compile(r"(?<!\w)(__|_)(?=\S)(.+?)(?<=\S)\1(?!\w)")
 TAG = re.compile(r"<[^>]+>")
 IDENTIFIER = re.compile(r"^[A-Za-z_][\w.\-/]*$")
-ERROR_MESSAGE = re.compile(r'"(?:message|error|detail)"\s*:\s*"([^"]{3,200})"')
+# The value of a "message", "error" or "detail" field in a code sample, allowing escaped
+# quotes inside it.
+ERROR_MESSAGE = re.compile(r'"(?:message|error|detail)"\s*:\s*"((?:[^"\\]|\\.){3,200})"')
+# Single words ("slow") are field values, not messages a reader would see.
+MIN_ERROR_WORDS = 2
 SENTENCE_END = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9\"'“(])")
 
 # Words just before a bold label that tell us what kind of label it is.
@@ -95,7 +101,7 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
     found: list[Piece] = []
     paragraph: list[str] = []
     code: list[str] = []
-    in_code = False
+    open_fence = ""
     has_title = False
 
     def flush() -> None:
@@ -103,19 +109,28 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
             found.extend(pieces_from_inline(" ".join(paragraph)))
             paragraph.clear()
 
+    def closes(fence: re.Match[str]) -> bool:
+        marker, rest = fence.group(1), fence.group(2)
+        return marker[0] == open_fence[0] and len(marker) >= len(open_fence) and not rest.strip()
+
     for raw_line in text.splitlines():
         # Strip quote marks first: code samples often sit inside quoted blocks.
         line = BLOCKQUOTE.sub("", raw_line).strip()
-        if FENCE.match(line):
-            if in_code:
-                found += [Piece("error", m) for m in ERROR_MESSAGE.findall("\n".join(code))]
+        fence = FENCE.match(line)
+        if open_fence:
+            if fence and closes(fence):
+                for message in ERROR_MESSAGE.findall("\n".join(code)):
+                    message = message.replace('\\"', '"')
+                    if len(message.split()) >= MIN_ERROR_WORDS:
+                        found.append(Piece("error", message))
                 code.clear()
+                open_fence = ""
             else:
-                flush()
-            in_code = not in_code
+                code.append(line)
             continue
-        if in_code:
-            code.append(line)
+        if fence:
+            flush()
+            open_fence = fence.group(1)
             continue
 
         if not line or any(b in line for b in boilerplate):

@@ -26,7 +26,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("fetch", help="Download public pages into cache/")
     _add_target(p)
-    p.add_argument("--dry-run", action="store_true", help="List pages without fetching them")
+    p.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="List the pages it would fetch. Still reads robots.txt and index pages.",
+    )
     p.add_argument("--limit", type=int, help="Fetch at most this many pages")
     p.add_argument("--refresh", action="store_true", help="Fetch again even if cached")
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import http.client
 import os
 import re
 import time
@@ -38,6 +39,8 @@ class Response:
     status: int
     content_type: str
     text: str
+    # Why a request didn't produce a page, when the status code alone doesn't say.
+    note: str = ""
 
 
 # (url, user_agent) -> Response. Tests pass a fake one, so they never touch the network.
@@ -54,12 +57,15 @@ def http_get(url: str, user_agent: str) -> Response:
     )
     try:
         with urllib.request.urlopen(request, timeout=30) as r:
+            # A redirect to another site would skip that site's robots.txt, so it's refused.
+            if urlsplit(r.geturl()).netloc != urlsplit(url).netloc:
+                return Response(0, "", "", note=f"redirected to another site ({r.geturl()})")
             charset = r.headers.get_content_charset() or "utf-8"
             body = r.read(MAX_BYTES).decode(charset, errors="replace")
             return Response(r.status, r.headers.get_content_type(), body)
     except urllib.error.HTTPError as e:
         return Response(e.code, "", "")
-    except (urllib.error.URLError, TimeoutError) as e:
+    except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as e:
         raise FetchError(f"Could not reach {url}: {e}") from e
 
 
@@ -247,10 +253,16 @@ def run(
             log(f"blocked by robots.txt: {url}")
             continue
         throttle.wait(url, robots.delay_for(url))
-        response = get(url, agent)
+        try:
+            response = get(url, agent)
+        except FetchError as e:
+            # One dropped connection shouldn't end the whole crawl. It's retried next run.
+            report.failed.append((url, 0))
+            log(str(e))
+            continue
         if response.status != 200:
             report.failed.append((url, response.status))
-            log(f"{response.status}: {url}")
+            log(f"{response.note or response.status}: {url}")
             continue
         file = cache_file_for(url)
         path = target.cache_dir / file

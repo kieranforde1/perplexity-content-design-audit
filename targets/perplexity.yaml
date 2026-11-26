@@ -143,6 +143,27 @@ terms:
     - OpenAI Responses API
     - Anthropic SDK
     - Gemini SDK
+    - Stripe
+    - Moonshot AI
+    - OpenAI Chat Completions
+    - Python SDK
+    - TypeScript SDK
+    # Generic technical words.
+    - OAuth
+    - MB
+    - URI
+    - Streamable HTTP
+    - API call
+    - API response
+    - JSON response
+    - USD
+    - JPEG
+    - Word
+    - December
+    - VS Code
+    - Codex
+    - Google Gemini Flash
+    - Anthropic Messages
   # Most terms to propose for review. The rest stay in term_candidates.csv.
   max_proposed: 60
 
