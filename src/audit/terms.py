@@ -38,8 +38,11 @@ from audit import evidence, snippets
 from audit.config import Target
 from audit.snippets import Snippet
 
-# When sources disagree, the higher one wins. Changelog sits with the blog.
-AUTHORITY = ("pricing", "docs", "help", "blog", "changelog", "web-app", "ios-app", "comet")
+# When sources disagree, the higher one wins. The Brand Hub is the company's own published
+# guidance, so it comes first. Changelog sits with the blog.
+AUTHORITY = (
+    "brand", "pricing", "docs", "help", "blog", "changelog", "web-app", "ios-app", "comet",
+)
 
 # No apostrophes inside a word, so "Agent API's" is read as "Agent API".
 CAP_WORD = r"[A-Z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)*"
@@ -55,7 +58,7 @@ MIN_MID_SENTENCE_USES = 3
 
 # Labels and running text use case differently on purpose ("API Reference" in nav,
 # "API reference" in a sentence), so variants are only compared within a group.
-LABELS = ("title", "heading", "nav", "button")
+LABELS = ("title", "heading", "nav", "button", "label")
 RUNNING_TEXT = ("sentence", "error")
 GROUP_NAMES = {"labels": "labels", "running": "running text"}
 
@@ -254,13 +257,19 @@ def count_uses(
     texts: list[Text],
     company: str,
     repeated: Iterable[str] = (),
+    not_names: Iterable[str] = (),
 ) -> None:
     """Count every form of every cluster.
 
     Each form counts once per page and excerpt, so a heading that says "Agent API Agent
     API" counts once. Text a person has approved as repeated boilerplate (the config's
     repeated_text) counts on one page only, not once per page it appears on.
+
+    `not_names` are cluster keys from the not_terms list. They aren't names, so they don't
+    hide the names inside them: rejecting the page title "Agent API Quickstart" still lets
+    it count as a use of "Agent API".
     """
+    skip_claim = set(not_names)
     approved = {" ".join(r.split()) for r in repeated}
     by_token: dict[str, list[Text]] = defaultdict(list)
     for t in texts:
@@ -293,7 +302,11 @@ def count_uses(
                 # Only a written-as-a-name match claims its place. "with Comet" mustn't hide
                 # a use of "Comet". This happens before the checks below, so a skipped
                 # duplicate still stops shorter names counting inside it.
-                if len(words) > 1 and all(w[:1].isupper() for w in name_part.split()):
+                if (
+                    len(words) > 1
+                    and cluster.key not in skip_claim
+                    and all(w[:1].isupper() for w in name_part.split())
+                ):
                     claimed[id(t)].append((start, end))
                 once = (t.snippet.source_url, t.text, form)
                 if once in cluster.counted:
@@ -584,7 +597,8 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     texts = load_texts(target)
     surface_of = {t.snippet.source_url: t.snippet.surface for t in texts}
     clusters = find_candidates(texts, target)
-    count_uses(clusters, texts, company, target.terms.repeated_text)
+    not_names = {term_key(n, company) for n in target.terms.not_terms}
+    count_uses(clusters, texts, company, target.terms.repeated_text, not_names)
 
     candidate_rows = []
     proposed: list[Cluster] = []

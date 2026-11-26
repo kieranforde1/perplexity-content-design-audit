@@ -94,6 +94,35 @@ def test_markdown_accordion_and_tab_titles_are_headings() -> None:
     assert not any(p.text.startswith("[") for p in pieces)
 
 
+def test_markdown_line_break_backslash_ends_the_text() -> None:
+    pieces = extract_markdown(
+        "**Short answer:** No, you can use it without one.\\\n\\\nIt updates itself.\\\n"
+    )
+    assert Piece("sentence", "Short answer: No, you can use it without one.") in pieces
+    assert Piece("sentence", "It updates itself.") in pieces
+    assert not any("\\" in p.text for p in pieces)
+
+
+def test_markdown_escaped_punctuation_is_shown_plainly() -> None:
+    pieces = extract_markdown("Plans cost \\$5\\* less on the yearly option.")
+    assert pieces == [Piece("sentence", "Plans cost $5* less on the yearly option.")]
+
+
+def test_markdown_list_item_line_break_backslash_is_dropped() -> None:
+    pieces = extract_markdown("- Open the store in your browser.\\\n- Search for the extension.\n")
+    assert Piece("sentence", "Open the store in your browser.") in pieces
+
+
+def test_markdown_linked_screenshot_leaves_only_its_alt_text() -> None:
+    pieces = extract_markdown("[![Delete account dialog in settings](https://e.com/a.png)](https://e.com/a.png)")
+    assert pieces == [Piece("sentence", "Delete account dialog in settings")]
+
+
+def test_markdown_front_matter_is_skipped() -> None:
+    page = "---\ntitle: Example plan\ndescription: Not reader text.\n---\n\n# Example plan\n"
+    assert extract_markdown(page) == [Piece("title", "Example plan")]
+
+
 def test_html_pieces() -> None:
     pieces = extract_html((FIXTURES / "help_page.html").read_text())
     assert Piece("title", "Change your plan | Example Help") in pieces
@@ -106,6 +135,34 @@ def test_html_pieces() -> None:
     assert not any("script text" in p.text for p in pieces)
     # Fragments under three words are dropped.
     assert not any(p.text == "Ok." for p in pieces)
+
+
+PRICING_CARD = """
+<div class="card">
+  <div><svg role="img" aria-label="Example Plus"><use href="#logo"></use></svg></div>
+  <p>Built for people who use it every single day.</p>
+  <div><span>$12</span><span>per month</span></div>
+  <div><span><svg aria-hidden="true"></svg></span><span>500 bonus credits</span></div>
+  <p>Switch plans <span>at any time</span> from settings.</p>
+  <button>A</button>
+  <span>A long box of text that goes on well past a label. It reads like running text.</span>
+</div>
+"""
+
+
+def test_html_box_text_is_kept_as_labels() -> None:
+    pieces = extract_html(PRICING_CARD)
+    assert Piece("label", "Example Plus") in pieces
+    assert Piece("label", "$12") in pieces
+    assert Piece("label", "per month") in pieces
+    assert Piece("label", "500 bonus credits") in pieces
+    # A span inside a sentence stays part of that sentence.
+    assert Piece("sentence", "Switch plans at any time from settings.") in pieces
+    assert not any(p.text == "at any time" for p in pieces)
+    # One character on its own is a font sample or icon.
+    assert not any(p.text == "A" for p in pieces)
+    # Long box text is split into sentences instead.
+    assert Piece("sentence", "It reads like running text.") in pieces
 
 
 def write_target(root: Path) -> None:

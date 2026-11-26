@@ -15,7 +15,8 @@ a systematic way of solving content problems:
 3. Group repeated content structures into patterns (second pass).
 4. Score tone across stages, and report how far the scores can be trusted (second pass).
 
-Standards, checks, recommendations and a content-standards skill are paused. Their
+A person settles the terms in a glossary, and `audit check` tests the public text against
+it. The other checks, recommendations and a content-standards skill are paused. Their
 designs are under "Later" in [ROADMAP.md](ROADMAP.md). Don't build them unless the owner
 asks.
 
@@ -64,7 +65,9 @@ being audited.
 - add a source, a surface or a stage
 - add a dependency
 - delete or overwrite anything a person has filled in (`review`, `definition`,
-  `typed_strings.csv`)
+  `typed_strings.csv`, `glossary.csv`)
+- run `audit terms` while the review page may be in use: it rewrites `terms.csv` and can
+  overwrite edits saved during the run
 
 ## Where things live
 
@@ -79,6 +82,8 @@ being audited.
 | `src/audit/view.py`, `viewer.html` | The offline viewer |
 | `src/audit/review.py` | The local review page, which saves a person's edits |
 | `src/audit/typed.py` | Rules for typed app strings, used by `audit typed`, extract and review |
+| `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` |
+| `src/audit/check.py` | `audit check`: tests the public text against the glossary |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
 | `data/<target>/` | Committed outputs: the public snippets table, terms, term candidates, typed app strings |
 | `later/` | Paused designs, such as the content-skill template |
@@ -103,6 +108,12 @@ copies of the table:
 `review` (accept, reject or blank) and `definition`. They're matched on the `key`
 column and kept on every re-run. Never write to them from code, except through the
 review page.
+
+`glossary.csv` is written by a person, never by code: term, status (use, avoid or
+deprecated), use_instead, definition, basis and source_url. `basis` says how sure we can
+be: `published` (Perplexity said it, and source_url points to where), `observed` (its
+public text uses the term this way) or `recommendation` (the reviewer's suggestion,
+never presented as Perplexity's rule). `audit glossary --check` checks the file.
 
 `typed_strings.csv` holds app text a person typed in by hand: text, kind, source_url,
 surface, stage, captured_on. 20 words at most per string. `source_url` is a web address,

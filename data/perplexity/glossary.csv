@@ -1,0 +1,60 @@
+term,status,use_instead,definition,basis,source_url
+Enterprise,use,,,observed,https://www.perplexity.ai/hub/brand
+Project,use,,,observed,https://www.perplexity.ai/enterprise
+Connectors,use,,,observed,https://www.perplexity.ai/hub/pricing
+Perplexity Pro,use,,,observed,https://www.perplexity.ai/hub/brand
+Computer,use,,,observed,https://www.perplexity.ai/hub/brand
+Comet,use,,,observed,https://www.perplexity.ai/hub/brand
+Perplexity Max,use,,,observed,https://www.perplexity.ai/hub/brand
+Perplexity Enterprise organizations,use,,,observed,https://docs.perplexity.ai/docs/admin/audit-api.md
+Enterprise Pro,use,,,observed,https://www.perplexity.ai/enterprise
+Agent API,use,,,observed,https://docs.perplexity.ai/api-reference/models-get.md
+Enterprise Max,use,,,observed,https://www.perplexity.ai/enterprise
+Credits,use,,,observed,https://www.perplexity.ai/hub/pricing
+API key,use,,,observed,https://docs.perplexity.ai/api-reference/admin-audit-events-get.md
+AI models,use,,,observed,https://www.perplexity.ai/hub/pricing
+Organization settings,use,,,observed,https://docs.perplexity.ai/docs/admin/audit-api.md
+Skills,use,,,observed,https://www.perplexity.ai/hub/brand
+Discover,use,,,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
+Trust Center,use,,,observed,https://www.perplexity.ai/hub/pricing
+Disabled,avoid,Turned off,Not allowed,recommendation,
+Search API,use,,,observed,https://docs.perplexity.ai/api-reference/search-post.md
+API reference,use,,,observed,https://docs.perplexity.ai/docs/agent-api/effort.md
+Deep Research,use,,,observed,https://www.perplexity.ai/enterprise
+API Console,use,,,observed,https://docs.perplexity.ai/docs/admin/api-key-management.md
+Comet Browser,use,,,observed,https://www.perplexity.ai/enterprise
+MCP server,use,,,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
+Help Center,use,,,observed,https://www.perplexity.ai/hub/pricing
+Agent API models,use,,,observed,https://docs.perplexity.ai/docs/agent-api/batch.md
+Incognito,use,,,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
+Pro Search,use,,,observed,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
+File Uploads,use,,,observed,https://www.perplexity.ai/hub/pricing
+Teammate,use,,,observed,https://www.perplexity.ai/hub/brand
+Comet Assistant,use,,,observed,https://www.perplexity.ai/hub/pricing
+Space,deprecated,Project,,published,https://www.perplexity.ai/hub/blog/spaces-are-now-projects
+AI-powered,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583745-getting-started-with-comet-set-up.md
+Perplexity API Platform,use,,,observed,https://www.perplexity.ai/hub/brand
+API Portal,avoid,,,recommendation,
+Enterprise users,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10352914-what-is-internal-knowledge-search.md
+AI assistants,use,,,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
+Brain,use,,,observed,https://www.perplexity.ai/hub/brand
+Health,use,,,observed,https://docs.perplexity.ai/docs/sdk/error-handling.md
+Incognito mode,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md
+Role-based,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10354958-can-i-control-parameters-like-temperature-top-p-and-stop-tokens.md
+Home,use,,,observed,https://docs.perplexity.ai/docs/agent-api/prompt-guide.md
+Orchestrator API,use,,,observed,https://docs.perplexity.ai/api-reference/gateway-chat-completions-post.md
+App Connectors,use,,,observed,https://www.perplexity.ai/hub/pricing
+Chat Completions,use,,,observed,https://docs.perplexity.ai/api-reference/gateway-models-get.md
+Content Generation,use,,,observed,https://docs.perplexity.ai/docs/getting-started/integrations/superplane.md
+File Connectors,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10352973-what-is-enterprise-pro.md
+People Search,use,,,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/run-code.md
+Computer credits,use,,,observed,https://www.perplexity.ai/hub/pricing
+Enterprise-grade,use,,,observed,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md
+Fast Search,use,,,observed,https://docs.perplexity.ai/docs/agent-api/effort.md
+OS,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md
+Portable Computer,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10354937-what-is-the-difference-between-a-prompt-and-a-search.md
+Model Council,use,,,observed,https://www.perplexity.ai/hub/pricing
+Monitor API,use,,,observed,https://docs.perplexity.ai/api-reference/monitors-create-post.md
+My organization,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583823-do-i-need-a-perplexity-account-to-use-comet.md
+Sonar,deprecated,Agent API,,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
+portal,avoid,,,recommendation,

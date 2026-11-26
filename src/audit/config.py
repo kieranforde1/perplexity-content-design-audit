@@ -27,6 +27,9 @@ class Source:
     index: str | None
     # Pages to fetch directly.
     urls: tuple[str, ...]
+    # Keep only index links whose URL contains this text, such as one language's pages
+    # from an index that lists every language.
+    include: str | None = None
 
 
 @dataclass(frozen=True)
@@ -97,6 +100,11 @@ class Target:
         return self.data_dir / "snippets.csv"
 
     @property
+    def glossary(self) -> Path:
+        """Settled terms and words to avoid. Written by a person, never by code."""
+        return self.data_dir / "glossary.csv"
+
+    @property
     def full_text(self) -> Path:
         """Each snippet's full text by ID, for counting. Gitignored."""
         return self.cache_dir / "full_text.csv"
@@ -125,6 +133,7 @@ def load(name: str, root: Path = Path(".")) -> Target:
                 surface=surface,
                 index=s.get("index"),
                 urls=tuple(s.get("urls", [])),
+                include=s.get("include"),
             )
         )
 

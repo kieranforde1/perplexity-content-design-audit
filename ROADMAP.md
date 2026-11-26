@@ -19,7 +19,9 @@ output formats will be written here, so they fit without changing earlier steps.
 ## Later
 
 These are paused. They're kept here so they can be picked up without starting again.
-`audit check`, `audit recommend` and `audit skill` print "Not built yet" until then.
+`audit recommend` and `audit skill` print "Not built yet" until then. The first part of
+`audit check` is built: it checks the public text against `glossary.csv` (words to avoid,
+retired names and other spellings). The other checks below are still to come.
 
 ### Standards register: `targets/<target>.standards.yaml`
 

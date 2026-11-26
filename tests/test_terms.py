@@ -301,3 +301,22 @@ def test_title_only_labels_are_not_terms(tmp_path: Path) -> None:
     found = candidates(target)
     assert found["usesearch"]["decision"] == "rejected"
     assert "never capitalised in running text" in found["usesearch"]["reason"]
+
+
+def test_every_surface_has_a_place_in_the_authority_order() -> None:
+    assert sorted(terms.AUTHORITY) == sorted(snippets.SURFACES)
+
+
+def test_a_rejected_page_title_still_counts_the_term_inside_it(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    yaml_path = tmp_path / "targets" / "example.yaml"
+    yaml_path.write_text(
+        yaml_path.read_text().replace("not_terms: [Python]", "not_terms: [Python, Agent API Guide]")
+    )
+    target = config.load("example", tmp_path)
+    pages = [f"https://docs.example.com/guide{i}.md" for i in range(3)]
+    add_rows(target, [("nav", "Agent API Guide", u) for u in pages])
+    rows = by_term(terms.run(target, log=lambda _: None))
+    assert candidates(target)["agentapiguide"]["decision"] == "rejected"
+    # Two pages from the shared fixture, plus the three guide pages.
+    assert rows["Agent API"]["pages"] == "5"

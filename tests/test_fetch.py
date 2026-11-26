@@ -117,6 +117,30 @@ def test_named_page_keeps_its_surface_when_an_index_lists_it_too(tmp_path: Path)
     assert ("https://docs.example.com/changelog.md", "docs") not in report.planned
 
 
+def test_ascii_url_encodes_only_non_ascii_characters() -> None:
+    assert fetch.ascii_url("https://e.com/a/why-access-сomet.md?x=1") == (
+        "https://e.com/a/why-access-%D1%81omet.md?x=1"
+    )
+    assert fetch.ascii_url("https://e.com/a%20b~c") == "https://e.com/a%20b~c"
+
+
+def test_include_keeps_only_matching_index_links(tmp_path: Path) -> None:
+    (tmp_path / "targets").mkdir()
+    (tmp_path / "targets" / "example.yaml").write_text(
+        "name: example\n"
+        "sources:\n"
+        "  - name: docs\n"
+        "    surface: docs\n"
+        "    index: https://docs.example.com/llms.txt\n"
+        "    include: /private/\n"
+    )
+    t = config.load("example", tmp_path)
+    report = fetch.run(
+        t, "me@example.com", get=FakeWeb(), throttle=NoWait(), dry_run=True, log=quiet
+    )
+    assert report.planned == [("https://docs.example.com/private/b.md", "docs")]
+
+
 def test_cached_page_takes_new_surface_without_refetching(tmp_path: Path) -> None:
     t = target(tmp_path)
     fetch.run(t, "me@example.com", get=FakeWeb(), throttle=NoWait(), log=quiet)

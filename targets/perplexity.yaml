@@ -6,8 +6,7 @@ display_name: Perplexity
 # Seconds between requests to the same site. Never lower than 1.
 delay_seconds: 1.5
 
-# Sources in priority order. Only docs and the docs changelog are set up so far.
-# Still to add: help centre, plans and pricing, blog.
+# Sources in priority order. English pages only.
 sources:
   - name: api-docs
     surface: docs
@@ -16,6 +15,30 @@ sources:
     surface: changelog
     urls:
       - https://docs.perplexity.ai/docs/resources/changelog.md
+  # The help centre publishes a Markdown copy of every article, listed per language.
+  - name: help-centre
+    surface: help
+    index: https://www.perplexity.ai/help-center/_llms/en/help-center.txt
+  # Comet's help pages are only listed in the all-languages index, so keep the English
+  # ones. The merch store's help pages in the same index aren't product language.
+  - name: comet-help
+    surface: help
+    index: https://www.perplexity.ai/help-center/llms.txt
+    include: /help-center/comet/en/
+  # The /pro and /max pages are built in the browser, so a plain fetch gets no text.
+  - name: plans-and-pricing
+    surface: pricing
+    urls:
+      - https://www.perplexity.ai/hub/pricing
+      - https://www.perplexity.ai/enterprise
+  - name: brand-hub
+    surface: brand
+    urls:
+      - https://www.perplexity.ai/hub/brand
+  - name: blog
+    surface: blog
+    urls:
+      - https://www.perplexity.ai/hub/blog/spaces-are-now-projects
 
 # Which stage a page belongs to, matched against its URL. First match wins.
 # Anything unmatched is "other". Review these by hand.
@@ -38,6 +61,9 @@ boilerplate:
   - Documentation Index
   - Fetch the complete documentation index
   - Use this file to discover all available pages
+  # A note to AI tools at the top of every help article.
+  - Agent Instructions
+  - This content comes from the official Perplexity Help Center
 
 # Pages that are collected but left out of analysis (terms, checks). Cookbook pages are
 # tutorials and example apps, not product language.
@@ -59,11 +85,15 @@ terms:
     - Connectors
     - Teammates
     - Deep Research
+    - Credits
   # Older names next to the name that replaced them, each with a first-party source.
   legacy_names:
     - old: Sonar
       current: Agent API
       source: https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
+    - old: Spaces
+      current: Projects
+      source: https://www.perplexity.ai/hub/blog/spaces-are-now-projects
   # Capitalised words that aren't this company's terms: generic technical words,
   # languages, standards and formats. Logged as rejected, never dropped silently.
   # Month names, units and file formats are rejected by a rule in terms.py, so they
@@ -130,6 +160,26 @@ terms:
     - JSON response
     - Python SDK
     - TypeScript SDK
+    - SSE
+    - YYYY-MM-DD
+    # Ordinary words and team names that happen to be capitalised.
+    - Customize
+    - Page URL
+    - Bug Reports
+    - Feature Requests
+    - Community Forum
+    - Sales
+    # Security and sign-in standards.
+    - SOC
+    - Type II
+    - SSO
+    - GDPR
+    - SCIM
+    # Page titles. Not terms themselves, but the terms inside them still count.
+    - Connecting Perplexity
+    - Getting Started
+    - How credits work
+    - Agent API Quickstart
   # Other companies' products, services and SDKs.
   third_party:
     - OpenAI
@@ -156,6 +206,25 @@ terms:
     - GLM
     - Stripe
     - Moonshot AI
+    - Slack
+    - AWS Marketplace
+    - Android
+    - App Store
+    - Google Drive
+    - Gmail
+    - Linear
+    - Microsoft
+    - OneDrive
+    - SharePoint
+    - Snowflake
+    - Asana
+    - Confluence
+    - Google Play
+    - Notion
+    - Outlook
+    - Salesforce
+    - Databricks
+    - Microsoft Teams
   # Excerpts approved as boilerplate: each counts on one page only, not once per page.
   # `audit terms` lists candidates (text on more than 10 pages) in
   # cache/perplexity/repeated_text.csv. Add the ones you approve here.
