@@ -42,7 +42,8 @@ HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 LIST_ITEM = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
 TABLE_SEPARATOR = re.compile(r"^\s*\|?\s*:?-{2,}")
 BLOCKQUOTE = re.compile(r"^\s*(?:>\s?)+")
-CARD = re.compile(r"^\[card\]\s*")
+# Docs-site components written as a marker at the start of a line, like "[card] [Title](url)".
+COMPONENT = re.compile(r"^\[(card|accordion|tab)\]\s*(.*)$")
 LINK = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
 CODE_SPAN = re.compile(r"`([^`]+)`")
 BOLD = re.compile(r"\*\*([^*]+)\*\*")
@@ -103,7 +104,9 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
             paragraph.clear()
 
     for raw_line in text.splitlines():
-        if FENCE.match(raw_line):
+        # Strip quote marks first: code samples often sit inside quoted blocks.
+        line = BLOCKQUOTE.sub("", raw_line).strip()
+        if FENCE.match(line):
             if in_code:
                 found += [Piece("error", m) for m in ERROR_MESSAGE.findall("\n".join(code))]
                 code.clear()
@@ -112,10 +115,9 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
             in_code = not in_code
             continue
         if in_code:
-            code.append(raw_line)
+            code.append(line)
             continue
 
-        line = BLOCKQUOTE.sub("", raw_line).strip()
         if not line or any(b in line for b in boilerplate):
             flush()
             continue
@@ -126,9 +128,13 @@ def extract_markdown(text: str, boilerplate: tuple[str, ...] = ()) -> list[Piece
             kind = "title" if len(heading.group(1)) == 1 and not has_title else "heading"
             has_title = has_title or kind == "title"
             found.append(Piece(kind, plain(heading.group(2))))
-        elif CARD.match(line):
+        elif component := COMPONENT.match(line):
             flush()
-            found += [Piece("nav", plain(label)) for label in LINK.findall(line)]
+            if component.group(1) == "card":
+                found += [Piece("nav", plain(label)) for label in LINK.findall(line)]
+            else:
+                # Accordion and tab titles act as headings for the panel below them.
+                found.append(Piece("heading", plain(component.group(2))))
         elif line.startswith("|"):
             flush()
             if not TABLE_SEPARATOR.match(line):

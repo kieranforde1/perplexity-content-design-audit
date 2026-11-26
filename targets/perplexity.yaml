@@ -39,5 +39,112 @@ boilerplate:
   - Fetch the complete documentation index
   - Use this file to discover all available pages
 
+# Pages that are collected but left out of analysis (terms, checks). Cookbook pages are
+# tutorials and example apps, not product language.
+analysis_exclude:
+  - /docs/cookbook/
+
+terms:
+  # Names to look for even if they're never capitalised mid-sentence. A seed is only
+  # proposed if first-party snippets actually use it.
+  seeds:
+    - Agent API
+    - Search API
+    - Sonar
+    - Comet
+    - Computer
+    - Projects
+    - Spaces
+    - Skills
+    - Connectors
+    - Teammates
+    - Deep Research
+  # Older names next to the name that replaced them, each with a first-party source.
+  legacy_names:
+    - old: Sonar
+      current: Agent API
+      source: https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
+  # Capitalised words that aren't this company's terms: other companies' products,
+  # languages, formats and generic words. Logged as rejected, never dropped silently.
+  not_terms:
+    - API
+    - APIs
+    - SDK
+    - SDKs
+    - JSON
+    - JSONL
+    - HTTP
+    - HTTPS
+    - URL
+    - URLs
+    - ID
+    - IDs
+    - UTC
+    - ISO
+    - CSV
+    - PDF
+    - HTML
+    - CSS
+    - SQL
+    - LLM
+    - LLMs
+    - AI
+    - MCP
+    - CLI
+    - OK
+    - Python
+    - TypeScript
+    - JavaScript
+    - Node
+    - Bash
+    - OpenAI
+    - Anthropic
+    - Google
+    - Gemini
+    - Claude
+    - Claude Code
+    - Cursor
+    - GitHub
+    - AWS
+    - Mac
+    - macOS
+    - Windows
+    - Linux
+    - Markdown
+    # Date formats, HTTP methods and headers, and other standards.
+    - DD
+    - MM
+    - YYYY
+    - RFC
+    - JS
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - Authorization
+    - Retry-After
+    - Idempotency-Key
+    - HTTPS URL
+    - JSON Schema
+    - Model Context Protocol
+    - FAQ
+    - RAG
+    - UTF-8
+    - Content-Type
+    - PowerShell
+    - Unix
+    # Other companies' products and SDKs.
+    - Apple
+    - NVIDIA
+    - GLM
+    - OpenAI SDK
+    - OpenAI Responses
+    - OpenAI Responses API
+    - Anthropic SDK
+    - Gemini SDK
+  # Most terms to propose for review. The rest stay in term_candidates.csv.
+  max_proposed: 60
+
 # Strings from my own use of the web and iOS apps, typed in by hand.
 typed_strings: data/perplexity/typed_strings.csv

@@ -28,7 +28,7 @@ def test_unknown_surface_is_an_error(tmp_path: Path) -> None:
 
 
 def test_stub_commands_exit_cleanly(capsys: pytest.CaptureFixture[str]) -> None:
-    for command in ("terms", "view", "check", "recommend", "patterns", "style", "tone"):
+    for command in ("check", "recommend", "skill", "patterns", "style", "tone"):
         assert main([command]) == 0
         assert NOT_BUILT in capsys.readouterr().out
 

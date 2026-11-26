@@ -57,6 +57,17 @@ def test_markdown_error_messages_come_from_code_but_code_does_not() -> None:
     assert not any("code sample" in p.text for p in pieces)
 
 
+def test_markdown_code_inside_quoted_blocks_is_skipped() -> None:
+    assert not any("third-party page title" in p.text for p in md_pieces())
+
+
+def test_markdown_accordion_and_tab_titles_are_headings() -> None:
+    pieces = md_pieces()
+    assert Piece("heading", "Example response") in pieces
+    assert Piece("heading", "Python") in pieces
+    assert not any(p.text.startswith("[") for p in pieces)
+
+
 def test_html_pieces() -> None:
     pieces = extract_html((FIXTURES / "help_page.html").read_text())
     assert Piece("title", "Change your plan | Example Help") in pieces

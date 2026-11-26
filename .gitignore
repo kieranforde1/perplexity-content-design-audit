@@ -10,8 +10,14 @@ BRIEF.md
 # Secrets.
 .env
 
+# Local editor and agent settings.
+.claude/
+
 # Reports stay local until they are ready to publish.
 reports/
+
+# The viewer is rebuilt from data/ by `audit view`.
+viewer/
 
 # Lock files record the package index URL, which differs between machines.
 # CI resolves from public PyPI instead.

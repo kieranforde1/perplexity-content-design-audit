@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content audit viewer</title>
+<style>
+  :root {
+    --bg: #fbfbfa;
+    --surface: #ffffff;
+    --text: #1d1d1b;
+    --muted: #5f5f5a;
+    --line: #e3e2de;
+    --accent: #2f5d8a;
+    --banner-bg: #fff4d6;
+    --banner-text: #5a4300;
+    --question-bg: #fdecea;
+    --question-text: #8a1c12;
+    --ok-bg: #e7f4ea;
+    --ok-text: #1d5b2c;
+    --chip-bg: #efeeea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161615;
+      --surface: #1f1f1d;
+      --text: #ecebe6;
+      --muted: #a6a59e;
+      --line: #34332f;
+      --accent: #8fb8e0;
+      --banner-bg: #3a2f0d;
+      --banner-text: #f3dc9a;
+      --question-bg: #3d1a16;
+      --question-text: #f5b4ab;
+      --ok-bg: #16301d;
+      --ok-text: #9fd8ad;
+      --chip-bg: #2b2a27;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .banner {
+    background: var(--banner-bg);
+    color: var(--banner-text);
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  header, main, footer { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+  header h1 { font-size: 22px; margin: 20px 0 4px; }
+  .summary { color: var(--muted); margin: 0 0 16px; }
+  [role="tablist"] {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  [role="tab"] {
+    background: none; border: 0; border-bottom: 2px solid transparent;
+    padding: 8px 12px; font: inherit; color: var(--muted); cursor: pointer;
+  }
+  [role="tab"][aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+  [role="tab"][aria-disabled="true"] { cursor: not-allowed; opacity: 0.55; }
+  [role="tab"] small { display: block; font-size: 11px; }
+  [role="tab"]:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
+  .controls input, .controls select {
+    font: inherit; padding: 6px 8px; border: 1px solid var(--line);
+    border-radius: 6px; background: var(--surface); color: var(--text);
+  }
+  .controls input[type="search"] { flex: 1 1 240px; min-width: 0; }
+  .count { color: var(--muted); font-size: 14px; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
+  tr:last-child td { border-bottom: 0; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .badge.question { background: var(--question-bg); color: var(--question-text); }
+  .badge.consistent { background: var(--ok-bg); color: var(--ok-text); }
+  .chip { display: inline-block; background: var(--chip-bg); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; font-size: 13px; }
+  .term { font-weight: 600; }
+  .definition { color: var(--muted); font-size: 13px; }
+  .question-text { max-width: 44ch; }
+  a { color: var(--accent); }
+  .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; cursor: pointer; }
+  td.sources { min-width: 220px; }
+  .sources a { display: block; font-size: 13px; overflow-wrap: anywhere; margin-bottom: 4px; }
+  td.nowrap { white-space: nowrap; }
+  .more { margin: 12px 0; }
+  .more button {
+    font: inherit; padding: 6px 12px; border: 1px solid var(--line);
+    border-radius: 6px; background: var(--surface); color: var(--text); cursor: pointer;
+  }
+  .empty { padding: 24px; color: var(--muted); }
+  footer { color: var(--muted); font-size: 13px; padding-top: 24px; padding-bottom: 32px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="banner" role="note">Outside-in, public sources, unofficial. No affiliation with the company audited.</div>
+<header>
+  <h1 id="title">Content audit</h1>
+  <p class="summary" id="summary"></p>
+</header>
+<main>
+  <div role="tablist" aria-label="Audit views">
+    <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="true">Terms</button>
+    <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Snippets</button>
+    <button role="tab" aria-disabled="true" tabindex="-1">Findings<small>Coming in phase 3</small></button>
+    <button role="tab" aria-disabled="true" tabindex="-1">Recommendations<small>Coming in phase 3</small></button>
+    <button role="tab" aria-disabled="true" tabindex="-1">Patterns<small>Coming in pass 2</small></button>
+    <button role="tab" aria-disabled="true" tabindex="-1">Style<small>Coming in pass 2</small></button>
+    <button role="tab" aria-disabled="true" tabindex="-1">Tone<small>Coming in pass 2</small></button>
+  </div>
+
+  <section role="tabpanel" id="panel-terms" aria-labelledby="tab-terms">
+    <div class="controls">
+      <label for="term-search" hidden>Search terms</label>
+      <input type="search" id="term-search" placeholder="Search terms, variants or questions">
+      <label for="term-status" hidden>Status</label>
+      <select id="term-status">
+        <option value="">All statuses</option>
+        <option value="question">Question</option>
+        <option value="consistent">Consistent</option>
+      </select>
+      <label for="term-review" hidden>Review</label>
+      <select id="term-review">
+        <option value="">Any review</option>
+        <option value="accept">Accepted</option>
+        <option value="reject">Rejected</option>
+        <option value="none">Not reviewed</option>
+      </select>
+      <span class="count" id="term-count" aria-live="polite"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Term</th><th scope="col">Status</th><th scope="col">Question to ask</th>
+          <th scope="col">Variants found</th><th scope="col">Pages</th><th scope="col">Sources</th>
+          <th scope="col">Examples</th>
+        </tr></thead>
+        <tbody id="term-rows"></tbody>
+      </table>
+      <p class="empty" id="term-empty" hidden>No terms match.</p>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="panel-snippets" aria-labelledby="tab-snippets" hidden>
+    <div class="controls">
+      <label for="snippet-search" hidden>Search snippets</label>
+      <input type="search" id="snippet-search" placeholder="Search snippet text or URL">
+      <label for="snippet-surface" hidden>Surface</label>
+      <select id="snippet-surface"><option value="">All surfaces</option></select>
+      <label for="snippet-kind" hidden>Kind</label>
+      <select id="snippet-kind"><option value="">All kinds</option></select>
+      <label for="snippet-stage" hidden>Stage</label>
+      <select id="snippet-stage"><option value="">All stages</option></select>
+      <button class="linkish" id="snippet-clear" hidden>Clear term filter</button>
+      <span class="count" id="snippet-count" aria-live="polite"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Excerpt</th><th scope="col">Kind</th><th scope="col">Surface</th>
+          <th scope="col">Stage</th><th scope="col">Source</th><th scope="col">Captured</th>
+        </tr></thead>
+        <tbody id="snippet-rows"></tbody>
+      </table>
+      <p class="empty" id="snippet-empty" hidden>No snippets match.</p>
+    </div>
+    <div class="more"><button id="snippet-more" hidden>Show more</button></div>
+  </section>
+</main>
+<footer id="footer"></footer>
+
+<script id="audit-data" type="application/json">__AUDIT_DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var data = JSON.parse(document.getElementById("audit-data").textContent);
+  var PAGE = 100;
+  var shown = PAGE;
+  var idFilter = null;
+
+  function el(tag, props, children) {
+    var node = document.createElement(tag);
+    Object.keys(props || {}).forEach(function (k) {
+      if (k === "text") node.textContent = props[k];
+      else if (k === "className") node.className = props[k];
+      else node.setAttribute(k, props[k]);
+    });
+    (children || []).forEach(function (c) { if (c) node.appendChild(c); });
+    return node;
+  }
+
+  // Only real web links become clickable. Everything else is shown as plain text.
+  function sourceLink(url) {
+    if (!/^https:\/\//.test(url)) return el("span", { text: url });
+    var label = url.replace(/^https:\/\/[^/]+/, "") || url;
+    return el("a", { href: url, target: "_blank", rel: "noopener noreferrer", text: label, title: url });
+  }
+
+  document.getElementById("title").textContent = data.display_name + ": outside-in content audit";
+  document.title = data.display_name + " content audit";
+  document.getElementById("summary").textContent = data.summary;
+  document.getElementById("footer").textContent = data.footer;
+
+  // Tabs
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]:not([aria-disabled])'));
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { selectTab(tab); });
+    tab.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") selectTab(tabs[(i + 1) % tabs.length]);
+      if (e.key === "ArrowLeft") selectTab(tabs[(i - 1 + tabs.length) % tabs.length]);
+    });
+  });
+
+  // Terms
+  var termSearch = document.getElementById("term-search");
+  var termStatus = document.getElementById("term-status");
+  var termReview = document.getElementById("term-review");
+
+  function renderTerms() {
+    var q = termSearch.value.trim().toLowerCase();
+    var status = termStatus.value;
+    var review = termReview.value;
+    var body = document.getElementById("term-rows");
+    body.textContent = "";
+    var rows = data.terms.filter(function (t) {
+      if (status && t.status !== status) return false;
+      if (review === "none" && t.review) return false;
+      if (review && review !== "none" && t.review !== review) return false;
+      if (!q) return true;
+      return (t.term + " " + t.variants + " " + t.question + " " + t.definition).toLowerCase().indexOf(q) !== -1;
+    });
+    rows.forEach(function (t) {
+      var variants = el("td", {}, t.variants.split("; ").filter(Boolean).map(function (v) {
+        return el("span", { className: "chip", text: v });
+      }));
+      var sources = el("td", { className: "sources" }, t.sources.split(" | ").filter(Boolean).map(sourceLink));
+      var ids = t.example_ids.split(" ").filter(Boolean);
+      var examples = el("td");
+      if (ids.length) {
+        var btn = el("button", { className: "linkish", text: "Show " + ids.length });
+        btn.addEventListener("click", function () { showSnippets(ids, t.term); });
+        examples.appendChild(btn);
+      }
+      var termCell = el("td", {}, [
+        el("div", { className: "term", text: t.term }),
+        t.definition ? el("div", { className: "definition", text: t.definition }) : null,
+        t.review ? el("div", { className: "definition", text: "Review: " + t.review }) : null
+      ]);
+      body.appendChild(el("tr", {}, [
+        termCell,
+        el("td", {}, [el("span", { className: "badge " + t.status, text: t.status })]),
+        el("td", { className: "question-text", text: t.question }),
+        variants,
+        el("td", { className: "num", text: t.pages }),
+        sources,
+        examples
+      ]));
+    });
+    document.getElementById("term-empty").hidden = rows.length > 0;
+    document.getElementById("term-count").textContent = rows.length + " of " + data.terms.length + " terms";
+  }
+  [termSearch, termStatus, termReview].forEach(function (c) { c.addEventListener("input", renderTerms); });
+
+  // Snippets
+  var snippetSearch = document.getElementById("snippet-search");
+  var filters = { surface: "snippet-surface", kind: "snippet-kind", stage: "snippet-stage" };
+  Object.keys(filters).forEach(function (field) {
+    var select = document.getElementById(filters[field]);
+    data.values[field].forEach(function (v) { select.appendChild(el("option", { value: v, text: v })); });
+    select.addEventListener("input", function () { shown = PAGE; renderSnippets(); });
+  });
+  snippetSearch.addEventListener("input", function () { shown = PAGE; renderSnippets(); });
+  document.getElementById("snippet-more").addEventListener("click", function () { shown += PAGE; renderSnippets(); });
+  document.getElementById("snippet-clear").addEventListener("click", function () { idFilter = null; shown = PAGE; renderSnippets(); });
+
+  function showSnippets(ids, term) {
+    idFilter = { ids: ids, term: term };
+    shown = PAGE;
+    renderSnippets();
+    selectTab(document.getElementById("tab-snippets"));
+  }
+
+  function renderSnippets() {
+    var q = snippetSearch.value.trim().toLowerCase();
+    var picked = {};
+    Object.keys(filters).forEach(function (f) { picked[f] = document.getElementById(filters[f]).value; });
+    var rows = data.snippets.filter(function (s) {
+      if (idFilter && idFilter.ids.indexOf(s.id) === -1) return false;
+      for (var f in picked) { if (picked[f] && s[f] !== picked[f]) return false; }
+      if (!q) return true;
+      return (s.excerpt + " " + s.source_url).toLowerCase().indexOf(q) !== -1;
+    });
+    var body = document.getElementById("snippet-rows");
+    body.textContent = "";
+    rows.slice(0, shown).forEach(function (s) {
+      body.appendChild(el("tr", {}, [
+        el("td", { text: s.excerpt }),
+        el("td", { text: s.kind }),
+        el("td", { text: s.surface }),
+        el("td", { text: s.stage }),
+        el("td", { className: "sources" }, [sourceLink(s.source_url)]),
+        el("td", { className: "nowrap", text: s.captured_on })
+      ]));
+    });
+    var clear = document.getElementById("snippet-clear");
+    clear.hidden = !idFilter;
+    if (idFilter) clear.textContent = "Showing examples for " + idFilter.term + ". Clear";
+    document.getElementById("snippet-empty").hidden = rows.length > 0;
+    document.getElementById("snippet-more").hidden = rows.length <= shown;
+    document.getElementById("snippet-count").textContent =
+      Math.min(shown, rows.length) + " shown of " + rows.length + " matching (" + data.snippets.length + " total)";
+  }
+
+  renderTerms();
+  renderSnippets();
+})();
+</script>
+</body>
+</html>

@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from audit import config, extract, fetch
+from audit import config, extract, fetch, terms, view
 
 NOT_BUILT = "Not built yet. See ROADMAP.md"
 
@@ -39,6 +39,7 @@ def build_parser() -> argparse.ArgumentParser:
         ("view", "Build the offline viewer"),
         ("check", "Check snippets against the standards register"),
         ("recommend", "Turn findings into recommendations"),
+        ("skill", "Build a content-standards skill from the audit"),
         ("patterns", "Group repeated content structures (pass 2)"),
         ("style", "Write observed style (pass 2)"),
         ("tone", "Score tone across stages (pass 2)"),
@@ -62,9 +63,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             target = config.load(args.target, args.root)
             extract.run(target, dry_run=args.dry_run)
             return 0
+        if args.command == "terms":
+            terms.run(config.load(args.target, args.root))
+            return 0
+        if args.command == "view":
+            view.run(config.load(args.target, args.root))
+            return 0
         print(NOT_BUILT)
         return 0
-    except (config.ConfigError, fetch.FetchError) as e:
+    except (config.ConfigError, fetch.FetchError, FileNotFoundError) as e:
         print(f"audit {args.command}: {e}", file=sys.stderr)
         return 2
 

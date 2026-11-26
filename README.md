@@ -30,8 +30,8 @@ adding a file, not rebuilding.
 
 ## Status
 
-Phase 1 of 4: fetch and extract work on the API docs and changelog. Next: the term map and
-the viewer, then standards, checks and recommendations.
+Phase 2 of 4: the term map and the offline viewer work, with 60 terms proposed for review.
+Next: standards, checks and recommendations.
 See [ROADMAP.md](ROADMAP.md).
 
 ## Run it
@@ -47,7 +47,14 @@ export AUDIT_CONTACT=you@example.com   # sent in the user agent so site owners c
 uv run audit fetch --target perplexity --dry-run
 uv run audit fetch --target perplexity
 uv run audit extract --target perplexity
+uv run audit terms --target perplexity
+uv run audit view --target perplexity    # then open viewer/perplexity/index.html
 ```
+
+`terms` writes `data/<target>/terms.csv` for review and `term_candidates.csv`, which
+lists every candidate with its decision and the reason. That includes rejected ones,
+so nothing is dropped silently. Fill in the `review` (accept or reject) and
+`definition` columns in `terms.csv`. They're kept every time `terms` runs again.
 
 `fetch` reads robots.txt and obeys it, waits at least a second between requests, and
 saves full pages to `cache/`, which is never committed. `extract` writes

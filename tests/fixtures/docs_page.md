@@ -33,3 +33,11 @@ Set `max_results` to limit how many results come back. Use the [search filters](
 ```python
 print("this is a code sample and should not become a sentence")
 ```
+
+> [accordion] Example response
+>
+> ```json
+> {"title": "A third-party page title that is not product language"}
+> ```
+
+> [tab] Python

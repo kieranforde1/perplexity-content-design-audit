@@ -10,9 +10,9 @@ sources → snippets → terms → standards → findings → recommendations
 
 ## Phases
 
-1. **Fetch and extract.** Done: 210 API docs pages became 22,803 snippets.
-2. **`audit terms` and `audit view`.** Done when the viewer shows about 30 reviewed terms
-   with sources.
+1. **Fetch and extract.** Done: 210 API docs and changelog pages became 20,044 snippets.
+2. **`audit terms` and `audit view`.** Built: 60 terms proposed, with variants, sources and
+   a question for each. Done when about 30 have been reviewed and defined.
 3. **Standards, checks and recommendations.** Done when `audit recommend` produces
    recommendations that each link to their evidence, and the viewer shows them.
 4. **Stubs, README and example target.** Done when someone new can clone the repo, run
@@ -84,6 +84,15 @@ rec_id, goal, level, change, finding_ids, reach, effort, confidence, question
 
 Recommendations are suggested changes backed by evidence. They make no claims about how or
 why the company made its decisions.
+
+### `audit skill` → `data/<target>/skill/`
+
+The last `system`-level recommendation: a content-standards skill that applies the audit's
+standards to new text. It's filled from `templates/content-skill/SKILL.md` with the term
+list, the standards register and the check results. Its gates run the same checks as
+`audit check`, so the audit and the skill can't drift apart.
+
+Rule sections stay marked "pending" until the audit has the evidence for them.
 
 ## Second pass
 
