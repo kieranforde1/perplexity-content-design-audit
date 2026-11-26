@@ -21,7 +21,7 @@ from collections import Counter, defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass, field
 
-from audit import glossary, terms
+from audit import evidence, glossary, snippets, terms
 from audit.config import Target
 from audit.terms import Text
 
@@ -198,9 +198,12 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     rows = [f.row() for f in findings]
     path = target.data_dir / "findings.csv"
     terms.write_csv(path, FINDING_COLUMNS, rows)
+    # Findings decide part of the evidence, so the committed copy is redone.
+    filled = evidence.write_public_copy(target, snippets.read(target.local_snippets), log=log)
     avoid = sum(1 for f in findings if f.group not in ("labels", "running"))
     log(f"{len(entries)} glossary rows checked against {len(texts)} snippets.")
     log(f"{len(rows)} findings: {avoid} for words to avoid or retired names, "
         f"{len(rows) - avoid} for other spellings.")
     log(f"Wrote {path}")
+    log(f"Wrote {target.public_snippets} (committed, {filled} evidence excerpts)")
     return rows

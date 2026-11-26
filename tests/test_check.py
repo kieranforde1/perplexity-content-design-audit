@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import check, config, snippets
+from audit import check, config, snippets, terms
 
 HEADER = "term,status,use_instead,definition,basis,source_url\n"
 
@@ -112,3 +112,16 @@ def test_spelling_findings_quote_real_forms_and_count_the_glossary_form(
     # The text says "help Panel", not the plural, so that's what gets quoted.
     assert "'help Panel' (1)" in running["observation"]
     assert "The glossary form appears 2 times." in running["observation"]
+
+
+def test_finding_evidence_is_committed_and_kept_by_terms(tmp_path: Path) -> None:
+    target = write_target(tmp_path, "Disabled,avoid,Turned off,,recommendation,\n")
+    cited = {i for r in findings(target) for i in r["snippet_ids"].split()}
+
+    def committed() -> set[str]:
+        return {s.id for s in snippets.read(target.public_snippets) if s.excerpt}
+
+    assert cited and cited <= committed()
+    # `terms` rewrites the committed copy too, and must not drop the findings evidence.
+    terms.run(target, log=lambda _: None)
+    assert cited <= committed()
