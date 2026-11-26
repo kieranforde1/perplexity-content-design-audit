@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from audit import config, extract, fetch, review, terms, typed, view
+from audit import check, config, extract, fetch, glossary, review, terms, typed, view
 
 NOT_BUILT = "Not built yet. See ROADMAP.md"
 
@@ -44,6 +44,10 @@ def build_parser() -> argparse.ArgumentParser:
     what.add_argument("--template", action="store_true", help="Print the header and examples")
     what.add_argument("--check", action="store_true", help="Check typed_strings.csv by line")
 
+    p = sub.add_parser("glossary", help="Check the glossary")
+    _add_target(p)
+    p.add_argument("--check", action="store_true", required=True, help="Check glossary.csv")
+
     p = sub.add_parser("review", help="Review terms and add app strings in your browser")
     _add_target(p)
     p.add_argument("--port", type=int, default=review.DEFAULT_PORT, help="Port on 127.0.0.1")
@@ -52,7 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
     for name, help_text in (
         ("terms", "Build the term map"),
         ("view", "Build the offline viewer"),
-        ("check", "Check snippets against the standards register"),
+        ("check", "Check the public text against the glossary"),
         ("recommend", "Turn findings into recommendations"),
         ("skill", "Build a content-standards skill from the audit"),
         ("patterns", "Group repeated content structures (pass 2)"),
@@ -81,6 +85,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.command == "terms":
             terms.run(config.load(args.target, args.root))
             return 0
+        if args.command == "check":
+            check.run(config.load(args.target, args.root))
+            return 0
         if args.command == "view":
             view.run(config.load(args.target, args.root))
             return 0
@@ -95,13 +102,20 @@ def main(argv: Sequence[str] | None = None) -> int:
             rows = len(typed.read(path))
             print(f"{path}: {rows} rows, {len(found)} problems." if path else "")
             return 1 if found else 0
+        if args.command == "glossary":
+            path = config.load(args.target, args.root).glossary
+            problems = glossary.check_file(path)
+            for line, problem in problems:
+                print(f"line {line}: {problem}")
+            print(f"{path}: {len(glossary.read(path))} rows, {len(problems)} problems.")
+            return 1 if problems else 0
         if args.command == "review":
             target = config.load(args.target, args.root)
             review.run(target, port=args.port, open_browser=not args.no_browser)
             return 0
         print(NOT_BUILT)
         return 0
-    except (config.ConfigError, fetch.FetchError, FileNotFoundError) as e:
+    except (config.ConfigError, fetch.FetchError, FileNotFoundError, ValueError) as e:
         print(f"audit {args.command}: {e}", file=sys.stderr)
         return 2
 

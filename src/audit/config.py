@@ -100,6 +100,11 @@ class Target:
         return self.data_dir / "snippets.csv"
 
     @property
+    def glossary(self) -> Path:
+        """Settled terms and words to avoid. Written by a person, never by code."""
+        return self.data_dir / "glossary.csv"
+
+    @property
     def full_text(self) -> Path:
         """Each snippet's full text by ID, for counting. Gitignored."""
         return self.cache_dir / "full_text.csv"

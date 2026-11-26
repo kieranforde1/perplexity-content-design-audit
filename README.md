@@ -31,7 +31,8 @@ adding a file, not rebuilding.
 
 ## Status
 
-The term map and the offline viewer work. Proposed terms are waiting on review.
+The term map, the offline viewer, the glossary and the first check (against the
+glossary) work. Terms have been reviewed once.
 See [ROADMAP.md](ROADMAP.md).
 
 ## Run it
@@ -74,6 +75,23 @@ This opens the viewer with editing switched on:
 Edits save straight into `data/<target>/terms.csv` and `typed_strings.csv` on your
 computer. The page only answers requests from your own machine. Nothing is hosted and
 nothing is stored anywhere else.
+
+### The glossary and the check
+
+`data/<target>/glossary.csv` holds the terms a person has settled on: each one's status
+(use, avoid or deprecated), what to use instead, a definition, and its basis (published by
+the company, observed in its text, or the reviewer's recommendation). Only a person edits
+it.
+
+```bash
+uv run audit glossary --check --target perplexity   # reports problems by line
+uv run audit check --target perplexity              # writes data/<target>/findings.csv
+```
+
+`check` reports where words to avoid and retired names still appear, one finding per
+surface, and other spellings of the terms to use, with labels and running text compared
+separately. Each finding starts "Observed:", names its glossary row and lists every
+snippet it counts.
 
 ### Typed app strings
 

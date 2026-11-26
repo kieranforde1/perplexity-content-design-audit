@@ -11,11 +11,11 @@ can,Can,name,376,blog brand changelog docs help pricing,,,rejected,"capitalised 
 on,ON,name,375,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 2402 mid-sentence uses, so probably a general word"
 use,Use,name,368,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 4% of 1533 mid-sentence uses, so probably a general word"
 it,IT,name,363,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 1% of 2465 mid-sentence uses, so probably a general word"
-perplexity,Perplexity,name,352,brand changelog docs help pricing,yes,,rejected,the company name itself
+perplexity,Perplexity,name,353,brand changelog docs help pricing,yes,,rejected,the company name itself
 are,Are,name,336,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 0% of 1539 mid-sentence uses, so probably a general word"
 that,That,name,332,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 1837 mid-sentence uses, so probably a general word"
 an,An,name,320,blog brand changelog docs help,,,rejected,"capitalised in only 0% of 1239 mid-sentence uses, so probably a general word"
-how,How,name,320,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 13% of 409 mid-sentence uses, so probably a general word"
+how,How,name,320,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 14% of 414 mid-sentence uses, so probably a general word"
 as,As,name,316,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 1288 mid-sentence uses, so probably a general word"
 if,If,name,313,blog changelog docs help,,,rejected,"capitalised in only 1% of 579 mid-sentence uses, so probably a general word"
 not,Not,name,306,blog brand changelog docs help,yes,,rejected,"capitalised in only 0% of 1582 mid-sentence uses, so probably a general word"
@@ -29,12 +29,12 @@ setting,Settings,name,250,blog changelog docs help,yes,,rejected,"capitalised in
 more,More,name,248,blog brand changelog docs help pricing,,,rejected,"capitalised in only 1% of 490 mid-sentence uses, so probably a general word"
 at,At,name,242,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 720 mid-sentence uses, so probably a general word"
 any,Any,name,236,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 528 mid-sentence uses, so probably a general word"
-page,Page,name,235,brand changelog docs help,yes,,rejected,"capitalised in only 5% of 902 mid-sentence uses, so probably a general word"
+page,Page,name,235,brand changelog docs help,yes,,rejected,"capitalised in only 6% of 905 mid-sentence uses, so probably a general word"
 one,One,name,231,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 700 mid-sentence uses, so probably a general word"
-work,Work,name,228,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 2% of 530 mid-sentence uses, so probably a general word"
+work,Work,name,230,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 5% of 547 mid-sentence uses, so probably a general word"
 only,Only,name,226,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 643 mid-sentence uses, so probably a general word"
+request,Request,name,226,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 2% of 1157 mid-sentence uses, so probably a general word"
 all,All,name,225,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 3% of 537 mid-sentence uses, so probably a general word"
-request,Request,name,225,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 1% of 1150 mid-sentence uses, so probably a general word"
 available,Available,name,221,blog changelog docs help,,,rejected,"capitalised in only 4% of 575 mid-sentence uses, so probably a general word"
 search,Search,name,220,blog changelog docs help pricing,yes,,rejected,"capitalised in only 15% of 853 mid-sentence uses, so probably a general word"
 web,Web,name,219,blog brand changelog docs help pricing,,,rejected,"capitalised in only 6% of 584 mid-sentence uses, so probably a general word"
@@ -43,10 +43,10 @@ new,New,name,214,blog brand changelog docs help pricing,yes,,rejected,"capitalis
 each,Each,name,213,blog brand changelog docs help pricing,,,rejected,"capitalised in only 0% of 533 mid-sentence uses, so probably a general word"
 set,Set,name,207,blog brand changelog docs help,,,rejected,"capitalised in only 1% of 806 mid-sentence uses, so probably a general word"
 data,Data,name,204,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 5% of 829 mid-sentence uses, so probably a general word"
+model,Model,name,203,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 3% of 1509 mid-sentence uses, so probably a general word"
 help,Help,name,202,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 39% of 330 mid-sentence uses, so probably a general word"
 open,Open,name,201,blog brand changelog docs help,,,rejected,"capitalised in only 3% of 385 mid-sentence uses, so probably a general word"
 using,Using,name,200,changelog docs help pricing,yes,,rejected,"capitalised in only 1% of 396 mid-sentence uses, so probably a general word"
-model,Model,name,199,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 2% of 1491 mid-sentence uses, so probably a general word"
 no,No,name,199,blog brand changelog docs help pricing,,,rejected,"capitalised in only 2% of 508 mid-sentence uses, so probably a general word"
 about,About,name,196,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 3% of 317 mid-sentence uses, so probably a general word"
 support,Support,name,195,changelog docs help,yes,,rejected,"capitalised in only 9% of 406 mid-sentence uses, so probably a general word"
@@ -65,6 +65,7 @@ user,Users,name,175,blog brand changelog docs help pricing,,,rejected,"capitalis
 has,Has,name,174,blog brand changelog docs help,,,rejected,"capitalised in only 0% of 535 mid-sentence uses, so probably a general word"
 file,Files,name,173,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 2% of 1230 mid-sentence uses, so probably a general word"
 same,Same,name,173,blog brand changelog docs help,,,rejected,"capitalised in only 0% of 452 mid-sentence uses, so probably a general word"
+type,Type,name,173,blog brand changelog docs help,,,rejected,"capitalised in only 9% of 371 mid-sentence uses, so probably a general word"
 learn,Learn,name,171,blog changelog docs help pricing,,,rejected,"capitalised in only 26% of 74 mid-sentence uses, so probably a general word"
 find,Find,name,170,blog changelog docs help pricing,yes,,rejected,"capitalised in only 6% of 202 mid-sentence uses, so probably a general word"
 answer,Answer,name,169,brand changelog docs help pricing,yes,,rejected,"capitalised in only 1% of 479 mid-sentence uses, so probably a general word"
@@ -82,11 +83,10 @@ may,May,name,161,changelog docs help,,,rejected,a month name
 run,Run,name,161,blog changelog docs help pricing,yes,,rejected,"capitalised in only 1% of 818 mid-sentence uses, so probably a general word"
 ask,Ask,name,160,brand changelog docs help,,,rejected,"capitalised in only 12% of 305 mid-sentence uses, so probably a general word"
 contact,Contact,name,158,docs help,,,rejected,"capitalised in only 4% of 212 mid-sentence uses, so probably a general word"
-response,Responses,name,157,changelog docs help,,,rejected,"capitalised in only 5% of 538 mid-sentence uses, so probably a general word"
+response,Responses,name,157,changelog docs help,,,rejected,"capitalised in only 5% of 541 mid-sentence uses, so probably a general word"
 change,Change,name,156,blog brand changelog docs help,,,rejected,"capitalised in only 1% of 470 mid-sentence uses, so probably a general word"
 list,List,name,155,brand changelog docs help,yes,,rejected,"capitalised in only 2% of 477 mid-sentence uses, so probably a general word"
 tool,Tools,name,155,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 1% of 750 mid-sentence uses, so probably a general word"
-type,Type,name,155,blog brand changelog docs help,,,rejected,"capitalised in only 2% of 345 mid-sentence uses, so probably a general word"
 theperplexity,The Perplexity,name,151,brand changelog docs help,,,rejected,"capitalised in only 1% of 378 mid-sentence uses, so probably a general word"
 full,Full,name,150,blog changelog docs help,,,rejected,"capitalised in only 2% of 228 mid-sentence uses, so probably a general word"
 my,My,name,150,docs help,yes,,rejected,"capitalised in only 4% of 168 mid-sentence uses, so probably a general word"
@@ -96,7 +96,7 @@ ai,AI,name,141,brand changelog docs help pricing,yes,,rejected,on the not_terms 
 own,OWN,name,141,blog brand changelog docs help,,,rejected,"capitalised in only 0% of 341 mid-sentence uses, so probably a general word"
 yourorganization,Your Organization,name,141,changelog docs help pricing,,,rejected,"capitalised in only 1% of 526 mid-sentence uses, so probably a general word"
 api,API,name,140,blog brand changelog docs help pricing,yes,,rejected,on the not_terms list
-feature,Features,name,140,changelog docs help pricing,yes,,rejected,"capitalised in only 3% of 327 mid-sentence uses, so probably a general word"
+feature,Features,name,140,changelog docs help pricing,yes,,rejected,"capitalised in only 5% of 333 mid-sentence uses, so probably a general word"
 return,Return,name,139,changelog docs help,,,rejected,"capitalised in only 1% of 389 mid-sentence uses, so probably a general word"
 session,Sessions,name,139,blog docs help,yes,,rejected,"capitalised in only 4% of 506 mid-sentence uses, so probably a general word"
 where,Where,name,139,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 4% of 200 mid-sentence uses, so probably a general word"
@@ -158,12 +158,12 @@ take,Take,name,102,changelog docs help pricing,,,rejected,"capitalised in only 3
 comet,Comet,name,101,blog brand docs help pricing,yes,yes,proposed,in a page title or nav label
 give,Give,name,101,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 3% of 127 mid-sentence uses, so probably a general word"
 agent,Agent,name,100,blog brand changelog docs help,yes,,rejected,"capitalised in only 17% of 309 mid-sentence uses, so probably a general word"
+url,URL,name,100,changelog docs help,yes,,rejected,on the not_terms list
 confirm,Confirm,name,99,changelog docs help,,,rejected,"capitalised in only 8% of 102 mid-sentence uses, so probably a general word"
-url,URL,name,99,changelog docs help,yes,,rejected,on the not_terms list
 contactu,Contact Us,name,98,docs help,,,rejected,"capitalised in only 5% of 76 mid-sentence uses, so probably a general word"
 research,Research,name,98,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 9% of 215 mid-sentence uses, so probably a general word"
 theapi,The API,name,98,changelog docs help,,,rejected,"capitalised in only 0% of 208 mid-sentence uses, so probably a general word"
-report,Report,name,97,brand changelog docs help,yes,,rejected,"capitalised in only 4% of 200 mid-sentence uses, so probably a general word"
+report,Report,name,97,brand changelog docs help,yes,,rejected,"capitalised in only 6% of 204 mid-sentence uses, so probably a general word"
 mode,Mode,name,96,blog brand changelog docs help,,,rejected,"capitalised in only 1% of 283 mid-sentence uses, so probably a general word"
 code,Code,name,95,brand changelog docs help pricing,,,rejected,"capitalised in only 3% of 272 mid-sentence uses, so probably a general word"
 doi,Do I,name,95,docs help,yes,,rejected,"capitalised in only 0% of 65 mid-sentence uses, so probably a general word"
@@ -190,6 +190,7 @@ date,Date,name,89,brand changelog docs help,yes,,rejected,"capitalised in only 3
 generate,Generate,name,89,changelog docs help,,,rejected,"capitalised in only 1% of 89 mid-sentence uses, so probably a general word"
 note,Notes,name,89,blog changelog docs help,,,rejected,"capitalised in only 15% of 84 mid-sentence uses, so probably a general word"
 connection,Connection,name,88,changelog docs help,,,rejected,"capitalised in only 1% of 164 mid-sentence uses, so probably a general word"
+http,HTTP,name,88,changelog docs help,,,rejected,on the not_terms list
 integration,Integrations,name,88,changelog docs help pricing,yes,,rejected,"capitalised in only 25% of 166 mid-sentence uses, so probably a general word"
 back,Back,name,87,blog brand changelog docs help,,,rejected,"capitalised in only 2% of 138 mid-sentence uses, so probably a general word"
 delete,Delete,name,87,docs help,yes,,rejected,on the not_terms list
@@ -200,7 +201,6 @@ view,View,name,87,brand changelog docs help,yes,,rejected,"capitalised in only 1
 alway,Always,name,86,blog brand changelog docs help,,,rejected,"capitalised in only 18% of 114 mid-sentence uses, so probably a general word"
 billing,Billing,name,85,changelog docs help,yes,,rejected,"capitalised in only 27% of 274 mid-sentence uses, so probably a general word"
 continue,Continue,name,85,changelog docs help pricing,,,rejected,"capitalised in only 13% of 163 mid-sentence uses, so probably a general word"
-http,HTTP,name,85,changelog docs help,,,rejected,on the not_terms list
 member,Members,name,85,blog docs help,yes,,rejected,"capitalised in only 11% of 506 mid-sentence uses, so probably a general word"
 issue,Issue,name,83,docs help,yes,,rejected,"capitalised in only 4% of 177 mid-sentence uses, so probably a general word"
 reference,Reference,name,83,blog changelog docs help,,,rejected,"capitalised in only 1% of 123 mid-sentence uses, so probably a general word"
@@ -223,20 +223,21 @@ device,Devices,name,77,docs help,yes,,rejected,"capitalised in only 3% of 279 mi
 document,Documents,name,77,blog changelog docs help pricing,,,rejected,"capitalised in only 2% of 212 mid-sentence uses, so probably a general word"
 enabled,Enabled,name,77,changelog docs help,,,rejected,"capitalised in only 39% of 369 mid-sentence uses, so probably a general word"
 text,Text,name,77,brand changelog docs help,,,rejected,"capitalised in only 1% of 218 mid-sentence uses, so probably a general word"
+agentapi,Agent API,name,76,changelog docs help,yes,yes,proposed,in a page title or nav label
 format,Formats,name,76,blog changelog docs help,yes,,rejected,"capitalised in only 1% of 184 mid-sentence uses, so probably a general word"
 save,Save,name,76,blog changelog docs help,,,rejected,"capitalised in only 12% of 119 mid-sentence uses, so probably a general word"
 advanced,Advanced,name,75,changelog docs help pricing,yes,,rejected,"capitalised in only 7% of 107 mid-sentence uses, so probably a general word"
-agentapi,Agent API,name,75,changelog docs help,yes,yes,proposed,in a page title or nav label
 application,Applications,name,75,changelog docs help pricing,yes,,rejected,"capitalised in only 13% of 159 mid-sentence uses, so probably a general word"
 enterprisemax,Enterprise Max,name,75,help pricing,yes,,proposed,in a page title or nav label
 history,History,name,75,blog changelog docs help,yes,,rejected,"capitalised in only 4% of 137 mid-sentence uses, so probably a general word"
 searche,Searches,name,75,changelog docs help,,,rejected,"capitalised in only 2% of 127 mid-sentence uses, so probably a general word"
 token,Token,name,75,changelog docs help,,,rejected,"capitalised in only 3% of 382 mid-sentence uses, so probably a general word"
 active,Active,name,74,brand changelog docs help,,,rejected,"capitalised in only 4% of 125 mid-sentence uses, so probably a general word"
+credit,Credit,name,74,changelog docs help pricing,,yes,proposed,on 74 pages
 learnmore,Learn More,name,74,changelog docs help pricing,,,rejected,"capitalised in only 28% of 43 mid-sentence uses, so probably a general word"
 try,Try,name,74,changelog docs help,yes,,rejected,"capitalised in only 4% of 67 mid-sentence uses, so probably a general word"
 apikey,API Keys,name,73,changelog docs help,yes,,proposed,in a page title or nav label
-credit,Credit,name,73,changelog docs help pricing,,,rejected,"capitalised in only 3% of 545 mid-sentence uses, so probably a general word"
+getting,Getting,name,73,brand changelog docs help,yes,,rejected,"capitalised in only 18% of 28 mid-sentence uses, so probably a general word"
 off,OFF,name,73,blog docs help,,,rejected,"capitalised in only 2% of 214 mid-sentence uses, so probably a general word"
 upload,Upload,name,73,blog changelog docs help pricing,yes,,rejected,"capitalised in only 6% of 184 mid-sentence uses, so probably a general word"
 download,Download,name,71,brand changelog docs help pricing,yes,,rejected,"capitalised in only 14% of 195 mid-sentence uses, so probably a general word"
@@ -296,22 +297,22 @@ desktop,Desktop,name,56,blog brand changelog docs help pricing,yes,,rejected,"ca
 installed,Installed,name,56,docs help,yes,,rejected,"capitalised in only 39% of 158 mid-sentence uses, so probably a general word"
 post,POST,name,56,blog brand changelog docs help,,,rejected,on the not_terms list
 compliance,Compliance,name,55,changelog docs help pricing,,,rejected,"capitalised in only 2% of 85 mid-sentence uses, so probably a general word"
+json,JSON,name,55,brand changelog docs help,,,rejected,a file format
 long,Long,name,55,brand changelog docs help,,,rejected,"capitalised in only 3% of 69 mid-sentence uses, so probably a general word"
 skill,Skills,name,55,blog brand docs help,yes,yes,proposed,in a page title or nav label
 common,Common,name,54,docs help,,,rejected,"capitalised in only 6% of 50 mid-sentence uses, so probably a general word"
-gettingstarted,Getting Started,name,54,changelog docs help,yes,,proposed,in a page title or nav label
+gettingstarted,Getting Started,name,54,changelog docs help,yes,,rejected,on the not_terms list
 resource,Resources,name,54,blog brand changelog docs help pricing,yes,,rejected,"capitalised in only 7% of 41 mid-sentence uses, so probably a general word"
 video,Video,name,54,brand changelog docs help pricing,,,rejected,"capitalised in only 2% of 120 mid-sentence uses, so probably a general word"
 block,Block,name,53,brand docs help,,,rejected,"capitalised in only 3% of 130 mid-sentence uses, so probably a general word"
 description,Description,name,53,changelog docs help,,,rejected,"capitalised in only 7% of 105 mid-sentence uses, so probably a general word"
 quick,Quick,name,53,docs help,,,rejected,"capitalised in only 8% of 49 mid-sentence uses, so probably a general word"
 role,Roles,name,53,docs help,yes,,rejected,"capitalised in only 9% of 469 mid-sentence uses, so probably a general word"
+schema,SCHEMA,name,53,changelog docs help,,,rejected,"capitalised in only 13% of 104 mid-sentence uses, so probably a general word"
 website,Website,name,53,docs help,,,rejected,"capitalised in only 1% of 151 mid-sentence uses, so probably a general word"
 chat,Chat,name,52,changelog docs help,,,rejected,"capitalised in only 3% of 99 mid-sentence uses, so probably a general word"
 creating,Creating,name,52,changelog docs help,yes,,rejected,"capitalised in only 7% of 45 mid-sentence uses, so probably a general word"
-schema,SCHEMA,name,52,changelog docs help,,,rejected,"capitalised in only 3% of 93 mid-sentence uses, so probably a general word"
 websearch,Web Search,name,52,blog changelog docs help,yes,,rejected,"capitalised in only 16% of 100 mid-sentence uses, so probably a general word"
-json,JSON,name,51,brand changelog docs help,,,rejected,a file format
 payment,Payment,name,51,docs help,,,rejected,"capitalised in only 2% of 128 mid-sentence uses, so probably a general word"
 platform,Platform,name,51,changelog docs help pricing,,,rejected,"capitalised in only 1% of 90 mid-sentence uses, so probably a general word"
 private,Private,name,51,blog changelog docs help pricing,,,rejected,"capitalised in only 4% of 81 mid-sentence uses, so probably a general word"
@@ -342,13 +343,13 @@ installation,Installation,name,47,changelog docs help,,,rejected,"capitalised in
 mac,Mac,name,47,blog changelog docs help,yes,,rejected,on the not_terms list
 summarize,Summarize,name,47,brand docs help,,,rejected,"capitalised in only 8% of 38 mid-sentence uses, so probably a general word"
 assistant,Assistant,name,46,changelog docs help,yes,,rejected,"capitalised in only 36% of 95 mid-sentence uses, so probably a general word"
-getting,Getting,name,46,brand changelog docs help,yes,,rejected,"capitalised in only 4% of 24 mid-sentence uses, so probably a general word"
 organizationadmin,Organization Admins,name,46,docs help,,,rejected,"capitalised in only 2% of 61 mid-sentence uses, so probably a general word"
 people,People,name,46,blog brand docs help,,,rejected,"capitalised in only 3% of 79 mid-sentence uses, so probably a general word"
 requirement,Requirements,name,46,changelog docs help,,,rejected,"capitalised in only 4% of 57 mid-sentence uses, so probably a general word"
 unavailable,Unavailable,name,46,changelog docs help,,,rejected,"capitalised in only 12% of 68 mid-sentence uses, so probably a general word"
 browse,Browse,name,45,brand docs help pricing,,,rejected,"capitalised in only 8% of 26 mid-sentence uses, so probably a general word"
 cancel,Cancel,name,45,changelog docs help,yes,,rejected,"capitalised in only 11% of 74 mid-sentence uses, so probably a general word"
+sdk,SDK,name,45,changelog docs help,yes,,rejected,on the not_terms list
 tier,Tier,name,45,brand changelog docs help,,,rejected,"capitalised in only 8% of 189 mid-sentence uses, so probably a general word"
 true,True,name,45,changelog docs help,,,rejected,"capitalised in only 37% of 93 mid-sentence uses, so probably a general word"
 accesscontrol,Access Control,name,44,docs help,yes,,rejected,"capitalised in only 7% of 56 mid-sentence uses, so probably a general word"
@@ -365,9 +366,9 @@ trustcenter,Trust Center,name,43,blog docs help pricing,yes,,proposed,in a page 
 compare,Compare,name,42,docs help,,,rejected,"capitalised in only 8% of 25 mid-sentence uses, so probably a general word"
 disabled,Disabled,name,42,docs help,,,proposed,on 42 pages
 failed,Failed,name,42,changelog docs help,,,rejected,"capitalised in only 1% of 70 mid-sentence uses, so probably a general word"
+python,Python,name,42,changelog docs help,,,rejected,on the not_terms list
 removed,Removed,name,42,brand changelog docs help,,,rejected,"capitalised in only 1% of 90 mid-sentence uses, so probably a general word"
 replace,Replace,name,42,changelog docs help,,,rejected,"capitalised in only 4% of 53 mid-sentence uses, so probably a general word"
-sdk,SDK,name,42,changelog docs help,yes,,rejected,on the not_terms list
 effortlevel,Effort Levels,name,41,changelog docs help,yes,,rejected,"capitalised in only 3% of 177 mid-sentence uses, so probably a general word"
 managed,Perplexity-managed,name,41,docs help,,,rejected,"capitalised in only 1% of 78 mid-sentence uses, so probably a general word"
 process,Process,name,41,changelog docs help,,,rejected,"capitalised in only 1% of 98 mid-sentence uses, so probably a general word"
@@ -376,7 +377,6 @@ activate,Activate,name,40,help,,,rejected,"capitalised in only 6% of 50 mid-sent
 anthropic,Anthropic,name,40,changelog docs help,,,rejected,"a third-party product, on the third_party list"
 memory,Memory,name,40,blog changelog docs help pricing,yes,,rejected,"capitalised in only 28% of 135 mid-sentence uses, so probably a general word"
 purchase,Purchase,name,40,changelog docs help,,,rejected,"capitalised in only 7% of 121 mid-sentence uses, so probably a general word"
-python,Python,name,40,changelog docs help,,,rejected,on the not_terms list
 secure,Secure,name,40,docs help pricing,,,rejected,"capitalised in only 4% of 76 mid-sentence uses, so probably a general word"
 adding,Adding,name,39,blog changelog docs help,,,rejected,"capitalised in only 4% of 45 mid-sentence uses, so probably a general word"
 box,Box,name,39,changelog docs help,yes,,rejected,"capitalised in only 45% of 88 mid-sentence uses, so probably a general word"
@@ -389,7 +389,7 @@ login,Login,name,39,docs help,,,rejected,"capitalised in only 4% of 142 mid-sent
 monitor,Monitor,name,39,changelog docs help,,,rejected,"capitalised in only 1% of 202 mid-sentence uses, so probably a general word"
 searchapi,Search API,name,39,changelog docs help,yes,yes,proposed,in a page title or nav label
 upgrade,Upgrade,name,39,changelog docs help,yes,,rejected,"capitalised in only 18% of 72 mid-sentence uses, so probably a general word"
-android,Android,name,38,help,yes,,proposed,in a page title or nav label
+android,Android,name,38,help,yes,,rejected,"a third-party product, on the third_party list"
 customer,Customers,name,38,blog docs help pricing,yes,,rejected,"capitalised in only 0% of 54 mid-sentence uses, so probably a general word"
 extension,Extensions,name,38,changelog docs help,yes,,rejected,"capitalised in only 2% of 200 mid-sentence uses, so probably a general word"
 faq,FAQ,name,38,docs help pricing,yes,,rejected,on the not_terms list
@@ -398,12 +398,13 @@ yes,Yes,name,38,changelog docs help,,,rejected,"capitalised in only 17% of 23 mi
 card,Card,name,37,brand changelog docs help,,,rejected,"capitalised in only 12% of 106 mid-sentence uses, so probably a general word"
 eligible,Eligible,name,37,docs help,,,rejected,"capitalised in only 1% of 69 mid-sentence uses, so probably a general word"
 group,Groups,name,37,docs help,,,rejected,"capitalised in only 8% of 157 mid-sentence uses, so probably a general word"
+quickstart,Quickstart,name,37,changelog docs help,yes,,rejected,"capitalised in only 23% of 26 mid-sentence uses, so probably a general word"
 structured,Structured,name,37,brand changelog docs help,,,rejected,"capitalised in only 4% of 57 mid-sentence uses, so probably a general word"
 wait,Wait,name,37,brand docs help,,,rejected,"capitalised in only 4% of 49 mid-sentence uses, so probably a general word"
 yourdevice,Your Device,name,37,help,,,rejected,"capitalised in only 0% of 67 mid-sentence uses, so probably a general word"
 apireference,API Reference,name,36,docs,yes,,proposed,in a page title or nav label
 apple,Apple,name,36,changelog docs help,yes,,rejected,"a third-party product, on the third_party list"
-connectingperplexity,Connecting Perplexity,name,36,help,yes,,proposed,in a page title or nav label
+connectingperplexity,Connecting Perplexity,name,36,help,yes,,rejected,on the not_terms list
 dedicated,Dedicated,name,36,changelog docs help pricing,,,rejected,"capitalised in only 5% of 43 mid-sentence uses, so probably a general word"
 function,Function,name,36,brand docs help,yes,,rejected,"capitalised in only 0% of 59 mid-sentence uses, so probably a general word"
 mcp,MCP,name,36,changelog docs help,yes,,rejected,on the not_terms list
@@ -450,8 +451,9 @@ low,Low,name,31,brand changelog docs help,,,rejected,"capitalised in only 2% of 
 pdf,PDF,name,31,blog changelog docs help,,,rejected,a file format
 policie,Policies,name,31,docs help,yes,,rejected,"capitalised in only 4% of 119 mid-sentence uses, so probably a general word"
 sharing,Sharing,name,31,blog docs help,,,rejected,"capitalised in only 5% of 57 mid-sentence uses, so probably a general word"
-soc,SOC,name,31,docs help pricing,,,proposed,on 31 pages
+soc,SOC,name,31,docs help pricing,,,rejected,on the not_terms list
 transfer,Transfer,name,31,help,,,rejected,"capitalised in only 9% of 55 mid-sentence uses, so probably a general word"
+typescript,TypeScript,name,31,changelog docs,,,rejected,on the not_terms list
 attach,Attach,name,30,brand docs help,,,rejected,"capitalised in only 9% of 47 mid-sentence uses, so probably a general word"
 bestpractice,Best Practices,name,30,changelog docs help,yes,,rejected,"capitalised in only 4% of 24 mid-sentence uses, so probably a general word"
 disconnect,Disconnect,name,30,docs help,,,rejected,"capitalised in only 37% of 54 mid-sentence uses, so probably a general word"
@@ -500,8 +502,7 @@ high,High,name,27,changelog docs help,,,rejected,"capitalised in only 12% of 50 
 put,PUT,name,27,brand changelog docs help pricing,,,rejected,on the not_terms list
 remote,Remote,name,27,changelog docs help,,,rejected,"capitalised in only 2% of 88 mid-sentence uses, so probably a general word"
 scope,Scope,name,27,docs help,,,rejected,"capitalised in only 2% of 46 mid-sentence uses, so probably a general word"
-typeii,Type II,name,27,docs help pricing,,,proposed,on 27 pages
-typescript,TypeScript,name,27,changelog docs,,,rejected,on the not_terms list
+typeii,Type II,name,27,docs help pricing,,,rejected,on the not_terms list
 visible,Visible,name,27,blog docs help,,,rejected,"capitalised in only 0% of 39 mid-sentence uses, so probably a general word"
 adjust,Adjust,name,26,docs help,,,rejected,"capitalised in only 32% of 28 mid-sentence uses, so probably a general word"
 agentapimodel,Agent API Models,name,26,changelog docs,yes,,proposed,in a page title or nav label
@@ -512,14 +513,13 @@ deletion,Deletion,name,26,help pricing,,,rejected,"capitalised in only 1% of 70 
 invalid,Invalid,name,26,docs help,,,rejected,"capitalised in only 5% of 41 mid-sentence uses, so probably a general word"
 invite,Invite,name,26,brand docs help,,,rejected,"capitalised in only 9% of 57 mid-sentence uses, so probably a general word"
 performance,Performance,name,26,changelog docs help,yes,,rejected,"capitalised in only 5% of 42 mid-sentence uses, so probably a general word"
-quickstart,Quickstart,name,26,changelog docs,yes,,rejected,"capitalised in only 13% of 23 mid-sentence uses, so probably a general word"
 subject,Subject,name,26,brand docs help,,,rejected,"capitalised in only 5% of 39 mid-sentence uses, so probably a general word"
 tell,Tell,name,26,blog docs help,,,rejected,"capitalised in only 4% of 28 mid-sentence uses, so probably a general word"
 auditlog,Audit Logs,name,25,changelog docs help pricing,yes,,rejected,"capitalised in only 47% of 55 mid-sentence uses, so probably a general word"
 define,Define,name,25,changelog docs help,yes,,rejected,"capitalised in only 4% of 25 mid-sentence uses, so probably a general word"
 developer,Developer,name,25,changelog docs help,,,rejected,"capitalised in only 2% of 47 mid-sentence uses, so probably a general word"
-googledrive,Google Drive,name,25,blog help,yes,,proposed,in a page title or nav label
-howcreditswork,How Credits Work,name,25,docs help,yes,,proposed,in a page title or nav label
+googledrive,Google Drive,name,25,blog help,yes,,rejected,"a third-party product, on the third_party list"
+howcreditswork,How Credits Work,name,25,docs help,yes,,rejected,on the not_terms list
 incognito,Incognito,name,25,changelog docs help,,,proposed,on 25 pages
 index,Index,name,25,brand changelog docs help,yes,,rejected,"capitalised in only 0% of 38 mid-sentence uses, so probably a general word"
 internet,Internet,name,25,docs help,,,rejected,"capitalised in only 3% of 34 mid-sentence uses, so probably a general word"
@@ -530,16 +530,16 @@ purchased,Purchased,name,25,docs help,,,rejected,"capitalised in only 7% of 43 m
 raw,Raw,name,25,changelog docs help,,,rejected,"capitalised in only 3% of 34 mid-sentence uses, so probably a general word"
 reconnect,Reconnect,name,25,docs help,,,rejected,"capitalised in only 30% of 44 mid-sentence uses, so probably a general word"
 sale,Sales,name,25,blog docs help pricing,yes,,rejected,on the not_terms list
-sso,SSO,name,25,docs help pricing,yes,,proposed,in a page title or nav label
+sso,SSO,name,25,docs help pricing,yes,,rejected,on the not_terms list
 structure,Structure,name,25,blog changelog docs help,yes,,rejected,"capitalised in only 4% of 25 mid-sentence uses, so probably a general word"
 uploaded,Uploaded,name,25,blog docs help,,,rejected,"capitalised in only 5% of 41 mid-sentence uses, so probably a general word"
 authenticate,Authenticate,name,24,docs help,,,rejected,"capitalised in only 13% of 39 mid-sentence uses, so probably a general word"
-bug,Bug,name,24,brand changelog docs help,yes,,rejected,"capitalised in only 0% of 47 mid-sentence uses, so probably a general word"
+bug,Bug,name,24,brand changelog docs help,yes,,rejected,"capitalised in only 6% of 50 mid-sentence uses, so probably a general word"
 collection,Collections,name,24,docs help,,,rejected,"capitalised in only 3% of 37 mid-sentence uses, so probably a general word"
 failure,Failures,name,24,docs help,,,rejected,"capitalised in only 0% of 45 mid-sentence uses, so probably a general word"
 figure,Figure,name,24,brand docs help,,,rejected,"capitalised in only 9% of 11 mid-sentence uses, so probably a general word"
 fileupload,File Uploads,name,24,docs help pricing,yes,,proposed,in a page title or nav label
-linear,Linear,name,24,blog docs help,yes,,proposed,in a page title or nav label
+linear,Linear,name,24,blog docs help,yes,,rejected,"a third-party product, on the third_party list"
 network,Network,name,24,docs help,,,rejected,"capitalised in only 14% of 70 mid-sentence uses, so probably a general word"
 paused,Paused,name,24,docs help,yes,,rejected,"capitalised in only 22% of 50 mid-sentence uses, so probably a general word"
 paymentmethod,Payment Methods,name,24,docs help,,,rejected,"capitalised in only 6% of 68 mid-sentence uses, so probably a general word"
@@ -551,7 +551,7 @@ teammate,Teammates,name,24,blog brand docs help pricing,yes,yes,proposed,in a pa
 cometassistant,Comet Assistant,name,23,help pricing,yes,,proposed,in a page title or nav label
 condition,Conditions,name,23,blog docs help pricing,yes,,rejected,"capitalised in only 24% of 29 mid-sentence uses, so probably a general word"
 datasecurity,Data Security,name,23,help,,,rejected,"capitalised in only 17% of 6 mid-sentence uses, so probably a general word"
-gmail,Gmail,name,23,docs help,yes,,proposed,in a page title or nav label
+gmail,Gmail,name,23,docs help,yes,,rejected,"a third-party product, on the third_party list"
 mb,MB,name,23,docs help,,,rejected,a unit
 mobileapp,Mobile Apps,name,23,help,yes,,rejected,"capitalised in only 4% of 23 mid-sentence uses, so probably a general word"
 ranked,Ranked,name,23,changelog docs help,,,rejected,"capitalised in only 3% of 29 mid-sentence uses, so probably a general word"
@@ -620,7 +620,7 @@ terminal,Terminal,name,19,changelog docs help,,,rejected,"capitalised in only 7%
 touch,Touch,name,19,docs help,yes,,rejected,"capitalised in only 10% of 20 mid-sentence uses, so probably a general word"
 unique,Unique,name,19,docs help,,,rejected,"capitalised in only 5% of 20 mid-sentence uses, so probably a general word"
 youtube,YouTube,name,19,help,,,rejected,"capitalised in only 40% of 25 mid-sentence uses, so probably a general word"
-agentapiquickstart,Agent API Quickstart,name,18,changelog docs help,yes,,proposed,in a page title or nav label
+agentapiquickstart,Agent API Quickstart,name,18,changelog docs help,yes,,rejected,on the not_terms list
 aiassistant,AI Assistant,name,18,changelog docs help,yes,,proposed,in a page title or nav label
 am,AM,name,18,help,,,rejected,"capitalised in only 8% of 12 mid-sentence uses, so probably a general word"
 brain,Brain,name,18,blog brand docs help pricing,yes,,proposed,in a page title or nav label
@@ -630,17 +630,18 @@ embedding,Embeddings,name,18,changelog docs help,yes,,rejected,"capitalised in o
 export,Export,name,18,brand docs help,,,rejected,"capitalised in only 6% of 18 mid-sentence uses, so probably a general word"
 freshness,Freshness,name,18,changelog docs help,yes,,rejected,"capitalised in only 11% of 27 mid-sentence uses, so probably a general word"
 health,Perplexity Health,name,18,docs help,yes,,proposed,in a page title or nav label
-microsoft,Microsoft,name,18,docs help,yes,,proposed,in a page title or nav label
+microsoft,Microsoft,name,18,docs help,yes,,rejected,"a third-party product, on the third_party list"
 restricted,Restricted,name,18,docs help,,,rejected,"capitalised in only 19% of 31 mid-sentence uses, so probably a general word"
 routing,Routing,name,18,changelog docs help,yes,,rejected,"capitalised in only 4% of 45 mid-sentence uses, so probably a general word"
 settingspage,Settings Page,name,18,docs help,,,rejected,"capitalised in only 27% of 22 mid-sentence uses, so probably a general word"
-sharepoint,SharePoint,name,18,docs help,yes,,proposed,in a page title or nav label
-snowflake,Snowflake,name,18,blog docs help,yes,,proposed,in a page title or nav label
+sharepoint,SharePoint,name,18,docs help,yes,,rejected,"a third-party product, on the third_party list"
+snowflake,Snowflake,name,18,blog docs help,yes,,rejected,"a third-party product, on the third_party list"
 voice,Voice,name,18,brand docs help,,,rejected,"capitalised in only 2% of 48 mid-sentence uses, so probably a general word"
 annual,Annual,name,17,changelog docs help pricing,,,rejected,"capitalised in only 5% of 22 mid-sentence uses, so probably a general word"
 apicall,API Calls,name,17,changelog docs help,,,rejected,on the not_terms list
 apiresponse,API Responses,name,17,changelog docs help,,,rejected,on the not_terms list
 blocking,Blocking,name,17,docs help,yes,,rejected,"capitalised in only 4% of 23 mid-sentence uses, so probably a general word"
+community,Community,name,17,changelog docs help,yes,,rejected,"capitalised in only 37% of 35 mid-sentence uses, so probably a general word"
 connectperplexity,Connect Perplexity,name,17,docs help,,,rejected,"capitalised in only 12% of 17 mid-sentence uses, so probably a general word"
 consumer,Consumer,name,17,docs help,,,rejected,"capitalised in only 5% of 21 mid-sentence uses, so probably a general word"
 customize,Customize,name,17,docs help,yes,,rejected,on the not_terms list
@@ -661,7 +662,7 @@ rolebased,Role-based,name,17,help,yes,,proposed,in a page title or nav label
 thestart,The Start,name,17,docs help pricing,,,rejected,"capitalised in only 3% of 29 mid-sentence uses, so probably a general word"
 usagetier,Usage Tiers,name,17,changelog docs,yes,,rejected,"capitalised in only 28% of 50 mid-sentence uses, so probably a general word"
 academic,Academic,name,16,changelog docs help,,,rejected,"capitalised in only 37% of 19 mid-sentence uses, so probably a general word"
-appstore,App Store,name,16,help,,,proposed,on 16 pages
+appstore,App Store,name,16,help,,,rejected,"a third-party product, on the third_party list"
 bearer,Bearer,name,16,changelog docs help,,,rejected,"capitalised in only 31% of 13 mid-sentence uses, so probably a general word"
 bookmark,Bookmark,name,16,help,,,rejected,"capitalised in only 9% of 55 mid-sentence uses, so probably a general word"
 bugreport,Bug Reports,name,16,brand changelog docs help,,,rejected,on the not_terms list
@@ -673,8 +674,8 @@ getapikey,Get API Key,name,16,docs,yes,,rejected,"never capitalised in running t
 home,Home,name,16,docs help,,,proposed,on 16 pages
 llm,LLM,name,16,changelog docs help pricing,,,rejected,on the not_terms list
 minimum,Minimum,name,16,docs help,,,rejected,"capitalised in only 4% of 24 mid-sentence uses, so probably a general word"
-onedrive,OneDrive,name,16,docs help,yes,,proposed,in a page title or nav label
-orchestratorapi,Orchestrator API,name,16,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
+onedrive,OneDrive,name,16,docs help,yes,,rejected,"a third-party product, on the third_party list"
+orchestratorapi,Orchestrator API,name,16,changelog docs,yes,,proposed,in a page title or nav label
 owner,Owner,name,16,docs help,,,rejected,"capitalised in only 14% of 43 mid-sentence uses, so probably a general word"
 premiumdatasource,Premium Data Sources,name,16,docs help pricing,yes,,rejected,"capitalised in only 0% of 9 mid-sentence uses, so probably a general word"
 register,Register,name,16,changelog docs help,,,rejected,"capitalised in only 6% of 18 mid-sentence uses, so probably a general word"
@@ -686,22 +687,21 @@ trusted,Trusted,name,16,help,,,rejected,"capitalised in only 13% of 30 mid-sente
 typing,Typing,name,16,brand docs help,yes,,rejected,"capitalised in only 0% of 20 mid-sentence uses, so probably a general word"
 voicemode,Voice Mode,name,16,help,yes,,rejected,"capitalised in only 33% of 42 mid-sentence uses, so probably a general word"
 word,Word,name,16,blog brand changelog docs help,,,rejected,on the not_terms list
-appconnector,App Connectors,name,15,help pricing,,,not shown,on 15 pages; outside the top 60
-chatcompletion,Chat Completions,name,15,changelog docs,,,not shown,on 15 pages; outside the top 60
+appconnector,App Connectors,name,15,help pricing,,,proposed,on 15 pages
+chatcompletion,Chat Completions,name,15,changelog docs,,,proposed,on 15 pages
 claude,Claude,name,15,changelog docs help,yes,,rejected,"a third-party product, on the third_party list"
-community,Community,name,15,changelog docs help,yes,,rejected,"capitalised in only 15% of 26 mid-sentence uses, so probably a general word"
-contentgeneration,Content Generation,name,15,docs help,yes,,not shown,in a page title or nav label; outside the top 60
+contentgeneration,Content Generation,name,15,docs help,yes,,proposed,in a page title or nav label
 datacollection,Data Collection,name,15,docs help,yes,,rejected,"capitalised in only 18% of 11 mid-sentence uses, so probably a general word"
 design,Design,name,15,brand docs help pricing,,,rejected,"capitalised in only 14% of 14 mid-sentence uses, so probably a general word"
-fileconnector,File Connector,name,15,help,,,not shown,on 15 pages; outside the top 60
+fileconnector,File Connector,name,15,help,,,proposed,on 15 pages
 legal,Legal,name,15,blog docs help pricing,yes,,rejected,"capitalised in only 12% of 16 mid-sentence uses, so probably a general word"
 newfeature,New Feature,name,15,changelog docs help pricing,,,rejected,"capitalised in only 0% of 12 mid-sentence uses, so probably a general word"
 opt,Opt,name,15,docs help,,,rejected,"capitalised in only 17% of 23 mid-sentence uses, so probably a general word"
-peoplesearch,People Search,name,15,docs help,yes,,not shown,in a page title or nav label; outside the top 60
+peoplesearch,People Search,name,15,docs help,yes,,proposed,in a page title or nav label
 personaldata,Personal Data,name,15,docs help,,,rejected,"capitalised in only 0% of 20 mid-sentence uses, so probably a general word"
 remotemcp,Remote MCPs,name,15,changelog docs help,yes,,rejected,"capitalised in only 12% of 41 mid-sentence uses, so probably a general word"
 restore,Restore,name,15,docs help,,,rejected,"capitalised in only 23% of 22 mid-sentence uses, so probably a general word"
-salesforce,Salesforce,name,15,blog docs help,yes,,not shown,in a page title or nav label; outside the top 60
+salesforce,Salesforce,name,15,blog docs help,yes,,rejected,"a third-party product, on the third_party list"
 screenshot,Screenshots,name,15,changelog docs help,,,rejected,"capitalised in only 4% of 28 mid-sentence uses, so probably a general word"
 technical,Technical,name,15,docs help,yes,,rejected,"capitalised in only 6% of 18 mid-sentence uses, so probably a general word"
 thecomputer,The Computer,name,15,docs help,,,rejected,"capitalised in only 6% of 34 mid-sentence uses, so probably a general word"
@@ -712,12 +712,12 @@ accountmanagement,Account Management,name,14,help,yes,,rejected,"capitalised in 
 auto,Auto,name,14,changelog docs help,,,rejected,"capitalised in only 17% of 12 mid-sentence uses, so probably a general word"
 canceling,Canceling,name,14,help,yes,,rejected,"capitalised in only 33% of 9 mid-sentence uses, so probably a general word"
 checkout,Checkout,name,14,docs help,,,rejected,"capitalised in only 4% of 26 mid-sentence uses, so probably a general word"
-computercredit,Computer Credits,name,14,help pricing,,,not shown,on 14 pages; outside the top 60
-confluence,Confluence,name,14,docs help,yes,,not shown,in a page title or nav label; outside the top 60
+computercredit,Computer Credits,name,14,help pricing,,,proposed,on 14 pages
+confluence,Confluence,name,14,docs help,yes,,rejected,"a third-party product, on the third_party list"
 coverage,Coverage,name,14,changelog docs help,,,rejected,"capitalised in only 4% of 23 mid-sentence uses, so probably a general word"
 cursor,Cursor,name,14,brand changelog docs help,yes,,rejected,"a third-party product, on the third_party list"
 domainfilter,Domain Filter,name,14,changelog docs,yes,,rejected,"capitalised in only 11% of 9 mid-sentence uses, so probably a general word"
-enterprisegrade,Enterprise-grade,name,14,help,,,not shown,on 14 pages; outside the top 60
+enterprisegrade,Enterprise-grade,name,14,help,,,proposed,on 14 pages
 expand,Expand,name,14,blog docs help,,,rejected,"capitalised in only 9% of 11 mid-sentence uses, so probably a general word"
 global,Global,name,14,docs help,,,rejected,"capitalised in only 15% of 26 mid-sentence uses, so probably a general word"
 hosted,Perplexity-hosted,name,14,changelog docs help,,,rejected,"capitalised in only 0% of 45 mid-sentence uses, so probably a general word"
@@ -735,47 +735,47 @@ username,Username,name,14,help,,,rejected,"capitalised in only 12% of 25 mid-sen
 utc,UTC,name,14,changelog docs help,,,rejected,on the not_terms list
 zerodataretention,Zero Data Retention,name,14,changelog docs help,,,rejected,"capitalised in only 29% of 17 mid-sentence uses, so probably a general word"
 area,Area,name,13,help,,,rejected,"capitalised in only 7% of 14 mid-sentence uses, so probably a general word"
-asana,Asana,name,13,docs help,yes,,not shown,in a page title or nav label; outside the top 60
+asana,Asana,name,13,docs help,yes,,rejected,"a third-party product, on the third_party list"
 assignment,Assignment,name,13,help,,,rejected,"capitalised in only 6% of 32 mid-sentence uses, so probably a general word"
 deploy,Deploy,name,13,docs help,,,rejected,"capitalised in only 8% of 24 mid-sentence uses, so probably a general word"
-fastsearch,Fast Search,name,13,changelog docs help,yes,,not shown,in a page title or nav label; outside the top 60
-googleplay,Google Play,name,13,help,,,not shown,on 13 pages; outside the top 60
+fastsearch,Fast Search,name,13,changelog docs help,yes,,proposed,in a page title or nav label
+googleplay,Google Play,name,13,help,,,rejected,"a third-party product, on the third_party list"
 government,Government,name,13,blog help pricing,yes,,rejected,"capitalised in only 25% of 16 mid-sentence uses, so probably a general word"
 guideline,Guidelines,name,13,brand docs help,,,rejected,"capitalised in only 7% of 15 mid-sentence uses, so probably a general word"
 invited,Invited,name,13,blog docs help,,,rejected,"capitalised in only 43% of 21 mid-sentence uses, so probably a general word"
 modelcontextprotocol,Model Context Protocol,name,13,docs help,,,rejected,on the not_terms list
-notion,Notion,name,13,blog docs help,yes,,not shown,in a page title or nav label; outside the top 60
+notion,Notion,name,13,blog docs help,yes,,rejected,"a third-party product, on the third_party list"
 october,October,name,13,changelog help,,,rejected,a month name
 optimized,Perplexity-optimized,name,13,docs help,,,rejected,"capitalised in only 0% of 17 mid-sentence uses, so probably a general word"
-os,OS,name,13,help,,,not shown,on 13 pages; outside the top 60
-outlook,Outlook,name,13,docs help,yes,,not shown,in a page title or nav label; outside the top 60
-portablecomputer,Portable Computer,name,13,help,yes,,not shown,in a page title or nav label; outside the top 60
+os,OS,name,13,help,,,proposed,on 13 pages
+outlook,Outlook,name,13,docs help,yes,,rejected,"a third-party product, on the third_party list"
+portablecomputer,Portable Computer,name,13,help,yes,,proposed,in a page title or nav label
 powered,Perplexity-powered,name,13,brand docs help pricing,,,rejected,"capitalised in only 0% of 12 mid-sentence uses, so probably a general word"
 promotion,Promotions,name,13,help,yes,,rejected,"capitalised in only 8% of 24 mid-sentence uses, so probably a general word"
 rfc,RFC,name,13,changelog docs help,,,rejected,on the not_terms list
 usageanalytic,Usage Analytics,name,13,docs help,yes,,rejected,"capitalised in only 0% of 19 mid-sentence uses, so probably a general word"
 usermanagement,User Management,name,13,help pricing,yes,,rejected,"capitalised in only 33% of 6 mid-sentence uses, so probably a general word"
 criteria,Criteria,name,12,changelog docs help,yes,,rejected,"capitalised in only 3% of 32 mid-sentence uses, so probably a general word"
-ctrl,Ctrl,name,12,docs help,,,not shown,on 12 pages; outside the top 60
-databrick,Databricks,name,12,docs help,yes,,not shown,in a page title or nav label; outside the top 60
+ctrl,Ctrl,name,12,docs help,,,proposed,on 12 pages
+databrick,Databricks,name,12,docs help,yes,,rejected,"a third-party product, on the third_party list"
 dataset,Datasets,name,12,changelog docs help pricing,,,rejected,"capitalised in only 4% of 24 mid-sentence uses, so probably a general word"
 deny,Deny,name,12,changelog docs help,,,rejected,"capitalised in only 4% of 24 mid-sentence uses, so probably a general word"
 docx,DOCX,name,12,changelog docs help,,,rejected,a file format
 eligibility,Eligibility,name,12,docs help,,,rejected,"capitalised in only 14% of 14 mid-sentence uses, so probably a general word"
 enforce,Enforce,name,12,docs help,,,rejected,"capitalised in only 8% of 13 mid-sentence uses, so probably a general word"
-gdpr,GDPR,name,12,docs help pricing,,,not shown,on 12 pages; outside the top 60
+gdpr,GDPR,name,12,docs help pricing,,,rejected,on the not_terms list
 imagegeneration,Image Generation,name,12,help,yes,,rejected,"capitalised in only 0% of 23 mid-sentence uses, so probably a general word"
 inputtoken,Input Tokens,name,12,changelog docs,,,rejected,"capitalised in only 2% of 45 mid-sentence uses, so probably a general word"
 introduction,Introduction,name,12,help,yes,,rejected,"capitalised in only 25% of 4 mid-sentence uses, so probably a general word"
 learning,Learning,name,12,docs help,,,rejected,"capitalised in only 10% of 20 mid-sentence uses, so probably a general word"
 limitation,Limitations,name,12,changelog docs help,,,rejected,"capitalised in only 0% of 11 mid-sentence uses, so probably a general word"
 marketing,Marketing,name,12,blog brand docs help pricing,yes,,rejected,"capitalised in only 20% of 10 mid-sentence uses, so probably a general word"
-microsoftteam,Microsoft Teams,name,12,blog docs help,yes,,not shown,in a page title or nav label; outside the top 60
-modelcouncil,Model Council,name,12,help pricing,yes,,not shown,in a page title or nav label; outside the top 60
-monitorapi,Monitor API,name,12,changelog docs,yes,,not shown,in a page title or nav label; outside the top 60
-myorganization,My Organization,name,12,help,,,not shown,on 12 pages; outside the top 60
+microsoftteam,Microsoft Teams,name,12,blog docs help,yes,,rejected,"a third-party product, on the third_party list"
+modelcouncil,Model Council,name,12,help pricing,yes,,proposed,in a page title or nav label
+monitorapi,Monitor API,name,12,changelog docs,yes,,proposed,in a page title or nav label
+myorganization,My Organization,name,12,help,,,proposed,on 12 pages
 retryafter,Retry-After,name,12,docs help,,,rejected,on the not_terms list
-scim,SCIM,name,12,docs help pricing,,,not shown,on 12 pages; outside the top 60
+scim,SCIM,name,12,docs help pricing,,,rejected,on the not_terms list
 searchhistory,Search History,name,12,help,,,rejected,"capitalised in only 25% of 16 mid-sentence uses, so probably a general word"
 social,Social,name,12,docs help,,,rejected,"capitalised in only 7% of 15 mid-sentence uses, so probably a general word"
 startup,Startup,name,12,changelog docs help,,,rejected,"capitalised in only 11% of 28 mid-sentence uses, so probably a general word"
@@ -784,7 +784,7 @@ symptom,Symptom,name,12,help,,,rejected,"capitalised in only 33% of 6 mid-senten
 themcpserver,The MCP Servers,name,12,changelog docs help,,,rejected,"capitalised in only 7% of 15 mid-sentence uses, so probably a general word"
 trust,Trust,name,12,blog brand docs help pricing,yes,,rejected,"capitalised in only 0% of 14 mid-sentence uses, so probably a general word"
 welcome,Welcome,name,12,help,yes,,rejected,"capitalised in only 0% of 6 mid-sentence uses, so probably a general word"
-whichperplexitysubscriptionplan,Which Perplexity Subscription Plan,name,12,help,yes,,not shown,in a page title or nav label; outside the top 60
+whichperplexitysubscriptionplan,Which Perplexity Subscription Plan,name,12,help,yes,,proposed,in a page title or nav label
 appleappstore,Apple App Store,name,11,help,,,not shown,on 11 pages; outside the top 60
 applerelayemail,Apple Relay Emails,name,11,help,yes,,not shown,in a page title or nav label; outside the top 60
 automate,Automate,name,11,docs help,,,rejected,"capitalised in only 9% of 11 mid-sentence uses, so probably a general word"

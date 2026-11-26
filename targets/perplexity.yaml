@@ -85,11 +85,15 @@ terms:
     - Connectors
     - Teammates
     - Deep Research
+    - Credits
   # Older names next to the name that replaced them, each with a first-party source.
   legacy_names:
     - old: Sonar
       current: Agent API
       source: https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
+    - old: Spaces
+      current: Projects
+      source: https://www.perplexity.ai/hub/blog/spaces-are-now-projects
   # Capitalised words that aren't this company's terms: generic technical words,
   # languages, standards and formats. Logged as rejected, never dropped silently.
   # Month names, units and file formats are rejected by a rule in terms.py, so they
@@ -165,6 +169,17 @@ terms:
     - Feature Requests
     - Community Forum
     - Sales
+    # Security and sign-in standards.
+    - SOC
+    - Type II
+    - SSO
+    - GDPR
+    - SCIM
+    # Page titles. Not terms themselves, but the terms inside them still count.
+    - Connecting Perplexity
+    - Getting Started
+    - How credits work
+    - Agent API Quickstart
   # Other companies' products, services and SDKs.
   third_party:
     - OpenAI
@@ -193,6 +208,23 @@ terms:
     - Moonshot AI
     - Slack
     - AWS Marketplace
+    - Android
+    - App Store
+    - Google Drive
+    - Gmail
+    - Linear
+    - Microsoft
+    - OneDrive
+    - SharePoint
+    - Snowflake
+    - Asana
+    - Confluence
+    - Google Play
+    - Notion
+    - Outlook
+    - Salesforce
+    - Databricks
+    - Microsoft Teams
   # Excerpts approved as boilerplate: each counts on one page only, not once per page.
   # `audit terms` lists candidates (text on more than 10 pages) in
   # cache/perplexity/repeated_text.csv. Add the ones you approve here.
