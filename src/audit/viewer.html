@@ -106,7 +106,8 @@
   .empty { padding: 24px; color: var(--muted); }
   footer { color: var(--muted); font-size: 13px; padding-top: 24px; padding-bottom: 32px; }
   .review { min-width: 240px; }
-  .review select, .review textarea, .string-form input, .string-form select, .string-form textarea {
+  .review select, .review textarea, .string-form input, .string-form select, .string-form textarea,
+  .proposal-field select, .proposal-field input, .proposal-field textarea {
     font: inherit; font-size: 14px; padding: 4px 6px; border: 1px solid var(--line);
     border-radius: 6px; background: var(--bg); color: var(--text); width: 100%;
   }
@@ -127,6 +128,10 @@
   .string-form .wide { grid-column: 1 / -1; }
   .string-form .form-actions { grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; }
   .hint { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+  td.proposal-field { min-width: 140px; }
+  td.proposal-text { min-width: 220px; }
+  .proposal-field textarea { min-height: 72px; resize: vertical; }
+  .proposal-field :disabled { opacity: 0.7; }
   [hidden] { display: none !important; }
 </style>
 </head>
@@ -140,6 +145,7 @@
   <div role="tablist" aria-label="Audit views">
     <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="true">Terms</button>
     <button role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="false" tabindex="-1">Glossary</button>
+    <button role="tab" id="tab-proposals" aria-controls="panel-proposals" aria-selected="false" tabindex="-1" hidden>Glossary proposals</button>
     <button role="tab" id="tab-findings" aria-controls="panel-findings" aria-selected="false" tabindex="-1">Findings</button>
     <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Snippets</button>
     <button role="tab" id="tab-strings" aria-controls="panel-strings" aria-selected="false" tabindex="-1" hidden>App strings</button>
@@ -184,7 +190,7 @@
 
   <section role="tabpanel" id="panel-glossary" aria-labelledby="tab-glossary" hidden>
     <p class="hint">The terms a person has settled on, from <code>glossary.csv</code>. Read-only here:
-      to change a row, edit the file itself.</p>
+      to change a row, edit the file itself, or accept a proposal in review mode.</p>
     <div class="controls">
       <label for="glossary-search" hidden>Search the glossary</label>
       <input type="search" id="glossary-search" placeholder="Search terms or definitions">
@@ -213,6 +219,46 @@
         <tbody id="glossary-rows"></tbody>
       </table>
       <p class="empty" id="glossary-empty" hidden>No glossary rows match.</p>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="panel-proposals" aria-labelledby="tab-proposals" hidden>
+    <p class="hint">Drafted changes to <code>glossary.csv</code>, kept in <code>glossary_proposals.csv</code>.
+      Accept, edit or reject each row: changes save as you make them. Nothing reaches the glossary
+      until you click Apply accepted, and then only if the glossary still passes its check.</p>
+    <div class="controls">
+      <label for="proposal-section" hidden>Section</label>
+      <select id="proposal-section"><option value="">All sections</option></select>
+      <label for="proposal-change" hidden>Change</label>
+      <select id="proposal-change">
+        <option value="">Updates and new terms</option>
+        <option value="update">Updates to existing terms</option>
+        <option value="add">New terms</option>
+      </select>
+      <label for="proposal-decision" hidden>Decision</label>
+      <select id="proposal-decision">
+        <option value="">Any decision</option>
+        <option value="none">Not decided</option>
+        <option value="accept">Accepted</option>
+        <option value="reject">Rejected</option>
+        <option value="applied">Applied</option>
+      </select>
+      <span class="count" id="proposal-count" aria-live="polite"></span>
+    </div>
+    <div class="controls">
+      <button class="save" type="button" id="proposal-apply">Apply accepted</button>
+      <span class="status" id="proposal-apply-status" role="status"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Term</th><th scope="col">Decision</th><th scope="col">Status</th>
+          <th scope="col">Use instead</th><th scope="col">Definition</th><th scope="col">Basis</th>
+          <th scope="col">Note</th><th scope="col">Evidence</th>
+        </tr></thead>
+        <tbody id="proposal-rows"></tbody>
+      </table>
+      <p class="empty" id="proposal-empty" hidden>No proposals match.</p>
     </div>
   </section>
 
@@ -357,6 +403,7 @@
     document.getElementById("banner").textContent =
       "Review mode. Edits save to the data folder on this computer. Outside-in, public sources, unofficial.";
     document.getElementById("tab-strings").hidden = false;
+    document.getElementById("tab-proposals").hidden = false;
     // The review column goes straight after the term, so it's on screen without scrolling.
     var head = document.getElementById("term-head");
     head.insertBefore(el("th", { scope: "col", text: "Your review" }), head.children[1]);
@@ -463,7 +510,7 @@
     ]);
   }
 
-  // Glossary (read-only, even in review mode: a person edits glossary.csv by hand)
+  // Glossary (read-only: a person edits glossary.csv by hand, or applies accepted proposals)
   var glossarySearch = document.getElementById("glossary-search");
   var glossaryStatus = document.getElementById("glossary-status");
   var glossaryBasis = document.getElementById("glossary-basis");
@@ -502,6 +549,144 @@
     document.getElementById("glossary-count").textContent = rows.length + " of " + data.glossary.length + " rows";
   }
   [glossarySearch, glossaryStatus, glossaryBasis].forEach(function (c) { c.addEventListener("input", renderGlossary); });
+
+  // Glossary proposals (review mode only). Each change saves straight away; only the
+  // Apply accepted button writes to glossary.csv.
+  var proposalSection = document.getElementById("proposal-section");
+  var proposalChange = document.getElementById("proposal-change");
+  var proposalDecision = document.getElementById("proposal-decision");
+  var applyButton = document.getElementById("proposal-apply");
+  var applyStatus = document.getElementById("proposal-apply-status");
+  // Sections keep the draft's order, not alphabetical order.
+  var sectionNames = [];
+  data.glossary_proposals.forEach(function (p) {
+    if (sectionNames.indexOf(p.section) === -1) sectionNames.push(p.section);
+  });
+  sectionNames.forEach(function (s) { proposalSection.appendChild(el("option", { value: s, text: s })); });
+
+  function acceptedCount() {
+    return data.glossary_proposals.filter(function (p) { return p.decision === "accept"; }).length;
+  }
+  function updateApplyButton() {
+    var n = acceptedCount();
+    applyButton.textContent = "Apply accepted (" + n + ")";
+    applyButton.disabled = n === 0;
+  }
+
+  // A value the file has but the list doesn't is still shown, so nothing is hidden.
+  function choiceSelect(label, values, chosen) {
+    var select = el("select", { "aria-label": label });
+    var list = values.indexOf(chosen) === -1 ? [chosen].concat(values) : values;
+    list.forEach(function (v) {
+      var option = el("option", { value: v, text: v || "(blank)" });
+      if (v === chosen) option.selected = true;
+      select.appendChild(option);
+    });
+    return select;
+  }
+
+  function proposalRow(p) {
+    var applied = p.decision === "applied";
+    var choices = applied ? [["applied", "Applied"]] : [["", "Not decided"], ["accept", "Accept"], ["reject", "Reject"]];
+    var decision = el("select", { "aria-label": "Decision for " + p.term });
+    choices.forEach(function (o) {
+      var option = el("option", { value: o[0], text: o[1] });
+      if (p.decision === o[0]) option.selected = true;
+      decision.appendChild(option);
+    });
+    var status = choiceSelect("Status for " + p.term, data.allowed.glossary_status, p.status);
+    var useInstead = el("input", { type: "text", "aria-label": "Use instead of " + p.term, maxlength: "400" });
+    useInstead.value = p.use_instead;
+    var definition = el("textarea", { "aria-label": "Definition of " + p.term, maxlength: "400" });
+    definition.value = p.definition;
+    var basis = choiceSelect("Basis for " + p.term, data.allowed.glossary_basis, p.basis);
+    var saved = el("span", { className: "status", role: "status" });
+    var fields = [decision, status, useInstead, definition, basis];
+
+    function saveRow() {
+      saved.className = "status";
+      saved.textContent = "Saving…";
+      save("/api/proposal", {
+        term: p.term, decision: decision.value, status: status.value,
+        use_instead: useInstead.value, definition: definition.value, basis: basis.value
+      }).then(function (result) {
+        Object.keys(result.row).forEach(function (k) { p[k] = result.row[k]; });
+        if (result.problems.length) {
+          saved.className = "status error";
+          saved.textContent = "Saved, but it won't pass the glossary check: " + result.problems.join("; ");
+        } else {
+          saved.textContent = "Saved";
+        }
+        updateApplyButton();
+      }).catch(function (e) {
+        saved.className = "status error";
+        saved.textContent = e.message;
+      });
+    }
+    fields.forEach(function (f) {
+      f.disabled = applied;
+      f.addEventListener("change", saveRow);
+    });
+
+    var evidence = el("td");
+    if (p.evidence_id) {
+      var show = el("button", { className: "linkish", type: "button", text: p.evidence_id });
+      show.addEventListener("click", function () { showSnippets([p.evidence_id], p.term); });
+      evidence.appendChild(show);
+    }
+    return el("tr", {}, [
+      el("td", {}, [
+        el("div", { className: "term", text: p.term }),
+        el("span", { className: "chip", text: p.change === "add" ? "new term" : "update" }),
+        p.source_url ? el("div", { className: "sources" }, [sourceLink(p.source_url)]) : null
+      ]),
+      el("td", { className: "proposal-field" }, [decision, saved]),
+      el("td", { className: "proposal-field" }, [status]),
+      el("td", { className: "proposal-field proposal-text" }, [useInstead]),
+      el("td", { className: "proposal-field proposal-text" }, [definition]),
+      el("td", { className: "proposal-field" }, [basis]),
+      el("td", { className: "definition question-text", text: p.note }),
+      evidence
+    ]);
+  }
+
+  function renderProposals() {
+    var section = proposalSection.value;
+    var change = proposalChange.value;
+    var decision = proposalDecision.value;
+    var body = document.getElementById("proposal-rows");
+    body.textContent = "";
+    var rows = data.glossary_proposals.filter(function (p) {
+      if (section && p.section !== section) return false;
+      if (change && p.change !== change) return false;
+      if (decision === "none") return !p.decision;
+      return !decision || p.decision === decision;
+    });
+    rows.forEach(function (p) { body.appendChild(proposalRow(p)); });
+    document.getElementById("proposal-empty").hidden = rows.length > 0;
+    document.getElementById("proposal-count").textContent =
+      rows.length + " of " + data.glossary_proposals.length + " proposals";
+    updateApplyButton();
+  }
+  [proposalSection, proposalChange, proposalDecision].forEach(function (c) { c.addEventListener("input", renderProposals); });
+
+  applyButton.addEventListener("click", function () {
+    var n = acceptedCount();
+    if (!window.confirm("Write " + n + " accepted " + (n === 1 ? "row" : "rows") + " into glossary.csv?")) return;
+    applyStatus.className = "status";
+    applyStatus.textContent = "Applying…";
+    save("/api/proposals/apply", {}).then(function (result) {
+      data.glossary_proposals.forEach(function (p) { if (p.decision === "accept") p.decision = "applied"; });
+      data.glossary = result.glossary;
+      renderGlossary();
+      renderProposals();
+      applyStatus.textContent = result.applied + (result.applied === 1 ? " row" : " rows") +
+        " applied to glossary.csv. Run `audit check` to update the findings.";
+    }).catch(function (e) {
+      applyStatus.className = "status error";
+      applyStatus.textContent = e.message;
+    });
+  });
 
   // Findings
   var findingSearch = document.getElementById("finding-search");
@@ -620,6 +805,7 @@
       });
     });
     renderStrings();
+    renderProposals();
   }
 
   // Snippets

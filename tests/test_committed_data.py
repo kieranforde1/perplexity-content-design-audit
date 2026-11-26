@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import config, snippets
+from audit import config, glossary, snippets
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SNIPPET_FILES = sorted(REPO_ROOT.glob("data/*/snippets.csv"))
@@ -80,6 +80,22 @@ def test_typed_app_strings_are_short(path: Path) -> None:
     limit = snippets.EXCERPT_MAX_WORDS
     too_long = [r["text"] for r in rows(path) if len(r["text"].split()) > limit]
     assert not too_long, f"typed strings over {snippets.EXCERPT_MAX_WORDS} words: {too_long}"
+
+
+@pytest.mark.parametrize(
+    "path", sorted(REPO_ROOT.glob("data/*/glossary_proposals.csv")), ids=lambda p: p.parent.name
+)
+def test_glossary_proposals_can_be_applied(path: Path) -> None:
+    # The review page finds a proposal by its term, and an update needs a row to replace.
+    proposals = rows(path)
+    terms = [glossary.key(r["term"]) for r in proposals]
+    assert len(terms) == len(set(terms)), "a term is proposed twice"
+    have = {glossary.key(r["term"]) for r in glossary.read(path.parent / "glossary.csv")}
+    for r in proposals:
+        assert r["change"] in glossary.CHANGES, r["term"]
+        assert r["decision"] in ("", "accept", "reject", "applied"), r["term"]
+        if r["change"] == "update":
+            assert glossary.key(r["term"]) in have, f"{r['term']}: no glossary row to update"
 
 
 @pytest.mark.parametrize("path", SNIPPET_FILES, ids=lambda p: p.parent.name)

@@ -117,6 +117,20 @@ def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -
     assert "Only on this computer" not in out.read_text()
 
 
+def test_glossary_proposals_are_only_in_review_mode(tmp_path: Path) -> None:
+    target = make_target(tmp_path)
+    (target.data_dir / "glossary_proposals.csv").write_text(
+        "section,term,change,decision\ndefinitions,Search API,update,\n"
+    )
+    assert view.build_data(target, date(2026, 11, 26))["glossary_proposals"] == []
+    evidence = view.build_data(target, date(2026, 11, 26), evidence_only=True)
+    assert evidence["glossary_proposals"] == []
+    review_page = view.build_data(target, date(2026, 11, 26), editable=True)
+    assert review_page["glossary_proposals"] == [
+        {"section": "definitions", "term": "Search API", "change": "update", "decision": ""}
+    ]
+
+
 def test_summary_counts(tmp_path: Path) -> None:
     data = view.build_data(make_target(tmp_path), date(2026, 11, 26))
     assert str(data["summary"]).startswith("2 snippets from 2 public pages")
