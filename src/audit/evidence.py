@@ -54,12 +54,13 @@ def write_public_copy(
     return filled
 
 
-def load_table(target: Target) -> tuple[list[Snippet], bool]:
+def load_table(target: Target, *, committed_only: bool = False) -> tuple[list[Snippet], bool]:
     """The fullest table available, and whether it's the full local one.
 
     On a fresh clone only the committed copy exists, so the viewer still works.
+    `committed_only` skips the local copy, for a build that holds only what's committed.
     """
-    if target.local_snippets.exists():
+    if target.local_snippets.exists() and not committed_only:
         return snippets.read(target.local_snippets), True
     if target.public_snippets.exists():
         return snippets.read(target.public_snippets), False

@@ -53,9 +53,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--port", type=int, default=review.DEFAULT_PORT, help="Port on 127.0.0.1")
     p.add_argument("--no-browser", action="store_true", help="Don't open a browser tab")
 
+    p = sub.add_parser("view", help="Build the offline viewer")
+    _add_target(p)
+    p.add_argument(
+        "--evidence-only",
+        action="store_true",
+        help="Build from committed data only, into viewer/<target>/evidence.html",
+    )
+
     for name, help_text in (
         ("terms", "Build the term map"),
-        ("view", "Build the offline viewer"),
         ("check", "Check the public text against the glossary"),
         ("recommend", "Turn findings into recommendations"),
         ("skill", "Build a content-standards skill from the audit"),
@@ -89,7 +96,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             check.run(config.load(args.target, args.root))
             return 0
         if args.command == "view":
-            view.run(config.load(args.target, args.root))
+            view.run(config.load(args.target, args.root), evidence_only=args.evidence_only)
             return 0
         if args.command == "typed":
             if args.template:

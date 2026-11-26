@@ -47,3 +47,6 @@ def test_viewer_falls_back_to_the_committed_copy(tmp_path: Path) -> None:
     snippets.write(t.local_snippets, [make("Local row."), make("Another local row.")])
     rows, full = evidence.load_table(t)
     assert len(rows) == 2 and full
+    # The evidence-only build skips the local copy even when it's there.
+    rows, full = evidence.load_table(t, committed_only=True)
+    assert [s.excerpt for s in rows] == ["Committed row."] and not full

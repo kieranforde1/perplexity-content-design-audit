@@ -66,7 +66,7 @@
   [role="tab"][aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
   [role="tab"][aria-disabled="true"] { cursor: not-allowed; opacity: 0.55; }
   [role="tab"] small { display: block; font-size: 11px; }
-  [role="tab"]:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+  [role="tab"]:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 2px;
   }
   .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
@@ -94,6 +94,10 @@
   td.sources { min-width: 220px; }
   .sources a { display: block; font-size: 13px; overflow-wrap: anywhere; margin-bottom: 4px; }
   td.nowrap { white-space: nowrap; }
+  td.evidence { min-width: 320px; }
+  .evidence summary { color: var(--accent); cursor: pointer; }
+  .evidence ul { margin: 8px 0 0; padding-left: 18px; }
+  .evidence li { margin-bottom: 8px; }
   .more { margin: 12px 0; }
   .more button {
     font: inherit; padding: 6px 12px; border: 1px solid var(--line);
@@ -135,9 +139,10 @@
 <main>
   <div role="tablist" aria-label="Audit views">
     <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="true">Terms</button>
+    <button role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="false" tabindex="-1">Glossary</button>
+    <button role="tab" id="tab-findings" aria-controls="panel-findings" aria-selected="false" tabindex="-1">Findings</button>
     <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Snippets</button>
     <button role="tab" id="tab-strings" aria-controls="panel-strings" aria-selected="false" tabindex="-1" hidden>App strings</button>
-    <button role="tab" aria-disabled="true" tabindex="-1">Findings<small>Coming in phase 3</small></button>
     <button role="tab" aria-disabled="true" tabindex="-1">Recommendations<small>Coming in phase 3</small></button>
     <button role="tab" aria-disabled="true" tabindex="-1">Patterns<small>Coming in pass 2</small></button>
     <button role="tab" aria-disabled="true" tabindex="-1">Style<small>Coming in pass 2</small></button>
@@ -174,6 +179,62 @@
         <tbody id="term-rows"></tbody>
       </table>
       <p class="empty" id="term-empty" hidden>No terms match.</p>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="panel-glossary" aria-labelledby="tab-glossary" hidden>
+    <p class="hint">The terms a person has settled on, from <code>glossary.csv</code>. Read-only here:
+      to change a row, edit the file itself.</p>
+    <div class="controls">
+      <label for="glossary-search" hidden>Search the glossary</label>
+      <input type="search" id="glossary-search" placeholder="Search terms or definitions">
+      <label for="glossary-status" hidden>Status</label>
+      <select id="glossary-status">
+        <option value="">All statuses</option>
+        <option value="use">Use</option>
+        <option value="avoid">Avoid</option>
+        <option value="deprecated">Deprecated</option>
+      </select>
+      <label for="glossary-basis" hidden>Basis</label>
+      <select id="glossary-basis">
+        <option value="">Any basis</option>
+        <option value="published">Published</option>
+        <option value="observed">Observed</option>
+        <option value="recommendation">Reviewer's suggestion</option>
+      </select>
+      <span class="count" id="glossary-count" aria-live="polite"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Term</th><th scope="col">Status</th><th scope="col">Use instead</th>
+          <th scope="col">Definition</th><th scope="col">Basis</th><th scope="col">Source</th>
+        </tr></thead>
+        <tbody id="glossary-rows"></tbody>
+      </table>
+      <p class="empty" id="glossary-empty" hidden>No glossary rows match.</p>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="panel-findings" aria-labelledby="tab-findings" hidden>
+    <p class="hint">Where the public text differs from the glossary, from <code>audit check</code>.
+      Each finding lists every snippet it counts.</p>
+    <div class="controls">
+      <label for="finding-search" hidden>Search findings</label>
+      <input type="search" id="finding-search" placeholder="Search observations">
+      <label for="finding-surface" hidden>Surface</label>
+      <select id="finding-surface"><option value="">All surfaces</option></select>
+      <span class="count" id="finding-count" aria-live="polite"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Observation</th><th scope="col">Snippets</th><th scope="col">Surfaces</th>
+          <th scope="col">Evidence</th>
+        </tr></thead>
+        <tbody id="finding-rows"></tbody>
+      </table>
+      <p class="empty" id="finding-empty" hidden>No findings match.</p>
     </div>
   </section>
 
@@ -402,6 +463,89 @@
     ]);
   }
 
+  // Glossary (read-only, even in review mode: a person edits glossary.csv by hand)
+  var glossarySearch = document.getElementById("glossary-search");
+  var glossaryStatus = document.getElementById("glossary-status");
+  var glossaryBasis = document.getElementById("glossary-basis");
+
+  // A recommendation is the reviewer's, so it's never shown as the company's own rule.
+  function basisText(basis) {
+    if (basis === "published") return "Published by " + data.display_name;
+    if (basis === "observed") return "Observed in " + data.display_name + "'s public text";
+    if (basis === "recommendation") return "Reviewer's suggestion, not " + data.display_name + "'s rule";
+    return basis;
+  }
+
+  function renderGlossary() {
+    var q = glossarySearch.value.trim().toLowerCase();
+    var status = glossaryStatus.value;
+    var basis = glossaryBasis.value;
+    var body = document.getElementById("glossary-rows");
+    body.textContent = "";
+    var rows = data.glossary.filter(function (g) {
+      if (status && g.status !== status) return false;
+      if (basis && g.basis !== basis) return false;
+      if (!q) return true;
+      return (g.term + " " + g.use_instead + " " + g.definition).toLowerCase().indexOf(q) !== -1;
+    });
+    rows.forEach(function (g) {
+      body.appendChild(el("tr", {}, [
+        el("td", { className: "term", text: g.term }),
+        el("td", {}, [el("span", { className: "chip", text: g.status })]),
+        el("td", { text: g.use_instead }),
+        el("td", { className: "definition", text: g.definition }),
+        el("td", { text: basisText(g.basis) }),
+        el("td", { className: "sources" }, [g.source_url ? sourceLink(g.source_url) : null])
+      ]));
+    });
+    document.getElementById("glossary-empty").hidden = rows.length > 0;
+    document.getElementById("glossary-count").textContent = rows.length + " of " + data.glossary.length + " rows";
+  }
+  [glossarySearch, glossaryStatus, glossaryBasis].forEach(function (c) { c.addEventListener("input", renderGlossary); });
+
+  // Findings
+  var findingSearch = document.getElementById("finding-search");
+  var findingSurface = document.getElementById("finding-surface");
+  var findingSurfaces = {};
+  data.findings.forEach(function (f) { f.surfaces.split(" ").filter(Boolean).forEach(function (s) { findingSurfaces[s] = true; }); });
+  Object.keys(findingSurfaces).sort().forEach(function (s) { findingSurface.appendChild(el("option", { value: s, text: s })); });
+
+  function evidenceItem(e) {
+    // In the evidence-only build, most snippets have no excerpt. The link still shows where to read it.
+    var text = e.excerpt
+      ? el("div", { text: e.excerpt })
+      : el("div", { className: "definition", text: "Snippet " + e.id + ": the excerpt isn't in this build." });
+    return el("li", {}, [text, e.source_url ? sourceLink(e.source_url) : null]);
+  }
+
+  function renderFindings() {
+    var q = findingSearch.value.trim().toLowerCase();
+    var surface = findingSurface.value;
+    var body = document.getElementById("finding-rows");
+    body.textContent = "";
+    var rows = data.findings.filter(function (f) {
+      if (surface && f.surfaces.split(" ").indexOf(surface) === -1) return false;
+      return !q || f.observation.toLowerCase().indexOf(q) !== -1;
+    });
+    rows.forEach(function (f) {
+      var details = el("details", {}, [
+        el("summary", { text: "Show " + f.evidence.length + (f.evidence.length === 1 ? " snippet" : " snippets") }),
+        el("ul", {}, f.evidence.map(evidenceItem))
+      ]);
+      body.appendChild(el("tr", {}, [
+        el("td", { className: "question-text", text: f.observation }),
+        el("td", { className: "num", text: f.count }),
+        el("td", {}, f.surfaces.split(" ").filter(Boolean).map(function (s) {
+          return el("span", { className: "chip", text: s });
+        })),
+        el("td", { className: "evidence" }, [details])
+      ]));
+    });
+    document.getElementById("finding-empty").hidden = rows.length > 0;
+    document.getElementById("finding-count").textContent = rows.length + " of " + data.findings.length + " findings";
+  }
+  [findingSearch, findingSurface].forEach(function (c) { c.addEventListener("input", renderFindings); });
+
   // App strings (review mode only)
   function fillSelect(id, values, chosen) {
     var select = document.getElementById(id);
@@ -533,6 +677,8 @@
   }
 
   renderTerms();
+  renderGlossary();
+  renderFindings();
   renderSnippets();
 })();
 </script>
