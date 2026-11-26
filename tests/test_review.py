@@ -125,6 +125,16 @@ def test_requests_for_another_host_name_are_refused(server: tuple[str, config.Ta
     assert status == 403
 
 
+def test_the_glossary_cannot_be_edited_from_the_page(server: tuple[str, config.Target]) -> None:
+    base, target = server
+    target.glossary.write_text("term,status,use_instead,definition,basis,source_url\n")
+    before = target.glossary.read_text()
+    body = {"term": "Search API", "status": "avoid", "basis": "published"}
+    status, _ = call(base, "/api/glossary", body)
+    assert status == 404
+    assert target.glossary.read_text() == before
+
+
 def test_adding_and_removing_app_strings(server: tuple[str, config.Target]) -> None:
     base, target = server
     status, _ = call(base, "/api/strings/add", STRING)

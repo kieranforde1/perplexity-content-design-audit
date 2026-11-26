@@ -124,7 +124,8 @@ After adding strings, run `extract` and `terms` again to include them.
 The repo commits evidence, not a copy of the company's pages. `extract` writes the full
 table, with every excerpt, to `cache/<target>/snippets.csv` on your computer. The
 committed `data/<target>/snippets.csv` keeps every row, but only fills in the excerpt for
-evidence: snippets the term map cites as examples, and every typed string.
+evidence: snippets the term map cites as examples, the first few snippets of each
+finding from `audit check` (`evidence_per_finding` in the config), and every typed string.
 
 ## Licence
 

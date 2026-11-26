@@ -69,6 +69,7 @@ class Target:
     analysis_exclude: tuple[str, ...] = ()
     terms: TermSettings = TermSettings()
     max_committed_excerpts: int = 500
+    evidence_per_finding: int = 5
 
     def stage_for(self, url: str) -> str:
         """First rule whose `match` text appears in the URL wins. No match means 'other'."""
@@ -176,4 +177,5 @@ def load(name: str, root: Path = Path(".")) -> Target:
         analysis_exclude=tuple(raw.get("analysis_exclude", [])),
         terms=term_settings,
         max_committed_excerpts=int(raw.get("max_committed_excerpts", 500)),
+        evidence_per_finding=int(raw.get("evidence_per_finding", 5)),
     )

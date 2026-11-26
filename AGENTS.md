@@ -98,7 +98,8 @@ copies of the table:
 - `cache/<target>/snippets.csv` (local, gitignored): every row with its excerpt. `terms`
   and `view` read this when it exists.
 - `data/<target>/snippets.csv` (committed): every row, but the excerpt is only filled in
-  for evidence, meaning snippets cited in `terms.csv` and typed strings. The config's
+  for evidence, meaning snippets cited in `terms.csv`, the first `evidence_per_finding`
+  snippets of each row in `findings.csv`, and typed strings. The config's
   `max_committed_excerpts` caps how many, and a test enforces it. The repo commits
   evidence, not a copy of the company's pages.
 
