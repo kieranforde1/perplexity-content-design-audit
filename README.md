@@ -97,6 +97,20 @@ name, avoided term or other variant), the glossary term, what was written, what'
 the fix and, where only the team can answer, a question. It lists every string it
 counts.
 
+### Patterns
+
+A pattern is a message said in more than one place that should read the same each time,
+such as an instruction or a plan description.
+
+```bash
+uv run audit patterns --target perplexity           # writes cache/<target>/pattern_candidates.csv
+uv run audit patterns --check --target perplexity   # checks the two pattern files by line
+```
+
+The candidate list quotes whole sentences, so it stays in `cache/`. A person decides
+which candidates are real: drafts go in `data/<target>/pattern_proposals.csv`, and
+accepted ones in `data/<target>/patterns.csv`.
+
 ### Typed app strings
 
 A typed string is a short piece of text you saw while using the product normally, such

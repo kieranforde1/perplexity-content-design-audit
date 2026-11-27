@@ -7,7 +7,19 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from audit import check, config, extract, fetch, glossary, patterns, review, terms, typed, view
+from audit import (
+    check,
+    config,
+    extract,
+    fetch,
+    glossary,
+    pattern_table,
+    patterns,
+    review,
+    terms,
+    typed,
+    view,
+)
 
 NOT_BUILT = "Not built yet. See ROADMAP.md"
 
@@ -48,6 +60,14 @@ def build_parser() -> argparse.ArgumentParser:
     _add_target(p)
     p.add_argument("--check", action="store_true", required=True, help="Check glossary.csv")
 
+    p = sub.add_parser("patterns", help="Group look-alike sentences into pattern candidates")
+    _add_target(p)
+    p.add_argument(
+        "--check",
+        action="store_true",
+        help="Check patterns.csv and pattern_proposals.csv by line, instead of writing candidates",
+    )
+
     p = sub.add_parser("review", help="Review terms and add app strings in your browser")
     _add_target(p)
     p.add_argument("--port", type=int, default=review.DEFAULT_PORT, help="Port on 127.0.0.1")
@@ -63,7 +83,6 @@ def build_parser() -> argparse.ArgumentParser:
 
     for name, help_text in (
         ("terms", "Build the term map"),
-        ("patterns", "Group look-alike sentences into pattern candidates"),
         ("check", "Check the public text against the glossary"),
         ("recommend", "Turn findings into recommendations"),
         ("skill", "Build a content-standards skill from the audit"),
@@ -73,6 +92,19 @@ def build_parser() -> argparse.ArgumentParser:
         p = sub.add_parser(name, help=help_text)
         _add_target(p)
     return parser
+
+
+def check_patterns(target: config.Target) -> int:
+    """Check both pattern files, like `audit glossary --check`. 1 if either has problems."""
+    known = pattern_table.known_ids(target.public_snippets)
+    total = 0
+    for path, proposal in ((target.pattern_table, False), (target.pattern_proposals, True)):
+        found = pattern_table.check_file(path, known, proposal=proposal)
+        for line, problem in found:
+            print(f"{path.name} line {line}: {problem}")
+        print(f"{path}: {len(pattern_table.read(path))} rows, {len(found)} problems.")
+        total += len(found)
+    return 1 if total else 0
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -93,7 +125,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             terms.run(config.load(args.target, args.root))
             return 0
         if args.command == "patterns":
-            patterns.run(config.load(args.target, args.root))
+            target = config.load(args.target, args.root)
+            if args.check:
+                return check_patterns(target)
+            patterns.run(target)
             return 0
         if args.command == "check":
             check.run(config.load(args.target, args.root))

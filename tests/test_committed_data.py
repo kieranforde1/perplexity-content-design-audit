@@ -13,6 +13,7 @@ from pathlib import Path
 import pytest
 
 from audit import config, glossary, snippets, view
+from audit.cli import main
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SNIPPET_FILES = sorted(REPO_ROOT.glob("data/*/snippets.csv"))
@@ -112,6 +113,16 @@ def test_headlines_are_short_and_lead_to_evidence(path: Path) -> None:
         # Anything quoted from the company's text follows the excerpt limit.
         for quote in re.findall(r'"([^"]+)"', h["line"]):
             assert len(quote.split()) <= snippets.EXCERPT_MAX_WORDS, quote
+
+
+@pytest.mark.parametrize(
+    "path", sorted(REPO_ROOT.glob("data/*/pattern_proposals.csv")), ids=lambda p: p.parent.name
+)
+def test_pattern_files_pass_their_check(path: Path) -> None:
+    # The same check a person runs: `audit patterns --check`. Every string ID has to be in
+    # the committed snippets table, so a re-crawl that changes an ID shows up here.
+    target = path.parent.name
+    assert main(["patterns", "--check", "--target", target, "--root", str(REPO_ROOT)]) == 0
 
 
 @pytest.mark.parametrize("path", SNIPPET_FILES, ids=lambda p: p.parent.name)

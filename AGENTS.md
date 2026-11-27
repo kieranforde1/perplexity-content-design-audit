@@ -69,7 +69,7 @@ being audited.
 - add a source, a surface or a stage
 - add a dependency
 - delete or overwrite anything a person has filled in (`review`, `definition`,
-  `typed_strings.csv`, `glossary.csv`)
+  `typed_strings.csv`, `glossary.csv`, `patterns.csv`, a proposal's `decision`)
 - run `audit terms` while the review page may be in use: it rewrites `terms.csv` and can
   overwrite edits saved during the run
 
@@ -84,13 +84,14 @@ being audited.
 | `src/audit/snippets.py` | The snippets table: columns, IDs, allowed values |
 | `src/audit/terms.py` | The term map: candidates, clusters, decisions, questions |
 | `src/audit/patterns.py` | `audit patterns`: groups look-alike sentences. Writes `cache/<target>/pattern_candidates.csv` |
+| `src/audit/pattern_table.py` | Rules for `patterns.csv` and `pattern_proposals.csv`, used by `audit patterns --check` |
 | `src/audit/view.py`, `viewer.html` | The offline viewer |
 | `src/audit/review.py` | The local review page, which saves a person's edits |
 | `src/audit/typed.py` | Rules for typed app strings, used by `audit typed`, extract and review |
 | `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` and by applying proposals |
 | `src/audit/check.py` | `audit check`: tests the public text against the glossary |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
-| `data/<target>/` | Committed outputs: the public strings table, terms, term candidates, typed app strings, front-page headlines |
+| `data/<target>/` | Committed outputs: the public strings table, terms, term candidates, typed app strings, patterns, front-page headlines |
 | `later/` | Paused designs, such as the content-skill template |
 | `tests/` | One test file per step, plus checks on the committed data |
 
@@ -129,6 +130,20 @@ presented as Perplexity's rule). `audit glossary --check` checks the file.
 the glossary columns, change (`update` an existing term or `add` a new one), evidence_id,
 note and decision (blank, accept, reject, or `applied` once "Apply accepted" has written
 it into `glossary.csv`, after the same check as `audit glossary --check`).
+
+`patterns.csv` holds the patterns a person has accepted, and is never written by code:
+pattern_id, message (one sentence), shared_wording, basis (as in the glossary), variants
+and pages (counts from the string IDs), surfaces (space-separated), question and
+string_ids (space-separated IDs from `data/<target>/snippets.csv`). There's no status
+column: every row is a real pattern, and every row asks the team a question. Shared
+wording uses the glossary's `use` terms, and it's a recommendation unless the company
+published it.
+
+`pattern_proposals.csv` holds drafted patterns for a person to decide: the same columns,
+plus note (how the draft was made, and where it was changed to match the glossary) and
+decision (blank, accept or reject). For now a person copies accepted rows into
+`patterns.csv`; a review tab will do it later. `audit patterns --check` checks both files,
+including that quoted text is 20 words at most.
 
 `typed_strings.csv` holds app text from normal use of the product, typed in by hand or
 transcribed from the owner's screenshots and checked by the owner: text, kind, source_url,
