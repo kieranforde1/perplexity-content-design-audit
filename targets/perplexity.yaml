@@ -267,6 +267,24 @@ check:
       - security portal
       - self-serve portal
       - billing portal
+    # The ordinary verb, as in "Focus on data protection", and a word in someone else's
+    # sentence.
+    Focus:
+      - Focus on
+      - Perplexity focus
+    # Colour presets in the brand guidelines, and Computer's own "Return to Presets".
+    preset:
+      - Off-palette presets
+      - Return to Presets
+    # "Workflow" as a general noun, and a GitHub feature.
+    Workflows:
+      - Example Workflows
+      - GitHub Action Workflow
+      - Workflow Automation
+    # A card brand and the verb "master a skill".
+    master:
+      - Master Card
+      - master material
 
 # The committed snippets table only fills in excerpts for evidence rows. A test fails if
 # it holds more than this many.

@@ -1496,7 +1496,7 @@ e48ca4257ec9,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,
 c89a023995d8,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,c9efc3d0f19d0526
 3326321a5bf6,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,e9f9a671061dc1dc
 47f04b3c7fc3,,heading,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,5db5c812e697ea7a
-42f6f8531e29,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,f7697809fc7ec241
+42f6f8531e29,"SSO lets your organization sign in through your own identity provider (Okta, Azure AD, Google Workspace SAML, and other SAML …",sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,f7697809fc7ec241
 e7f7a72dba32,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,770e1459d1d771cb
 8654640374c4,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,2a1adf778d834137
 9c8f16e34e9c,"SSO is not available on personal Pro or Max plans, and it cannot be enabled with API-only billing — your …",sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,734c71cd200788ee
@@ -2209,7 +2209,7 @@ b1d89880b175,,sentence,https://docs.perplexity.ai/docs/agent-api/conversation-st
 1e2334997bc7,,sentence,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,3b4c0a49e08fb215
 9ebced6b75c1,,parameter,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,824d80d71985f082
 3a21d2ba6879,,sentence,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,d4db3a27e522d50b
-7ddbb9bad6e4,,sentence,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,e29b6c0d6d0e93e5
+7ddbb9bad6e4,"Setting store: false only hides a response from retrieval — it does not disable persistence, and the response can still …",sentence,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,e29b6c0d6d0e93e5
 f2e82f2d67ba,,sentence,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,5251bdaa67334d5f
 5b7b614721f6,,parameter,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,a56145270ce6b3be
 21a5d4f9b51b,,sentence,https://docs.perplexity.ai/docs/agent-api/conversation-state.md,docs,other,2026-11-25,crawl,3c499602532de1ec
@@ -2642,7 +2642,7 @@ a0b7eb38f23b,,parameter,https://docs.perplexity.ai/docs/agent-api/migrate-from-s
 9d443b7e93a4,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,ccb560afd671ca05
 4a381b5f342e,,parameter,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,c68d3d8d73da2b02
 f219e63ed1ea,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,d6b47e116ff75256
-a4fd78d613a7,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,6c56346475c73a3b
+a4fd78d613a7,"With an effort level, the effort level's tools stay enabled — tools: [] does not clear them and there is …",sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,6c56346475c73a3b
 e6b89ecd0f1c,,parameter,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,04d60ef6ba64f0e6
 04e02e0b3514,,parameter,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,4b5e57f6eb2f42b9
 ee6b4eb5e9f9,,parameter,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md,docs,other,2026-11-25,crawl,b8a98203ec9d769d
@@ -2725,7 +2725,7 @@ f5767888c4e5,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-so
 e6206412c71b,,heading,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,8e8799208b2536bb
 6d3e7298916d,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,4cfcddbfc41f3e80
 2aa701945a21,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,3c9b1708d4dd464d
-804a990b38e2,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,765519e0c38fb8ae
+804a990b38e2,"The ability to leverage multiple tools and spin up an agentic loop that reasons, acts, observes results, and continues within …",sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,765519e0c38fb8ae
 9985f321f3d8,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,4e58090265b7e964
 f87486ce7737,,sentence,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,49119f43539e5806
 6cfad45859ee,,heading,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md,docs,other,2026-11-25,crawl,7199a8b930fdbd0d
@@ -3444,7 +3444,7 @@ d6408a2ffb26,,parameter,https://docs.perplexity.ai/docs/agent-api/quickstart.md,
 7463b0485b24,,parameter,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,56d49029ef7d2c28
 5dac3b4f0e42,,parameter,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,b1091aa126daa889
 f9ec572f266f,,sentence,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,7985d305869d648c
-c6a718a376af,,sentence,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,d5399d45ffef9ce0
+c6a718a376af,"Instead of iterating through response.output, simply use response.output_text for cleaner code.",sentence,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,d5399d45ffef9ce0
 e38f2bb3c62e,,parameter,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,e0ee8bb50685e05f
 64e9ce52230d,,parameter,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,ed7002b439e9ac84
 2e87a3a8be2e,,sentence,https://docs.perplexity.ai/docs/agent-api/quickstart.md,docs,first-use,2026-11-25,crawl,b2c7580e576f6f6e
@@ -4567,7 +4567,7 @@ ef61e7dc13e6,,sentence,https://docs.perplexity.ai/docs/agent-api/tools/people-se
 d91834e139da,,sentence,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,25392df91c628b20
 2b5056e0cfd9,,parameter,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,c082456a7766e23a
 0dabf08adcbc,,sentence,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,d9f257f3205bea78
-f297bdd44cec,,sentence,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,007634bb690a1ac0
+f297bdd44cec,"If requests hang, fall back to medium reasoning effort or disable streaming.",sentence,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,007634bb690a1ac0
 5bd1f3a072ed,pro,heading,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,07ed400759a0f606
 1cfe6ace60c0,,sentence,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,d4cfd5c96d7aeac9
 f2af2ecf8c91,,heading,https://docs.perplexity.ai/docs/agent-api/tools/people-search.md,docs,other,2026-11-25,crawl,9061383b8e228ef3
@@ -14184,7 +14184,7 @@ f42daf9a4ff8,,parameter,https://docs.perplexity.ai/docs/getting-started/integrat
 c7ea74e72b9b,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,50fd61e0bf342161
 88d8026d745d,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,79202ff2cf7e86d3
 af39bbfceb7e,,heading,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,65b0a8075bdf2cd1
-b7aa262e6b37,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,b08f3d7f6b30218c
+b7aa262e6b37,"During verification, temporarily disable caching and keyless fallback in the same web section.",sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,b08f3d7f6b30218c
 14802fd9856b,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,3de9d3d238b46017
 45acd135a1af,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,700a774aea7bf69c
 9badfa89fd6a,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,53a3ac5b9ab0fb9a
@@ -14196,7 +14196,7 @@ ceb26012ea18,,sentence,https://docs.perplexity.ai/docs/getting-started/integrati
 67f96784acad,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,2a0506776fcaa526
 96a3335824ce,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,c4faf58c38076fb2
 f7334992af4f,,heading,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,6dd470a4dadae812
-cce6842fc982,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,a89e057952573dcb
+cce6842fc982,"This tutorial uses both tools to answer a bounded engineering question: does Python 3.13 disable the GIL by default, and …",sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,a89e057952573dcb
 4f37133ef5fd,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,ef811f065f5a0524
 fdf696bfca6c,,heading,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,33059e4cb5cacc0e
 a1f642073cf7,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/hermes.md,docs,other,2026-11-25,crawl,3c474eee9219f066
@@ -14732,10 +14732,10 @@ db430ea36587,,parameter,https://docs.perplexity.ai/docs/getting-started/integrat
 cba174c65ff4,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,d98a2135de618a4d
 73faac8ec044,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,c132baa3343ff220
 77e68108c808,,parameter,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,6ef7c9b15ecdd690
-882d67db1d18,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,e51ed04e061f38ca
+882d67db1d18,"Deep, comprehensive research.",sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,e51ed04e061f38ca
 cd6b110e8972,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,c0cdd50db26c3f03
 c83de1ea4cf6,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,8e548b059ba3816f
-cf64e6113ab6,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,04825c1f68b2e4b0
+cf64e6113ab6,"Best for: Complex topics requiring detailed investigation, comprehensive reports, and in-depth analysis.",sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,04825c1f68b2e4b0
 9c787b1dd322,,parameter,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,c082456a7766e23a
 7157b08f6acc,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,0d285b55371c3bc4
 bada747311a4,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server.md,docs,other,2026-11-25,crawl,9f8c639884931287
@@ -14830,7 +14830,7 @@ ad3201229fdd,,sentence,https://docs.perplexity.ai/docs/getting-started/integrati
 5867378b398e,,heading,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,d4b1ea5708dd5329
 ef15acf76264,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,ba6c728ba014fe83
 4cfbe8b03d3d,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,40fbd574c4842715
-62e0dbd66936,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,8cfa218a9cf28864
+62e0dbd66936,This allows you to leverage Perplexity's powerful models and up-to-date search results directly within OpenClaw's agent framework.,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,8cfa218a9cf28864
 acd010de9f1e,,nav,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,1b1fc03dd251bd52
 3206e20e5735,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,f9642d4d27d8b6da
 faa4aad1d43c,,heading,https://docs.perplexity.ai/docs/getting-started/integrations/openclaw.md,docs,other,2026-11-25,crawl,0b6442077eda4ee7
@@ -15762,7 +15762,7 @@ fe6e6d96730d,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.
 beac93614b7b,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,4eb7eccd6f88c7d0
 38669864b0d1,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,f85fc5ebe7ea9dc0
 d0ec4f27d070,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,b77b2d673d9ae54a
-fe2cfb186985,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,dc4428dd8826bfd5
+fe2cfb186985,"Metric selector: Choose from Chat Completions API Requests, Input Tokens, Output Tokens, Citation Tokens, Reasoning Tokens, Deep Research Requests Count, …",sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,dc4428dd8826bfd5
 4859a6981e7c,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,5e584164c035d489
 3e04894ee193,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,f0bc67471857f4b5
 54324238dbba,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,9f0ca2c161b4e0d9
@@ -18774,11 +18774,11 @@ d9294ed2e996,,sentence,https://docs.perplexity.ai/docs/resources/privacy-securit
 437e9c8a3863,,heading,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,1ec28d4060dd8023
 7d564c6bd127,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,c33f2ffd295a4dd7
 436fd983b2a4,,heading,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,735845f3d1ca5253
-d108004046c0,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,aeb612e58bbb526d
+d108004046c0,"SOC 2 Type II Report - Comprehensive security controls audit covering security, availability, processing integrity, confidentiality, and privacy",sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,aeb612e58bbb526d
 c4f9c910e777,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,d3cbb42010e3a32e
 aadcf4a9dc59,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,46b8be244a8156d5
 a160ae8f5726,,heading,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,3bea3a929690dee3
-f75e6e793521,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,c5c5eb6e10b7dcd0
+f75e6e793521,"For comprehensive details about our security measures, infrastructure protection, and compliance frameworks, visit our dedicated security portal:",sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,c5c5eb6e10b7dcd0
 ddf9b95b7376,Perplexity Trust Center,nav,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,33c7f02888c31bea
 8f89ce8f4452,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,119df67243f7f44c
 7a11b80516fa,,sentence,https://docs.perplexity.ai/docs/resources/privacy-security.md,docs,other,2026-11-25,crawl,1fd9ba097e060839
@@ -18796,7 +18796,7 @@ eda61f34c259,,heading,https://docs.perplexity.ai/docs/resources/status.md,docs,o
 199e62ca6585,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,94cd19a528facfee
 bf82c8adceb6,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,d4b1ea5708dd5329
 e7b7a757a98d,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,21480a1b09279025
-97af5316d107,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,0e5d6b64bef713a7
+97af5316d107,"Following these practices will help you build robust, secure, and efficient applications.",sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,0e5d6b64bef713a7
 a49c8387a6e7,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,fd71b2dae27dc4d2
 349e3475a4fa,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,1124ecc667c5f22e
 3e000a0e5aa8,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,54232a72797857fe
@@ -18819,7 +18819,7 @@ f0f462daaf9f,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,doc
 73f997e32601,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,df482b12c382c485
 ec5ad0b9f295,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,b57dcb6e5c630f2b
 d107454cb2e6,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,9a8493f45d2d6bca
-c377b85f6aa6,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,3f05250380a15f20
+c377b85f6aa6,Implement comprehensive monitoring:,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,3f05250380a15f20
 eb80cc21b4f9,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,78a7bb89c767e432
 147682391409,,heading,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,e545a5af59c65dba
 3a668857289b,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,1c095489ee315212
@@ -18887,7 +18887,7 @@ ed217b3845b7,,sentence,https://docs.perplexity.ai/docs/sdk/configuration.md,docs
 ad9179ffda82,,title,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,753215f79dc6dc9e
 001596f911ea,,sentence,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,7c6363aa2ed1a2e2
 297d36f127cc,,heading,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,d4b1ea5708dd5329
-795c050e5641,,sentence,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,e4d755d2b45c061e
+795c050e5641,The Perplexity SDKs provide robust error handling with specific exception types for different error scenarios.,sentence,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,e4d755d2b45c061e
 81053171a586,,sentence,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,1abe040205f051c7
 0ef08bcfacb3,,heading,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,876fc876512cd657
 b2d01417828e,,parameter,https://docs.perplexity.ai/docs/sdk/error-handling.md,docs,error,2026-11-25,crawl,bc6e6f3286f5e730
@@ -19030,7 +19030,7 @@ c4e8b5c9b8cc,,sentence,https://docs.perplexity.ai/docs/sdk/performance.md,docs,o
 1c55a501b80f,,nav,https://docs.perplexity.ai/docs/sdk/performance.md,docs,other,2026-11-25,crawl,753215f79dc6dc9e
 c0e62baa0b2b,,sentence,https://docs.perplexity.ai/docs/sdk/performance.md,docs,other,2026-11-25,crawl,920e944a8b85d686
 56b2cde49d71,,title,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,945df932a0401b24
-12c91b4d36e0,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,eed2ae578fffbb24
+12c91b4d36e0,Learn how to leverage full TypeScript definitions and Python type hints with the Perplexity SDKs for better development experience and …,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,eed2ae578fffbb24
 9ebb307d7061,,heading,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,d4b1ea5708dd5329
 670ba0c26680,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,52384fdc1e51e478
 a8016b286ed3,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,b06fc22ffc7d859a
@@ -19060,7 +19060,7 @@ be4ee0f3ae4a,,heading,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,ot
 e966492607eb,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,dd97b49e4e838f4c
 9807db900283,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,95144faee5107dd6
 429a7581b25a,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,fe7a28e6cdada8ab
-2f0d5898476e,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,9e5c13bd4b71866b
+2f0d5898476e,Leverage generic types,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,9e5c13bd4b71866b
 36cc597529b7,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,4a1b285ddaaa9a32
 d965f3b3ce27,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,9694ec77e9b7fe5d
 f42ec0b3aa96,,sentence,https://docs.perplexity.ai/docs/sdk/type-safety.md,docs,other,2026-11-25,crawl,42fd38b3c3c55257
@@ -20080,7 +20080,7 @@ a0174f66a370,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 0e6741f28ba1,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,0d09abfd7019e977
 14d3ad677719,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,f7f9f703eedcf380
 83c328d869bd,"If installation fails, make sure your device meets all minimum system requirements and has the latest OS updates installed.",sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,17ef8b6253f655cb
-06768a55616a,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,9d57a54026599aba
+06768a55616a,Temporarily disable antivirus or firewall if it’s blocking the installer.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,9d57a54026599aba
 8ba0e8d2cd69,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,9b2b5e9dcfd6601a
 01580fe08199,For further help contact support.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,f1c68f8237097ac5
 05ed2c3899b6,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md,help,other,2026-11-26,crawl,13715146042e3487
@@ -20440,7 +20440,7 @@ dc2d9bd73978,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 6acb5317b2d3,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,2d775761d1b4c5e5
 f845c063b5e6,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,610cbb0ebde2d527
 d43aaec29acd,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,3d837aa32ae50779
-cc06b7cdb8dd,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,01051a0a320cd98a
+cc06b7cdb8dd,Changing your default to another search engine will limit or disable many AI-powered features.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,01051a0a320cd98a
 85d39075ef04,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,ab172dfd16f4535f
 092212249161,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,5234d1c68b504485
 28f3a314924b,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642841-key-settings-to-get-you-going.md,help,other,2026-11-26,crawl,e26b630e6c9924da
@@ -20475,7 +20475,7 @@ cf71c422fde4,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 d92e4b7db1c4,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,62e77652482073c5
 aaa1b5cad28d,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,482e3f2aced8dee7
 5fc150d69934,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,f7aed26adc8435bf
-8ef28face1fd,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,8e36dba4c2182992
+8ef28face1fd,Focus – Open a clean workspace with only the tabs and extensions relevant to that context.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,8e36dba4c2182992
 15cbdadd9475,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,e8ac93762c53615c
 20d3567d0a48,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,48ac02c9bf8b48c5
 2e5c4256acff,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11642916-profiles-on-comet.md,help,other,2026-11-26,crawl,34498e510e0ad85b
@@ -20665,9 +20665,9 @@ ee761b3fbb6d,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 cb792377d115,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,3c7c1aba14d845ab
 cc98167977ac,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,60d0ee2d160e37bc
 13e73681adb8,,nav,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,47cf48a48fa3bc23
-fa68df47feff,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,ed8add44e5b3d66d
+fa68df47feff,Go to Settings → Extensions or simply type chrome://extensions in the address bar.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,ed8add44e5b3d66d
 338717324a68,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,61ddc2027550184b
-9736a1226f4e,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,41184e483ebd5dab
+9736a1226f4e,Use the toggle switch to enable or disable extensions as needed.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,41184e483ebd5dab
 ada7a386da60,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,ebfddef75c6704b2
 9ffb1177987e,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,ee5c5968372135d9
 54636565b83c,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734716-extensions.md,help,other,2026-11-26,crawl,7a1d5c7a7e55eb32
@@ -20715,7 +20715,7 @@ ee1072fbaae9,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 50ea269820d2,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,15fcf886592c6345
 84d193161113,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,ce502eec27eca842
 c3635095ef41,"Browsers store passwords inside these protected system vaults, and your OS controls the handoff between them.",sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,eb17fdd08ab19393
-d66cb59c360c,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,87d6bdf209885f06
+d66cb59c360c,Granting access simply allows macOS or Windows to decrypt and transfer the passwords you selected to import.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,87d6bdf209885f06
 a17be40e0cd9,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,806897afc3867a20
 a5fac5896fa7,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,f601d779f8898208
 50339ad2932e,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734739-why-does-comet-ask-for-keychain-credential-manager-access-during-installation.md,help,other,2026-11-26,crawl,bdc6564d4edba0f4
@@ -20732,7 +20732,7 @@ db450c1285ed,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11
 511fbaf05c17,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,dcb15b7757d9830e
 ac3f39feb69e,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,6183096aebeb4d0b
 a7b0cce003dc,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,c65ebcd7eb1f5724
-f6535680bacb,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,28b8ab11786e7e20
+f6535680bacb,Some security tools can block new apps until approved — whitelist Comet if needed.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,28b8ab11786e7e20
 060c138ae9e3,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,c8dbc113c90972ed
 c4c8167076f6,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,96f9c1e0b990e4f2
 a41d85e327d6,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,b72e7a2b9523cef9
@@ -20748,7 +20748,7 @@ acdc913b8bc4,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 2bc46b3a5af8,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,cbe192df0494f1e5
 a716f9db424b,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,080b62709109d21a
 1470e01f2153,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,c86768980cfc41db
-31eb6eef8879,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,7fa61eb91f3ffb28
+31eb6eef8879,Disable proxy or filtering apps that may interfere.,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,7fa61eb91f3ffb28
 3426c73bc04d,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,f0dea009a36cedb0
 c87edcb8f7ef,,heading,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,d75af5b6e5b18852
 dc28021bff2e,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md,help,other,2026-11-26,crawl,525f3eba6b1be39a
@@ -21249,7 +21249,7 @@ dadc1e466645,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 cff41178010d,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,32ade1f19c05888b
 85596348da60,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,83dcf1237795dbab
 fda6faf0d42e,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,d83ca07f427b601c
-3a8105b2c74f,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,8247c82fcbb76fd3
+3a8105b2c74f,"If you want to stop the deletion process, simply sign back into your account within 30 days of initiating it.",sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,8247c82fcbb76fd3
 3df0535fd153,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,d1328f33c342940d
 c46bca73bcf3,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,a5547cf47c0069bf
 518fe2e6943d,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12871737-self-serve-data-deletion.md,help,other,2026-11-26,crawl,432881c2079692b0
@@ -21301,7 +21301,7 @@ b1147bc837ef,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12
 cd086e610e59,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,32ade1f19c05888b
 4abb12d8ce7c,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,a181d8283b1c412c
 455dcbf1de17,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,d83ca07f427b601c
-d6e68302f9bf,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,e3dd4006d808981a
+d6e68302f9bf,"If you want to stop the deletion process, simply log back into your account within 30 days of initiating it.",sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,e3dd4006d808981a
 eca6b2029b5c,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,d1328f33c342940d
 b492b32815a9,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,a5547cf47c0069bf
 341f0b7497a9,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12871874-delete-my-account.md,help,other,2026-11-26,crawl,8ca819f97e5537c8
@@ -21342,7 +21342,7 @@ a8a8078e5acc,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/1
 29e85d253a54,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,c801f22be6825785
 88732288fc2e,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,7186263670a840ec
 b99c439c81c4,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,9a4ce305181e86df
-0905df037057,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,1a55f6f3ee627a60
+0905df037057,"For recipe pages, simply say, “Get me the recipe” to pull out ingredients and instructions instantly.​",sentence,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,1a55f6f3ee627a60
 1ee41a82fddd,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,36dfc53011936507
 c2e1b1836236,,sentence,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,3ab37944ba4750ee
 ce8b8abb7ca7,,heading,https://www.perplexity.ai/help-center/comet/en/articles/12875447-comet-for-android-quick-start-and-key-features.md,help,other,2026-11-26,crawl,65ef4010b23db05d
@@ -21681,7 +21681,7 @@ fedfe47051a5,,sentence,https://www.perplexity.ai/help-center/en/articles/1035215
 877ae329af0c,,heading,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,2c2789b7bb3cc1e0
 964696911bae,,sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,51fe951a89e0189b
 d66f4714a7cb,,sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,9817b43f35d957e9
-35f414db5839,,sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,4a8323caa6bf9031
+35f414db5839,"Receive comprehensive responses that synthesize information from multiple sources, eliminating the need to navigate through numerous web pages to find …",sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,4a8323caa6bf9031
 92c54ce13c79,,sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,5b05db439a7f05f3
 e937cb641929,,sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,9b10b41042f93631
 ce72aad338c8,,sentence,https://www.perplexity.ai/help-center/en/articles/10352155-what-is-perplexity.md,help,other,2026-11-26,crawl,1e4f0047f5792e1b
@@ -21700,22 +21700,22 @@ a173a4137133,,sentence,https://www.perplexity.ai/help-center/en/articles/1035289
 659dc2b0cbed,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,4edba71678963839
 f00f3861827a,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,206a0dac7982a170
 eb43b26a8bc4,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,76413efa8af4c8ea
-14164728c3c9,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,8a8021fc7899eaf5
+14164728c3c9,"Perplexity leverages sophisticated AI to interpret your question, ensuring it knows exactly what you're asking.",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,8a8021fc7899eaf5
 9b3ddafb5a9b,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,87d2f3386f90d631
 d7f946531fbf,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,ed69b6496533756d
 f9deabc4a58f,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,a8e10499e892d170
 2d3689688d32,,heading,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,691a1c9f3f42e261
 fe33079b9e14,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,a54158d3a57d75c9
 40e7af193b8d,,heading,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,cc1761ed689c3e00
-37af6a41493d,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,3743096b39b73ca6
+37af6a41493d,"Pro Search: Pro Search is an advanced AI-powered search feature that provides comprehensive, in-depth answers to any query.",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,3743096b39b73ca6
 b1755653f6ff,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,7e1d79fc72aff4eb
-a845daa544db,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,172b2716c91147c3
+a845daa544db,"Pro Search isn't a separate toggle: when you use Search, Perplexity applies it automatically if your plan includes it.",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,172b2716c91147c3
 07ac3d9fd9ef,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,e9751bc7a248c2c3
 c33d48af0a2f,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,9c1c4839f8a5981f
-187389d7b86a,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,679cae1230415bff
+187389d7b86a,"Deep Research performs dozens of searches automatically, reads hundreds of sources, reasons through material autonomously, and delivers comprehensive reports in …",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,679cae1230415bff
 fa927437ee31,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,6c8fbc6966fb0393
 e799fc3939eb,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,fd400d68c27997d4
-af88dbd92a43,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,b124d9538673cebe
+af88dbd92a43,"It leverages tools like deep web browsing, code execution, and chart/image creation to turn ideas into tangible deliverables.",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,b124d9538673cebe
 a3ae24ac6f6f,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,6d4e02b6199d74e4
 0e5b32785849,,heading,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,a7de37ac6aab75bc
 f97807a1a6fb,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,b373348589550e93
@@ -21749,19 +21749,19 @@ a5bd8f2e2b54,,sentence,https://www.perplexity.ai/help-center/en/articles/1035290
 580e85aaecdc,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,fdddb298dc0427ad
 7d3f08ceaae8,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,86ae708715641e1c
 98641c1ede2f,,heading,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,8b04dba738d0c9a0
-10f0deba071a,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,7d4543c80d9bf82a
-d88b4f46d023,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,995599f395e1789b
+10f0deba071a,Pro subscribers get extended access to Pro Search.,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,7d4543c80d9bf82a
+d88b4f46d023,"There's nothing to turn on: when you use Search, Perplexity applies Pro Search automatically for tasks like multi-step reasoning, detailed …",sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,995599f395e1789b
 ac266fca8f98,,heading,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,b7c9b5dec771e253
 3554d8138f89,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,fbdedc6654b7772d
 7ed8114cff1c,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,7c552c08eaebd972
-c73b9ee34205,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,42b9cc4797305c8e
+c73b9ee34205,These models deliver comprehensive responses with multiple references.,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,42b9cc4797305c8e
 2f8921fcc672,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,7b1ba85671e154e6
 d2394c5e830c,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,b928556988dff48b
 a385701b14ee,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,9920589fa02a8098
 6d8f6178ea73,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,60bb5a231181e0f9
 110f4ccc8a79,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,5586db3598451d54
 153c39a2ef29,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,b02c7401e0c03e54
-9a94c25e9085,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,b449ffa3299565b8
+9a94c25e9085,"This mode automatically selects the optimal combination of models for in-depth research on complex topics, generating comprehensive reports without manual …",sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,b449ffa3299565b8
 68e8ee68f85c,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,43a386a054051eaa
 9dba6cc3d6b3,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,0be668a9b4e09a2e
 9705b6418c7a,,sentence,https://www.perplexity.ai/help-center/en/articles/10352901-what-is-perplexity-pro.md,help,other,2026-11-26,crawl,2ca21ced08e91be3
@@ -22020,8 +22020,8 @@ f7edfb76635c,,sentence,https://www.perplexity.ai/help-center/en/articles/1035295
 fc600592ef41,,sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,e6693bd6b9e130b4
 1cb3a54b31f6,,sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,2783e193b1e5e572
 56200e6990fe,,sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,8bf991cdd3c36bfa
-af509ca7d27c,,heading,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,00562bc8af25ee0d
-b4162cac29af,,sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,72b801944c07b4d9
+af509ca7d27c,Why don’t I see Focus in Perplexity’s search bar?,heading,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,00562bc8af25ee0d
+b4162cac29af,"For Enterprise users, Focus has been replaced with Choose sources, allowing you to use Internal Knowledge Search by selecting between …",sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,72b801944c07b4d9
 804215ed38ab,,heading,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,14016ca29f2efb43
 68eebdc1642f,,sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,d7f770b6088f9bbd
 e2cdb3efaaba,,sentence,https://www.perplexity.ai/help-center/en/articles/10352958-what-is-internal-knowledge-search-for-enterprise.md,help,other,2026-11-26,crawl,5407fbcdc6519d4e
@@ -22422,7 +22422,7 @@ d54bc3aed800,,sentence,https://www.perplexity.ai/help-center/en/articles/1035297
 f0861899e286,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,ef07d933238ac669
 4309ef8171d2,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,93eea20b34d4ce07
 329795d3fc96,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,8c45e9b407bb062f
-23a788179cb0,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,211eecea96bf6063
+23a788179cb0,"Require all users to authenticate via your company's identity provider (e.g., Okta, Azure AD, Google Workspace SSO).",sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,211eecea96bf6063
 f1f9d00ec500,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,4069bef96e6e9ec7
 a25e4f0b208e,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,d5e9fac1e6d795fd
 c7010b98a8f5,,sentence,https://www.perplexity.ai/help-center/en/articles/10352978-user-management-for-enterprise-organizations.md,help,other,2026-11-26,crawl,a5549fa4986f3d5e
@@ -23232,8 +23232,8 @@ dc941d713796,,sentence,https://www.perplexity.ai/help-center/en/articles/1035477
 2476c0f4e021,,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,cc60e79772187ca0
 ff732fd105e7,,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,864cfb4d53d69683
 70ffa862d255,,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,81770be1b545a2e3
-4556f40ddfc9,,heading,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,bc746abf6400ec18
-a4dd9b08ade7,,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,9c144b8ee00a35ae
+4556f40ddfc9,Can I switch my Focus selection on a Session?,heading,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,bc746abf6400ec18
+a4dd9b08ade7,It is not possible to switch Focus within a session.,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,9c144b8ee00a35ae
 14537ce9a87a,,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,1fd581e1f07695d6
 3b3430fb0b43,,heading,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,74b93c4013edb70d
 c8ae49844ce8,,sentence,https://www.perplexity.ai/help-center/en/articles/10354775-technical-capabilities-of-threads.md,help,other,2026-11-26,crawl,9e92d2fb01569568
@@ -23359,7 +23359,7 @@ fdc6b2ef3656,,sentence,https://www.perplexity.ai/help-center/en/articles/1035480
 93a14c314971,,sentence,https://www.perplexity.ai/help-center/en/articles/10354807-file-uploads.md,help,other,2026-11-26,crawl,b3a3717d54ba6c07
 193015beccd0,,sentence,https://www.perplexity.ai/help-center/en/articles/10354807-file-uploads.md,help,other,2026-11-26,crawl,e84ca763b8677b05
 042b986406d6,,sentence,https://www.perplexity.ai/help-center/en/articles/10354807-file-uploads.md,help,other,2026-11-26,crawl,3f7c7c4788c1123d
-b73d9a80ae39,,sentence,https://www.perplexity.ai/help-center/en/articles/10354807-file-uploads.md,help,other,2026-11-26,crawl,f302fb17cf58d148
+b73d9a80ae39,SharePoint and OneDrive Connectors: File Upload Security,sentence,https://www.perplexity.ai/help-center/en/articles/10354807-file-uploads.md,help,other,2026-11-26,crawl,f302fb17cf58d148
 0eb4a8a4cebd,,title,https://www.perplexity.ai/help-center/en/articles/10354810-security-and-privacy-with-file-uploads.md,help,other,2026-11-26,crawl,b3a3717d54ba6c07
 dffc1186080e,,sentence,https://www.perplexity.ai/help-center/en/articles/10354810-security-and-privacy-with-file-uploads.md,help,other,2026-11-26,crawl,5b56223ec65ba0f1
 c112b0b2c844,,sentence,https://www.perplexity.ai/help-center/en/articles/10354810-security-and-privacy-with-file-uploads.md,help,other,2026-11-26,crawl,bb5abdc0f7e1c800
@@ -23452,8 +23452,8 @@ f2625d5f5f27,,sentence,https://www.perplexity.ai/help-center/en/articles/1035484
 672ae5568cac,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,6e23caf423b45739
 7a916ad3924c,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,dc8c25491da0a4d5
 69e0338dd0a1,,heading,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,57241fc9b0a82d6d
-314627564877,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,162a4f48e2c3df5d
-29cf42960431,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,7e99f1bd9fe86016
+314627564877,"Agent API — access third-party models alongside built-in tools and presets to build autonomous, tool-using agents.",sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,162a4f48e2c3df5d
+29cf42960431,"Built-in tools include Web Search (web_search) and URL Fetch (fetch_url), plus People Search and Finance Search, and presets like fast, …",sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,7e99f1bd9fe86016
 7cabf526c941,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,f57be7e0a7f9e816
 86e2b999edcd,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,3377af91e8279981
 de57d44432f6,,sentence,https://www.perplexity.ai/help-center/en/articles/10354842-what-is-the-perplexity-api-platform.md,help,other,2026-11-26,crawl,04b0b2a421dfa579
@@ -23525,7 +23525,7 @@ a587d8fbeb73,,sentence,https://www.perplexity.ai/help-center/en/articles/1035487
 635c682e2314,,sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,7ec60fc62847caaa
 58af7707dff6,,sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,a0d42a3d2eec9ce2
 ab69c37c947b,,sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,65f89eeaf58bdb51
-bfe0074990b6,,sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,7c4b45e85883bf91
+bfe0074990b6,"The company upholds rigorous standards to protect information from unauthorized access, maintaining robust safeguards that align with industry best practices.",sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,7c4b45e85883bf91
 23fbb5b19ed0,,sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,131e86098f790974
 5e1b994e0edf,,sentence,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,1ed64286fadc067d
 99020a644b3a,,heading,https://www.perplexity.ai/help-center/en/articles/10354873-how-long-does-perplexity-retain-my-search-history-profile-data-and-personal-information.md,help,other,2026-11-26,crawl,5a38da0df0abc9a5
@@ -23924,7 +23924,7 @@ c79b2f0dfbd5,,heading,https://www.perplexity.ai/help-center/en/articles/10354919
 ee60e79ea435,,sentence,https://www.perplexity.ai/help-center/en/articles/10354919-what-advanced-ai-models-are-included-in-my-subscription.md,help,other,2026-11-26,crawl,232517f3537eb502
 108f7a33ae6b,,sentence,https://www.perplexity.ai/help-center/en/articles/10354919-what-advanced-ai-models-are-included-in-my-subscription.md,help,other,2026-11-26,crawl,311da7cf579043e1
 315e6914b5df,,title,https://www.perplexity.ai/help-center/en/articles/10354930-what-is-perplexity-s-default-language-model-and-how-does-it-compare-to-pro-options.md,help,other,2026-11-26,crawl,4f3ea7dede2cd4a4
-7af727753e20,,sentence,https://www.perplexity.ai/help-center/en/articles/10354930-what-is-perplexity-s-default-language-model-and-how-does-it-compare-to-pro-options.md,help,other,2026-11-26,crawl,6d2683be70cac75a
+7af727753e20,"Learn about Perplexity’s default language model, optimized for fast search, and the advanced OpenAI and Anthropic models included with Perplexity …",sentence,https://www.perplexity.ai/help-center/en/articles/10354930-what-is-perplexity-s-default-language-model-and-how-does-it-compare-to-pro-options.md,help,other,2026-11-26,crawl,6d2683be70cac75a
 a4788652e7c2,,sentence,https://www.perplexity.ai/help-center/en/articles/10354930-what-is-perplexity-s-default-language-model-and-how-does-it-compare-to-pro-options.md,help,other,2026-11-26,crawl,a606b599b4e053e9
 145e8db24dfc,,sentence,https://www.perplexity.ai/help-center/en/articles/10354930-what-is-perplexity-s-default-language-model-and-how-does-it-compare-to-pro-options.md,help,other,2026-11-26,crawl,95d74893aac11d12
 7c9d98f438a0,,sentence,https://www.perplexity.ai/help-center/en/articles/10354930-what-is-perplexity-s-default-language-model-and-how-does-it-compare-to-pro-options.md,help,other,2026-11-26,crawl,eafd35aa73b71243
@@ -24323,7 +24323,7 @@ e39112a54fd1,,sentence,https://www.perplexity.ai/help-center/en/articles/1067206
 a457b0f1d803,,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,505828041b803d78
 dc0d0ca82e06,,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,6071391be0b00d73
 f2bcfa75fe88,,heading,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,4a999304fa4000a7
-f4cbcdeca30c,,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,26494fb68356d7d6
+f4cbcdeca30c,There are two main ways to leverage your connected files:,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,26494fb68356d7d6
 e89cf93d3596,,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,1366fc380627dcbf
 54eff9f95e41,,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,ecfa68bb5a0dfb19
 402191541c7b,,sentence,https://www.perplexity.ai/help-center/en/articles/10672063-introduction-to-file-connectors-for-enterprise-organizations.md,help,other,2026-11-26,crawl,eba8084797d5b47a
@@ -24444,7 +24444,7 @@ f9d8d57dcc57,,sentence,https://www.perplexity.ai/help-center/en/articles/1067320
 91dc0dbd6cb6,,heading,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,5269472e4f5ca24e
 638b8b308783,,heading,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,4333287471c53edb
 61689e8db212,,sentence,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,bc165e0ae208cfda
-59b7b82831f2,,sentence,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,9b6a9c6e3c4a66e1
+59b7b82831f2,"In that case, an Entra (formerly Azure AD) admin must provide consent so that Perplexity can access your organization’s data.",sentence,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,9b6a9c6e3c4a66e1
 c0ad065e9d58,,sentence,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,699a46e2803b38d3
 1084a872c254,,sentence,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,812b4ae9073acd4d
 c91e90ae3081,,sentence,https://www.perplexity.ai/help-center/en/articles/10673201-enterprise-connector-troubleshooting-guide.md,help,other,2026-11-26,crawl,447fa3b274c1a1f3
@@ -24997,7 +24997,7 @@ a2f2ecc6ac5a,,sentence,https://www.perplexity.ai/help-center/en/articles/1118741
 cc342463f6e4,,sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,7c84264c877443f2
 f01bb681d2e7,,sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,da2decdb97f7c4c2
 fd7c6b83e39d,,sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,1168139fe48a0ac1
-1599e6f74b09,,sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,ee0d420b9e159f8d
+1599e6f74b09,"Best for: Businesses and organizations needing robust collaboration, security, and administrator controls.",sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,ee0d420b9e159f8d
 8ed4f4acedf3,,heading,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,d1c497224634dc67
 47c88bfccfe6,,sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,7882480bcd5f87ed
 aeb2373f11d0,,sentence,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md,help,other,2026-11-26,crawl,889f6b63f92c497f
@@ -25276,7 +25276,7 @@ f058d872f06f,,sentence,https://www.perplexity.ai/help-center/en/articles/1118775
 c34fa8d9a912,,heading,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,d59e2a624b472b95
 29d5afc7a0c4,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,b9aef42cdd980fcf
 75a2f35bd5fc,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,fdad701e173593e4
-faf91d1be588,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,6619f9be01c81ad7
+faf91d1be588,"For example, the organization-level Computer setting is a master switch.",sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,6619f9be01c81ad7
 48e4902aa875,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,8c1127b7fcdde617
 a2c4aed48f54,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,00779500f7ecfba7
 008885f93c7a,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,9a66abf8c73665da
@@ -25284,7 +25284,7 @@ de71a0f77450,,sentence,https://www.perplexity.ai/help-center/en/articles/1118775
 5b05be570829,,heading,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,dbb0d852ae544bba
 5271291ea6d1,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,f59c4644de08c592
 d07d32d657a7,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,e2fa975ad2c47199
-d36798083dbb,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,5c65f785a3120116
+d36798083dbb,Org-level settings are the master switch.,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,5c65f785a3120116
 ed61582e2ad2,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,86b26888786d503f
 55b62b247511,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,8d4d0438ac6b3718
 512b244300a5,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,40176158ef3a3bd5
@@ -25380,7 +25380,7 @@ dc23c1e07847,,sentence,https://www.perplexity.ai/help-center/en/articles/1118775
 f1e6dadbba56,,heading,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,52d62f696bc764c7
 d04c84a7b2ef,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,44c7c17f2db12eaa
 42ddae50de40,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,a205de5c22c3bc09
-d42a2d096dbf,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,dfb0af273c98ce8f
+d42a2d096dbf,Maximum effort The highest built-in effort preset offered to members with this role.,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,dfb0af273c98ce8f
 f5571fa1f817,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,3562193845239e7b
 849d4825598e,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,23ee8d651c22827f
 dcf2f2cc5c45,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,b84cde88c774dec3
@@ -25393,7 +25393,7 @@ c07957e8cb5a,,sentence,https://www.perplexity.ai/help-center/en/articles/1118775
 9a7d1cd53356,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,adedf317641231bd
 2261273262ef,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,25978e5878b498a2
 96fceb16cc4f,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,833a4a4b6e85e58e
-2a380ffc4dca,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,727ee4149aae49e3
+2a380ffc4dca,Members do not see effort presets or speeds above their maximum in the effort selector.,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,727ee4149aae49e3
 09d99611011d,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,0a3f449e4a966091
 7fe002c8cac0,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,c815a0e661f0d627
 63d1b2172a57,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,334126cdfb5e4c69
@@ -25441,7 +25441,7 @@ f6f189a831ac,,sentence,https://www.perplexity.ai/help-center/en/articles/1118775
 e2e318116042,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,2652e9f3f8e1c7f5
 df47323f331a,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,86bf91cee23ed1bd
 cf2fdd482f15,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,93799bdc1f95fdea
-dd1221f61b25,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,031190507488dfba
+dd1221f61b25,"A member cannot choose a faster speed, or does not see a higher effort preset.",sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,031190507488dfba
 1719c01422bf,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,ef5f1f9393861619
 ded436bf1a96,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,a92b707b9ca8a460
 6f9e84465c31,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,6cd3b64a8c2ec157
@@ -25469,7 +25469,7 @@ aaa856545148,,sentence,https://www.perplexity.ai/help-center/en/articles/1118775
 5876a775726e,,heading,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,53b9fb2558dcfa36
 7fac90b88a87,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,d213fe3a5bb4180c
 10c1b0bd4da4,,heading,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,412b8b41268e13f9
-9d8d8b6876ed,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,e68927a11f5a8031
+9d8d8b6876ed,The organization-level setting is the master switch.,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,e68927a11f5a8031
 66e02a88c2a1,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,4f6e94f22fdb243e
 9d74f9113875,What happened to existing settings when my organization was upgraded?,heading,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,5af6f6ed1b0985a5
 ad8644f87727,,sentence,https://www.perplexity.ai/help-center/en/articles/11187754-enterprise-roles-and-permissions.md,help,other,2026-11-26,crawl,b2670b1482682281
@@ -25965,8 +25965,8 @@ e9e09a15ad5a,,button,https://www.perplexity.ai/help-center/en/articles/11501745-
 d94cedcf05bd,,sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,bacf8419a4ef32af
 64a1b7d5bdee,,sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,9a4f8ff822765d43
 1495d21314d6,,sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,6fa9fb36ad222d7b
-a118922e20ec,,button,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,1ad2dac9f95a710a
-114d5fb036fb,,sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,8f93032fa69f3815
+a118922e20ec,"""Add new whitelist.""",button,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,1ad2dac9f95a710a
+114d5fb036fb,"Click ""Add new whitelist.""",sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,8f93032fa69f3815
 785efaf5cff9,,heading,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,97e6eb35e71f7629
 4587b7fe4a66,,sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,dc49857721f6f0d7
 3416c512cc84,,sentence,https://www.perplexity.ai/help-center/en/articles/11501745-troubleshooting-not-receiving-one-time-passcode-or-sign-in-email.md,help,other,2026-11-26,crawl,e15c66849341b50c
@@ -27475,7 +27475,7 @@ b3d7461c23a2,,sentence,https://www.perplexity.ai/help-center/en/articles/1216765
 3768d9579bee,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,7a680583edb5f318
 1357dcf94730,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,5b2e43efedabbfe8
 d27c66572c53,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,5ae4d5e87c1d8b79
-4b029a716014,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,82079f6521cb9e55
+4b029a716014,"Your emails and calendar data, just like any other Enterprise data, are never used for AI training, and robust safeguards …",sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,82079f6521cb9e55
 4b50d716092e,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,918310d1e7b2ac0b
 6d9d84ca48e7,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,79f3c93fcc336570
 8c5d6e711227,,sentence,https://www.perplexity.ai/help-center/en/articles/12167654-connecting-perplexity-with-notion.md,help,other,2026-11-26,crawl,551382206596b6d7
@@ -27522,7 +27522,7 @@ ce9bfbfe62cd,,sentence,https://www.perplexity.ai/help-center/en/articles/1216771
 573e4bb8207c,,heading,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,94becbf5ec8904d5
 d3322ea5ea09,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,a074dc9b1eb5d9d6
 24ce7d8656d5,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,5ae4d5e87c1d8b79
-b7b11adbadd4,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,82079f6521cb9e55
+b7b11adbadd4,"Your emails and calendar data, just like any other Enterprise data, are never used for AI training, and robust safeguards …",sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,82079f6521cb9e55
 0dc0737d3c72,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,918310d1e7b2ac0b
 7146d4e33a75,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,688637aa0d60314f
 bf660d5ea338,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,db43b22428fb0d4a
@@ -27546,7 +27546,7 @@ d3800b5e876b,,sentence,https://www.perplexity.ai/help-center/en/articles/1216771
 cbca7adbe4ea,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,6a4621b762556515
 6ae315c8fa7e,,button,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,e6950b45d25c2027
 b1ecaa9b83e1,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,317235f3f429520b
-fbf108243b75,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,b29e6ee4514a4835
+fbf108243b75,Try running some of these queries to leverage your Linear information directly in your answers:,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,b29e6ee4514a4835
 01dbd47bf951,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,62b47d088ecc5843
 fa407da6298f,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,a9873d28164d0a5a
 d04c93491c7b,,sentence,https://www.perplexity.ai/help-center/en/articles/12167711-linear-connector-for-enterprise.md,help,other,2026-11-26,crawl,a4915930526026fc
@@ -27610,7 +27610,7 @@ c6bcb9f45b2a,,sentence,https://www.perplexity.ai/help-center/en/articles/1216798
 08166eea53ae,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,9bdf5d88bb007d31
 d020cc7cc62e,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,dc31e519a87ea46f
 c70eb4026136,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,5ae4d5e87c1d8b79
-63d06d5605e3,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,82079f6521cb9e55
+63d06d5605e3,"Your emails and calendar data, just like any other Enterprise data, are never used for AI training, and robust safeguards …",sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,82079f6521cb9e55
 d5870c498b7f,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,918310d1e7b2ac0b
 c330a8bce9e8,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,c1a29f37b7c379c0
 b02a1fdb586d,,sentence,https://www.perplexity.ai/help-center/en/articles/12167980-using-the-connector-for-slack.md,help,other,2026-11-26,crawl,feea19d52c9080ce
@@ -27773,7 +27773,7 @@ b6cf251500b5,,sentence,https://www.perplexity.ai/help-center/en/articles/1227566
 222aef3094d7,,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,5c5410da63c52724
 8e9b284ea580,,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,d58bc3b4530ea464
 373cd61f6fbe,,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,0e8aab8dba6ecd83
-21f06b634b84,,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,d452d8de01c2f2fe
+21f06b634b84,Workflow: Update GitHub Action Workflow files.,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,d452d8de01c2f2fe
 51e061a695a8,Enterprise-grade data security,heading,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,58f71769ff9984b2
 7dcf7304ccde,,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,ae05f510e719f97a
 c7d7ac1e5bb2,,sentence,https://www.perplexity.ai/help-center/en/articles/12275669-github-connector-for-enterprise.md,help,other,2026-11-26,crawl,aa0014801c6c5b12
@@ -32315,7 +32315,7 @@ f2aaba8c6459,,sentence,https://www.perplexity.ai/help-center/en/articles/1364170
 1a6917e86aaa,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,b4dc2626aef7182f
 9d31b694de57,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,00db302626f18b59
 9287570fbcec,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,bb298f8fa2a2a1e0
-f6352ca2b21d,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,a29cc574fc725bbf
+f6352ca2b21d,Every AI model has blind spots.,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,a29cc574fc725bbf
 e920b2c838d0,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,56a1ebf1d911db02
 91df26957099,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,5f5ff3ea8951d3db
 38c1bd1ade6b,,sentence,https://www.perplexity.ai/help-center/en/articles/13641704-what-is-model-council.md,help,other,2026-11-26,crawl,e89f3c979a4a464f
@@ -32641,8 +32641,8 @@ e2e655c012c7,,sentence,https://www.perplexity.ai/help-center/en/articles/1371450
 0e1c83a02ef9,,sentence,https://www.perplexity.ai/help-center/en/articles/13714508-google-drive-connector-file-upload-security.md,help,other,2026-11-26,crawl,63341b6417fb990c
 f02ec342e7c0,,heading,https://www.perplexity.ai/help-center/en/articles/13714508-google-drive-connector-file-upload-security.md,help,other,2026-11-26,crawl,5a38da0df0abc9a5
 64dd54339d21,,sentence,https://www.perplexity.ai/help-center/en/articles/13714508-google-drive-connector-file-upload-security.md,help,other,2026-11-26,crawl,2412629327a4cd35
-4891f1ad4c40,,sentence,https://www.perplexity.ai/help-center/en/articles/13714508-google-drive-connector-file-upload-security.md,help,other,2026-11-26,crawl,f302fb17cf58d148
-3952d361d186,,title,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,f302fb17cf58d148
+4891f1ad4c40,SharePoint and OneDrive Connectors: File Upload Security,sentence,https://www.perplexity.ai/help-center/en/articles/13714508-google-drive-connector-file-upload-security.md,help,other,2026-11-26,crawl,f302fb17cf58d148
+3952d361d186,SharePoint and OneDrive Connectors: File Upload Security,title,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,f302fb17cf58d148
 7539fc59bf15,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,b5d7d1f037a3d15e
 15e7f3e39775,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,6b8a44aff1c15f92
 c63d8ce7b5c2,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,af9bb4a430b94413
@@ -32675,7 +32675,7 @@ be0c162f0e3f,,sentence,https://www.perplexity.ai/help-center/en/articles/1372800
 a3bb9ecf6b83,,heading,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,849aa80521393e62
 815a8cf72f6b,,heading,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,836f98dc28fb2caf
 49134fd54b8c,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,f9a0702f17d25e91
-106ec81c7d49,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,35948773426de89b
+106ec81c7d49,User Authentication: Users authenticate via OAuth 2.0 through Microsoft Entra (Azure AD),sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,35948773426de89b
 9f778401c744,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,7a0afb021cb1d207
 c3623ca75f51,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,f093d3fecf4080fa
 b35f8c23b33d,,sentence,https://www.perplexity.ai/help-center/en/articles/13728000-sharepoint-and-onedrive-connectors-file-upload-security.md,help,other,2026-11-26,crawl,c1530ee7fdb4df6c
@@ -33685,7 +33685,7 @@ cbba8d34f793,,sentence,https://www.perplexity.ai/help-center/en/articles/1390132
 cc21ba8797ff,,heading,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,0cacdd3599636514
 fafe4f0ad17e,,sentence,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,2a33f6aeec4304d0
 c2c42dcb7857,,sentence,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,548faa66d9febc0b
-c8abe7bd6554,,sentence,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,414f0a5548f9fdef
+c8abe7bd6554,"Additional usage cap (drawn from the organization pool) — used after your grant is exhausted, up to your individual or …",sentence,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,414f0a5548f9fdef
 564358c711f7,,heading,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,cb9fed0f83ef18c8
 47ca5f18fffc,,sentence,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,1d201011928870fb
 9fb828df3efb,,sentence,https://www.perplexity.ai/help-center/en/articles/13901321-how-credits-work-for-enterprise-organizations-member-guide.md,help,other,2026-11-26,crawl,07267041e566033c
@@ -34584,7 +34584,7 @@ fab3dfea8be6,,sentence,https://www.perplexity.ai/help-center/en/articles/1409201
 f0c7868944d7,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,27d39d18fd8a680f
 e47184edab72,,heading,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,adf2cc0525a2faba
 a607723ba8f2,,heading,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,e988730f68a3bc10
-798c2d4f683c,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,bdd6c47d10902e40
+798c2d4f683c,This is the master toggle for the entire firewall.,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,bdd6c47d10902e40
 d4708e98d6bd,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,c7799d666bb95d2a
 d9b9700e85bf,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,15dab05617359a5c
 2125ce991a52,,heading,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,8816b9fd76f24201
@@ -34611,7 +34611,7 @@ d565bd60d30a,,sentence,https://www.perplexity.ai/help-center/en/articles/1409201
 d47bd78b33c5,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,6f4e070d28867493
 5a31a7c0c3fa,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,27adfe2a9bd1f4fc
 1e8c9c18bc58,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,29dbaedd81058cb2
-a449ed534f83,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,789095612b5b0247
+a449ed534f83,Only the specific domains you whitelist are reachable; everything else is blocked.,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,789095612b5b0247
 9f96b07dddb3,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,2819005ed4dc219e
 93e3f6cbd1bf,,heading,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,5abf3ecee55cd011
 d9a56a7edf63,,sentence,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md,help,other,2026-11-26,crawl,3b3bac1d20480d6e
@@ -36701,7 +36701,7 @@ a3b90fd4012b,,button,https://www.perplexity.ai/help-center/en/articles/20260729-
 a62621f0867a,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,0a9c3afc38da3bdf
 b56dccbe6619,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,bef17cd84e351789
 eec4408f7391,,heading,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,31b7c80ef6a9d3c5
-33abf2b1ba7d,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,de1768e3220e56f4
+33abf2b1ba7d,"SSO lets your organization sign in through its own identity provider, such as Okta, Azure AD, or Google Workspace SAML.",sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,de1768e3220e56f4
 405cc097e6d9,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,a4e54bc873ed3696
 c732c5f11637,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,417d2b21fa23b5b8
 4bd7354e4ea8,,button,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,e109d85e08c579d5
@@ -39992,7 +39992,7 @@ b46d38173fdd,,sentence,https://www.perplexity.ai/help-center/en/collections/1131
 b3f01b8dc392,,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,df9772ea287ff75a
 251928bcc25a,,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,a3ef1993d7ca6e78
 9cf4fa933301,,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,13d6e8100a99bfca
-f057a8dda237,,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,3da577c711bf82fb
+f057a8dda237,SharePoint and OneDrive Connectors: File Upload Security How and when Perplexity connects to SharePoint and OneDrive via API or indexed …,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,3da577c711bf82fb
 b136ef855cd6,,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,6d6b0440e8e27937
 7d5071f8ed40,,heading,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,5a38da0df0abc9a5
 cfd7d3bd1ec6,,sentence,https://www.perplexity.ai/help-center/en/collections/11312901-perplexity-enterprise.md,help,other,2026-11-26,crawl,1be3e64543379420
@@ -40740,7 +40740,7 @@ bae5f20e5da2,,heading,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26
 9652dc06aa83,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,ae43706c7094ea5b
 bdf4e114b074,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,4deb4435bcda7467
 6fc9e63156a2,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,89c059245c84d753
-636ace540af8,,heading,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,9d3cab2b5efed4ea
+636ace540af8,Focus,heading,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,9d3cab2b5efed4ea
 638ed9c994e7,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,29d65cf52e45c10f
 c584cc13c48a,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,ca7d9568f7d7cf9a
 747936927ff3,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,bdfec54be7511cc7
@@ -40926,7 +40926,7 @@ da2bdf82d20a,,button,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,
 3f1cf6d6427c,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,71e7831b6bef8010
 e092542e4dd7,,heading,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,9f036d41436122c9
 8f3a16d5ab7c,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,fa60e618961ae7db
-8eeeeb0d8974,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,83f2b09bad964903
+8eeeeb0d8974,"Prompt: “Build an event poster generator for Perplexity as a single HTML file, with fields for headline, subhead, city and …",sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,83f2b09bad964903
 650c482469a4,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,ae0d4d64cf93aede
 2b980a243f6d,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,ce3e614ee74bc1d5
 dc269bfc813a,,sentence,https://www.perplexity.ai/hub/brand,brand,other,2026-11-26,crawl,f659ce0f447963fd
