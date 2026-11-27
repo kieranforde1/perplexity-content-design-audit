@@ -32,10 +32,16 @@ These aren't preferences. Breaking one can cause real harm to the owner or the c
 being audited.
 
 **Sources**
-- Use first-party, public sources only: pages the company publishes itself, readable
-  without signing in.
-- Never use third-party coverage, brand analyses made by outsiders, community
-  "design system" reconstructions, or leaked or compiled prompts.
+- The audit's data comes from first-party, public sources: pages the company publishes
+  itself, readable without signing in. Only these go into `snippets.csv`.
+- Third-party public pages (reviews, tutorials, forum posts, news, screenshots seen
+  online) may be read as research, to find out what the signed-in app says and whether
+  a name is still in use (rule changed by the owner on 2026-11-27). What they show is
+  never presented as the company's wording or rule. Cite the page in a `question` or
+  `note`, and quote 20 words at most. Strings that only a third party shows go to the
+  owner to confirm before they reach `typed_strings.csv`.
+- Never use brand analyses made by outsiders, community "design system" reconstructions,
+  or leaked or compiled prompts.
 - Never use anything behind a sign-in or an organisation-only page, even if an account
   could open it.
 - Never automate the company's apps. App text is typed in by hand, or transcribed from
