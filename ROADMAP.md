@@ -13,8 +13,68 @@ step means adding a file, not rebuilding.
 
 ## Second pass
 
-`audit patterns`, `audit style` and `audit tone` print "Not built yet" for now. Their
-output formats will be written here, so they fit without changing earlier steps.
+`audit style` and `audit tone` print "Not built yet" for now. Their output formats will be
+written here, so they fit without changing earlier steps. `audit patterns` is designed
+below and waiting for the owner to agree it before it's built.
+
+### `audit patterns`: the same message in different words
+
+A pattern is a message said in more than one place that should read the same each time:
+an instruction, a notice, a status, a plan description. A glossary term fixes one word.
+A pattern fixes one sentence. The audit's question is the same as for terms: where does
+the wording vary, and what should it be?
+
+**Two tables, like terms and the glossary**
+
+| File | Written by | What it holds |
+| --- | --- | --- |
+| `cache/<target>/pattern_candidates.csv` | `audit patterns` (local, gitignored) | Groups of look-alike sentences, with their string IDs. A list to work from, not a finding. |
+| `data/<target>/patterns.csv` | A person (drafts can be proposed first, as for the glossary) | The patterns that are real: message, shared wording, the variants found, and a question for the team. |
+
+**How candidates are found** (five rules a content designer can explain)
+1. Clean up each sentence: lower-case it, remove punctuation, skip parameters and anything
+   under four words.
+2. Two sentences are look-alikes when they share a three-word phrase and at least 60% of
+   their words. Look-alikes chain into one group. Only groups on two or more pages count.
+3. Name why each group exists: link text (send it to terms), template (one slot changes,
+   such as a connector name; record it, usually fine) or message (the wording differs in
+   more than one place; a pattern candidate).
+4. Rank by pages times variants. Raise groups where the variants disagree on a fact, such
+   as different numbers, plan names or "daily" against "weekly". If the only difference is
+   a glossary word to avoid, `audit check` already covers it.
+5. Report pages that share ten or more groups once, as a copied page, not as dozens of
+   findings. Short app labels are too short for word overlap, so they're grouped by screen
+   and stage instead.
+
+**What a person decides:** which candidates are real patterns, what the message is, and
+the shared wording. The tool never writes `patterns.csv` rows as final.
+
+**`patterns.csv` columns:** pattern_id, message (one plain sentence), shared_wording,
+basis (`published`, `observed` or `recommendation`, as in the glossary), variants (count),
+pages (count), surfaces, question, string_ids. The shared wording is a recommendation
+unless the company published it. Every row carries a question for the team, because
+outside-in work can't know why the wording differs.
+
+**What it connects to**
+- `audit check` reads the patterns marked `use` and reports pages that say the message
+  another way, as findings in a new "same message, different words" category.
+- The viewer gets a Patterns tab, and the review page gets a tab to accept or reject
+  proposed patterns, built the same way as Glossary proposals.
+- Text that exists only in the app (statuses, labels) can't be fixed by changing the help
+  page alone. Those rows say so.
+
+**Build order, each step its own pull request**
+1. `audit patterns` writes the candidate list, with tests on invented fixtures.
+2. `patterns.csv`, its check (`audit patterns --check`) and the draft rows from the
+   research notes (10 candidates).
+3. The viewer tab and review tab.
+4. The `audit check` link.
+
+**Decisions for the owner before step 1:** whether the 60% overlap is the right setting
+(75% gives about 690 groups against about 1,180); whether patterns should wait for the
+glossary review, because several candidates (API Portal against API Console, Disabled
+against Turned off) overlap with glossary rows and would be counted twice; and whether
+the first release stops at step 2, with the viewer tab after.
 
 ## Later
 
