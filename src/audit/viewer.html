@@ -180,6 +180,15 @@
   .rule-strings li a, .more-pages li a { display: block; font-size: 14px; overflow-wrap: anywhere; }
   .more-pages summary { color: var(--link); cursor: pointer; }
   .more-pages ul { margin: 8px 0 0; padding-left: 18px; }
+  .try { margin: 0 0 32px; max-width: 80ch; }
+  .try label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .try textarea {
+    width: 100%; font: inherit; padding: 8px; border: 1px solid var(--line);
+    border-radius: 6px; background: var(--bg); color: var(--text); resize: vertical;
+  }
+  .try-result { white-space: pre-wrap; border: 1px solid var(--line); border-radius: 6px; padding: 8px; margin: 8px 0; }
+  .try-problems { margin: 0; padding-left: 18px; }
+  .try-problems li { margin-bottom: 6px; }
   mark {
     background: var(--mark-bg); color: var(--text);
     border-bottom: 2px solid var(--warn); padding: 0 2px; border-radius: 2px;
@@ -299,6 +308,13 @@
     <h2 class="sr-only">Check</h2>
     <p class="intro">Each row is a rule from the glossary or the patterns, with the strings that
       break it. Run on the same text, the check always gives the same result.</p>
+    <div class="try">
+      <label for="try-text">Try it: paste some text</label>
+      <textarea id="try-text" rows="4" placeholder="Paste a sentence or a few lines. Each line is checked as one string."></textarea>
+      <p class="meta" id="try-status" aria-live="polite"></p>
+      <div class="try-result" id="try-result" hidden></div>
+      <ul class="try-problems" id="try-problems"></ul>
+    </div>
     <p class="notice" id="check-notice" hidden>Where a string's text isn't in this copy, its page is linked instead.</p>
     <div class="controls">
       <label for="rule-search" class="sr-only">Search rules</label>
@@ -495,6 +511,9 @@
 </main>
 
 <script id="audit-data" type="application/json">__AUDIT_DATA__</script>
+<script>
+__CHECK_TEXT_JS__
+</script>
 <script>
 (function () {
   "use strict";
@@ -876,6 +895,40 @@
       applyStatus.textContent = e.message;
     });
   });
+
+  // Try it: the same rules as the pplx-content skill's check_text.py, run on pasted text.
+  var tryText = document.getElementById("try-text");
+  var tryStatus = document.getElementById("try-status");
+  var tryResult = document.getElementById("try-result");
+  var tryProblems = document.getElementById("try-problems");
+  function renderTry() {
+    tryResult.textContent = "";
+    tryProblems.textContent = "";
+    tryResult.hidden = true;
+    if (!tryText.value.trim()) { tryStatus.textContent = ""; return; }
+    var out = checkText(tryText.value, data.glossary, company);
+    tryStatus.textContent = out.problems.length
+      ? plural(out.problems.length, "problem", "problems") + " found."
+      : "No problems found.";
+    if (!out.problems.length) return;
+    tryResult.hidden = false;
+    out.lines.forEach(function (line, i) {
+      var marks = out.problems.filter(function (p) { return p.line === i + 1; });
+      var at = 0;
+      marks.forEach(function (p) {
+        var start = p.column - 1;
+        if (start < at) return;
+        tryResult.appendChild(document.createTextNode(line.slice(at, start)));
+        tryResult.appendChild(el("mark", { text: line.substr(start, p.length) }));
+        at = start + p.length;
+      });
+      tryResult.appendChild(document.createTextNode(line.slice(at) + "\n"));
+    });
+    out.problems.forEach(function (p) {
+      tryProblems.appendChild(el("li", { text: "Line " + p.line + ", column " + p.column + ": " + p.rule }));
+    });
+  }
+  tryText.addEventListener("input", renderTry);
 
   // Check: one row per rule, in the order `audit view` sorts them.
   var rules = data.rules || [];
