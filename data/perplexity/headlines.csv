@@ -1,0 +1,6 @@
+title,line,tab,term
+"One dashboard, two names","API Portal and API Console name the same dashboard. Both link to the same console, and no page uses both.",findings,API Portal
+"""Disabled"" does too many jobs","Used for settings, accounts and buttons. On the firewall page it describes two toggles with opposite results.",findings,Disabled
+Sonar outlived its retirement,"Sonar support ended in September 2026, but the Audit API pages still say ""Sonar API keys"".",findings,Sonar
+Two spellings of one menu path,"""Organization Settings"" and ""Organization settings"" both appear, and three pages use both.",findings,Organization settings
+Spaces are still here,"Spaces became Projects, but the Comet data deletion article still says Spaces.",findings,Space

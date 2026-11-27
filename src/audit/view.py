@@ -6,23 +6,33 @@ nothing from the web. Text from crawled pages is inserted as plain text, never a
 
 `--evidence-only` builds from committed data alone and keeps only snippets with an
 excerpt, so the page is small and holds nothing the repo doesn't.
+
+Readers see a snippet as a "string". The code keeps the name `snippet`, because the
+snippets.csv data contract is locked.
 """
 
 from __future__ import annotations
 
 import csv
 import json
-from collections.abc import Callable
+from collections import Counter
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import asdict
 from datetime import date
 from pathlib import Path
 
-from audit import evidence, glossary, snippets, typed
+from audit import check, evidence, glossary, snippets, typed
 from audit.config import Target
 from audit.snippets import Snippet
 
 TEMPLATE = Path(__file__).parent / "viewer.html"
 PLACEHOLDER = "__AUDIT_DATA__"
+
+# A headline card opens one of these tabs, searched for the card's term.
+HEADLINE_TABS = ("findings", "glossary", "terms")
+HEADLINE_COLUMNS = ("title", "line", "tab", "term")
+# The front page is for scanning, so a headline's line stays short.
+HEADLINE_MAX_WORDS = 24
 
 
 def embed(data: object) -> str:
@@ -35,6 +45,43 @@ def read_csv(path: Path | None) -> list[dict[str, str]]:
         return []
     with path.open(newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def read_headlines(path: Path) -> list[dict[str, str]]:
+    """The front page's headline cards, written by a person in headlines.csv.
+
+    A mistake stops the build with the line number, rather than showing a broken card."""
+    rows = read_csv(path)
+    for line, row in enumerate(rows, start=2):
+        missing = [c for c in HEADLINE_COLUMNS if not (row.get(c) or "").strip()]
+        if missing:
+            raise ValueError(f"{path} line {line}: {', '.join(missing)} is blank")
+        if row["tab"] not in HEADLINE_TABS:
+            raise ValueError(
+                f"{path} line {line}: tab must be one of {', '.join(HEADLINE_TABS)}"
+            )
+        if len(row["line"].split()) > HEADLINE_MAX_WORDS:
+            raise ValueError(f"{path} line {line}: keep the line to {HEADLINE_MAX_WORDS} words")
+    return [{c: row[c].strip() for c in HEADLINE_COLUMNS} for row in rows]
+
+
+def overview(
+    rows: list[Snippet],
+    glossary_rows: list[dict[str, str]],
+    findings: Sequence[Mapping[str, object]],
+) -> dict[str, object]:
+    """The front page's numbers. Counted before an evidence-only build drops rows, because
+    the committed table still has every row, only without most excerpts."""
+    per_category = Counter(f.get("category", "") for f in findings)
+    return {
+        # Typed app strings have no public page, so only crawled rows count as pages.
+        "pages": len({s.source_url for s in rows if s.method == "crawl"}),
+        "strings": len(rows),
+        "glossary_terms": len(glossary_rows),
+        "findings": len(findings),
+        # In the order `audit check` defines, so the bars match the Findings tab.
+        "by_category": [[c, per_category[c]] for c in check.CATEGORIES if per_category[c]],
+    }
 
 
 def finding_evidence(finding: dict[str, str], by_id: dict[str, Snippet]) -> list[dict[str, str]]:
@@ -61,34 +108,25 @@ def build_data(
         {**f, "evidence": finding_evidence(f, by_id)}
         for f in read_csv(target.data_dir / "findings.csv")
     ]
+    glossary_rows = glossary.read(target.glossary)
+    numbers = overview(rows, glossary_rows, findings)
     if evidence_only:
         rows = [s for s in rows if s.excerpt]
     terms = read_csv(target.data_dir / "terms.csv")
-    glossary_rows = glossary.read(target.glossary)
-    pages = {s.source_url for s in rows}
-    dates = sorted({s.captured_on for s in rows})
-    reviewed = sum(1 for t in terms if t.get("review"))
-    span = f"{dates[0]} to {dates[-1]}" if dates else "no dates"
+    # Said only when the Strings tab holds fewer strings than the numbers count.
     if evidence_only:
-        which = " Evidence only: just the snippets whose excerpts are committed."
+        notice = "Evidence copy: the Strings tab lists only strings with a committed excerpt."
     elif not full:
-        which = " Showing committed evidence only: run `audit extract` for every excerpt."
+        notice = "Most excerpts aren't on this computer. Run `audit extract` to see them all."
     else:
-        which = ""
+        notice = ""
     return {
         "display_name": target.display_name,
         "editable": editable,
         "today": today.isoformat(),
-        "summary": (
-            f"{len(rows):,} snippets from {len(pages):,} public pages, captured {span}. "
-            f"{len(terms)} terms proposed, {reviewed} reviewed. "
-            f"{len(glossary_rows)} glossary rows, {len(findings)} findings.{which}"
-        ),
-        "footer": (
-            f"Built by `audit view` on {today.isoformat()}. Findings are observations from "
-            "public, first-party sources. They make no claims about how or why the company "
-            "made its decisions."
-        ),
+        "notice": notice,
+        "overview": numbers,
+        "headlines": read_headlines(target.data_dir / "headlines.csv"),
         "values": {
             "surface": sorted({s.surface for s in rows}),
             "kind": sorted({s.kind for s in rows}),
@@ -100,6 +138,8 @@ def build_data(
             "stage": list(snippets.STAGES),
             "glossary_status": list(glossary.STATUSES),
             "glossary_basis": list(glossary.BASES),
+            # The Findings tab groups and filters in this order.
+            "finding_category": list(check.CATEGORIES),
         },
         "terms": terms,
         "glossary": glossary_rows,

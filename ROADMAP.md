@@ -1,7 +1,7 @@
 # Roadmap
 
-Every step reads the snippets table and writes its own table. Adding a step means adding
-a file, not rebuilding.
+Every step reads the strings table (`snippets.csv`) and writes its own table. Adding a
+step means adding a file, not rebuilding.
 
 ## Phases
 
@@ -51,10 +51,14 @@ A standard never claims to be a company rule unless the company published it.
 
 ### `audit check` → `data/<target>/findings.csv`
 
-finding_id, standard_id, observation, count, surfaces, snippet_ids
+finding_id, standard_id, category, term, written, count, surfaces, issue, fix, question,
+snippet_ids
 
-- `observation` is a neutral sentence starting "Observed:".
-- `snippet_ids` lists every snippet the finding counts, so each one can be traced.
+- `category` is the kind of mismatch: capitalisation, spelling or spacing, deprecated
+  name, avoided term or other variant.
+- `issue` says what's wrong, `fix` says what to write instead, and `question` is filled
+  in only where only the team can answer.
+- `snippet_ids` lists every string the finding counts, so each one can be traced.
 - Tutorial and example-app pages are left out of checks by the `analysis_exclude`
   config setting, because they aren't product language.
 
@@ -78,15 +82,15 @@ rec_id, goal, level, change, finding_ids, reach, effort, confidence, question
   - `pattern`: change how a type of content is written.
   - `system`: change the process or tooling so the problem doesn't come back, such as a
     term check at build time.
-- `reach` is how many snippets and surfaces the change would touch.
+- `reach` is how many strings and surfaces the change would touch.
 - `effort` is `small`, `medium` or `large`.
 - `confidence` is `high`, `medium` or `low`. Automated counts start high and anything
   needing a person's judgement starts lower.
 - `question` is what to ask the team, because outside-in work can't know why something
   was written the way it was.
 
-Recommendations are suggested changes backed by evidence. They make no claims about how or
-why the company made its decisions.
+Recommendations are suggested changes backed by evidence. They state facts as facts and
+never present a guess about the reasons behind a choice as a fact.
 
 ### `audit skill` → `data/<target>/skill/`
 

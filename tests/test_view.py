@@ -5,6 +5,8 @@ from dataclasses import asdict, replace
 from datetime import date
 from pathlib import Path
 
+import pytest
+
 from audit import check, config, glossary, snippets, view
 
 
@@ -32,10 +34,20 @@ def test_viewer_is_offline_and_labelled(tmp_path: Path) -> None:
     out = view.run(target, today=lambda: date(2026, 11, 26), log=lambda _: None)
     html = out.read_text()
     assert out == tmp_path / "viewer" / "example" / "index.html"
-    assert "Outside-in, public sources, unofficial" in html
-    assert "Coming in pass 2" in html
-    # Nothing loads from the web.
+    assert "An unofficial, outside-in audit of" in html
+    # Nothing loads from the web, and no font is bundled.
     assert not re.search(r'<(script|link|img)[^>]+(src|href)="https?://', html)
+    assert "@font-face" not in html and "url(" not in html
+    # Strings is the last tab, so the overview comes first and the raw list last.
+    tabs = re.findall(r'role="tab" id="tab-([a-z-]+)"', html)
+    assert tabs[0] == "overview" and tabs[-1] == "snippets"
+    assert '<button role="tab" id="tab-snippets"' in html and ">Strings</button>" in html
+
+
+def test_page_asks_crawlers_not_to_index_or_train(tmp_path: Path) -> None:
+    html = view.run(make_target(tmp_path), log=lambda _: None).read_text()
+    head = html.split("</head>", 1)[0]
+    assert '<meta name="robots" content="noindex, nofollow, noarchive, noai, noimageai">' in head
 
 
 def test_page_text_cannot_break_out_of_the_data_block(tmp_path: Path) -> None:
@@ -66,9 +78,10 @@ def add_glossary_and_findings(target: config.Target, snippet_ids: str) -> None:
 
 
 FINDING = {
-    "finding_id": "abc", "standard_id": "glossary:Search API",
-    "observation": "Observed: 'Search API' is also written 'search API'.",
-    "count": "2", "surfaces": "docs", "snippet_ids": "",
+    "finding_id": "abc", "standard_id": "glossary:Search API", "category": "capitalisation",
+    "term": "Search API", "written": "'search API' (2)", "count": "2", "surfaces": "docs",
+    "issue": "In running text, 'Search API' is written 'search API' (2).",
+    "fix": "Write 'Search API'.", "question": "", "snippet_ids": "",
 }
 
 
@@ -85,7 +98,10 @@ def test_glossary_and_findings_are_included(tmp_path: Path) -> None:
             {"id": "notarealid", "excerpt": "", "source_url": ""},
         ]}
     ]
-    assert "2 glossary rows, 1 findings" in str(data["summary"])
+    assert data["overview"]["glossary_terms"] == 2  # type: ignore[index]
+    assert data["overview"]["findings"] == 1  # type: ignore[index]
+    # The Findings tab groups by category in the order `audit check` defines.
+    assert data["allowed"]["finding_category"] == list(check.CATEGORIES)  # type: ignore[index]
 
 
 def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -> None:
@@ -103,7 +119,9 @@ def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -
 
     data = view.build_data(target, date(2026, 11, 26), evidence_only=True)
     assert data["snippets"] == [asdict(hostile)]
-    assert "Evidence only" in str(data["summary"])
+    assert "Evidence copy" in str(data["notice"])
+    # The numbers still count every committed row, not just the ones with an excerpt.
+    assert data["overview"]["strings"] == 2  # type: ignore[index]
     # The dropped row's excerpt is gone, but the finding still links to its page.
     assert data["findings"] == [
         FINDING | {"snippet_ids": normal.id, "evidence": [
@@ -131,9 +149,62 @@ def test_glossary_proposals_are_only_in_review_mode(tmp_path: Path) -> None:
     ]
 
 
-def test_summary_counts(tmp_path: Path) -> None:
-    data = view.build_data(make_target(tmp_path), date(2026, 11, 26))
-    assert str(data["summary"]).startswith("2 snippets from 2 public pages")
-    assert data["values"] == {
-        "surface": ["docs"], "kind": ["sentence"], "stage": ["first-use", "other"],
+def test_front_page_numbers(tmp_path: Path) -> None:
+    target = make_target(tmp_path)
+    typed_row = snippets.build(
+        "Ask anything", "button", "web app, home screen", "web-app", "first-use",
+        "2026-11-25", "typed",
+    )
+    snippets.write(target.public_snippets, [*snippets.read(target.public_snippets), typed_row])
+    write_csv(target.data_dir / "findings.csv", check.FINDING_COLUMNS, [
+        FINDING,
+        FINDING | {"finding_id": "def", "category": "avoided term"},
+        FINDING | {"finding_id": "ghi", "category": "avoided term"},
+    ])
+    data = view.build_data(target, date(2026, 11, 26))
+    assert data["overview"] == {
+        # A typed app string is a string, but it has no public page.
+        "pages": 2, "strings": 3, "glossary_terms": 0, "findings": 3,
+        # Categories in the order `audit check` defines, and only ones with findings.
+        "by_category": [["capitalisation", 1], ["avoided term", 2]],
     }
+    # No local cache here, so the page says most excerpts are missing.
+    assert "audit extract" in str(data["notice"])
+    assert data["values"] == {
+        "surface": ["docs", "web-app"], "kind": ["button", "sentence"],
+        "stage": ["first-use", "other"],
+    }
+
+
+HEADLINES = (
+    "title,line,tab,term\n"
+    '"Two names, one thing","The Widget page and the Gadget page name the same tool.",'
+    "findings,Widget\n"
+    "Settled,The glossary says Search API.,glossary,Search API\n"
+)
+
+
+def test_headlines_are_read_from_the_committed_file(tmp_path: Path) -> None:
+    target = make_target(tmp_path)
+    assert view.build_data(target, date(2026, 11, 26))["headlines"] == []
+    (target.data_dir / "headlines.csv").write_text(HEADLINES)
+    assert view.build_data(target, date(2026, 11, 26))["headlines"] == [
+        {"title": "Two names, one thing",
+         "line": "The Widget page and the Gadget page name the same tool.",
+         "tab": "findings", "term": "Widget"},
+        {"title": "Settled", "line": "The glossary says Search API.", "tab": "glossary",
+         "term": "Search API"},
+    ]
+
+
+def test_a_bad_headline_stops_the_build(tmp_path: Path) -> None:
+    path = tmp_path / "headlines.csv"
+    long_line = " ".join(["word"] * (view.HEADLINE_MAX_WORDS + 1))
+    for bad, problem in [
+        (f"Long,{long_line},findings,Widget", "keep the line"),
+        ("Nowhere,A short line.,patterns,Widget", "tab must be one of"),
+        ("No term,A short line.,findings,", "term is blank"),
+    ]:
+        path.write_text("title,line,tab,term\n" + bad + "\n")
+        with pytest.raises(ValueError, match=problem):
+            view.read_headlines(path)

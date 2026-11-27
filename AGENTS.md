@@ -50,12 +50,15 @@ being audited.
 - No code reads `private/`. It's for the owner's own notes.
 - Never name individual people who work at the company being audited, anywhere in the
   repo: code, data, docs or commit messages.
-- No logos, brand fonts or screenshots.
+- The viewer uses Perplexity's published brand colours from the Brand Hub. No logos, no
+  brand font files, no screenshots.
 - Don't publish anything (GitHub Pages, hosting, `reports/`) unless the owner asks.
 
 **How findings are worded**
-- Findings are observations from public text ("Observed: ..."). They never claim to
-  know how or why the company made its decisions.
+- Write findings the way an in-house content designer would write to their team: what's
+  wrong, the fix, and a short question only where only the team can answer it.
+- State facts as facts. Never present a guess about the reasons behind a choice as a
+  fact.
 - Recommendations are suggestions backed by evidence. Each one carries a question for
   the team, because outside-in work can't know the reasons behind a choice.
 - A standard is only called a company rule if the company published it.
@@ -86,11 +89,14 @@ being audited.
 | `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` and by applying proposals |
 | `src/audit/check.py` | `audit check`: tests the public text against the glossary |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
-| `data/<target>/` | Committed outputs: the public snippets table, terms, term candidates, typed app strings |
+| `data/<target>/` | Committed outputs: the public strings table, terms, term candidates, typed app strings, front-page headlines |
 | `later/` | Paused designs, such as the content-skill template |
 | `tests/` | One test file per step, plus checks on the committed data |
 
 ### Data contracts
+
+Readers see each row of the snippets table as a "string": the viewer, docs and finding
+text say "string". The file, its columns and the code keep the name "snippet".
 
 `snippets.csv` columns (locked): id, excerpt, kind, source_url, surface, stage,
 captured_on, method, hash. Allowed values are in `src/audit/snippets.py`. There are two
@@ -129,6 +135,11 @@ surface, stage, captured_on. 20 words at most per string. `source_url` is a web 
 or a short description such as "web app, sign-up screen". `audit typed --check` checks
 the file. Never add strings that didn't come from a person's own use of the product, and
 leave out anything personal: usernames, account details and the person's own chats.
+
+`headlines.csv` holds the viewer's front-page cards, written by a person: title, line (24
+words at most), tab (findings, glossary or terms) and term. A card opens that tab searched
+for the term, so the term must be in the glossary. Anything quoted in a line is 20 words
+at most. A test checks both.
 
 ## How people take part
 

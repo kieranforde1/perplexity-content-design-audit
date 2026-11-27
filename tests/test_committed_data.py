@@ -7,11 +7,12 @@ shape never drifts.
 """
 
 import csv
+import re
 from pathlib import Path
 
 import pytest
 
-from audit import config, glossary, snippets
+from audit import config, glossary, snippets, view
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SNIPPET_FILES = sorted(REPO_ROOT.glob("data/*/snippets.csv"))
@@ -96,6 +97,21 @@ def test_glossary_proposals_can_be_applied(path: Path) -> None:
         assert r["decision"] in ("", "accept", "reject", "applied"), r["term"]
         if r["change"] == "update":
             assert glossary.key(r["term"]) in have, f"{r['term']}: no glossary row to update"
+
+
+@pytest.mark.parametrize(
+    "path", sorted(REPO_ROOT.glob("data/*/headlines.csv")), ids=lambda p: p.parent.name
+)
+def test_headlines_are_short_and_lead_to_evidence(path: Path) -> None:
+    headlines = view.read_headlines(path)
+    assert headlines, "headlines.csv has no rows"
+    glossary_terms = {glossary.key(r["term"]) for r in glossary.read(path.parent / "glossary.csv")}
+    for h in headlines:
+        # A card opens its tab searched for the term, so the term has to be a glossary term.
+        assert glossary.key(h["term"]) in glossary_terms, f"{h['term']}: not in the glossary"
+        # Anything quoted from the company's text follows the excerpt limit.
+        for quote in re.findall(r'"([^"]+)"', h["line"]):
+            assert len(quote.split()) <= snippets.EXCERPT_MAX_WORDS, quote
 
 
 @pytest.mark.parametrize("path", SNIPPET_FILES, ids=lambda p: p.parent.name)
