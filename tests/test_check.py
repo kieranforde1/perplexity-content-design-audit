@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import check, config, snippets, terms
+from audit import check, config, pattern_table, snippets, terms
 
 HEADER = "term,status,use_instead,definition,basis,source_url\n"
 
@@ -302,3 +302,172 @@ def test_without_the_config_a_retired_name_is_reported_everywhere(tmp_path: Path
 def test_unknown_history_surface_is_a_config_error(tmp_path: Path) -> None:
     with pytest.raises(config.ConfigError, match="history_surfaces"):
         write_target(tmp_path, RETIRED, RETIRED_PIECES, "check:\n  history_surfaces: [diary]\n")
+
+
+# Patterns: the same message in different words. A glossary word that never appears keeps
+# the glossary part quiet, so only pattern findings come out.
+QUIET_GLOSSARY = "Gizmo,avoid,,,recommendation,\n"
+
+RESET_PIECES = [
+    # (kind, text, source_url, surface, method)
+    ("sentence", "Check your email for a link to reset your password.", "https://e.com/a",
+     "help", "crawl"),
+    ("sentence", "We emailed you a link to reset your password.", "https://e.com/b", "help",
+     "crawl"),
+    ("sentence", "We emailed you a link to reset your password.", "https://e.com/c", "help",
+     "crawl"),
+    ("sentence", "Look in your inbox for the reset link.", "https://e.com/d", "docs", "crawl"),
+]
+
+
+def write_pattern_target(
+    root: Path,
+    pieces: list[tuple[str, str, str, str, str]],
+    shared_wording: str,
+) -> tuple[config.Target, list[snippets.Snippet]]:
+    """A target whose patterns.csv has one row covering every piece."""
+    target = write_target(root, QUIET_GLOSSARY, [])
+    rows = [snippets.build(t, k, u, s, "other", "2026-11-26", m) for k, t, u, s, m in pieces]
+    snippets.write(target.local_snippets, rows)
+    with target.full_text.open("w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["id", "text"])
+        writer.writerows([(s.id, p[1]) for s, p in zip(rows, pieces, strict=True)])
+    with target.pattern_table.open("w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(pattern_table.COLUMNS)
+        writer.writerow([
+            "reset-link", "We sent a link to reset the password.", shared_wording,
+            "recommendation", "3", str(len({p[2] for p in pieces})),
+            " ".join(sorted({p[3] for p in pieces})), "Does the link expire?",
+            " ".join(s.id for s in rows),
+        ])
+    return target, rows
+
+
+def test_strings_in_another_wording_are_one_finding_per_pattern(tmp_path: Path) -> None:
+    target, rows = write_pattern_target(
+        tmp_path, RESET_PIECES, "Check your email for a link to reset your password."
+    )
+    (row,) = findings(target)
+    assert row["category"] == check.PATTERN_CATEGORY
+    assert row["standard_id"] == "pattern:reset-link"
+    assert row["term"] == "reset-link"
+    # The first string already uses the shared wording, so it isn't counted.
+    assert row["count"] == "3"
+    assert rows[0].id not in row["snippet_ids"]
+    assert row["issue"] == (
+        "We sent a link to reset the password. 3 strings on 3 pages say it 2 different "
+        "ways. 1 string already uses the shared wording."
+    )
+    assert row["written"] == (
+        "'We emailed you a link to reset your password.' (2), "
+        "'Look in your inbox for the reset link.' (1)"
+    )
+    assert row["fix"] == (
+        "Use one string everywhere: 'Check your email for a link to reset your password.' "
+        "This is a recommendation, not a published rule."
+    )
+    assert row["question"] == "Does the link expire?"
+    assert row["surfaces"] == "docs help"
+
+
+def test_the_first_string_of_each_wording_comes_first(tmp_path: Path) -> None:
+    target, rows = write_pattern_target(tmp_path, RESET_PIECES, "Reset links are sent by email.")
+    (row,) = findings(target)
+    # One of each wording first, so the few strings committed as evidence show them all.
+    assert row["snippet_ids"].split() == [rows[1].id, rows[0].id, rows[3].id, rows[2].id]
+
+
+def test_case_and_punctuation_alone_are_not_another_wording(tmp_path: Path) -> None:
+    pieces = [
+        ("heading", "Check your email for a reset link", "https://e.com/a", "help", "crawl"),
+        ("sentence", "check your email, for a reset link!", "https://e.com/b", "help", "crawl"),
+    ]
+    target, _ = write_pattern_target(tmp_path, pieces, "Check your email for a reset link.")
+    assert findings(target) == []
+
+
+def test_a_slot_matches_a_short_run_of_words(tmp_path: Path) -> None:
+    pieces = [
+        ("sentence", "Ask your admin to turn on Slack.", "https://e.com/a", "help", "crawl"),
+        ("sentence", "Ask your admin to turn on Google Calendar.", "https://e.com/b", "help",
+         "crawl"),
+        # Five words is longer than a slot, so this is different wording.
+        ("sentence", "Ask your admin to turn on every single one of them.", "https://e.com/c",
+         "help", "crawl"),
+        # A slot stands for at least one word.
+        ("sentence", "Ask your admin to turn on.", "https://e.com/d", "help", "crawl"),
+    ]
+    target, rows = write_pattern_target(tmp_path, pieces, "Ask your admin to turn on [the app].")
+    (row,) = findings(target)
+    assert row["snippet_ids"].split() == [rows[2].id, rows[3].id]
+    assert "Fill in the parts in [brackets] each time." in row["fix"]
+
+
+def test_a_string_needs_to_match_only_one_sentence_of_a_long_shared_wording(
+    tmp_path: Path,
+) -> None:
+    pieces = [
+        ("heading", "Is my data used for training?", "https://e.com/a", "help", "crawl"),
+        ("sentence", "No. Your data is never used for training.", "https://e.com/b", "help",
+         "crawl"),
+        ("sentence", "We never train on what you share.", "https://e.com/c", "help", "crawl"),
+    ]
+    target, rows = write_pattern_target(
+        tmp_path, pieces, "Is my data used for training? Your data is never used for training."
+    )
+    (row,) = findings(target)
+    # The heading matches the first sentence, and the second string has a sentence that
+    # matches the second. Only the third says it another way.
+    assert row["snippet_ids"] == rows[2].id
+    assert "1 string on 1 page says it another way. 2 strings already use" in row["issue"]
+
+
+def test_app_strings_say_the_public_pages_alone_wont_fix_them(tmp_path: Path) -> None:
+    pieces = [
+        ("sentence", "Check your email for a reset link.", "https://e.com/a", "help", "crawl"),
+        ("label", "Reset link sent", "web app, sign-in screen", "web-app", "typed"),
+        ("label", "Link on its way", "web app, sign-in screen", "web-app", "typed"),
+        ("sentence", "We emailed a reset link.", "https://e.com/b", "help", "crawl"),
+    ]
+    target, _ = write_pattern_target(tmp_path, pieces, "Check your email for a reset link.")
+    (row,) = findings(target)
+    assert "3 strings on 1 page and in the app say it 3 different ways." in row["issue"]
+    assert row["fix"].endswith(
+        "2 strings are app text, so changing the public pages alone won't fix them."
+    )
+    assert row["surfaces"] == "help web-app"
+
+
+def test_strings_only_in_the_app_say_so(tmp_path: Path) -> None:
+    pieces = [("label", "Reset link sent", "web app, sign-in screen", "web-app", "typed")]
+    target, _ = write_pattern_target(tmp_path, pieces, "Check your email for a reset link.")
+    (row,) = findings(target)
+    assert row["issue"].endswith("1 string in the app says it another way.")
+    assert row["fix"].endswith(
+        "1 string is app text, so changing the public pages alone won't fix it."
+    )
+
+
+@pytest.mark.parametrize("contents", [None, ",".join(pattern_table.COLUMNS) + "\n"])
+def test_no_patterns_means_no_pattern_findings(tmp_path: Path, contents: str | None) -> None:
+    target, _ = write_pattern_target(tmp_path, RESET_PIECES, "Reset links are sent by email.")
+    if contents is None:
+        target.pattern_table.unlink()
+    else:
+        target.pattern_table.write_text(contents)
+    assert findings(target) == []
+
+
+def test_pattern_evidence_is_committed(tmp_path: Path) -> None:
+    target, _ = write_pattern_target(tmp_path, RESET_PIECES, "Reset links are sent by email.")
+    (row,) = findings(target)
+    committed = {s.id for s in snippets.read(target.public_snippets) if s.excerpt}
+    assert set(row["snippet_ids"].split()) <= committed
+
+
+def test_a_broken_patterns_table_stops_the_check(tmp_path: Path) -> None:
+    target, _ = write_pattern_target(tmp_path, RESET_PIECES, "")
+    with pytest.raises(ValueError, match="Fix the patterns table first"):
+        findings(target)

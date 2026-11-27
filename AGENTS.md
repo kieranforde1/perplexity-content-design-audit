@@ -89,7 +89,7 @@ being audited.
 | `src/audit/review.py` | The local review page, which saves a person's edits |
 | `src/audit/typed.py` | Rules for typed app strings, used by `audit typed`, extract and review |
 | `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` and by applying proposals |
-| `src/audit/check.py` | `audit check`: tests the public text against the glossary |
+| `src/audit/check.py` | `audit check`: tests the public text against the glossary and the patterns table |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
 | `data/<target>/` | Committed outputs: the public strings table, terms, term candidates, typed app strings, patterns, front-page headlines |
 | `later/` | Paused designs, such as the content-skill template |

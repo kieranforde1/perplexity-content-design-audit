@@ -1,6 +1,6 @@
-"""`audit check`: test the public text against the glossary.
+"""`audit check`: test the public text against the glossary and the patterns table.
 
-Two kinds of finding come out, one row each in data/<target>/findings.csv:
+Three kinds of finding come out, one row each in data/<target>/findings.csv:
 
 - Words to avoid and deprecated (retired) names: where each one still appears, one row
   per surface. Developer docs often use words like "disabled" as a setting's value, so
@@ -9,6 +9,8 @@ Two kinds of finding come out, one row each in data/<target>/findings.csv:
   apart, because labels use title case on purpose. All-lowercase uses are left out: they
   may be the general word ("a project"), which only a person can tell. A term with two
   kinds of variant (capitals and hyphens, say) gets one row for each kind.
+- Same message, different words: for each row of patterns.csv, the strings that don't use
+  its shared wording. One row per pattern.
 
 Each finding has a category (see CATEGORIES) and short fields, so the viewer can show
 them as columns. The wording is a content designer's note to the team: what's wrong, the
@@ -26,7 +28,7 @@ from collections import Counter, defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass, field
 
-from audit import evidence, glossary, snippets, terms
+from audit import evidence, glossary, pattern_table, patterns, snippets, terms
 from audit.config import Target
 from audit.terms import Text
 
@@ -37,10 +39,15 @@ FINDING_COLUMNS = (
 
 # The kinds of mismatch, in the order the viewer groups them. There's no separate
 # "retired name": the glossary marks a retired name as `deprecated`, so it's the same thing.
+PATTERN_CATEGORY = "same message, different words"
 CATEGORIES = (
     "capitalisation", "spelling or spacing", "deprecated name", "avoided term",
-    "other variant",
+    "other variant", PATTERN_CATEGORY,
 )
+# A [slot] in a shared wording stands for one to four words, the same short gap that
+# `audit patterns` allows in a template.
+SLOT = re.compile(r"\[[^\]]*\]")
+SLOT_WORDS = rf"\S+(?: \S+){{0,{patterns.MAX_SLOT_WORDS - 1}}}"
 STATUS_CATEGORIES = {"deprecated": "deprecated name", "avoid": "avoided term"}
 
 
@@ -336,6 +343,101 @@ def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) 
     return findings
 
 
+def wording_patterns(shared_wording: str) -> list[re.Pattern[str]]:
+    """Each sentence of a shared wording, as a pattern to match against cleaned words.
+
+    Words are cleaned as `audit patterns` cleans them: lower-cased, with punctuation and
+    parameters removed. Each [slot] matches one to four words.
+    """
+    found = []
+    for sentence in patterns.SENTENCE_END.split(shared_wording.strip()):
+        parts: list[str] = []
+        for i, piece in enumerate(SLOT.split(sentence)):
+            if i:
+                parts.append(SLOT_WORDS)
+            parts += [re.escape(word) for word in patterns.clean(piece)]
+        if parts:
+            found.append(re.compile(" ".join(parts)))
+    return found
+
+
+def uses_shared_wording(text: str, wording: list[re.Pattern[str]]) -> bool:
+    """True if one sentence of the string is word for word one sentence of the shared
+    wording, once both are cleaned. A long shared wording is often split across a page,
+    so a string only has to match one of its sentences."""
+    return any(
+        pattern.fullmatch(" ".join(patterns.clean(sentence)))
+        for sentence in patterns.SENTENCE_END.split(text)
+        for pattern in wording
+    )
+
+
+def pattern_finding(row: dict[str, str], by_id: dict[str, Text]) -> Finding | None:
+    """The strings in a pattern that say its message without its shared wording, as one
+    finding. None if every string already uses the shared wording.
+
+    Strings on pages left out of analysis (the config's `analysis_exclude`) aren't counted,
+    as with the glossary.
+    """
+    wording = wording_patterns(row["shared_wording"])
+    found = [by_id[i] for i in row["string_ids"].split() if i in by_id]
+    variants = [t for t in found if not uses_shared_wording(t.text, wording)]
+    if not variants:
+        return None
+    matched = len(found) - len(variants)
+    # Grouped by cleaned wording, most common first. The first string of each wording goes
+    # first in the list, so the few committed as evidence show the different wordings.
+    by_wording: dict[str, list[Text]] = defaultdict(list)
+    for t in variants:
+        by_wording[" ".join(patterns.clean(t.text))].append(t)
+    wordings = sorted(by_wording.values(), key=len, reverse=True)
+    firsts = [w[0].snippet.id for w in wordings]
+    ids = firsts + [t.snippet.id for w in wordings for t in w[1:]]
+    written = ", ".join(f"'{w[0].snippet.excerpt}' ({len(w)})" for w in wordings[:3])
+
+    pages = {t.snippet.source_url for t in variants if t.snippet.method == "crawl"}
+    in_app = sum(1 for t in variants if t.snippet.method == "typed")
+    if pages and in_app:
+        where = f"on {terms.plural(len(pages), 'page')} and in the app"
+    elif pages:
+        where = f"on {terms.plural(len(pages), 'page')}"
+    else:
+        where = "in the app"
+    say = "says" if len(variants) == 1 else "say"
+    ways = "another way" if len(wordings) == 1 else f"{len(wordings)} different ways"
+    issue = (
+        f"{row['message']} {terms.plural(len(variants), 'string')} {where} {say} it {ways}."
+    )
+    if matched:
+        uses = "uses" if matched == 1 else "use"
+        issue += f" {terms.plural(matched, 'string')} already {uses} the shared wording."
+
+    fix = f"Use one string everywhere: '{row['shared_wording']}'"
+    if SLOT.search(row["shared_wording"]):
+        fix += " Fill in the parts in [brackets] each time."
+    fix += how_firm(row, "wording")
+    # App text isn't on any public page, so editing the pages can't change it.
+    if in_app:
+        are = "is" if in_app == 1 else "are"
+        them = "it" if in_app == 1 else "them"
+        fix += (
+            f" {terms.plural(in_app, 'string')} {are} app text, so changing the public "
+            f"pages alone won't fix {them}."
+        )
+    return Finding(
+        standard_id=f"pattern:{row['pattern_id']}",
+        group="",
+        category=PATTERN_CATEGORY,
+        term=row["pattern_id"],
+        written=written,
+        issue=issue,
+        fix=fix,
+        question=row["question"],
+        snippet_ids=ids,
+        surfaces={t.snippet.surface for t in variants},
+    )
+
+
 def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str, str]]:
     problems = glossary.check_file(target.glossary)
     if problems:
@@ -348,6 +450,15 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     if not entries:
         raise FileNotFoundError(f"No glossary rows in {target.glossary}")
     texts = terms.load_texts(target)
+    table = snippets.read(target.local_snippets)
+    pattern_problems = pattern_table.check_file(target.pattern_table, {s.id for s in table})
+    if pattern_problems:
+        line, problem = pattern_problems[0]
+        raise ValueError(
+            f"Fix the patterns table first (line {line}: {problem}). "
+            f"See `audit patterns --check --target {target.name}`."
+        )
+    pattern_rows = pattern_table.read(target.pattern_table)
 
     findings: list[Finding] = []
     for entry in entries:
@@ -355,14 +466,20 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
             findings += avoid_findings(entry, texts, target, entries)
         else:
             findings += spelling_findings(entry, texts, target)
+    by_id = {t.snippet.id: t for t in texts}
+    for pattern in pattern_rows:
+        found = pattern_finding(pattern, by_id)
+        if found:
+            findings.append(found)
 
     rows = [f.row() for f in findings]
     path = target.data_dir / "findings.csv"
     terms.write_csv(path, FINDING_COLUMNS, rows)
     # Findings decide part of the evidence, so the committed copy is redone.
-    filled = evidence.write_public_copy(target, snippets.read(target.local_snippets), log=log)
+    filled = evidence.write_public_copy(target, table, log=log)
     per_category = Counter(f.category for f in findings)
     log(f"{len(entries)} glossary rows checked against {len(texts)} strings.")
+    log(f"{len(pattern_rows)} patterns checked.")
     breakdown = ", ".join(f"{per_category[c]} {c}" for c in CATEGORIES if per_category[c])
     log(f"{len(rows)} findings" + (f": {breakdown}." if breakdown else "."))
     log(f"Wrote {path}")

@@ -74,7 +74,7 @@ outside-in work can't know why the wording differs.
 2. `patterns.csv`, its check (`audit patterns --check`) and the draft rows from the
    research notes (10 candidates).
 3. The viewer tab and review tab. Built after the design pass.
-4. The `audit check` link.
+4. The `audit check` link. Done.
 
 **Decided by the owner on 2026-11-27:**
 - Look-alikes share at least 75% of their words, not 60%. Groups chain, so a looser
@@ -98,7 +98,8 @@ outside-in work can't know why the wording differs.
 These are paused. They're kept here so they can be picked up without starting again.
 `audit recommend` and `audit skill` print "Not built yet" until then. The first part of
 `audit check` is built: it checks the public text against `glossary.csv` (words to avoid,
-retired names and other spellings). The other checks below are still to come.
+retired names and other spellings) and `patterns.csv` (strings that don't use a pattern's
+shared wording). The other checks below are still to come.
 
 ### Standards register: `targets/<target>.standards.yaml`
 
@@ -132,7 +133,8 @@ finding_id, standard_id, category, term, written, count, surfaces, issue, fix, q
 snippet_ids
 
 - `category` is the kind of mismatch: capitalisation, spelling or spacing, deprecated
-  name, avoided term or other variant.
+  name, avoided term, other variant, or same message, different words (one row per
+  pattern, listing the strings that don't use its shared wording).
 - `issue` says what's wrong, `fix` says what to write instead, and `question` is filled
   in only where only the team can answer.
 - `snippet_ids` lists every string the finding counts, so each one can be traced.
