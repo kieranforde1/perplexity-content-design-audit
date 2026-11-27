@@ -85,6 +85,13 @@ outside-in work can't know why the wording differs.
 - The first release includes the viewer and review tabs (steps 1 to 3).
 - Every row in `patterns.csv` is a real pattern, because only a person writes it. There's
   no status column, and `audit check` reads every row.
+- The shared wording is the string itself, ready to reuse wherever the message appears,
+  with [brackets] for a slot. When something has to be said in several places, it should
+  be one string, so that changing it once changes it everywhere. Advice on how to use the
+  string goes in the note.
+- The goal is to show that the tool finds patterns and suggests where content can be
+  consolidated, and that it raises the right questions for the team. It doesn't need to
+  be perfect or ready for production.
 
 ## Later
 
