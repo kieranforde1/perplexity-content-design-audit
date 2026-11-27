@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import config, glossary, snippets, view
+from audit import config, glossary, pattern_table, snippets, view
 from audit.cli import main
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -104,12 +104,17 @@ def test_glossary_proposals_can_be_applied(path: Path) -> None:
     "path", sorted(REPO_ROOT.glob("data/*/headlines.csv")), ids=lambda p: p.parent.name
 )
 def test_headlines_are_short_and_lead_to_evidence(path: Path) -> None:
-    headlines = view.read_headlines(path)
+    pattern_ids = {p["pattern_id"] for p in pattern_table.read(path.parent / "patterns.csv")}
+    headlines = view.read_headlines(path, pattern_ids)
     assert headlines, "headlines.csv has no rows"
     glossary_terms = {glossary.key(r["term"]) for r in glossary.read(path.parent / "glossary.csv")}
     for h in headlines:
-        # A card opens its tab searched for the term, so the term has to be a glossary term.
-        assert glossary.key(h["term"]) in glossary_terms, f"{h['term']}: not in the glossary"
+        # A patterns card opens one pattern, so its term has to be a pattern_id. Every other
+        # card opens its tab searched for the term, so the term has to be a glossary term.
+        if h["tab"] == "patterns":
+            assert h["term"] in pattern_ids, f"{h['term']}: not in patterns.csv"
+        else:
+            assert glossary.key(h["term"]) in glossary_terms, f"{h['term']}: not in the glossary"
         # Anything quoted from the company's text follows the excerpt limit.
         for quote in re.findall(r'"([^"]+)"', h["line"]):
             assert len(quote.split()) <= snippets.EXCERPT_MAX_WORDS, quote

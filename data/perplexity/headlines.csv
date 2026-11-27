@@ -1,14 +1,15 @@
 title,line,tab,term
-"One dashboard, two names","API Portal and API Console name the same dashboard. Both link to the same console, and no page uses both.",findings,API Portal
-"""Disabled"" does too many jobs","Used for settings, accounts and buttons. On the firewall page it describes two toggles with opposite results.",findings,Disabled
-Sonar outlived its retirement,"Sonar support ended in September 2026, but the Audit API pages still say ""Sonar API keys"".",findings,Sonar
-Two spellings of one menu path,"""Organization Settings"" and ""Organization settings"" both appear, and three pages use both.",findings,Organization settings
-Spaces are still here,"Spaces became Projects, but the Comet data deletion article still says Spaces.",findings,Space
-Session or thread?,"Help calls a saved conversation a session. The Computer docs call it a thread, and the help article's URL still says thread.",findings,thread
-Four names for the admin role,"Help says organization admin, Enterprise admin and organization administrator. The docs mostly say org admin. The roles page says Admin.",findings,Enterprise admin
-API Group or Project?,One cookbook page says API Group and API Group administrator. Other docs pages say Project and Project administrator.,findings,API Group
-Two names for the audit key,"Docs say ""audit log API key"". Help says ""Audit API key"". Each has its own heading about creating one.",findings,Audit API key
-Sidecar or Assistant panel?,"Help uses both in one sentence: ""Send to sidecar to continue the conversation in your Assistant panel.""",findings,sidecar
-"One credit setting, four names","Adding credits when the balance runs low is Auto reload, auto top-up, Automatic Top Up or auto_recharge, depending on the page.",findings,Auto reload
-Free plan or Standard?,"The pricing page calls it Free. Two help articles add Standard, as in ""What do I get with the Free (Standard) plan?""",findings,Free (Standard) plan
-A toggle that isn't there,"One help article says Pro Search is automatic, with ""nothing to turn on"". Another says ""turn on Pro Search"".",glossary,Pro Search
+The pricing page gives the Free plan two different limits,"The plan card says daily limits. The FAQ on the same page says weekly. The suggested string leaves the period to the team.",patterns,plan-one-liners
+API Portal and API Console name the same dashboard,"Both names link to the same console, and no page uses both.",findings,API Portal
+"Sonar is retired, but the Audit API pages still mention it","Sonar support ended in September 2026. The Audit API pages still say ""Sonar API keys"".",findings,Sonar
+Help disagrees on whether Pro Search can be turned on,"One article says Pro Search is automatic, with ""nothing to turn on"". Another says ""turn on Pro Search"".",glossary,Pro Search
+"""Disabled"" describes settings, accounts and buttons","On the firewall page it describes two toggles with opposite results.",findings,Disabled
+Organization settings is written two ways,"""Organization Settings"" and ""Organization settings"" both appear, and three pages use both.",findings,Organization settings
+The Comet data deletion article still says Spaces,"Spaces became Projects, but this article wasn't updated.",findings,Space
+A saved conversation is a session in Help and a thread in the docs,"The help article's URL also still says thread.",findings,thread
+The admin role has four names,"Help says organization admin, Enterprise admin and organization administrator. The docs mostly say org admin. The roles page says Admin.",findings,Enterprise admin
+One cookbook page says API Group instead of Project,"It also says API Group administrator. Other docs pages say Project and Project administrator.",findings,API Group
+The audit key has two names,"Docs say ""audit log API key"". Help says ""Audit API key"". Each has its own heading about creating one.",findings,Audit API key
+One help sentence uses both sidecar and Assistant panel,"""Send to sidecar to continue the conversation in your Assistant panel.""",findings,sidecar
+The setting that adds credits automatically has four names,"Auto reload, auto top-up, Automatic Top Up or auto_recharge, depending on the page.",findings,Auto reload
+Two help articles call the Free plan Standard,"The pricing page says Free. The help articles say ""Free (Standard) plan"".",findings,Free (Standard) plan

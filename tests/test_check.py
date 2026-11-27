@@ -59,9 +59,8 @@ def test_avoid_word_is_counted_per_surface_and_skips_parameters(tmp_path: Path) 
     assert docs["count"] == "1"
     assert docs["category"] == helps["category"] == "avoided term"
     assert docs["issue"].startswith("'Disabled' is a word to avoid but appears in 1 string")
-    assert helps["fix"] == (
-        "Use 'Turned off' instead. This is a recommendation, not a published rule."
-    )
+    # The glossary says whether a rule is published, so the fix doesn't repeat it.
+    assert helps["fix"] == "Use 'Turned off' instead."
     # Docs may use the word as a value in code, which only the team can confirm.
     assert "literal value" in docs["question"]
     assert helps["question"] == ""
@@ -74,7 +73,7 @@ def test_findings_are_written_for_the_team_not_as_observations(tmp_path: Path) -
         assert "how or why" not in " ".join(row.values())
 
 
-def test_deprecated_name_carries_its_published_basis(tmp_path: Path) -> None:
+def test_deprecated_name_points_to_its_replacement(tmp_path: Path) -> None:
     target = write_target(
         tmp_path, "Widgets,deprecated,Gadgets,,published,https://e.com/news\n"
     )
@@ -83,7 +82,7 @@ def test_deprecated_name_carries_its_published_basis(tmp_path: Path) -> None:
     assert row["category"] == "deprecated name"
     assert row["term"] == "Widgets"
     assert row["written"] == "'Widgets' (1)"
-    assert row["fix"] == "Use 'Gadgets' instead. This is the published replacement."
+    assert row["fix"] == "Use 'Gadgets' instead."
 
 
 def test_an_avoid_word_with_no_replacement_asks_the_team(tmp_path: Path) -> None:
@@ -365,8 +364,7 @@ def test_strings_in_another_wording_are_one_finding_per_pattern(tmp_path: Path) 
         "'Look in your inbox for the reset link.' (1)"
     )
     assert row["fix"] == (
-        "Use one string everywhere: 'Check your email for a link to reset your password.' "
-        "This is a recommendation, not a published rule."
+        "Use one string everywhere: 'Check your email for a link to reset your password.'"
     )
     assert row["question"] == "Does the link expire?"
     assert row["surfaces"] == "docs help"

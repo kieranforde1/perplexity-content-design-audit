@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import check, config, glossary, snippets, view
+from audit import check, config, glossary, pattern_table, snippets, view
 
 
 def make_target(root: Path) -> config.Target:
@@ -34,14 +34,17 @@ def test_viewer_is_offline_and_labelled(tmp_path: Path) -> None:
     out = view.run(target, today=lambda: date(2026, 11, 26), log=lambda _: None)
     html = out.read_text()
     assert out == tmp_path / "viewer" / "example" / "index.html"
-    assert "An unofficial, outside-in audit of" in html
+    assert "An unofficial audit of the words " in html
     # Nothing loads from the web, and no font is bundled.
     assert not re.search(r'<(script|link|img)[^>]+(src|href)="https?://', html)
     assert "@font-face" not in html and "url(" not in html
-    # Strings is the last tab, so the overview comes first and the raw list last.
-    tabs = re.findall(r'role="tab" id="tab-([a-z-]+)"', html)
-    assert tabs[0] == "overview" and tabs[-1] == "snippets"
-    assert '<button role="tab" id="tab-snippets"' in html and ">Strings</button>" in html
+    # The overview comes first and the source data last. The review tabs that follow are
+    # hidden unless the page is served by `audit review`.
+    tabs = re.findall(r'role="tab" id="tab-([a-z-]+)"[^>]*?(hidden)?>', html)
+    assert [t for t, hidden in tabs if not hidden] == [
+        "overview", "findings", "patterns", "glossary", "source",
+    ]
+    assert ">Source data</button>" in html
 
 
 def test_page_asks_crawlers_not_to_index_or_train(tmp_path: Path) -> None:
@@ -119,7 +122,7 @@ def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -
 
     data = view.build_data(target, date(2026, 11, 26), evidence_only=True)
     assert data["snippets"] == [asdict(hostile)]
-    assert "Evidence copy" in str(data["notice"])
+    assert "only the strings that back a finding" in str(data["notice"])
     # The numbers still count every committed row, not just the ones with an excerpt.
     assert data["overview"]["strings"] == 2  # type: ignore[index]
     # The dropped row's excerpt is gone, but the finding still links to its page.
@@ -164,16 +167,12 @@ def test_front_page_numbers(tmp_path: Path) -> None:
     data = view.build_data(target, date(2026, 11, 26))
     assert data["overview"] == {
         # A typed app string is a string, but it has no public page.
-        "pages": 2, "strings": 3, "glossary_terms": 0, "findings": 3,
-        # Categories in the order `audit check` defines, and only ones with findings.
-        "by_category": [["capitalisation", 1], ["avoided term", 2]],
+        "pages": 2, "app_strings": 1, "strings": 3, "glossary_terms": 0, "findings": 3,
+        "patterns": 0,
     }
-    # No local cache here, so the page says most excerpts are missing.
+    # No local cache here, so the page says most of the text is missing.
     assert "audit extract" in str(data["notice"])
-    assert data["values"] == {
-        "surface": ["docs", "web-app"], "kind": ["button", "sentence"],
-        "stage": ["first-use", "other"],
-    }
+    assert data["values"] == {"surface": ["docs", "web-app"]}
 
 
 HEADLINES = (
@@ -202,9 +201,67 @@ def test_a_bad_headline_stops_the_build(tmp_path: Path) -> None:
     long_line = " ".join(["word"] * (view.HEADLINE_MAX_WORDS + 1))
     for bad, problem in [
         (f"Long,{long_line},findings,Widget", "keep the line"),
-        ("Nowhere,A short line.,patterns,Widget", "tab must be one of"),
+        ("Nowhere,A short line.,strings,Widget", "tab must be one of"),
         ("No term,A short line.,findings,", "term is blank"),
     ]:
         path.write_text("title,line,tab,term\n" + bad + "\n")
         with pytest.raises(ValueError, match=problem):
             view.read_headlines(path)
+
+
+def test_a_patterns_card_names_a_pattern(tmp_path: Path) -> None:
+    path = tmp_path / "headlines.csv"
+    path.write_text("title,line,tab,term\nTwo limits,A short line.,patterns,plan-lines\n")
+    assert view.read_headlines(path, {"plan-lines"})[0]["tab"] == "patterns"
+    with pytest.raises(ValueError, match="not a pattern_id"):
+        view.read_headlines(path, {"other-pattern"})
+
+
+def test_front_page_leads_with_four_cards_and_more_behind_a_button(tmp_path: Path) -> None:
+    html = view.run(make_target(tmp_path), log=lambda _: None).read_text()
+    assert "var LEAD_CARDS = 4;" in html
+    button = re.search(r'<button[^>]+id="more-cards-button"[^>]*>', html)
+    assert button, "no More findings button"
+    # A real button, so it works from the keyboard, and it says whether it's open.
+    assert 'aria-expanded="false"' in button[0] and 'aria-controls="more-cards"' in button[0]
+    assert '<div class="cards" id="more-cards" hidden>' in html
+
+
+PATTERN = {
+    "pattern_id": "search-api-intro", "message": "Say what the Search API does.",
+    "shared_wording": "Use the Search API to [task].", "basis": "recommendation",
+    "variants": "2", "pages": "1", "surfaces": "docs", "question": "Is this the right intro?",
+}
+
+
+def test_patterns_carry_their_advice_and_strings(tmp_path: Path) -> None:
+    target = make_target(tmp_path)
+    hostile, normal = snippets.read(target.public_snippets)
+    # One string without an excerpt, which the Patterns tab has no text to show for.
+    snippets.write(target.public_snippets, [replace(hostile, excerpt=""), normal])
+    ids = f"{normal.id} {hostile.id}"
+    write_csv(target.pattern_table, pattern_table.COLUMNS, [PATTERN | {"string_ids": ids}])
+    note = "How to use it: Put it first on the page. The drafts came from two pages."
+    write_csv(target.pattern_proposals, pattern_table.PROPOSAL_COLUMNS, [
+        PATTERN | {"string_ids": ids, "note": note, "decision": "accept"},
+    ])
+    data = view.build_data(target, date(2026, 11, 26))
+    assert data["patterns"] == [
+        PATTERN | {
+            "string_ids": ids,
+            # Only the advice is shown, not the rest of the note.
+            "how_to_use": "Put it first on the page.",
+            "strings": [
+                {"id": normal.id, "excerpt": "Use the Search API.",
+                 "source_url": normal.source_url},
+            ],
+        }
+    ]
+    assert data["overview"]["patterns"] == 1  # type: ignore[index]
+
+
+def test_a_note_without_advice_shows_nothing() -> None:
+    assert view.how_to_use("Changed from the research notes. How to use it: later.") == ""
+    assert view.how_to_use("How to use it: Example: Ask your admin. Then more.") == (
+        "Example: Ask your admin."
+    )

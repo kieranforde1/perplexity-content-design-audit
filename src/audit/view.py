@@ -15,24 +15,28 @@ from __future__ import annotations
 
 import csv
 import json
-from collections import Counter
+import re
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import asdict
 from datetime import date
 from pathlib import Path
 
-from audit import check, evidence, glossary, snippets, typed
+from audit import check, evidence, glossary, pattern_table, snippets, typed
 from audit.config import Target
 from audit.snippets import Snippet
 
 TEMPLATE = Path(__file__).parent / "viewer.html"
 PLACEHOLDER = "__AUDIT_DATA__"
 
-# A headline card opens one of these tabs, searched for the card's term.
-HEADLINE_TABS = ("findings", "glossary", "terms")
+# A headline card opens one of these tabs, searched for the card's term. A patterns card
+# opens the Patterns tab at one pattern, so its term is a pattern_id.
+HEADLINE_TABS = ("findings", "glossary", "terms", "patterns")
 HEADLINE_COLUMNS = ("title", "line", "tab", "term")
 # The front page is for scanning, so a headline's line stays short.
 HEADLINE_MAX_WORDS = 24
+# A pattern proposal's note can start with advice for the team. Only that first sentence
+# is shown, because the rest of the note is about how the draft was made.
+HOW_TO_USE = "How to use it:"
 
 
 def embed(data: object) -> str:
@@ -47,10 +51,11 @@ def read_csv(path: Path | None) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
-def read_headlines(path: Path) -> list[dict[str, str]]:
+def read_headlines(path: Path, pattern_ids: set[str] | None = None) -> list[dict[str, str]]:
     """The front page's headline cards, written by a person in headlines.csv.
 
-    A mistake stops the build with the line number, rather than showing a broken card."""
+    A mistake stops the build with the line number, rather than showing a broken card.
+    Given `pattern_ids`, a patterns card's term has to be one of them."""
     rows = read_csv(path)
     for line, row in enumerate(rows, start=2):
         missing = [c for c in HEADLINE_COLUMNS if not (row.get(c) or "").strip()]
@@ -62,6 +67,9 @@ def read_headlines(path: Path) -> list[dict[str, str]]:
             )
         if len(row["line"].split()) > HEADLINE_MAX_WORDS:
             raise ValueError(f"{path} line {line}: keep the line to {HEADLINE_MAX_WORDS} words")
+        if row["tab"] == "patterns" and pattern_ids is not None:
+            if row["term"].strip() not in pattern_ids:
+                raise ValueError(f"{path} line {line}: {row['term']} is not a pattern_id")
     return [{c: row[c].strip() for c in HEADLINE_COLUMNS} for row in rows]
 
 
@@ -69,18 +77,18 @@ def overview(
     rows: list[Snippet],
     glossary_rows: list[dict[str, str]],
     findings: Sequence[Mapping[str, object]],
+    pattern_rows: Sequence[Mapping[str, object]],
 ) -> dict[str, object]:
-    """The front page's numbers. Counted before an evidence-only build drops rows, because
-    the committed table still has every row, only without most excerpts."""
-    per_category = Counter(f.get("category", "") for f in findings)
+    """The numbers in the front page's steps. Counted before an evidence-only build drops
+    rows, because the committed table still has every row, only without most excerpts."""
     return {
         # Typed app strings have no public page, so only crawled rows count as pages.
         "pages": len({s.source_url for s in rows if s.method == "crawl"}),
+        "app_strings": sum(1 for s in rows if s.method == "typed"),
         "strings": len(rows),
         "glossary_terms": len(glossary_rows),
         "findings": len(findings),
-        # In the order `audit check` defines, so the bars match the Findings tab.
-        "by_category": [[c, per_category[c]] for c in check.CATEGORIES if per_category[c]],
+        "patterns": len(pattern_rows),
     }
 
 
@@ -97,6 +105,36 @@ def finding_evidence(finding: dict[str, str], by_id: dict[str, Snippet]) -> list
     return found
 
 
+def how_to_use(note: str) -> str:
+    """The first sentence after "How to use it:" in a proposal's note, or blank."""
+    if not note.startswith(HOW_TO_USE):
+        return ""
+    rest = note.removeprefix(HOW_TO_USE).strip()
+    return re.split(r"(?<=\.)\s+(?=[A-Z])", rest, maxsplit=1)[0]
+
+
+def pattern_strings(pattern: dict[str, str], by_id: dict[str, Snippet]) -> list[dict[str, str]]:
+    """The pattern's strings that have text in this build, so each version can be read."""
+    found = []
+    for snippet_id in pattern.get("string_ids", "").split():
+        s = by_id.get(snippet_id)
+        if s and s.excerpt:
+            found.append({"id": snippet_id, "excerpt": s.excerpt, "source_url": s.source_url})
+    return found
+
+
+def read_patterns(target: Target, by_id: dict[str, Snippet]) -> list[dict[str, object]]:
+    """patterns.csv, each row with its how-to-use line from the proposal and its strings."""
+    advice = {
+        p["pattern_id"]: how_to_use(p.get("note", ""))
+        for p in pattern_table.read(target.pattern_proposals)
+    }
+    return [
+        {**p, "how_to_use": advice.get(p["pattern_id"], ""), "strings": pattern_strings(p, by_id)}
+        for p in pattern_table.read(target.pattern_table)
+    ]
+
+
 def build_data(
     target: Target, today: date, *, editable: bool = False, evidence_only: bool = False
 ) -> dict[str, object]:
@@ -108,16 +146,20 @@ def build_data(
         {**f, "evidence": finding_evidence(f, by_id)}
         for f in read_csv(target.data_dir / "findings.csv")
     ]
+    patterns = read_patterns(target, by_id)
     glossary_rows = glossary.read(target.glossary)
-    numbers = overview(rows, glossary_rows, findings)
+    numbers = overview(rows, glossary_rows, findings, patterns)
     if evidence_only:
         rows = [s for s in rows if s.excerpt]
     terms = read_csv(target.data_dir / "terms.csv")
-    # Said only when the Strings tab holds fewer strings than the numbers count.
+    # Said on the Source data tab, only when it holds fewer strings than the numbers count.
     if evidence_only:
-        notice = "Evidence copy: the Strings tab lists only strings with a committed excerpt."
+        notice = (
+            "This copy shows only the strings that back a finding. "
+            "The full table stays on the computer that built it."
+        )
     elif not full:
-        notice = "Most excerpts aren't on this computer. Run `audit extract` to see them all."
+        notice = "Most of the strings' text isn't on this computer. Run `audit extract` to get it."
     else:
         notice = ""
     return {
@@ -126,19 +168,17 @@ def build_data(
         "today": today.isoformat(),
         "notice": notice,
         "overview": numbers,
-        "headlines": read_headlines(target.data_dir / "headlines.csv"),
-        "values": {
-            "surface": sorted({s.surface for s in rows}),
-            "kind": sorted({s.kind for s in rows}),
-            "stage": sorted({s.stage for s in rows}),
-        },
+        "headlines": read_headlines(
+            target.data_dir / "headlines.csv", {str(p["pattern_id"]) for p in patterns}
+        ),
+        "values": {"surface": sorted({s.surface for s in rows})},
         "allowed": {
             "kind": list(snippets.KINDS),
             "surface": list(snippets.SURFACES),
             "stage": list(snippets.STAGES),
             "glossary_status": list(glossary.STATUSES),
             "glossary_basis": list(glossary.BASES),
-            # The Findings tab groups and filters in this order.
+            # The Findings tab offers categories in this order.
             "finding_category": list(check.CATEGORIES),
         },
         "terms": terms,
@@ -148,6 +188,7 @@ def build_data(
             read_csv(target.data_dir / "glossary_proposals.csv") if editable else []
         ),
         "findings": findings,
+        "patterns": patterns,
         "typed_strings": typed.read(target.typed_strings),
         "snippets": [asdict(s) for s in rows],
     }
