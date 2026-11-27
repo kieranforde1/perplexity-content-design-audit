@@ -98,9 +98,15 @@ def build_data(
             "kind": list(snippets.KINDS),
             "surface": list(snippets.SURFACES),
             "stage": list(snippets.STAGES),
+            "glossary_status": list(glossary.STATUSES),
+            "glossary_basis": list(glossary.BASES),
         },
         "terms": terms,
         "glossary": glossary_rows,
+        # Drafts for the reviewer only, so the plain and evidence-only pages leave them out.
+        "glossary_proposals": (
+            read_csv(target.data_dir / "glossary_proposals.csv") if editable else []
+        ),
         "findings": findings,
         "typed_strings": typed.read(target.typed_strings),
         "snippets": [asdict(s) for s in rows],

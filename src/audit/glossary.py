@@ -1,7 +1,8 @@
 """The glossary: the terms a person has settled on, including words to avoid.
 
-A person owns this file. Code reads and checks it, and never writes to it. It's what
-later checks test the public text against.
+A person owns this file. They edit it directly, or accept drafted rows in
+glossary_proposals.csv and click "Apply accepted" on the review page. No other code
+writes to it. It's what later checks test the public text against.
 
 Each row says how sure we can be about it:
 - published: Perplexity said it publicly, such as a migration guide that retires a name.
@@ -19,6 +20,8 @@ COLUMNS = ("term", "status", "use_instead", "definition", "basis", "source_url")
 # use: write it like this. avoid: don't write it. deprecated: an old name that was replaced.
 STATUSES = ("use", "avoid", "deprecated")
 BASES = ("published", "observed", "recommendation")
+# A proposal either changes a row the glossary already has, or adds a new one.
+CHANGES = ("update", "add")
 
 
 def problems(row: dict[str, str]) -> list[str]:
@@ -44,11 +47,34 @@ def problems(row: dict[str, str]) -> list[str]:
     return found
 
 
+def key(term: str) -> str:
+    """Two terms are the same if they only differ in case or spacing."""
+    return " ".join(term.lower().split())
+
+
 def read(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
     with path.open(newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def check_rows(columns: list[str], rows: list[dict[str, str]]) -> list[tuple[int, str]]:
+    """(line number, problem) for every problem, as if the rows were a file with this
+    header. Line 1 is the header."""
+    missing = [c for c in COLUMNS if c not in columns]
+    if missing:
+        return [(1, f"the header is missing: {', '.join(missing)}")]
+    found = []
+    seen: dict[str, int] = {}
+    for line, row in enumerate(rows, start=2):
+        found += [(line, p) for p in problems(row)]
+        term = key(row.get("term") or "")
+        if term in seen:
+            found.append((line, f"term repeats line {seen[term]}"))
+        elif term:
+            seen[term] = line
+    return found
 
 
 def check_file(path: Path) -> list[tuple[int, str]]:
@@ -57,16 +83,23 @@ def check_file(path: Path) -> list[tuple[int, str]]:
         return []
     with path.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        missing = [c for c in COLUMNS if c not in (reader.fieldnames or [])]
-        if missing:
-            return [(1, f"the header is missing: {', '.join(missing)}")]
-        found = []
-        seen: dict[str, int] = {}
-        for line, row in enumerate(reader, start=2):
-            found += [(line, p) for p in problems(row)]
-            key = " ".join((row.get("term") or "").lower().split())
-            if key in seen:
-                found.append((line, f"term repeats line {seen[key]}"))
-            elif key:
-                seen[key] = line
-        return found
+        return check_rows(list(reader.fieldnames or []), list(reader))
+
+
+def merge(rows: list[dict[str, str]], accepted: list[dict[str, str]]) -> list[dict[str, str]]:
+    """The glossary with accepted proposals in it. An update replaces the row with the
+    same term, in the same place. An add goes on the end. Nothing is written here."""
+    merged = [dict(r) for r in rows]
+    where = {key(r.get("term") or ""): i for i, r in enumerate(merged)}
+    for proposal in accepted:
+        new = {c: " ".join((proposal.get(c) or "").split()) for c in COLUMNS}
+        change = proposal.get("change")
+        if change == "update":
+            if key(new["term"]) not in where:
+                raise ValueError(f"{new['term']} is an update, but the glossary has no such term")
+            merged[where[key(new["term"])]] = new
+        elif change == "add":
+            merged.append(new)
+        else:
+            raise ValueError(f"{new['term']}: change {change!r} isn't one of: update, add")
+    return merged

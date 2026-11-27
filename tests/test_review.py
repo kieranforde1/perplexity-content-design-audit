@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from audit import config, review, snippets, terms
+from audit import config, glossary, review, snippets, terms
 
 TERM_ROW = {c: "" for c in terms.TERM_COLUMNS} | {
     "term": "Search API", "key": "searchapi", "status": "question",
@@ -165,6 +165,159 @@ def test_bad_app_strings_are_refused(
     assert status == 400
     assert message in str(result).lower()
     assert typed(target) == []
+
+
+GLOSSARY = [
+    {"term": "Search API", "status": "use", "use_instead": "", "definition": "",
+     "basis": "observed", "source_url": "https://docs.example.com/a"},
+    {"term": "Spaces", "status": "deprecated", "use_instead": "Projects", "definition": "",
+     "basis": "observed", "source_url": ""},
+]
+PROPOSAL_COLUMNS = ["section", "term", "change", *glossary.COLUMNS, "evidence_id", "note",
+                    "decision"]
+
+
+def proposal(term: str, change: str, decision: str = "", **values: str) -> dict[str, str]:
+    base = {c: "" for c in PROPOSAL_COLUMNS}
+    return base | {"section": "definitions", "term": term, "change": change, "status": "use",
+                   "basis": "observed", "decision": decision} | values
+
+
+def write_glossary_and_proposals(target: config.Target, proposals: list[dict[str, str]]) -> None:
+    review.write_rows(target.glossary, list(glossary.COLUMNS), GLOSSARY)
+    review.write_rows(review.proposals_path(target), PROPOSAL_COLUMNS, proposals)
+
+
+def proposals_file(target: config.Target) -> list[dict[str, str]]:
+    return review.read_rows(review.proposals_path(target))[1]
+
+
+def test_the_proposals_tab_is_in_review_mode(server: tuple[str, config.Target]) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [proposal("whitelist", "add", status="avoid")])
+    _, page = call(base, "/", headers={})
+    assert "Glossary proposals" in str(page)
+    assert '"term": "whitelist"' in str(page)
+
+
+def test_saving_a_proposal_decision(server: tuple[str, config.Target]) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [proposal("Search API", "update")])
+    before = target.glossary.read_text()
+    body = {"term": "Search API", "decision": "accept", "status": "use", "use_instead": "",
+            "definition": "Returns  ranked web results.", "basis": "observed"}
+    status, result = call(base, "/api/proposal", body)
+    assert status == 200
+    assert isinstance(result, dict) and result["problems"] == []
+    row = proposals_file(target)[0]
+    assert row["decision"] == "accept"
+    assert row["definition"] == "Returns ranked web results."
+    assert target.glossary.read_text() == before
+
+
+def test_a_draft_that_would_fail_the_check_is_saved_with_its_problems(
+    server: tuple[str, config.Target],
+) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [proposal("Focus", "add")])
+    body = {"term": "Focus", "decision": "", "status": "deprecated", "basis": "observed"}
+    status, result = call(base, "/api/proposal", body)
+    assert status == 200
+    assert isinstance(result, dict)
+    assert result["problems"] == ["a deprecated term needs use_instead: the name that replaced it"]
+
+
+@pytest.mark.parametrize(
+    "body",
+    [
+        {"term": "Search API", "decision": "applied"},
+        {"term": "Search API", "decision": "maybe"},
+        {"term": "Not there", "decision": "accept"},
+    ],
+)
+def test_bad_proposal_edits_are_refused(
+    server: tuple[str, config.Target], body: dict[str, str]
+) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [proposal("Search API", "update")])
+    status, _ = call(base, "/api/proposal", body)
+    assert status == 400
+    assert proposals_file(target)[0]["decision"] == ""
+
+
+def test_applying_accepted_rows_updates_and_adds(server: tuple[str, config.Target]) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [
+        proposal("Search API", "update", "accept", definition="Returns ranked web results.",
+                 source_url="https://docs.example.com/a"),
+        proposal("whitelist", "add", "accept", status="avoid", use_instead="allowlist",
+                 basis="recommendation"),
+        proposal("kill", "add", "reject", status="avoid", basis="recommendation"),
+        proposal("blind", "add", status="avoid", basis="recommendation"),
+    ])
+    status, result = call(base, "/api/proposals/apply", {})
+    assert status == 200
+    assert isinstance(result, dict) and result["applied"] == 2
+    rows = glossary.read(target.glossary)
+    assert [r["term"] for r in rows] == ["Search API", "Spaces", "whitelist"]
+    assert rows[0]["definition"] == "Returns ranked web results."
+    assert rows[0]["source_url"] == "https://docs.example.com/a"
+    assert rows[2]["use_instead"] == "allowlist"
+    assert glossary.check_file(target.glossary) == []
+    decisions = [r["decision"] for r in proposals_file(target)]
+    assert decisions == ["applied", "applied", "reject", ""]
+
+
+@pytest.mark.parametrize(
+    "bad, message",
+    [
+        (proposal("Focus", "add", "accept", status="deprecated"), "deprecated term needs"),
+        (proposal("search api", "add", "accept"), "term repeats line 2"),
+        (proposal("Collections", "update", "accept"), "no such term"),
+    ],
+)
+def test_a_failing_check_changes_nothing(
+    server: tuple[str, config.Target], bad: dict[str, str], message: str
+) -> None:
+    base, target = server
+    good = proposal("whitelist", "add", "accept", status="avoid", basis="recommendation")
+    write_glossary_and_proposals(target, [good, bad])
+    glossary_before = target.glossary.read_text()
+    proposals_before = review.proposals_path(target).read_text()
+    status, result = call(base, "/api/proposals/apply", {})
+    assert status == 400
+    assert "Nothing was applied" in str(result) and message in str(result)
+    assert target.glossary.read_text() == glossary_before
+    assert review.proposals_path(target).read_text() == proposals_before
+
+
+def test_applied_rows_are_not_applied_twice(server: tuple[str, config.Target]) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [
+        proposal("whitelist", "add", "accept", status="avoid", basis="recommendation"),
+    ])
+    status, _ = call(base, "/api/proposals/apply", {})
+    assert status == 200
+    after_first = target.glossary.read_text()
+    status, result = call(base, "/api/proposals/apply", {})
+    assert status == 400 and "No accepted rows" in str(result)
+    body = {"term": "whitelist", "decision": "accept", "status": "avoid",
+            "basis": "recommendation"}
+    status, result = call(base, "/api/proposal", body)
+    assert status == 400 and "already in glossary.csv" in str(result)
+    assert proposals_file(target)[0]["decision"] == "applied"
+    assert target.glossary.read_text() == after_first
+
+
+def test_applying_needs_the_page_header(server: tuple[str, config.Target]) -> None:
+    base, target = server
+    write_glossary_and_proposals(target, [
+        proposal("whitelist", "add", "accept", status="avoid", basis="recommendation"),
+    ])
+    before = target.glossary.read_text()
+    status, _ = call(base, "/api/proposals/apply", {}, headers={"Content-Type": "application/json"})
+    assert status == 403
+    assert target.glossary.read_text() == before
 
 
 def test_a_description_is_accepted_where_there_is_no_web_address(

@@ -1,9 +1,12 @@
 """`audit review`: the viewer with editing switched on, served from your own computer.
 
-A person owns two things in this project, and this is where they're edited:
+A person owns three things in this project, and this is where they're edited:
 
 - terms.csv: the `review` (accept or reject) and `definition` columns
 - typed_strings.csv: app text typed in from normal use of the product
+- glossary_proposals.csv: a decision and edits for each drafted glossary row. "Apply
+  accepted" then writes the accepted rows into glossary.csv. That click is the only way
+  this page changes glossary.csv.
 
 Edits go straight into those files, so the files in the repo are the only storage. The
 server only listens on 127.0.0.1, and it refuses any request that doesn't come from its
@@ -22,7 +25,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import cast
 
-from audit import typed, view
+from audit import glossary, typed, view
 from audit.config import Target
 
 HOST = "127.0.0.1"
@@ -31,6 +34,9 @@ DEFAULT_PORT = 8765
 # custom header to this server without the server agreeing to it first, which it never does.
 SAVE_HEADER = "X-Audit-Review"
 REVIEW_VALUES = ("", "accept", "reject")
+# "applied" is set by the server after a row goes into glossary.csv, never by the page.
+PROPOSAL_DECISIONS = ("", "accept", "reject")
+PROPOSAL_EDITABLE = ("status", "use_instead", "definition", "basis")
 MAX_DEFINITION_CHARS = 400
 MAX_BODY_BYTES = 100_000
 
@@ -109,6 +115,57 @@ def remove_typed_string(target: Target, entry: dict[str, str]) -> None:
     write_rows(target.typed_strings, list(typed.COLUMNS), kept)
 
 
+def proposals_path(target: Target) -> Path:
+    return target.data_dir / "glossary_proposals.csv"
+
+
+def save_proposal_edit(target: Target, edit: dict[str, object]) -> dict[str, object]:
+    """Save a person's decision and edits for one proposal. Only these fields change."""
+    decision = str(edit.get("decision", ""))
+    if decision not in PROPOSAL_DECISIONS:
+        raise EditError("Decision must be accept, reject or blank.")
+    changed = {c: " ".join(str(edit.get(c, "")).split()) for c in PROPOSAL_EDITABLE}
+    if any(len(v) > MAX_DEFINITION_CHARS for v in changed.values()):
+        raise EditError(f"Keep each field under {MAX_DEFINITION_CHARS} characters.")
+    path = proposals_path(target)
+    columns, rows = read_rows(path)
+    for row in rows:
+        if row.get("term") == edit.get("term"):
+            if row.get("decision") == "applied":
+                raise EditError("This row is already in glossary.csv. Edit the file to change it.")
+            row.update(changed)
+            row["decision"] = decision
+            write_rows(path, columns, rows)
+            # Problems are shown, not refused: a draft can be wrong until it's accepted.
+            return {"row": row, "problems": glossary.problems(row)}
+    raise EditError("That proposal isn't in glossary_proposals.csv any more. Reload the page.")
+
+
+def apply_proposals(target: Target) -> dict[str, object]:
+    """Write accepted proposals into glossary.csv, but only if the result passes the same
+    check as `audit glossary --check`. If it doesn't, neither file changes."""
+    path = proposals_path(target)
+    columns, rows = read_rows(path)
+    accepted = [r for r in rows if r.get("decision") == "accept"]
+    if not accepted:
+        raise EditError("No accepted rows to apply.")
+    glossary_columns, current = read_rows(target.glossary)
+    glossary_columns = glossary_columns or list(glossary.COLUMNS)
+    try:
+        merged = glossary.merge(current, accepted)
+    except ValueError as e:
+        raise EditError(f"Nothing was applied. {e}.") from e
+    wrong = glossary.check_rows(glossary_columns, merged)
+    if wrong:
+        lines = "; ".join(f"line {n}: {p}" for n, p in wrong)
+        raise EditError(f"Nothing was applied. glossary.csv would fail its check: {lines}.")
+    write_rows(target.glossary, glossary_columns, merged)
+    for row in accepted:
+        row["decision"] = "applied"
+    write_rows(path, columns, rows)
+    return {"applied": len(accepted), "glossary": merged}
+
+
 class ReviewHandler(BaseHTTPRequestHandler):
     target: Target
 
@@ -169,6 +226,10 @@ class ReviewHandler(BaseHTTPRequestHandler):
             elif self.path == "/api/strings/remove":
                 remove_typed_string(self.target, body)
                 result = {"removed": True}
+            elif self.path == "/api/proposal":
+                result = save_proposal_edit(self.target, body)
+            elif self.path == "/api/proposals/apply":
+                result = apply_proposals(self.target)
             else:
                 self.send_json(HTTPStatus.NOT_FOUND, {"error": "Not found."})
                 return

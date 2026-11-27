@@ -82,7 +82,7 @@ being audited.
 | `src/audit/view.py`, `viewer.html` | The offline viewer |
 | `src/audit/review.py` | The local review page, which saves a person's edits |
 | `src/audit/typed.py` | Rules for typed app strings, used by `audit typed`, extract and review |
-| `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` |
+| `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` and by applying proposals |
 | `src/audit/check.py` | `audit check`: tests the public text against the glossary |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
 | `data/<target>/` | Committed outputs: the public snippets table, terms, term candidates, typed app strings |
@@ -110,11 +110,17 @@ copies of the table:
 column and kept on every re-run. Never write to them from code, except through the
 review page.
 
-`glossary.csv` is written by a person, never by code: term, status (use, avoid or
-deprecated), use_instead, definition, basis and source_url. `basis` says how sure we can
-be: `published` (Perplexity said it, and source_url points to where), `observed` (its
-public text uses the term this way) or `recommendation` (the reviewer's suggestion,
-never presented as Perplexity's rule). `audit glossary --check` checks the file.
+`glossary.csv` is written by a person, either directly or through "Apply accepted" on
+the review page, and never by other code: term, status (use, avoid or deprecated),
+use_instead, definition, basis and source_url. `basis` says how sure we can be:
+`published` (Perplexity said it, and source_url points to where), `observed` (its public
+text uses the term this way) or `recommendation` (the reviewer's suggestion, never
+presented as Perplexity's rule). `audit glossary --check` checks the file.
+
+`glossary_proposals.csv` holds drafted glossary rows for a person to review: section,
+the glossary columns, change (`update` an existing term or `add` a new one), evidence_id,
+note and decision (blank, accept, reject, or `applied` once "Apply accepted" has written
+it into `glossary.csv`, after the same check as `audit glossary --check`).
 
 `typed_strings.csv` holds app text a person typed in by hand: text, kind, source_url,
 surface, stage, captured_on. 20 words at most per string. `source_url` is a web address,
