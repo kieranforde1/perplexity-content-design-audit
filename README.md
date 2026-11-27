@@ -13,19 +13,19 @@ Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.
 
 ## How it works
 
-1. **Collect** a company's public text into one table of snippets, each with its source link.
+1. **Collect** a company's public text into one table of strings, each with its source link.
 2. **Find the terms** and show where the wording varies.
 3. **Group repeated content structures** into patterns. *(second pass)*
 4. **Score tone across stages**, and report how far the scores can be trusted. *(second pass)*
 
-Every step reads the snippets table and writes its own table. Adding a step later means
+Every step reads the strings table and writes its own table. Adding a step later means
 adding a file, not rebuilding.
 
 ## Limits
 
 - Outside-in. Everything here comes from public, first-party pages, so the reasons behind
   a choice aren't known. Where only the team can answer, a finding asks.
-- A snapshot. Pages change. Each snippet records the date it was captured.
+- A snapshot. Pages change. Each string records the date it was captured.
 - Paid-only features are covered only through their public help pages and launch posts.
 - App text is typed in by hand from normal use, or transcribed from screenshots of normal
   use. Nothing automates the app, and screenshots aren't committed.
@@ -54,13 +54,14 @@ uv run audit view --target perplexity    # then open viewer/perplexity/index.htm
 ```
 
 `fetch` reads robots.txt and obeys it, waits at least a second between requests, and
-saves full pages to `cache/`, which is never committed. `extract` builds the snippets
+saves full pages to `cache/`, which is never committed. `extract` builds the strings
 table from those pages. `terms` writes `data/<target>/terms.csv` for review and
 `term_candidates.csv`, which lists every candidate with its decision and the reason, so
 nothing is dropped silently.
 
 On a fresh clone, run `fetch` and `extract` before `terms`. The viewer also works from
-the committed data alone.
+the committed data alone. Its Overview tab shows the main numbers and the headline cards
+from `data/<target>/headlines.csv`, which a person writes.
 
 ### Review terms and add app strings
 
@@ -93,7 +94,7 @@ uv run audit check --target perplexity              # writes data/<target>/findi
 surface, and other spellings of the terms to use, with labels and running text compared
 separately. Each finding has a category (capitalisation, spelling or spacing, deprecated
 name, avoided term or other variant), the glossary term, what was written, what's wrong,
-the fix and, where only the team can answer, a question. It lists every snippet it
+the fix and, where only the team can answer, a question. It lists every string it
 counts.
 
 ### Typed app strings
@@ -110,7 +111,11 @@ uv run audit typed --check --target perplexity # reports problems by line
 
 After adding strings, run `extract` and `terms` again to include them.
 
-## The snippets table
+## The strings table
+
+Each row is one string: a piece of text collected from a page or typed in from the app.
+The file and code still call a row a snippet (`snippets.csv`), because later steps
+depend on those names.
 
 | Column | What it holds |
 | --- | --- |
@@ -127,7 +132,7 @@ After adding strings, run `extract` and `terms` again to include them.
 The repo commits evidence, not a copy of the company's pages. `extract` writes the full
 table, with every excerpt, to `cache/<target>/snippets.csv` on your computer. The
 committed `data/<target>/snippets.csv` keeps every row, but only fills in the excerpt for
-evidence: snippets the term map cites as examples, the first few snippets of each
+evidence: strings the term map cites as examples, the first few strings of each
 finding from `audit check` (`evidence_per_finding` in the config), and every typed string.
 
 ## Licence

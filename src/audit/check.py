@@ -14,7 +14,8 @@ Each finding has a category (see CATEGORIES) and short fields, so the viewer can
 them as columns. The wording is a content designer's note to the team: what's wrong, the
 fix, and a question only where the answer isn't in the text. The fix says when it's a
 recommendation, so it's never passed off as a published rule. Every finding lists the
-IDs of every snippet it counts, so each one can be traced.
+IDs of every snippet it counts, so each one can be traced. Readers see a snippet as a
+"string", so the wording the viewer shows says "string".
 """
 
 from __future__ import annotations
@@ -262,7 +263,7 @@ def avoid_findings(
             term=term,
             written=written,
             issue=(
-                f"'{term}' is {what} but appears in {terms.plural(len(ids), 'snippet')} "
+                f"'{term}' is {what} but appears in {terms.plural(len(ids), 'string')} "
                 f"on {terms.plural(len(pages), surface + ' page')}, written {written}."
             ),
             fix=fix,
@@ -320,7 +321,7 @@ def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) 
                 written=written,
                 issue=(
                     f"In {terms.GROUP_NAMES[group]}, '{term}' is written {written} in "
-                    f"{terms.plural(len(ids), 'snippet')} on "
+                    f"{terms.plural(len(ids), 'string')} on "
                     f"{terms.plural(len(pages), 'page')}. The glossary form appears "
                     f"{terms.plural(as_glossary[group], 'time')}."
                 ),
@@ -357,7 +358,7 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     # Findings decide part of the evidence, so the committed copy is redone.
     filled = evidence.write_public_copy(target, snippets.read(target.local_snippets), log=log)
     per_category = Counter(f.category for f in findings)
-    log(f"{len(entries)} glossary rows checked against {len(texts)} snippets.")
+    log(f"{len(entries)} glossary rows checked against {len(texts)} strings.")
     breakdown = ", ".join(f"{per_category[c]} {c}" for c in CATEGORIES if per_category[c])
     log(f"{len(rows)} findings" + (f": {breakdown}." if breakdown else "."))
     log(f"Wrote {path}")

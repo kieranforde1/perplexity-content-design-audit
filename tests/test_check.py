@@ -58,7 +58,7 @@ def test_avoid_word_is_counted_per_surface_and_skips_parameters(tmp_path: Path) 
     # The parameter "disabled" isn't prose, so only the docs sentence counts.
     assert docs["count"] == "1"
     assert docs["category"] == helps["category"] == "avoided term"
-    assert docs["issue"].startswith("'Disabled' is a word to avoid but appears in 1 snippet")
+    assert docs["issue"].startswith("'Disabled' is a word to avoid but appears in 1 string")
     assert helps["fix"] == (
         "Use 'Turned off' instead. This is a recommendation, not a published rule."
     )

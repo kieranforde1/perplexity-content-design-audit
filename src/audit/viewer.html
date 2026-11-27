@@ -3,38 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Content audit viewer</title>
+<!-- An outside-in audit of another company's text: keep it out of search results and AI training sets. -->
+<meta name="robots" content="noindex, nofollow, noarchive, noai, noimageai">
+<title>Content audit</title>
 <style>
+  /* Colours are Perplexity's published Brand Hub values. The typefaces are licensed, so the
+     page uses system fonts in their place and loads nothing. Flat on purpose: the brand
+     calls for no shadows or gradients, and very little motion. */
   :root {
-    --bg: #fbfbfa;
-    --surface: #ffffff;
-    --text: #1d1d1b;
-    --muted: #5f5f5a;
-    --line: #e3e2de;
-    --accent: #2f5d8a;
-    --banner-bg: #fff4d6;
-    --banner-text: #5a4300;
-    --question-bg: #fdecea;
-    --question-text: #8a1c12;
-    --ok-bg: #e7f4ea;
-    --ok-text: #1d5b2c;
-    --chip-bg: #efeeea;
+    color-scheme: light;
+    --off-white: #FAF8F5;
+    --off-black: #121516;
+    --turquoise-200: #92DCE2;
+    --turquoise-300: #35BDC8;
+    --turquoise-500: #20808D;
+    --turquoise-600: #1A6872;
+    --turquoise-700: #114F56;
+    --warm-orange-2: #FFB693;
+    --warm-orange-6: #9C451C;
+
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    --font-serif: ui-serif, Charter, "Iowan Old Style", Georgia, Cambria, "Noto Serif", serif;
+    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Cascadia Mono",
+      "Roboto Mono", "Droid Sans Mono", monospace;
+
+    --bg: var(--off-white);
+    --text: var(--off-black);
+    /* Muted text, lines and chips are Off Black mixed into Off White, so no new hues. */
+    --muted: #585959;
+    --line: #DEDDDA;
+    --chip-bg: #ECEAE7;
+    /* Turquoise 500 leads, but it's too light for small text on Off White, so links and
+       small accent text use the 600 and 700 shades. */
+    --accent: var(--turquoise-500);
+    --link: var(--turquoise-600);
+    --strong: var(--turquoise-700);
+    --warn: var(--warm-orange-6);
+    --button-bg: var(--turquoise-600);
+    --button-text: var(--off-white);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #161615;
-      --surface: #1f1f1d;
-      --text: #ecebe6;
-      --muted: #a6a59e;
-      --line: #34332f;
-      --accent: #8fb8e0;
-      --banner-bg: #3a2f0d;
-      --banner-text: #f3dc9a;
-      --question-bg: #3d1a16;
-      --question-text: #f5b4ab;
-      --ok-bg: #16301d;
-      --ok-text: #9fd8ad;
-      --chip-bg: #2b2a27;
+      color-scheme: dark;
+      --bg: var(--off-black);
+      --text: var(--off-white);
+      --muted: #B4B4B2;
+      --line: #37393A;
+      --chip-bg: #252728;
+      --link: var(--turquoise-300);
+      --strong: var(--turquoise-200);
+      --warn: var(--warm-orange-2);
+      --button-bg: var(--turquoise-200);
+      --button-text: var(--off-black);
     }
   }
   * { box-sizing: border-box; }
@@ -42,69 +63,98 @@
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font: 15px/1.5 var(--font-sans);
   }
-  .banner {
-    background: var(--banner-bg);
-    color: var(--banner-text);
-    padding: 8px 16px;
-    font-weight: 600;
-    font-size: 14px;
-  }
-  header, main, footer { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
-  header h1 { font-size: 22px; margin: 20px 0 4px; }
-  .summary { color: var(--muted); margin: 0 0 16px; }
+  header, main { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+  main { padding-bottom: 40px; }
+  h1, h2, .card-title { font-family: var(--font-serif); font-weight: 500; }
+  header h1 { font-size: 30px; line-height: 1.2; margin: 28px 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 20px; margin: 32px 0 12px; }
+  .lede, .notice { color: var(--muted); margin: 0 0 4px; }
+  .notice { font-size: 14px; }
   [role="tablist"] {
     display: flex; flex-wrap: wrap; gap: 4px;
     border-bottom: 1px solid var(--line);
-    margin-bottom: 16px;
+    margin: 20px 0 16px;
   }
   [role="tab"] {
     background: none; border: 0; border-bottom: 2px solid transparent;
     padding: 8px 12px; font: inherit; color: var(--muted); cursor: pointer;
   }
   [role="tab"][aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
-  [role="tab"][aria-disabled="true"] { cursor: not-allowed; opacity: 0.55; }
-  [role="tab"] small { display: block; font-size: 11px; }
-  [role="tab"]:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible {
+  [role="tab"]:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+  textarea:focus-visible, a:focus-visible, summary:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 2px;
   }
+  a { color: var(--link); }
+  code { font-family: var(--font-mono); font-size: 0.92em; }
+
+  /* Overview */
+  .stats { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 0; }
+  .stat {
+    display: flex; flex-direction: column-reverse;
+    border: 1px solid var(--line); border-radius: 8px; padding: 16px;
+  }
+  /* Shrinks on a phone, so a five-digit count still fits two cards to a row. */
+  .stat dd { margin: 0; font: 500 clamp(28px, 8vw, 40px)/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
+  .stat dt { color: var(--muted); margin-top: 4px; }
+  .bars { display: grid; grid-template-columns: minmax(8em, 12em) 1fr auto; gap: 8px 12px; align-items: center; max-width: 720px; }
+  .bar-track { background: var(--chip-bg); border-radius: 2px; height: 14px; }
+  .bar { display: block; background: var(--accent); border-radius: 2px; height: 100%; }
+  .bar-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+  .cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .card {
+    display: flex; flex-direction: column; gap: 8px; text-align: left;
+    font: inherit; color: var(--text); background: none; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 8px; padding: 16px;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card-title { font-size: 19px; line-height: 1.25; }
+  .card-line { color: var(--muted); }
+  .card-link { color: var(--link); text-decoration: underline; font-size: 14px; margin-top: auto; }
+  .method { color: var(--muted); margin-top: 32px; }
+
+  /* Tables */
   .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
   .controls input, .controls select {
     font: inherit; padding: 6px 8px; border: 1px solid var(--line);
-    border-radius: 6px; background: var(--surface); color: var(--text);
+    border-radius: 6px; background: var(--bg); color: var(--text);
   }
   .controls input[type="search"] { flex: 1 1 240px; min-width: 0; }
   .count { color: var(--muted); font-size: 14px; }
-  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-  table { border-collapse: collapse; width: 100%; }
+  /* The table scrolls inside its own box, so the header row can stick to the top of it. */
+  .table-wrap { overflow: auto; max-height: 75vh; border: 1px solid var(--line); border-radius: 8px; }
+  table { border-collapse: separate; border-spacing: 0; width: 100%; }
   th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
-  th { font-size: 13px; color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--surface); }
+  th {
+    font-size: 13px; color: var(--muted); font-weight: 600;
+    position: sticky; top: 0; z-index: 1; background: var(--bg);
+  }
   tr:last-child td { border-bottom: 0; }
-  td.num { text-align: right; font-variant-numeric: tabular-nums; }
-  .badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
-  .badge.question { background: var(--question-bg); color: var(--question-text); }
-  .badge.consistent { background: var(--ok-bg); color: var(--ok-text); }
-  .chip { display: inline-block; background: var(--chip-bg); border-radius: 4px; padding: 0 6px; margin: 0 4px 4px 0; font-size: 13px; }
+  td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; padding: 0 8px; border: 1px solid currentColor; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--muted); }
+  .badge.question { color: var(--warn); }
+  .badge.consistent { color: var(--strong); }
+  .chip { display: inline-block; background: var(--chip-bg); border-radius: 999px; padding: 0 8px; margin: 0 4px 4px 0; font-size: 13px; }
   .term { font-weight: 600; }
   .definition { color: var(--muted); font-size: 13px; }
   .question-text { max-width: 44ch; }
-  a { color: var(--accent); }
-  .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; cursor: pointer; }
+  .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--link); text-decoration: underline; cursor: pointer; }
   td.sources { min-width: 220px; }
   .sources a { display: block; font-size: 13px; overflow-wrap: anywhere; margin-bottom: 4px; }
   td.nowrap { white-space: nowrap; }
   td.evidence { min-width: 320px; }
-  .evidence summary { color: var(--accent); cursor: pointer; }
+  .evidence summary { color: var(--link); cursor: pointer; }
   .evidence ul { margin: 8px 0 0; padding-left: 18px; }
   .evidence li { margin-bottom: 8px; }
   .more { margin: 12px 0; }
   .more button {
     font: inherit; padding: 6px 12px; border: 1px solid var(--line);
-    border-radius: 6px; background: var(--surface); color: var(--text); cursor: pointer;
+    border-radius: 6px; background: var(--bg); color: var(--text); cursor: pointer;
   }
   .empty { padding: 24px; color: var(--muted); }
-  footer { color: var(--muted); font-size: 13px; padding-top: 24px; padding-bottom: 32px; }
+
+  /* Review mode */
   .review { min-width: 240px; }
   .review select, .review textarea, .string-form input, .string-form select, .string-form textarea,
   .proposal-field select, .proposal-field input, .proposal-field textarea {
@@ -115,13 +165,14 @@
   .review .row-actions { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
   .save {
     font: inherit; font-size: 13px; padding: 3px 10px; border-radius: 6px; cursor: pointer;
-    border: 1px solid var(--accent); background: var(--accent); color: var(--surface);
+    border: 1px solid var(--button-bg); background: var(--button-bg); color: var(--button-text);
   }
+  .save:disabled { opacity: 0.55; cursor: not-allowed; }
   .status { font-size: 12px; color: var(--muted); }
-  .status.error { color: var(--question-text); }
+  .status.error { color: var(--warn); }
   .string-form {
     display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    border: 1px solid var(--line); border-radius: 8px;
     padding: 12px; margin-bottom: 16px;
   }
   .string-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
@@ -136,26 +187,34 @@
 </style>
 </head>
 <body>
-<div class="banner" role="note" id="banner">Outside-in, public sources, unofficial. No affiliation with the company audited.</div>
 <header>
   <h1 id="title">Content audit</h1>
-  <p class="summary" id="summary"></p>
+  <p class="lede" id="lede"></p>
+  <p class="notice" id="review-note" hidden>Review mode: edits save to this computer.</p>
+  <p class="notice" id="notice" hidden></p>
 </header>
 <main>
   <div role="tablist" aria-label="Audit views">
-    <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="true">Terms</button>
+    <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
+    <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="false" tabindex="-1">Terms</button>
     <button role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="false" tabindex="-1">Glossary</button>
     <button role="tab" id="tab-proposals" aria-controls="panel-proposals" aria-selected="false" tabindex="-1" hidden>Glossary proposals</button>
     <button role="tab" id="tab-findings" aria-controls="panel-findings" aria-selected="false" tabindex="-1">Findings</button>
-    <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Snippets</button>
-    <button role="tab" id="tab-strings" aria-controls="panel-strings" aria-selected="false" tabindex="-1" hidden>App strings</button>
-    <button role="tab" aria-disabled="true" tabindex="-1">Recommendations<small>Coming in phase 3</small></button>
-    <button role="tab" aria-disabled="true" tabindex="-1">Patterns<small>Coming in pass 2</small></button>
-    <button role="tab" aria-disabled="true" tabindex="-1">Style<small>Coming in pass 2</small></button>
-    <button role="tab" aria-disabled="true" tabindex="-1">Tone<small>Coming in pass 2</small></button>
+    <button role="tab" id="tab-app-strings" aria-controls="panel-app-strings" aria-selected="false" tabindex="-1" hidden>App strings</button>
+    <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Strings</button>
   </div>
 
-  <section role="tabpanel" id="panel-terms" aria-labelledby="tab-terms">
+  <section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+    <dl class="stats" id="stats"></dl>
+    <h2>Findings by category</h2>
+    <div class="bars" id="category-bars"></div>
+    <h2 id="headlines-heading">Headlines</h2>
+    <div class="cards" id="headline-cards"></div>
+    <p class="method">Collected from public, first-party pages and checked against a hand-reviewed glossary.
+      <a href="https://github.com/kieranforde1/perplexity-content-design-audit#readme" target="_blank" rel="noopener noreferrer">How it works</a></p>
+  </section>
+
+  <section role="tabpanel" id="panel-terms" aria-labelledby="tab-terms" hidden>
     <div class="controls">
       <label for="term-search" hidden>Search terms</label>
       <input type="search" id="term-search" placeholder="Search terms, variants or questions">
@@ -189,8 +248,6 @@
   </section>
 
   <section role="tabpanel" id="panel-glossary" aria-labelledby="tab-glossary" hidden>
-    <p class="hint">The terms a person has settled on, from <code>glossary.csv</code>. Read-only here:
-      to change a row, edit the file itself, or accept a proposal in review mode.</p>
     <div class="controls">
       <label for="glossary-search" hidden>Search the glossary</label>
       <input type="search" id="glossary-search" placeholder="Search terms or definitions">
@@ -223,9 +280,7 @@
   </section>
 
   <section role="tabpanel" id="panel-proposals" aria-labelledby="tab-proposals" hidden>
-    <p class="hint">Drafted changes to <code>glossary.csv</code>, kept in <code>glossary_proposals.csv</code>.
-      Accept, edit or reject each row: changes save as you make them. Nothing reaches the glossary
-      until you click Apply accepted, and then only if the glossary still passes its check.</p>
+    <p class="hint">Nothing reaches <code>glossary.csv</code> until you click Apply accepted.</p>
     <div class="controls">
       <label for="proposal-section" hidden>Section</label>
       <select id="proposal-section"><option value="">All sections</option></select>
@@ -263,8 +318,6 @@
   </section>
 
   <section role="tabpanel" id="panel-findings" aria-labelledby="tab-findings" hidden>
-    <p class="hint">Where the public text differs from the glossary, from <code>audit check</code>.
-      Each finding lists every snippet it counts.</p>
     <div class="controls">
       <label for="finding-search" hidden>Search findings</label>
       <input type="search" id="finding-search" placeholder="Search terms and fixes">
@@ -275,7 +328,7 @@
       <label for="finding-sort" hidden>Sort</label>
       <select id="finding-sort">
         <option value="category">Grouped by category</option>
-        <option value="count">Most snippets first</option>
+        <option value="count">Most strings first</option>
       </select>
       <span class="count" id="finding-count" aria-live="polite"></span>
     </div>
@@ -283,7 +336,7 @@
       <table>
         <thead><tr>
           <th scope="col">Category</th><th scope="col">Glossary term</th><th scope="col">Written as</th>
-          <th scope="col">Snippets</th><th scope="col">Where</th><th scope="col">Fix</th>
+          <th scope="col">Strings</th><th scope="col">Where</th><th scope="col">Fix</th>
           <th scope="col">Evidence</th>
         </tr></thead>
         <tbody id="finding-rows"></tbody>
@@ -292,35 +345,8 @@
     </div>
   </section>
 
-  <section role="tabpanel" id="panel-snippets" aria-labelledby="tab-snippets" hidden>
-    <div class="controls">
-      <label for="snippet-search" hidden>Search snippets</label>
-      <input type="search" id="snippet-search" placeholder="Search snippet text or URL">
-      <label for="snippet-surface" hidden>Surface</label>
-      <select id="snippet-surface"><option value="">All surfaces</option></select>
-      <label for="snippet-kind" hidden>Kind</label>
-      <select id="snippet-kind"><option value="">All kinds</option></select>
-      <label for="snippet-stage" hidden>Stage</label>
-      <select id="snippet-stage"><option value="">All stages</option></select>
-      <button class="linkish" id="snippet-clear" hidden>Clear term filter</button>
-      <span class="count" id="snippet-count" aria-live="polite"></span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th scope="col">Excerpt</th><th scope="col">Kind</th><th scope="col">Surface</th>
-          <th scope="col">Stage</th><th scope="col">Source</th><th scope="col">Captured</th>
-        </tr></thead>
-        <tbody id="snippet-rows"></tbody>
-      </table>
-      <p class="empty" id="snippet-empty" hidden>No snippets match.</p>
-    </div>
-    <div class="more"><button id="snippet-more" hidden>Show more</button></div>
-  </section>
-
-  <section role="tabpanel" id="panel-strings" aria-labelledby="tab-strings" hidden>
-    <p class="hint">Text you saw while using the app, typed in by hand. 20 words at most.
-      After adding strings, run <code>audit extract</code> and <code>audit terms</code> to include them.</p>
+  <section role="tabpanel" id="panel-app-strings" aria-labelledby="tab-app-strings" hidden>
+    <p class="hint">Run <code>audit extract</code> and <code>audit terms</code> afterwards to include new strings.</p>
     <form class="string-form" id="string-form" novalidate>
       <label class="wide">Text, exactly as shown
         <textarea id="s-text" rows="2" required></textarea>
@@ -350,8 +376,33 @@
       <p class="empty" id="string-empty" hidden>No app strings yet.</p>
     </div>
   </section>
+
+  <section role="tabpanel" id="panel-snippets" aria-labelledby="tab-snippets" hidden>
+    <div class="controls">
+      <label for="snippet-search" hidden>Search strings</label>
+      <input type="search" id="snippet-search" placeholder="Search text or URL">
+      <label for="snippet-surface" hidden>Surface</label>
+      <select id="snippet-surface"><option value="">All surfaces</option></select>
+      <label for="snippet-kind" hidden>Kind</label>
+      <select id="snippet-kind"><option value="">All kinds</option></select>
+      <label for="snippet-stage" hidden>Stage</label>
+      <select id="snippet-stage"><option value="">All stages</option></select>
+      <button class="linkish" id="snippet-clear" hidden>Clear term filter</button>
+      <span class="count" id="snippet-count" aria-live="polite"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th scope="col">Excerpt</th><th scope="col">Kind</th><th scope="col">Surface</th>
+          <th scope="col">Stage</th><th scope="col">Source</th><th scope="col">Captured</th>
+        </tr></thead>
+        <tbody id="snippet-rows"></tbody>
+      </table>
+      <p class="empty" id="snippet-empty" hidden>No strings match.</p>
+    </div>
+    <div class="more"><button id="snippet-more" hidden>Show more</button></div>
+  </section>
 </main>
-<footer id="footer"></footer>
 
 <script id="audit-data" type="application/json">__AUDIT_DATA__</script>
 <script>
@@ -389,10 +440,16 @@
     return el("a", { href: url, target: "_blank", rel: "noopener noreferrer", text: label, title: url });
   }
 
-  document.getElementById("title").textContent = data.display_name + ": outside-in content audit";
+  function formatNumber(n) { return Number(n).toLocaleString("en-GB"); }
+
+  document.getElementById("title").textContent = data.display_name + " content audit";
   document.title = data.display_name + " content audit";
-  document.getElementById("summary").textContent = data.summary;
-  document.getElementById("footer").textContent = data.footer;
+  document.getElementById("lede").textContent =
+    "An unofficial, outside-in audit of " + data.display_name + "'s public product text.";
+  if (data.notice) {
+    document.getElementById("notice").textContent = data.notice;
+    document.getElementById("notice").hidden = false;
+  }
 
   // Review mode: served by `audit review`, which saves edits to the files in data/.
   function save(path, body) {
@@ -408,9 +465,8 @@
     });
   }
   if (data.editable) {
-    document.getElementById("banner").textContent =
-      "Review mode. Edits save to the data folder on this computer. Outside-in, public sources, unofficial.";
-    document.getElementById("tab-strings").hidden = false;
+    document.getElementById("review-note").hidden = false;
+    document.getElementById("tab-app-strings").hidden = false;
     document.getElementById("tab-proposals").hidden = false;
     // The review column goes straight after the term, so it's on screen without scrolling.
     var head = document.getElementById("term-head");
@@ -418,7 +474,7 @@
   }
 
   // Tabs
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]:not([aria-disabled]):not([hidden])'));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]:not([hidden])'));
   function selectTab(tab) {
     tabs.forEach(function (t) {
       var on = t === tab;
@@ -711,10 +767,10 @@
   }).forEach(function (c) { findingCategory.appendChild(el("option", { value: c, text: c })); });
 
   function evidenceItem(e) {
-    // In the evidence-only build, most snippets have no excerpt. The link still shows where to read it.
+    // In the evidence-only build, most strings have no excerpt. The link still shows where to read it.
     var text = e.excerpt
       ? el("div", { text: e.excerpt })
-      : el("div", { className: "definition", text: "Snippet " + e.id + ": the excerpt isn't in this build." });
+      : el("div", { className: "definition", text: "String " + e.id + ": the excerpt isn't in this build." });
     return el("li", {}, [text, e.source_url ? sourceLink(e.source_url) : null]);
   }
 
@@ -740,7 +796,7 @@
     });
     rows.forEach(function (f) {
       var details = el("details", {}, [
-        el("summary", { text: "Show " + f.evidence.length + (f.evidence.length === 1 ? " snippet" : " snippets") }),
+        el("summary", { text: "Show " + f.evidence.length + (f.evidence.length === 1 ? " string" : " strings") }),
         el("ul", {}, f.evidence.map(evidenceItem))
       ]);
       // The question only appears where the answer isn't in the text and only the team knows it.
@@ -842,7 +898,7 @@
     renderProposals();
   }
 
-  // Snippets
+  // Strings: every collected string. The code calls them snippets, after snippets.csv.
   var snippetSearch = document.getElementById("snippet-search");
   var filters = { surface: "snippet-surface", kind: "snippet-kind", stage: "snippet-stage" };
   Object.keys(filters).forEach(function (field) {
@@ -893,9 +949,65 @@
     document.getElementById("snippet-empty").hidden = rows.length > 0;
     document.getElementById("snippet-more").hidden = rows.length <= shown;
     document.getElementById("snippet-count").textContent =
-      Math.min(shown, rows.length) + " shown of " + rows.length + " matching (" + data.snippets.length + " total)";
+      formatNumber(Math.min(shown, rows.length)) + " shown of " + formatNumber(rows.length) +
+      " matching (" + formatNumber(data.snippets.length) + " total)";
   }
 
+  // Overview
+  // A headline card opens its tab searched for the card's term, with the other filters reset,
+  // so the evidence is the first thing on screen.
+  var headlineTabs = {
+    findings: { search: findingSearch, reset: [findingCategory, findingSurface], render: renderFindings },
+    glossary: { search: glossarySearch, reset: [glossaryStatus, glossaryBasis], render: renderGlossary },
+    terms: { search: termSearch, reset: [termStatus, termReview], render: renderTerms }
+  };
+  var tabNames = { findings: "Findings", glossary: "Glossary", terms: "Terms" };
+
+  function openHeadline(h) {
+    var target = headlineTabs[h.tab];
+    target.search.value = h.term;
+    target.reset.forEach(function (select) { select.value = ""; });
+    target.render();
+    selectTab(document.getElementById("tab-" + h.tab));
+  }
+
+  function renderOverview() {
+    var o = data.overview;
+    // `audit review` keeps the code it started with, so an older server sends no overview.
+    if (!o) {
+      document.getElementById("panel-overview").textContent = "Restart `audit review` to see the overview.";
+      return;
+    }
+    var stats = document.getElementById("stats");
+    [[o.pages, "public pages"], [o.strings, "strings"], [o.glossary_terms, "glossary terms"], [o.findings, "findings"]]
+      .forEach(function (s) {
+        stats.appendChild(el("div", { className: "stat" }, [
+          el("dt", { text: s[1] }), el("dd", { text: formatNumber(s[0]) })
+        ]));
+      });
+    var bars = document.getElementById("category-bars");
+    var most = Math.max.apply(null, o.by_category.map(function (c) { return c[1]; }).concat([1]));
+    o.by_category.forEach(function (c) {
+      var bar = el("span", { className: "bar", style: "width: " + (100 * c[1] / most) + "%" });
+      bars.appendChild(el("span", { text: c[0] }));
+      bars.appendChild(el("span", { className: "bar-track", "aria-hidden": "true" }, [bar]));
+      bars.appendChild(el("span", { className: "bar-num", text: c[1] }));
+    });
+    var cards = document.getElementById("headline-cards");
+    var headlines = data.headlines || [];
+    document.getElementById("headlines-heading").hidden = headlines.length === 0;
+    headlines.forEach(function (h) {
+      var card = el("button", { className: "card", type: "button" }, [
+        el("span", { className: "card-title", text: h.title }),
+        el("span", { className: "card-line", text: h.line }),
+        el("span", { className: "card-link", text: "Open in " + tabNames[h.tab] })
+      ]);
+      card.addEventListener("click", function () { openHeadline(h); });
+      cards.appendChild(card);
+    });
+  }
+
+  renderOverview();
   renderTerms();
   renderGlossary();
   renderFindings();

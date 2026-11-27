@@ -1,7 +1,7 @@
 # Roadmap
 
-Every step reads the snippets table and writes its own table. Adding a step means adding
-a file, not rebuilding.
+Every step reads the strings table (`snippets.csv`) and writes its own table. Adding a
+step means adding a file, not rebuilding.
 
 ## Phases
 
@@ -58,7 +58,7 @@ snippet_ids
   name, avoided term or other variant.
 - `issue` says what's wrong, `fix` says what to write instead, and `question` is filled
   in only where only the team can answer.
-- `snippet_ids` lists every snippet the finding counts, so each one can be traced.
+- `snippet_ids` lists every string the finding counts, so each one can be traced.
 - Tutorial and example-app pages are left out of checks by the `analysis_exclude`
   config setting, because they aren't product language.
 
@@ -82,7 +82,7 @@ rec_id, goal, level, change, finding_ids, reach, effort, confidence, question
   - `pattern`: change how a type of content is written.
   - `system`: change the process or tooling so the problem doesn't come back, such as a
     term check at build time.
-- `reach` is how many snippets and surfaces the change would touch.
+- `reach` is how many strings and surfaces the change would touch.
 - `effort` is `small`, `medium` or `large`.
 - `confidence` is `high`, `medium` or `low`. Automated counts start high and anything
   needing a person's judgement starts lower.
