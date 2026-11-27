@@ -191,7 +191,9 @@ class _HtmlPieces(HTMLParser):
     so a link inside a list item is counted once, not twice.
     """
 
-    SKIP = {"script", "style", "noscript", "svg", "template"}
+    # A footer is the same site links on every page ("Trust center", "Careers"), so it would
+    # count once per page and swamp the real uses.
+    SKIP = {"script", "style", "noscript", "svg", "template", "footer"}
     CAPTURE = {"title", "h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "td", "th", "dd",
                "dt", "button", "label", "summary", "figcaption", "a"}
     # Layout boxes. Pricing cards keep plan names, prices and feature lines in these, so

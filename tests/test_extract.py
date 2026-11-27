@@ -233,3 +233,13 @@ def test_run_dry_run_writes_nothing(tmp_path: Path) -> None:
     assert found
     assert not target.public_snippets.exists()
     assert not target.local_snippets.exists()
+
+
+def test_html_skips_the_footer() -> None:
+    page = (
+        "<main><p>Open the Help Center for more.</p></main>"
+        "<footer><ul><li><a href='/careers'>Careers</a></li><li>Trust center</li></ul></footer>"
+    )
+    texts = [p.text for p in extract_html(page)]
+    assert "Open the Help Center for more." in texts
+    assert not any("Trust center" in t or "Careers" in t for t in texts)
