@@ -308,6 +308,18 @@ check:
     Disabled:
       - comet-policies-and-controls
 
+# Settings for `audit patterns`, which groups look-alike sentences.
+patterns:
+  # Look-alikes share at least this share of their words. Decided on 2026-11-27: groups
+  # chain, so a looser setting such as 0.6 pulls unrelated sentences into one group.
+  min_overlap: 0.75
+  # Plan names from the glossary. Variants that name different plans disagree on a fact.
+  plan_names:
+    - Perplexity Pro
+    - Perplexity Max
+    - Enterprise Pro
+    - Enterprise Max
+
 # The committed snippets table only fills in excerpts for evidence rows. A test fails if
 # it holds more than this many.
 max_committed_excerpts: 1200
