@@ -1469,7 +1469,7 @@ c4af08fae655,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,
 b889b47abc63,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,aee022cd0840b248
 ec94c88eeb6a,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,8c99a08652d20738
 222786bccb2f,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,c97c10c94fc5ba53
-2b2394842141,"Signing in creates a Perplexity account, but it does not create an API project on its own.",sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,e047a42647403392
+2b2394842141,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,e047a42647403392
 db00f8128df1,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,ec06dac3eaf24031
 477fcdf30a13,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,3a69947eff83f8e8
 4cfa73642d8a,,heading,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,bbe624d8decb2473
@@ -1501,7 +1501,7 @@ e7f7a72dba32,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,
 8654640374c4,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,2a1adf778d834137
 9c8f16e34e9c,"SSO is not available on personal Pro or Max plans, and it cannot be enabled with API-only billing — your …",sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,734c71cd200788ee
 bffdfcb95aae,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,03f2bf693fb39243
-83157be174aa,Signing In With SSO,heading,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,de539819efc2ca86
+83157be174aa,,heading,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,de539819efc2ca86
 a3a2d2c3bb3f,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,bfde0310106dfaa9
 543a083a9bc6,,button,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,e109d85e08c579d5
 b113044c500d,,sentence,https://docs.perplexity.ai/docs/admin/signing-in.md,docs,other,2026-11-25,crawl,bcb189879409d860
@@ -36678,7 +36678,7 @@ ad68fad8b3e8,,sentence,https://www.perplexity.ai/help-center/en/articles/2026072
 5b7474670037,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,8c99a08652d20738
 44e4ef7d8b9c,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,c97c10c94fc5ba53
 02588da65b31,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,6af0bcbf47476590
-4d60ce3754f7,"Note: Signing in creates a Perplexity account, but it does not give you API access on its own.",sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,8555e60d8d2f08cf
+4d60ce3754f7,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,8555e60d8d2f08cf
 f3ae45d4d429,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,9ab0835895843f10
 2e40df9b90f1,,sentence,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,89a1f58e4717162f
 4c30113b2e14,,heading,https://www.perplexity.ai/help-center/en/articles/20260729-signing-in-to-the-api-console.md,help,other,2026-11-26,crawl,910516662023c965

@@ -972,14 +972,10 @@ __CHECK_TEXT_JS__
         r.forms.length ? el("span", { className: "rule-wrong", text: ", not " + listOf(r.forms.map(quoted)) }) : null
       ]);
     }
-    // Some glossary rows say what to do instead of naming a word ("Delete the word").
-    // Those read as an instruction after the word, not as a swap after an arrow.
-    var instruction = /^(Delete|Name|Say|Reword|Remove|Describe|Drop|Cut)\b/.test(r.use_instead || "");
-    if (r.kind === "avoid" || instruction) {
+    if (r.kind === "avoid") {
       return el("span", { className: "rule-text" }, [
         el("span", { text: "Avoid " }),
-        el("span", { className: "rule-term", text: quoted(r.term) }),
-        instruction ? el("span", { className: "rule-wrong", text: ". " + r.use_instead + "." }) : null
+        el("span", { className: "rule-term", text: quoted(r.term) })
       ]);
     }
     // A word and what to use instead. The arrow is read out as words.
