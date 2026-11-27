@@ -1,1 +1,59 @@
 text,kind,source_url,surface,stage,captured_on
+Upgrade plan,button,"iOS app, home screen",ios-app,upgrade,2026-11-26
+Do anything…,label,"iOS app, home screen, ask box",ios-app,answering,2026-11-26
+Light,button,"iOS app, home screen, model picker",ios-app,answering,2026-11-26
+Allow ad measurement?,heading,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+Allowing ad measurement lets Perplexity use tools like SDKs and server-to-server integrations to measure how its ads perform…,sentence,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+These tools are never used to sell third-party ads.,sentence,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+Allow,button,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+Not now,button,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+You can change this anytime in settings.,sentence,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+Privacy policy,nav,"iOS app, ad measurement sheet",ios-app,other,2026-11-26
+Restore,button,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26
+Upgrade to access Computer,heading,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26
+"Hand off your projects to get polished, reliable deliverables around the clock",sentence,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26
+Pro,button,"iOS app, Computer upgrade screen, plan switch",ios-app,upgrade,2026-11-26
+Max,button,"iOS app, Computer upgrade screen, plan switch",ios-app,upgrade,2026-11-26
+Automate complex tasks,label,"iOS app, Computer upgrade screen, Pro and Max",ios-app,upgrade,2026-11-26
+"Edit reports, slides and spreadsheets",label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+"Create apps, websites and prototypes",label,"iOS app, Computer upgrade screen, Pro and Max",ios-app,upgrade,2026-11-26
+Conduct expert-level research,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+Works with all your apps,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+"Get 4,000 bonus credits",label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+Monthly,label,"iOS app, Computer upgrade screen",ios-app,upgrade,2026-11-26
+Yearly,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+-17%,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+£20 /mo,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+£240/yr,label,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+Get Pro,button,"iOS app, Computer upgrade screen, Pro",ios-app,upgrade,2026-11-26
+"Get 35,000 bonus credits and 10,000 monthly credits",label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26
+Make polished slides and reports,label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26
+Conduct expert-level data analysis,label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26
+Integrate your favourite apps,label,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26
+Get Max,button,"iOS app, Computer upgrade screen, Max",ios-app,upgrade,2026-11-26
+Light mode is best for everyday tasks. Upgrade for more advanced models.,sentence,"iOS app, Light mode pop-up",ios-app,upgrade,2026-11-26
+Upgrade to Pro,button,"iOS app, Light mode pop-up",ios-app,upgrade,2026-11-26
+Artifacts,nav,"iOS app, side menu",ios-app,other,2026-11-26
+Automations,nav,"iOS app, side menu",ios-app,other,2026-11-26
+Plugins,nav,"iOS app, side menu",ios-app,other,2026-11-26
+Teammates,nav,"iOS app, side menu",ios-app,other,2026-11-26
+Hire your first teammate,heading,"iOS app, side menu, Teammates card",ios-app,first-use,2026-11-26
+Teammates are persistent agents that work for you,sentence,"iOS app, side menu, Teammates card",ios-app,first-use,2026-11-26
+Create new teammate,button,"iOS app, side menu, Teammates card",ios-app,first-use,2026-11-26
+Projects,nav,"iOS app, side menu",ios-app,other,2026-11-26
+Sessions,nav,"iOS app, side menu",ios-app,other,2026-11-26
+New,button,"iOS app, side menu",ios-app,other,2026-11-26
+Introducing Teammates,heading,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26
+Teammates are autonomous agents that work while you’re away.,sentence,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26
+Working…,label,"iOS app, Teammates intro, page 1, example",ios-app,first-use,2026-11-26
+Connecting to Datadog monitors,label,"iOS app, Teammates intro, page 1, example",ios-app,first-use,2026-11-26
+Reading your last 20 merged PRs,label,"iOS app, Teammates intro, page 1, example",ios-app,first-use,2026-11-26
+"Take my on-call shift tonight. When an alert fires, pull the logs and traces, find the root cause…",sentence,"iOS app, Teammates intro, page 1, example prompt",ios-app,first-use,2026-11-26
+Continue,button,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26
+Requires Perplexity Max,label,"iOS app, Teammates intro",ios-app,upgrade,2026-11-26
+Storefront Manager,label,"iOS app, Teammates intro, page 3, example",ios-app,first-use,2026-11-26
+Compare our Shopify assortment with e-commerce brands that have similar best-sellers.,sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26
+"Send me a weekly Slack update on products and categories we should add to grow GMV…",sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26
+Thinking…,label,"iOS app, Teammates intro, page 3, example",ios-app,first-use,2026-11-26
+"They have access to your tools, skills, and context, and a computer of their own.",sentence,"iOS app, Teammates intro, page 3",ios-app,first-use,2026-11-26
+Try Teammates,button,"iOS app, Teammates intro, page 3",ios-app,first-use,2026-11-26

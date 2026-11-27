@@ -27,7 +27,8 @@ adding a file, not rebuilding.
   how or why the company made its decisions. Findings are observations and questions.
 - A snapshot. Pages change. Each snippet records the date it was captured.
 - Paid-only features are covered only through their public help pages and launch posts.
-- App text is typed in by hand from normal use. Nothing automates the app.
+- App text is typed in by hand from normal use, or transcribed from screenshots of normal
+  use. Nothing automates the app, and screenshots aren't committed.
 
 ## Status
 

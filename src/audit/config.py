@@ -7,7 +7,7 @@ for every company.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -57,6 +57,20 @@ class TermSettings:
 
 
 @dataclass(frozen=True)
+class CheckSettings:
+    """Company-specific exceptions for `audit check`."""
+
+    # Surfaces that record the past, such as a changelog. A retired or avoided name
+    # there was correct on the day it was written, so it isn't reported.
+    history_surfaces: tuple[str, ...] = ()
+    # Pages about moving off an old name. They have to say the old name to explain the move.
+    rename_pages: tuple[str, ...] = ()
+    # Glossary term -> phrases that contain it but name something else. A match inside one
+    # of these phrases isn't a use of the term.
+    other_things: dict[str, tuple[str, ...]] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
 class Target:
     name: str
     display_name: str
@@ -68,6 +82,7 @@ class Target:
     root: Path
     analysis_exclude: tuple[str, ...] = ()
     terms: TermSettings = TermSettings()
+    check: CheckSettings = CheckSettings()
     max_committed_excerpts: int = 500
     evidence_per_finding: int = 5
 
@@ -165,6 +180,20 @@ def load(name: str, root: Path = Path(".")) -> Target:
         consistent_min_pages=int(raw_terms.get("consistent_min_pages", 3)),
     )
 
+    raw_check: dict[str, Any] = raw.get("check", {}) or {}
+    history = tuple(raw_check.get("history_surfaces", []))
+    for surface in history:
+        if surface not in SURFACES:
+            raise ConfigError(f"check.history_surfaces has unknown surface {surface!r}")
+    check_settings = CheckSettings(
+        history_surfaces=history,
+        rename_pages=tuple(raw_check.get("rename_pages", [])),
+        other_things={
+            term: tuple(phrases)
+            for term, phrases in (raw_check.get("other_things", {}) or {}).items()
+        },
+    )
+
     return Target(
         name=raw.get("name", name),
         display_name=raw.get("display_name", name),
@@ -176,6 +205,7 @@ def load(name: str, root: Path = Path(".")) -> Target:
         root=root,
         analysis_exclude=tuple(raw.get("analysis_exclude", [])),
         terms=term_settings,
+        check=check_settings,
         max_committed_excerpts=int(raw.get("max_committed_excerpts", 500)),
         evidence_per_finding=int(raw.get("evidence_per_finding", 5)),
     )
