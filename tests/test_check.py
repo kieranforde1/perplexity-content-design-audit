@@ -206,6 +206,20 @@ def test_a_plural_of_a_singular_term_still_counts_as_another_spelling(tmp_path: 
     assert "'Gadget Helpers' (1)" in row["written"]
 
 
+def test_a_plural_ending_in_es_is_found(tmp_path: Path) -> None:
+    pieces = [
+        ("sentence", "Quick Searches are gone for good.", "https://e.com/a", "help"),
+        ("sentence", "Use a quick search to find it.", "https://e.com/b", "help"),
+        ("sentence", "Bring your own boxes to the meetup.", "https://e.com/c", "help"),
+    ]
+    glossary = "quick search,avoid,,,recommendation,\nbox,avoid,,,recommendation,\n"
+    target = write_target(tmp_path, glossary, pieces)
+    by_term = {r["term"]: r for r in findings(target)}
+    assert by_term["quick search"]["count"] == "2"
+    assert "'Quick Searches' (1)" in by_term["quick search"]["written"]
+    assert by_term["box"]["count"] == "1"
+
+
 def test_singular_use_of_a_plural_term_is_not_another_spelling(tmp_path: Path) -> None:
     pieces = [
         ("sentence", "Ask the Gadget Helpers for tips.", "https://e.com/a", "help"),
@@ -231,6 +245,19 @@ def test_phrases_that_name_something_else_are_skipped(tmp_path: Path) -> None:
     # "Zed Pro plan" is another company's, so only the one Pro plan sentence counts.
     assert row["count"] == "1"
     assert "'Pro plan' (1)" in row["written"]
+
+
+def test_a_word_shown_as_a_screen_value_is_skipped_on_listed_pages(tmp_path: Path) -> None:
+    pieces = [
+        ("label", "Disabled", "https://e.com/policies", "help"),
+        ("sentence", "Admins can set the policy to Disabled.", "https://e.com/policies", "help"),
+        ("sentence", "This setting is disabled for guests.", "https://e.com/other", "help"),
+    ]
+    yaml = "check:\n  screen_value_pages:\n    Disabled:\n      - /policies\n"
+    target = write_target(tmp_path, "Disabled,avoid,turned off,,recommendation,\n", pieces, yaml)
+    (row,) = findings(target)
+    # The policies page has to match the screen, so only the other page counts.
+    assert row["count"] == "1"
 
 
 def test_a_longer_glossary_term_is_not_counted_again_by_the_shorter_one(

@@ -30,6 +30,12 @@ def test_a_description_can_stand_in_for_a_web_address() -> None:
     assert typed.problems(GOOD | {"source_url": "web app, sign-up screen"}) == []
 
 
+def test_text_from_an_email_is_accepted_and_ranked_with_app_text() -> None:
+    assert typed.problems(GOOD | {"surface": "email", "source_url": "email, task complete"}) == []
+    assert "email" in snippets.SURFACES
+    assert terms.AUTHORITY.index("email") > terms.AUTHORITY.index("web-app")
+
+
 @pytest.mark.parametrize(
     "change, expected",
     [

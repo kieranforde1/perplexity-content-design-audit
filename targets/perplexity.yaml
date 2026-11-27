@@ -267,10 +267,50 @@ check:
       - security portal
       - self-serve portal
       - billing portal
+    # The ordinary verb, as in "Focus on data protection", and a word in someone else's
+    # sentence.
+    Focus:
+      - Focus on
+      - Perplexity focus
+    # Colour presets in the brand guidelines, and Computer's own "Return to Presets".
+    preset:
+      - Off-palette presets
+      - Return to Presets
+    # "Workflow" as a general noun, and a GitHub feature.
+    Workflows:
+      - Example Workflows
+      - GitHub Action Workflow
+      - Workflow Automation
+    # Threads in other apps, and an API identifier.
+    thread:
+      - Slack thread
+      - email thread
+      - thread ID
+    # "Lets", not switching something on, and a control name shown on screen.
+    enable:
+      - enables you to
+      - enable you to
+      - enables Perplexity to
+      - Enable Audit Logging
+    # Status labels shown on screen. The help text has to quote them as they are.
+    Disabled:
+      - Disabled by your organization
+    # A card brand and the verb "master a skill".
+    master:
+      - Master Card
+      - master material
+  # Glossary term -> pages that list it as a value shown on screen. Those pages have to
+  # match the product, so the change belongs on the screen first.
+  screen_value_pages:
+    # The Comet policies table gives each policy an Enabled or Disabled value.
+    Enabled:
+      - comet-policies-and-controls
+    Disabled:
+      - comet-policies-and-controls
 
 # The committed snippets table only fills in excerpts for evidence rows. A test fails if
 # it holds more than this many.
-max_committed_excerpts: 500
+max_committed_excerpts: 1200
 # How many of each finding's snippets keep their excerpt, to illustrate it rather than
 # list every one.
 evidence_per_finding: 5

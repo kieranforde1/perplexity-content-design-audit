@@ -14,7 +14,7 @@ from pathlib import Path
 from audit import snippets
 
 COLUMNS = ("text", "kind", "source_url", "surface", "stage", "captured_on")
-APP_SURFACES = ("web-app", "ios-app", "comet")
+APP_SURFACES = ("web-app", "ios-app", "comet", "email")
 # Parameters come from API docs, not from using the app.
 APP_KINDS = tuple(k for k in snippets.KINDS if k != "parameter")
 # A description of where the text was seen, for screens with no web address.

@@ -68,6 +68,10 @@ class CheckSettings:
     # Glossary term -> phrases that contain it but name something else. A match inside one
     # of these phrases isn't a use of the term.
     other_things: dict[str, tuple[str, ...]] = field(default_factory=dict)
+    # Glossary term -> pages (parts of the URL) that list it as a value shown on screen,
+    # such as a policy table of Enabled and Disabled. The help text has to match the screen,
+    # so the fix belongs in the product, not on these pages.
+    screen_value_pages: dict[str, tuple[str, ...]] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -191,6 +195,10 @@ def load(name: str, root: Path = Path(".")) -> Target:
         other_things={
             term: tuple(phrases)
             for term, phrases in (raw_check.get("other_things", {}) or {}).items()
+        },
+        screen_value_pages={
+            term: tuple(pages)
+            for term, pages in (raw_check.get("screen_value_pages", {}) or {}).items()
         },
     )
 

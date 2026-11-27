@@ -1,60 +1,107 @@
 term,status,use_instead,definition,basis,source_url
-Enterprise,use,,,observed,https://www.perplexity.ai/hub/brand
-Project,use,,,observed,https://www.perplexity.ai/enterprise
-Connectors,use,,,observed,https://www.perplexity.ai/hub/pricing
-Perplexity Pro,use,,,observed,https://www.perplexity.ai/hub/brand
-Computer,use,,,observed,https://www.perplexity.ai/hub/brand
-Comet,use,,,observed,https://www.perplexity.ai/hub/brand
-Perplexity Max,use,,,observed,https://www.perplexity.ai/hub/brand
-Perplexity Enterprise organizations,use,,,observed,https://docs.perplexity.ai/docs/admin/audit-api.md
-Enterprise Pro,use,,,observed,https://www.perplexity.ai/enterprise
-Agent API,use,,,observed,https://docs.perplexity.ai/api-reference/models-get.md
-Enterprise Max,use,,,observed,https://www.perplexity.ai/enterprise
-Credits,use,,,observed,https://www.perplexity.ai/hub/pricing
-API key,use,,,observed,https://docs.perplexity.ai/api-reference/admin-audit-events-get.md
-AI models,use,,,observed,https://www.perplexity.ai/hub/pricing
-Organization settings,use,,,observed,https://docs.perplexity.ai/docs/admin/audit-api.md
-Skills,use,,,observed,https://www.perplexity.ai/hub/brand
-Discover,use,,,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
-Trust Center,use,,,observed,https://www.perplexity.ai/hub/pricing
-Disabled,avoid,Turned off,Not allowed,recommendation,
-Search API,use,,,observed,https://docs.perplexity.ai/api-reference/search-post.md
-API reference,use,,,observed,https://docs.perplexity.ai/docs/agent-api/effort.md
-Deep Research,use,,,observed,https://www.perplexity.ai/enterprise
-API Console,use,,,observed,https://docs.perplexity.ai/docs/admin/api-key-management.md
-Comet Browser,use,,,observed,https://www.perplexity.ai/enterprise
-MCP server,use,,,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
-Help Center,use,,,observed,https://www.perplexity.ai/hub/pricing
-Agent API models,use,,,observed,https://docs.perplexity.ai/docs/agent-api/batch.md
-Incognito,use,,,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
-Pro Search,use,,,observed,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
-File Uploads,use,,,observed,https://www.perplexity.ai/hub/pricing
-Teammate,use,,,observed,https://www.perplexity.ai/hub/brand
-Comet Assistant,use,,,observed,https://www.perplexity.ai/hub/pricing
+Enterprise,use,,"Perplexity's plans for organizations, sold in two tiers, Enterprise Pro and Enterprise Max, with admin controls over members, data and features.",observed,https://www.perplexity.ai/hub/brand
+Project,use,,"A shared workspace that keeps your searches, Computer tasks, files, instructions and connected tools together.",observed,https://www.perplexity.ai/enterprise
+Connectors,use,,"Links to other apps, such as Google Drive, Slack or GitHub, that let Perplexity search or act on what's stored there once you connect your account.",observed,https://www.perplexity.ai/hub/pricing
+Perplexity Pro,use,,"Perplexity's paid plan for individuals, one level above the free plan.",observed,https://www.perplexity.ai/hub/brand
+Computer,use,,"Perplexity's AI agent: instead of only answering, it carries out tasks, such as researching across the web and your apps and creating documents.",observed,https://www.perplexity.ai/hub/brand
+Comet,use,,"Perplexity's web browser, built on Chromium, with AI help built in.",observed,https://www.perplexity.ai/hub/brand
+Perplexity Max,use,,"Perplexity's highest-priced plan for individuals, above Pro, with the most access to the newest models and features.",observed,https://www.perplexity.ai/hub/brand
+Perplexity Enterprise organizations,use,,"Companies with a Perplexity Enterprise plan. Some admin tools, such as the Audit API, are only open to them.",observed,https://docs.perplexity.ai/docs/admin/audit-api.md
+Enterprise Pro,use,,"The standard Enterprise tier: team access to Perplexity, including Computer, with the security controls an IT team needs.",observed,https://www.perplexity.ai/enterprise
+Agent API,use,,"The API for building agents: the model works in steps, calling tools such as web search, and then writes an answer. It replaced Sonar.",observed,https://docs.perplexity.ai/api-reference/models-get.md
+Enterprise Max,use,,"The highest Enterprise tier. It has everything in Enterprise Pro, plus extra security features.",observed,https://www.perplexity.ai/enterprise
+Credits,use,,"Prepaid units that pay for usage. API credits pay for API calls, and Computer credits pay for Computer tasks. The two balances are kept apart.",observed,https://www.perplexity.ai/hub/pricing
+API key,use,,"The secret code that proves an API request comes from your account. It's shown only once, when you create it.",observed,https://docs.perplexity.ai/api-reference/admin-audit-events-get.md
+AI models,use,,"The language models, from Perplexity and other companies, that write answers. Which ones you can pick depends on your plan.",observed,https://www.perplexity.ai/hub/pricing
+Organization settings,use,,"The admin area of an Enterprise organization, where admins manage members, roles, connectors and other options for the whole organization.",observed,https://docs.perplexity.ai/docs/admin/audit-api.md
+Skills,use,,A set of instructions that teaches Computer how to do one kind of task well.,observed,https://www.perplexity.ai/hub/brand
+Discover,use,,The tab on the Plugins page where you browse connectors and skills and add the ones you want.,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
+Trust Center,use,,Perplexity's public page of security and compliance documents.,observed,https://www.perplexity.ai/hub/pricing
+Disabled,avoid,turned off,"The state of a setting or feature that's switched off. This glossary uses ""turned off"": it's plainer, and ""disabled"" also describes people. Where a screen shows ""Disabled"" or ""Disabled by your organization"", quote the label as shown and ask the team to change it.",recommendation,
+Search API,use,,"The API that returns a ranked list of web results for a query, not a written answer.",observed,https://docs.perplexity.ai/api-reference/search-post.md
+API reference,use,,The part of the developer docs that lists every endpoint with its full request and response details.,observed,https://docs.perplexity.ai/docs/agent-api/effort.md
+Deep Research,use,,A mode that reads many sources and writes a detailed report on a complex question.,observed,https://www.perplexity.ai/enterprise
+API Console,use,,"The website where developers manage their API keys, usage tier and billing for the Perplexity API Platform.",observed,https://docs.perplexity.ai/docs/admin/api-key-management.md
+Comet Browser,use,,"Another name for Comet, Perplexity's browser built on Chromium.",observed,https://www.perplexity.ai/enterprise
+MCP server,use,,"A server that offers tools to AI assistants through MCP (Model Context Protocol, a shared standard for connecting tools). Perplexity runs one, and you can connect others.",observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
+Help Center,use,,"Perplexity's public support site, with how-to and troubleshooting articles grouped into collections.",observed,https://www.perplexity.ai/hub/pricing
+Agent API models,use,,"The list of models you can choose when calling the Agent API, with their token prices.",observed,https://docs.perplexity.ai/docs/agent-api/batch.md
+Incognito,use,,A setting that keeps a search out of your saved history and memory.,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
+Pro Search,use,,Perplexity's more thorough search for complex questions. Search uses it automatically when your plan includes it.,observed,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
+File Uploads,use,,"Files you attach to a question, with the attach button or by drag and drop, so Perplexity can read them. Each plan limits how many you can attach.",observed,https://www.perplexity.ai/hub/pricing
+Teammate,use,,"An AI agent that takes on ongoing work, such as a project with many steps or regular monitoring.",observed,https://www.perplexity.ai/hub/brand
+Comet Assistant,use,,"The AI helper in a side panel next to the main Comet window. It summarizes pages, finds information and carries out tasks.",observed,https://www.perplexity.ai/hub/pricing
 Space,deprecated,Project,,published,https://www.perplexity.ai/hub/blog/spaces-are-now-projects
-AI-powered,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583745-getting-started-with-comet-set-up.md
-Perplexity API Platform,use,,,observed,https://www.perplexity.ai/hub/brand
-API Portal,avoid,,,recommendation,
-Enterprise users,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10352914-what-is-internal-knowledge-search.md
-AI assistants,use,,,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
-Brain,use,,,observed,https://www.perplexity.ai/hub/brand
-Health,use,,,observed,https://docs.perplexity.ai/docs/sdk/error-handling.md
-Incognito mode,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md
-Role-based,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10354958-can-i-control-parameters-like-temperature-top-p-and-stop-tokens.md
-Home,use,,,observed,https://docs.perplexity.ai/docs/agent-api/prompt-guide.md
-Orchestrator API,use,,,observed,https://docs.perplexity.ai/api-reference/gateway-chat-completions-post.md
-App Connectors,use,,,observed,https://www.perplexity.ai/hub/pricing
-Chat Completions,use,,,observed,https://docs.perplexity.ai/api-reference/gateway-models-get.md
-Content Generation,use,,,observed,https://docs.perplexity.ai/docs/getting-started/integrations/superplane.md
-File Connectors,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10352973-what-is-enterprise-pro.md
-People Search,use,,,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/run-code.md
-Computer credits,use,,,observed,https://www.perplexity.ai/hub/pricing
+AI-powered,use,,Describes a feature that uses AI models to do its work.,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583745-getting-started-with-comet-set-up.md
+Perplexity API Platform,use,,"Perplexity's set of developer APIs (seven of them), which share one API key and one web address, api.perplexity.ai.",observed,https://www.perplexity.ai/hub/brand
+API Portal,avoid,API Console,"Another name for the API Console: both point to console.perplexity.ai. This glossary uses ""API Console"".",recommendation,
+Enterprise users,use,,People who use Perplexity through their organization's Enterprise Pro or Enterprise Max seat.,observed,https://www.perplexity.ai/help-center/en/articles/10352914-what-is-internal-knowledge-search.md
+AI assistants,use,,"Other companies' AI tools, such as chat apps and coding agents, that can connect to Perplexity through MCP.",observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
+Brain,use,,"A memory that runs in the background and builds a working picture of your projects, people, files and unfinished tasks, so Computer can use it.",observed,https://www.perplexity.ai/hub/brand
+Health,use,,Perplexity Health: a feature for Pro and Max subscribers in the US that uses your medical records and wearable data to answer health questions.,observed,https://docs.perplexity.ai/docs/sdk/error-handling.md
+Incognito mode,use,,Same as Incognito: a mode that keeps a search out of your saved history and memory.,observed,https://www.perplexity.ai/help-center/comet/en/articles/11734754-why-can-t-i-access-сomet.md
+Role-based,use,,Short for role-based access control: admins choose which roles in the organization can use each connector.,observed,https://www.perplexity.ai/help-center/en/articles/10354958-can-i-control-parameters-like-temperature-top-p-and-stop-tokens.md
+Home,use,,"The start page in Perplexity, where you begin a new search or Computer session.",observed,https://docs.perplexity.ai/docs/agent-api/prompt-guide.md
+Orchestrator API,use,,"The API that gives you direct access to models from Anthropic, OpenAI, Google, xAI and others, using one Perplexity API key and one credit balance.",observed,https://docs.perplexity.ai/api-reference/gateway-chat-completions-post.md
+App Connectors,use,,"Short for File App Connectors: connectors for Pro subscribers that link a personal file store, such as Google Drive.",observed,https://www.perplexity.ai/hub/pricing
+Chat Completions,use,,The OpenAI-style format for sending a conversation to a model. The Orchestrator API accepts it.,observed,https://docs.perplexity.ai/api-reference/gateway-models-get.md
+Content Generation,use,,"The name of a Help Center category (""AI Models & Content Generation""), not a feature.",observed,https://docs.perplexity.ai/docs/getting-started/integrations/superplane.md
+File Connectors,use,,"Connectors that let Enterprise Pro and Enterprise Max members search cloud storage, attach cloud files to a question and import files into Projects.",observed,https://www.perplexity.ai/help-center/en/articles/10352973-what-is-enterprise-pro.md
+People Search,use,,An Agent API tool that searches public professional profiles.,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/run-code.md
+Computer credits,use,,The credits that pay for Computer tasks. They're separate from your subscription and from API credits.,observed,https://www.perplexity.ai/hub/pricing
 Enterprise-grade,use,,,observed,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md
-Fast Search,use,,,observed,https://docs.perplexity.ai/docs/agent-api/effort.md
-OS,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md
-Portable Computer,use,,,observed,https://www.perplexity.ai/help-center/en/articles/10354937-what-is-the-difference-between-a-prompt-and-a-search.md
-Model Council,use,,,observed,https://www.perplexity.ai/hub/pricing
-Monitor API,use,,,observed,https://docs.perplexity.ai/api-reference/monitors-create-post.md
-My organization,use,,,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583823-do-i-need-a-perplexity-account-to-use-comet.md
+Fast Search,use,,"A quick search type in the Search API, charged per request with no token charges. It's not the same as the Agent API's ""fast"" effort level.",observed,https://docs.perplexity.ai/docs/agent-api/effort.md
+OS,use,,"Short for operating system, such as macOS, Windows or Linux.",observed,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md
+Portable Computer,use,,"A way to run Computer on your own Windows or Linux device, so tasks stay local and only reach the cloud with your permission.",observed,https://www.perplexity.ai/help-center/en/articles/10354937-what-is-the-difference-between-a-prompt-and-a-search.md
+Model Council,use,,A feature that runs your question through several AI models at once and combines their answers into one.,observed,https://www.perplexity.ai/hub/pricing
+Monitor API,use,,The API that checks the web on a schedule and reports what it finds.,observed,https://docs.perplexity.ai/api-reference/monitors-create-post.md
+My organization,use,,"Not a feature: the phrase comes from the help article title ""My organization has restricted Comet"".",observed,https://www.perplexity.ai/help-center/comet/en/articles/11583823-do-i-need-a-perplexity-account-to-use-comet.md
 Sonar,deprecated,Agent API,,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
-portal,avoid,,,recommendation,
+portal,avoid,API Console,"Another name for the API Console: both point to console.perplexity.ai. This glossary uses ""API Console"".",recommendation,
+disable,avoid,turn off,"To switch off a setting or feature, for yourself or for an organization. This glossary uses ""turn off"": it's plainer and pairs with ""turn on"". When it's about people's access, ""don't allow"" may fit better. Leave code values and API flags as they are.",recommendation,
+whitelist,avoid,allowlist,,observed,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md
+master,avoid,"main switch, main toggle",,recommendation,
+sanity check,avoid,quick check,,recommendation,
+blind,avoid,"gaps, can't see",,recommendation,
+kill,avoid,"stop, end",,recommendation,
+Focus,deprecated,Choose sources,,published,https://www.perplexity.ai/help-center/en/articles/10352914-what-is-internal-knowledge-search.md
+preset,deprecated,effort,,published,https://docs.perplexity.ai/docs/resources/changelog.md
+pro-search,deprecated,low (effort level),,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
+fast-search,deprecated,fast (effort level),,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
+SharePoint connector,deprecated,Microsoft 365 connector,,published,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
+OneDrive connector,deprecated,Microsoft 365 connector,,published,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
+Azure AD,deprecated,Microsoft Entra ID,,observed,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
+Workflows,deprecated,Skills,,published,https://www.perplexity.ai/help-center/en/articles/13914413-how-to-use-computer-skills.md
+seat-tier caps,deprecated,usage limits,,published,https://www.perplexity.ai/help-center/en/articles/13901296-how-credits-work-for-enterprise-organizations-admin-guide.md
+comprehensive,avoid,"Say what's covered, for example ""reads hundreds of sources""",,recommendation,
+leverage,avoid,use,,recommendation,
+robust,avoid,Name the safeguard or behaviour,,recommendation,
+simply,avoid,Delete the word,,recommendation,
+Session,use,,A saved conversation with Perplexity that keeps context across follow-up questions and saves its sources.,observed,https://www.perplexity.ai/help-center/en/articles/10354769-what-is-a-thread.md
+Sessions page,use,,The page on the web where your saved sessions are stored. Only you can see it.,observed,https://www.perplexity.ai/help-center/en/articles/10354769-what-is-a-thread.md
+thread,avoid,session,"Another word for a saved conversation, which this glossary calls a session.",recommendation,
+organization admin,use,,"A member with the Admin role in an Enterprise organization, which gives full administrative control of the organization.",observed,https://www.perplexity.ai/help-center/en/articles/10352988-creating-an-enterprise-organization.md
+Enterprise admin,avoid,organization admin,Another name for an organization admin.,recommendation,
+Enterprise administrator,avoid,organization admin,Another name for an organization admin.,recommendation,
+organization administrator,avoid,organization admin,Another name for an organization admin.,recommendation,
+org admin,avoid,organization admin,Short form of organization admin.,recommendation,
+API project,use,,"The billing and key boundary in the API Console: your API keys, credits and connectors belong to it.",observed,https://docs.perplexity.ai/docs/getting-started/integrations/stripe-projects.md
+API Group,avoid,API project,Another name for an API project.,recommendation,
+audit log API key,use,,"The dedicated key that calls the Audit API. An organization admin creates it, and ordinary API keys can't.",observed,https://docs.perplexity.ai/docs/admin/audit-api.md
+Audit API key,avoid,audit log API key,Another name for the audit log API key.,recommendation,
+organization analytics API key,use,,"The key an organization admin generates in the web app to call the Analytics API, which reports Computer usage.",observed,https://docs.perplexity.ai/api-reference/computer-analytics-usage-get.md
+Analytics API key,avoid,organization analytics API key,Shorter name for the organization analytics API key.,recommendation,
+Assistant panel,use,,"The panel that runs alongside your main Comet window, where you ask Comet Assistant questions and give it tasks.",observed,https://www.perplexity.ai/help-center/comet/en/articles/11734688-assistant-panel.md
+sidecar,avoid,Assistant panel,Another name for the Assistant panel.,recommendation,
+Browser Agent (Comet Assistant) Queries,avoid,Comet Assistant queries,"Another name for Comet Assistant queries, used in the plan-limits table.",recommendation,
+browser agent queries,avoid,Comet Assistant queries,"Another name for Comet Assistant queries, used in the Max plan article.",recommendation,
+automatic top-up,use,,"A setting that adds API credits automatically when your balance runs low, so service isn't interrupted.",observed,https://docs.perplexity.ai/docs/getting-started/projects.md
+Auto reload,avoid,automatic top-up,Another name for automatic top-up.,recommendation,
+auto top-up,avoid,automatic top-up,Short form of automatic top-up.,recommendation,
+Free plan,use,,"Perplexity's no-cost plan for individuals, with limited weekly usage.",observed,https://www.perplexity.ai/help-center/en/articles/10354919-what-advanced-ai-models-are-included-in-my-subscription.md
+Free (Standard) plan,avoid,Free plan,Another name for the Free plan.,recommendation,
+free Standard tier,avoid,Free plan,Another name for the Free plan.,recommendation,
+disabling,avoid,turning off,"The -ing form of ""disable"", as in ""disabling extensions"". This glossary uses ""turning off"".",recommendation,
+enable,avoid,turn on,"To switch on a setting or feature, for yourself or for an organization. This glossary uses ""turn on"": it's plainer and pairs with ""turn off"". Where it means ""lets"", as in ""enables you to"", use ""lets"". Leave code values and API flags as they are.",recommendation,
+Enabled,avoid,turned on,"The state of a setting or feature that's switched on. This glossary uses ""turned on"". Where a screen shows ""Enabled"" as a value, quote it as shown.",recommendation,
+enabling,avoid,turning on,"The -ing form of ""enable"". This glossary uses ""turning on"".",recommendation,
