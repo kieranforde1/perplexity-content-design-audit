@@ -4,3 +4,10 @@ title,line,tab,term
 Sonar outlived its retirement,"Sonar support ended in September 2026, but the Audit API pages still say ""Sonar API keys"".",findings,Sonar
 Two spellings of one menu path,"""Organization Settings"" and ""Organization settings"" both appear, and three pages use both.",findings,Organization settings
 Spaces are still here,"Spaces became Projects, but the Comet data deletion article still says Spaces.",findings,Space
+Session or thread?,"Help calls a saved conversation a session. The Computer docs call it a thread, and the help article's URL still says thread.",findings,thread
+Four names for the admin role,"Help says organization admin, Enterprise admin and organization administrator. The docs mostly say org admin. The roles page says Admin.",findings,Enterprise admin
+API Group or Project?,One cookbook page says API Group and API Group administrator. Other docs pages say Project and Project administrator.,findings,API Group
+Two names for the audit key,"Docs say ""audit log API key"". Help says ""Audit API key"". Each has its own heading about creating one.",findings,Audit API key
+Sidecar or Assistant panel?,"Help uses both in one sentence: ""Send to sidecar to continue the conversation in your Assistant panel.""",findings,sidecar
+"One credit setting, four names","Adding credits when the balance runs low is Auto reload, auto top-up, Automatic Top Up or auto_recharge, depending on the page.",findings,Auto reload
+Free plan or Standard?,"The pricing page calls it Free. Two help articles add Standard, as in ""What do I get with the Free (Standard) plan?""",findings,Free (Standard) plan

@@ -17,7 +17,7 @@ Organization settings,use,,"The admin area of an Enterprise organization, where 
 Skills,use,,A set of instructions that teaches Computer how to do one kind of task well.,observed,https://www.perplexity.ai/hub/brand
 Discover,use,,The tab on the Plugins page where you browse connectors and skills and add the ones you want.,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/give-it-tools.md
 Trust Center,use,,Perplexity's public page of security and compliance documents.,observed,https://www.perplexity.ai/hub/pricing
-Disabled,avoid,turned off,"Perplexity's word for a setting, feature, connector or model that someone has switched off. Use ""turned off"", ""deactivated"", ""not allowed"" instead.",recommendation,
+Disabled,avoid,turned off,"The state of a setting or feature that's switched off. This glossary uses ""turned off"": it's plainer, and ""disabled"" also describes people. Where a screen shows ""Disabled"" or ""Disabled by your organization"", quote the label as shown and ask the team to change it.",recommendation,
 Search API,use,,"The API that returns a ranked list of web results for a query, not a written answer.",observed,https://docs.perplexity.ai/api-reference/search-post.md
 API reference,use,,The part of the developer docs that lists every endpoint with its full request and response details.,observed,https://docs.perplexity.ai/docs/agent-api/effort.md
 Deep Research,use,,A mode that reads many sources and writes a detailed report on a complex question.,observed,https://www.perplexity.ai/enterprise
@@ -58,7 +58,7 @@ Monitor API,use,,The API that checks the web on a schedule and reports what it f
 My organization,use,,"Not a feature: the phrase comes from the help article title ""My organization has restricted Comet"".",observed,https://www.perplexity.ai/help-center/comet/en/articles/11583823-do-i-need-a-perplexity-account-to-use-comet.md
 Sonar,deprecated,Agent API,,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
 portal,avoid,API Console,"Another name for the API Console: both point to console.perplexity.ai. This glossary uses ""API Console"".",recommendation,
-disable,avoid,turn off,"Perplexity's verb for switching off a setting, feature, connector or model. This glossary uses ""turn off"" instead.",recommendation,
+disable,avoid,turn off,"To switch off a setting or feature, for yourself or for an organization. This glossary uses ""turn off"": it's plainer and pairs with ""turn on"". When it's about people's access, ""don't allow"" may fit better. Leave code values and API flags as they are.",recommendation,
 whitelist,avoid,allowlist,,observed,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md
 master,avoid,"main switch, main toggle",,recommendation,
 sanity check,avoid,quick check,,recommendation,
@@ -77,3 +77,31 @@ comprehensive,avoid,"Say what's covered, for example ""reads hundreds of sources
 leverage,avoid,use,,recommendation,
 robust,avoid,Name the safeguard or behaviour,,recommendation,
 simply,avoid,Delete the word,,recommendation,
+Session,use,,A saved conversation with Perplexity that keeps context across follow-up questions and saves its sources.,observed,https://www.perplexity.ai/help-center/en/articles/10354769-what-is-a-thread.md
+Sessions page,use,,The page on the web where your saved sessions are stored. Only you can see it.,observed,https://www.perplexity.ai/help-center/en/articles/10354769-what-is-a-thread.md
+thread,avoid,session,"Another word for a saved conversation, which this glossary calls a session.",recommendation,
+organization admin,use,,"A member with the Admin role in an Enterprise organization, which gives full administrative control of the organization.",observed,https://www.perplexity.ai/help-center/en/articles/10352988-creating-an-enterprise-organization.md
+Enterprise admin,avoid,organization admin,Another name for an organization admin.,recommendation,
+Enterprise administrator,avoid,organization admin,Another name for an organization admin.,recommendation,
+organization administrator,avoid,organization admin,Another name for an organization admin.,recommendation,
+org admin,avoid,organization admin,Short form of organization admin.,recommendation,
+API project,use,,"The billing and key boundary in the API Console: your API keys, credits and connectors belong to it.",observed,https://docs.perplexity.ai/docs/getting-started/integrations/stripe-projects.md
+API Group,avoid,API project,Another name for an API project.,recommendation,
+audit log API key,use,,"The dedicated key that calls the Audit API. An organization admin creates it, and ordinary API keys can't.",observed,https://docs.perplexity.ai/docs/admin/audit-api.md
+Audit API key,avoid,audit log API key,Another name for the audit log API key.,recommendation,
+organization analytics API key,use,,"The key an organization admin generates in the web app to call the Analytics API, which reports Computer usage.",observed,https://docs.perplexity.ai/api-reference/computer-analytics-usage-get.md
+Analytics API key,avoid,organization analytics API key,Shorter name for the organization analytics API key.,recommendation,
+Assistant panel,use,,"The panel that runs alongside your main Comet window, where you ask Comet Assistant questions and give it tasks.",observed,https://www.perplexity.ai/help-center/comet/en/articles/11734688-assistant-panel.md
+sidecar,avoid,Assistant panel,Another name for the Assistant panel.,recommendation,
+Browser Agent (Comet Assistant) Queries,avoid,Comet Assistant queries,"Another name for Comet Assistant queries, used in the plan-limits table.",recommendation,
+browser agent queries,avoid,Comet Assistant queries,"Another name for Comet Assistant queries, used in the Max plan article.",recommendation,
+automatic top-up,use,,"A setting that adds API credits automatically when your balance runs low, so service isn't interrupted.",observed,https://docs.perplexity.ai/docs/getting-started/projects.md
+Auto reload,avoid,automatic top-up,Another name for automatic top-up.,recommendation,
+auto top-up,avoid,automatic top-up,Short form of automatic top-up.,recommendation,
+Free plan,use,,"Perplexity's no-cost plan for individuals, with limited weekly usage.",observed,https://www.perplexity.ai/help-center/en/articles/10354919-what-advanced-ai-models-are-included-in-my-subscription.md
+Free (Standard) plan,avoid,Free plan,Another name for the Free plan.,recommendation,
+free Standard tier,avoid,Free plan,Another name for the Free plan.,recommendation,
+disabling,avoid,turning off,"The -ing form of ""disable"", as in ""disabling extensions"". This glossary uses ""turning off"".",recommendation,
+enable,avoid,turn on,"To switch on a setting or feature, for yourself or for an organization. This glossary uses ""turn on"": it's plainer and pairs with ""turn off"". Where it means ""lets"", as in ""enables you to"", use ""lets"". Leave code values and API flags as they are.",recommendation,
+Enabled,avoid,turned on,"The state of a setting or feature that's switched on. This glossary uses ""turned on"". Where a screen shows ""Enabled"" as a value, quote it as shown.",recommendation,
+enabling,avoid,turning on,"The -ing form of ""enable"". This glossary uses ""turning on"".",recommendation,

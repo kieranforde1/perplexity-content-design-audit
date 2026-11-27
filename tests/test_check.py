@@ -247,6 +247,19 @@ def test_phrases_that_name_something_else_are_skipped(tmp_path: Path) -> None:
     assert "'Pro plan' (1)" in row["written"]
 
 
+def test_a_word_shown_as_a_screen_value_is_skipped_on_listed_pages(tmp_path: Path) -> None:
+    pieces = [
+        ("label", "Disabled", "https://e.com/policies", "help"),
+        ("sentence", "Admins can set the policy to Disabled.", "https://e.com/policies", "help"),
+        ("sentence", "This setting is disabled for guests.", "https://e.com/other", "help"),
+    ]
+    yaml = "check:\n  screen_value_pages:\n    Disabled:\n      - /policies\n"
+    target = write_target(tmp_path, "Disabled,avoid,turned off,,recommendation,\n", pieces, yaml)
+    (row,) = findings(target)
+    # The policies page has to match the screen, so only the other page counts.
+    assert row["count"] == "1"
+
+
 def test_a_longer_glossary_term_is_not_counted_again_by_the_shorter_one(
     tmp_path: Path,
 ) -> None:

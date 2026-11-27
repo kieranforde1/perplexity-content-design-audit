@@ -196,9 +196,13 @@ def is_correct_in_context(entry: dict[str, str], text: Text, target: Target) -> 
     - on a changelog or other record of the past, where it was right on the day
     - on the page that announces the rename (the glossary row's source_url)
     - on pages about moving off the old name (the config's `rename_pages`)
+    - on pages that list the word as a value shown on screen (`screen_value_pages`)
     """
     snippet = text.snippet
     if snippet.surface in target.check.history_surfaces:
+        return True
+    value_pages = target.check.screen_value_pages.get(entry["term"], ())
+    if any(fragment in snippet.source_url for fragment in value_pages):
         return True
     if entry["status"] != "deprecated":
         return False
