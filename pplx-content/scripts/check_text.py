@@ -12,7 +12,7 @@ table. A line that starts with # is a heading, where title case is allowed. Word
 backticks are code and aren't checked.
 
 The rules follow `audit check` (src/audit/check.py in the audit repo):
-- Words to avoid count in any case. Retired (deprecated) names count when capitalised,
+- Words to avoid count in any case. Retired (deprecated) names count when capitalized,
   because a lowercase "space" is the general word, not the old product name.
 - Terms to use are flagged when their capitals, spaces or hyphens differ from the
   glossary. All-lowercase uses are left alone: they may be the general word ("a
@@ -113,7 +113,7 @@ def spelling_problem(term: str, form: str, text: str, start: int, heading: bool)
     if written in allowed:
         return ""
     if written.lower() in {a.lower() for a in allowed}:
-        return "capitalisation"
+        return "capitalization"
     if squash(written) in {squash(a) for a in allowed}:
         return "spelling or spacing"
     return "other variant"

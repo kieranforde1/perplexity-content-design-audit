@@ -102,7 +102,7 @@ def test_other_spellings_compare_labels_and_running_text_apart(tmp_path: Path) -
     (running,) = rows
     assert running["issue"].startswith("In running text,")
     assert running["written"] == "'help Panel' (1)"
-    assert running["category"] == "capitalisation"
+    assert running["category"] == "capitalization"
     assert running["fix"] == "Write 'Help Panel'."
     assert running["count"] == "1"
 
@@ -122,9 +122,9 @@ def test_each_kind_of_variant_gets_its_own_category(tmp_path: Path) -> None:
     ]
     target = write_target(tmp_path, "API key,use,,,observed,\n", pieces)
     by_category = {r["category"]: r for r in findings(target)}
-    # Case alone is capitalisation. A change of spaces or hyphens is spelling or spacing.
-    assert set(by_category) == {"capitalisation", "spelling or spacing"}
-    assert by_category["capitalisation"]["written"] == "'API Key' (1)"
+    # Case alone is capitalization. A change of spaces or hyphens is spelling or spacing.
+    assert set(by_category) == {"capitalization", "spelling or spacing"}
+    assert by_category["capitalization"]["written"] == "'API Key' (1)"
     assert by_category["spelling or spacing"]["written"] == "'API-key' (1)"
     # Each row is its own finding, so the two IDs differ.
     assert len({r["finding_id"] for r in by_category.values()}) == 2
@@ -132,7 +132,7 @@ def test_each_kind_of_variant_gets_its_own_category(tmp_path: Path) -> None:
 
 def test_variant_category_rules() -> None:
     allowed = {"API key"}
-    assert check.variant_category("API Key", allowed) == "capitalisation"
+    assert check.variant_category("API Key", allowed) == "capitalization"
     assert check.variant_category("API-key", allowed) == "spelling or spacing"
     assert check.variant_category("API-Key", allowed) == "spelling or spacing"
     assert check.variant_category("API token", allowed) == "other variant"
@@ -232,7 +232,7 @@ def test_a_plural_in_es_of_a_term_to_use_is_not_another_spelling(tmp_path: Path)
     # "Quick Searches" is the plural, so it isn't reported. "Quick searches" changes the
     # capitals as well, and capitals on a plural are still reported.
     assert {(r["term"], r["category"]) for r in rows} == {
-        ("Quick Search", "capitalisation"), ("Team admin", "capitalisation"),
+        ("Quick Search", "capitalization"), ("Team admin", "capitalization"),
     }
     by_term = {r["term"]: r for r in rows}
     assert by_term["Quick Search"]["written"] == "'Quick searches' (1)"

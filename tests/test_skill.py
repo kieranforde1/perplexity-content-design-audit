@@ -26,14 +26,14 @@ GLOSSARY = (
 # (line in a draft, what the checker should report as (category, term)), all invented.
 CASES = [
     ("Turn on the Help Panel to see tips.", []),
-    ("Turn on the help Panel from settings.", [("capitalisation", "Help Panel")]),
+    ("Turn on the help Panel from settings.", [("capitalization", "Help Panel")]),
     ("The help panel opens on the right.", []),
     ("# Open The Help Panel", []),
     ("This setting is disabled for guests.", [("avoided term", "disabled")]),
     ("Gadgets were renamed last year.", [("deprecated name", "Gadget")]),
     ("Your gadget list is empty.", []),
     ("Open the Admin Portal to start.", [("avoided term", "Admin Portal")]),
-    ("Try a deep Dive on long questions.", [("capitalisation", "Deep Dive")]),
+    ("Try a deep Dive on long questions.", [("capitalization", "Deep Dive")]),
     ("Try a Deep-Dive today.", [("spelling or spacing", "Deep Dive")]),
 ]
 PATTERNS_HEADER = ",".join(pattern_table.COLUMNS) + "\n"

@@ -41,7 +41,7 @@ It exists to stop wording drift: one thing with three names, a retired name that
 
 ## Don't load this skill for
 
-- Brand voice, visual identity, logos and colour. Use Perplexity's published Brand Hub (https://www.perplexity.ai/hub/brand).
+- Brand voice, visual identity, logos and color. Use Perplexity's published Brand Hub (https://www.perplexity.ai/hub/brand).
 - Charts, graphs and data visuals. Use pplx-graph, Perplexity's own chart skill.
 - Marketing campaigns, ads and social posts. This audit doesn't cover them.
 - Legal, privacy or policy wording.

@@ -29,7 +29,7 @@ def make_target(root: Path) -> config.Target:
     return target
 
 
-def test_viewer_is_offline_and_labelled(tmp_path: Path) -> None:
+def test_viewer_is_offline_and_labeled(tmp_path: Path) -> None:
     target = make_target(tmp_path)
     out = view.run(target, today=lambda: date(2026, 11, 26), log=lambda _: None)
     html = out.read_text()
@@ -84,7 +84,7 @@ def add_glossary_and_findings(target: config.Target, snippet_ids: str) -> None:
 
 
 FINDING = {
-    "finding_id": "abc", "standard_id": "glossary:Search API", "category": "capitalisation",
+    "finding_id": "abc", "standard_id": "glossary:Search API", "category": "capitalization",
     "term": "Search API", "written": "'search API' (2)", "count": "2", "surfaces": "docs",
     "issue": "In running text, 'Search API' is written 'search API' (2).",
     "fix": "Write 'Search API'.", "question": "", "snippet_ids": "",
@@ -100,7 +100,7 @@ def test_glossary_and_rules_are_included(tmp_path: Path) -> None:
     assert data["rules"] == [{
         "standard_id": "glossary:Search API", "kind": "write", "term": "Search API",
         "use_instead": "", "wording": "", "forms": ["search API"],
-        "categories": ["capitalisation"], "count": 2, "surfaces": ["docs"],
+        "categories": ["capitalization"], "count": 2, "surfaces": ["docs"],
         # "Search API" is the glossary form, so nothing in this string is marked.
         "strings": [{
             "id": normal.id, "parts": [("Use the Search API.", False)],
@@ -163,7 +163,7 @@ def test_rules_are_stated_from_the_data_and_sorted_for_reading() -> None:
     s = snippet("Copy the API Key, then the API-key.", "https://e.com/a")
     by_id = {s.id: s}
     findings = [
-        finding("glossary:API key", "capitalisation", [s.id], written="'API Key' (1)"),
+        finding("glossary:API key", "capitalization", [s.id], written="'API Key' (1)"),
         finding("glossary:API key", "spelling or spacing", [s.id], written="'API-key' (1)"),
         finding("glossary:Gizmo", "avoided term", [s.id, "x1", "x2"]),
         finding("glossary:Widget", "avoided term", [s.id]),
@@ -182,7 +182,7 @@ def test_rules_are_stated_from_the_data_and_sorted_for_reading() -> None:
     ]
     assert rules[0]["wording"] == "Check your email for a reset link."
     api_key = rules[-1]
-    assert api_key["categories"] == ["capitalisation", "spelling or spacing"]
+    assert api_key["categories"] == ["capitalization", "spelling or spacing"]
     assert api_key["forms"] == ["API Key", "API-key"]
     assert [p for p, marked in api_key["strings"][0]["parts"] if marked] == [  # type: ignore[index]
         "API Key", "API-key",

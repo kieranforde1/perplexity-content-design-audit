@@ -94,8 +94,8 @@ sources:
       - https://www.perplexity.ai/hub/guides/perplexity-computer-at-work
       - https://www.perplexity.ai/hub/guides/premium-sources-guide
       - https://www.perplexity.ai/hub/guides/strategic-planning-guide
-  # The help centre publishes a Markdown copy of every article, listed per language.
-  - name: help-centre
+  # The help center publishes a Markdown copy of every article, listed per language.
+  - name: help-center
     surface: help
     index: https://www.perplexity.ai/help-center/_llms/en/help-center.txt
   # Comet's help pages are only listed in the all-languages index, so keep the English
@@ -150,7 +150,7 @@ analysis_exclude:
   - /docs/cookbook/
 
 terms:
-  # Names to look for even if they're never capitalised mid-sentence. A seed is only
+  # Names to look for even if they're never capitalized mid-sentence. A seed is only
   # proposed if first-party snippets actually use it.
   seeds:
     - Agent API
@@ -173,7 +173,7 @@ terms:
     - old: Spaces
       current: Projects
       source: https://www.perplexity.ai/hub/blog/spaces-are-now-projects
-  # Capitalised words that aren't this company's terms: generic technical words,
+  # Capitalized words that aren't this company's terms: generic technical words,
   # languages, standards and formats. Logged as rejected, never dropped silently.
   # Month names, units and file formats are rejected by a rule in terms.py, so they
   # don't need listing here.
@@ -241,7 +241,7 @@ terms:
     - TypeScript SDK
     - SSE
     - YYYY-MM-DD
-    # Ordinary words and team names that happen to be capitalised.
+    # Ordinary words and team names that happen to be capitalized.
     - Customize
     - Page URL
     - Bug Reports
@@ -351,7 +351,7 @@ check:
     Focus:
       - Focus on
       - Perplexity focus
-    # Colour presets in the brand guidelines, and Computer's own "Return to Presets".
+    # Color presets in the brand guidelines, and Computer's own "Return to Presets".
     preset:
       - Off-palette presets
       - Return to Presets

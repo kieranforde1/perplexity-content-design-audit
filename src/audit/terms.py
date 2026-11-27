@@ -2,8 +2,8 @@
 
 How it works, step by step:
 
-1. **Candidates.** A run of capitalised words ("Search API", "Deep Research") is a
-   candidate if it's capitalised mid-sentence, or in a page title or nav label. Seeds from
+1. **Candidates.** A run of capitalized words ("Search API", "Deep Research") is a
+   candidate if it's capitalized mid-sentence, or in a page title or nav label. Seeds from
    the config are always considered. Parameter names are listed separately.
 2. **Cluster.** Forms that differ only by case, hyphens, spaces, a plural "s", a
    possessive "'s" or a leading company name share one key. "Perplexity Search APIs" and
@@ -14,7 +14,7 @@ How it works, step by step:
 4. **Propose** a term if it's in a title or nav label, or on 2 or more pages, or on 2 or
    more surfaces. It's rejected if it's on the not_terms or third_party list, if it's a
    single word that is a month, unit or file format, if it's usually lowercase
-   mid-sentence (a general word), or if it's never capitalised in running text (a page
+   mid-sentence (a general word), or if it's never capitalized in running text (a page
    title, not a name). Every candidate is logged with its decision and reason.
 5. **Compare like with like.** Variants are compared within labels (titles, headings,
    nav, buttons) and within running text (sentences, errors), never across them. A
@@ -52,8 +52,8 @@ TOKEN = re.compile(r"[a-z0-9]+")
 # A capital straight after one of these is a sentence start, not evidence of a name.
 SENTENCE_BREAK = re.compile(r"[.!?:;\"'“(\[]\s*$")
 
-# A name is capitalised at least this often when it appears mid-sentence.
-MIN_CAPITALISED_SHARE = 0.5
+# A name is capitalized at least this often when it appears mid-sentence.
+MIN_CAPITALIZED_SHARE = 0.5
 # ...judged only once it has appeared mid-sentence at least this many times.
 MIN_MID_SENTENCE_USES = 3
 
@@ -183,7 +183,7 @@ class Cluster:
     # Forms split into labels and running text, so like is compared with like.
     form_by_group: dict[str, Counter[str]] = field(default_factory=lambda: defaultdict(Counter))
     example_ids: list[str] = field(default_factory=list)
-    mid_capitalised: int = 0
+    mid_capitalized: int = 0
     mid_lowercase: int = 0
     # (page, excerpt, form) already counted, so each form counts once per page and excerpt.
     counted: set[tuple[str, str, str]] = field(default_factory=set)
@@ -195,9 +195,9 @@ class Cluster:
         return self.forms_seen.most_common(1)[0][0]
 
     @property
-    def capitalised_share(self) -> float:
-        total = self.mid_capitalised + self.mid_lowercase
-        return self.mid_capitalised / total if total else 1.0
+    def capitalized_share(self) -> float:
+        total = self.mid_capitalized + self.mid_lowercase
+        return self.mid_capitalized / total if total else 1.0
 
 
 @dataclass(frozen=True)
@@ -242,8 +242,8 @@ def find_candidates(texts: Iterable[Text], target: Target) -> dict[str, Cluster]
         for match in CAP_RUN.finditer(t.text):
             if len(match.group()) < 2:
                 continue
-            labelled = t.snippet.kind in ("title", "nav")
-            if not labelled and not is_mid_sentence(t.text, match.start()):
+            labeled = t.snippet.kind in ("title", "nav")
+            if not labeled and not is_mid_sentence(t.text, match.start()):
                 continue
             cluster = add(match.group())
             if t.snippet.kind in ("title", "nav"):
@@ -321,7 +321,7 @@ def count_uses(
                 mid = t.snippet.kind == "sentence" and is_mid_sentence(t.text, start)
                 if mid:
                     if name_part[:1].isupper():
-                        cluster.mid_capitalised += 1
+                        cluster.mid_capitalized += 1
                     else:
                         cluster.mid_lowercase += 1
                 cluster.uses[form] += 1
@@ -367,18 +367,18 @@ def decide(cluster: Cluster, target: Target) -> tuple[str, str]:
         return "rejected", general
     if not cluster.uses:
         return "rejected", "seed not found in first-party snippets" if cluster.seed else "no uses"
-    mid_uses = cluster.mid_capitalised + cluster.mid_lowercase
+    mid_uses = cluster.mid_capitalized + cluster.mid_lowercase
     if (
         not cluster.seed
         and mid_uses >= MIN_MID_SENTENCE_USES
-        and cluster.capitalised_share < MIN_CAPITALISED_SHARE
+        and cluster.capitalized_share < MIN_CAPITALIZED_SHARE
     ):
         return "rejected", (
-            f"capitalised in only {cluster.capitalised_share:.0%} of {mid_uses} mid-sentence "
+            f"capitalized in only {cluster.capitalized_share:.0%} of {mid_uses} mid-sentence "
             "uses, so probably a general word"
         )
-    if not cluster.seed and cluster.mid_capitalised == 0:
-        return "rejected", "never capitalised in running text, so a title or label, not a name"
+    if not cluster.seed and cluster.mid_capitalized == 0:
+        return "rejected", "never capitalized in running text, so a title or label, not a name"
     if not cluster.seed and len(cluster.label.split()) >= 3 and mid_uses < MIN_MID_SENTENCE_USES:
         return "rejected", "a page title or label, rarely used in running text"
     if cluster.in_title_or_nav:
@@ -391,12 +391,12 @@ def decide(cluster: Cluster, target: Target) -> tuple[str, str]:
 
 
 def preferred_form(cluster: Cluster, company: str) -> str:
-    """The most used capitalised spelling on the highest-authority surface that uses it.
+    """The most used capitalized spelling on the highest-authority surface that uses it.
 
     Plurals and the company prefix are grouped first, so "Skills" and "Skill" together
     outweigh "SKILL". The most common form in the winning group is returned. A surface
     that only uses lowercase forms is skipped, so one lowercase use on a pricing page can't
-    outrank fifty capitalised uses in the docs.
+    outrank fifty capitalized uses in the docs.
     """
 
     def best_of(forms: dict[str, int]) -> str:
@@ -408,9 +408,9 @@ def preferred_form(cluster: Cluster, company: str) -> str:
 
     for surface in AUTHORITY:
         forms = cluster.form_by_surface.get(surface, Counter())
-        capitalised = {f: n for f, n in forms.items() if f[:1].isupper()}
-        if capitalised:
-            return best_of(capitalised)
+        capitalized = {f: n for f, n in forms.items() if f[:1].isupper()}
+        if capitalized:
+            return best_of(capitalized)
     if cluster.uses:
         return best_of(dict(cluster.uses))
     return cluster.label
@@ -454,7 +454,7 @@ def status_and_question(
     questions = []
 
     # Lowercase uses ("create a connector") are the general word or a slip, whatever the
-    # group, so they're one question. Capitalised spellings are compared within a group.
+    # group, so they're one question. Capitalized spellings are compared within a group.
     running = spellings(cluster.form_by_group["running"], company)
     labels = spellings(cluster.form_by_group["labels"], company)
     running_caps = [g for g in running if top(g)[:1].isupper()]
