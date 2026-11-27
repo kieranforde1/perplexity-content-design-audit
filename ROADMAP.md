@@ -17,6 +17,12 @@ step means adding a file, not rebuilding.
 written here, so they fit without changing earlier steps. `audit patterns` is designed
 below. The owner agreed it on 2026-11-27.
 
+**Order agreed on 2026-11-27:** finish patterns steps 2 and 4, then a design pass, then
+patterns step 3. The design pass simplifies both the screens (the viewer and the review
+page) and how the tool works (its commands, files and steps), so the Patterns tabs are
+built once, in the new design. Tone waits until after that. It's the hardest step and
+isn't needed to show the method.
+
 ### `audit patterns`: the same message in different words
 
 A pattern is a message said in more than one place that should read the same each time:
@@ -34,7 +40,7 @@ the wording vary, and what should it be?
 **How candidates are found** (five rules a content designer can explain)
 1. Clean up each sentence: lower-case it, remove punctuation, skip parameters and anything
    under four words.
-2. Two sentences are look-alikes when they share a three-word phrase and at least 60% of
+2. Two sentences are look-alikes when they share a three-word phrase and at least 75% of
    their words. Look-alikes chain into one group. Only groups on two or more pages count.
 3. Name why each group exists: link text (send it to terms), template (one slot changes,
    such as a connector name; record it, usually fine) or message (the wording differs in
@@ -64,10 +70,10 @@ outside-in work can't know why the wording differs.
   page alone. Those rows say so.
 
 **Build order, each step its own pull request**
-1. `audit patterns` writes the candidate list, with tests on invented fixtures.
+1. `audit patterns` writes the candidate list, with tests on invented fixtures. Done.
 2. `patterns.csv`, its check (`audit patterns --check`) and the draft rows from the
    research notes (10 candidates).
-3. The viewer tab and review tab.
+3. The viewer tab and review tab. Built after the design pass.
 4. The `audit check` link.
 
 **Decided by the owner on 2026-11-27:**

@@ -138,6 +138,16 @@ class Target:
         return self.data_dir / "glossary.csv"
 
     @property
+    def pattern_table(self) -> Path:
+        """Patterns a person has accepted. Written by a person, never by code."""
+        return self.data_dir / "patterns.csv"
+
+    @property
+    def pattern_proposals(self) -> Path:
+        """Drafted patterns for a person to accept or reject."""
+        return self.data_dir / "pattern_proposals.csv"
+
+    @property
     def full_text(self) -> Path:
         """Each snippet's full text by ID, for counting. Gitignored."""
         return self.cache_dir / "full_text.csv"
