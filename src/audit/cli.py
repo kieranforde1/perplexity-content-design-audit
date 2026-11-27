@@ -32,11 +32,14 @@ def _add_target(p: argparse.ArgumentParser) -> None:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="audit",
-        description="Outside-in audit of published product language. Unofficial.",
+        description="Audit a company's public product text from the outside. Unofficial.",
+        epilog="The numbers follow the method: 1 collect, 2 settle the words, 3 check, "
+        "4 find repeated messages.",
     )
-    sub = parser.add_subparsers(dest="command", required=True)
+    # Listed in the order of the method, so the help reads as the steps.
+    sub = parser.add_subparsers(dest="command", required=True, metavar="command")
 
-    p = sub.add_parser("fetch", help="Download public pages into cache/")
+    p = sub.add_parser("fetch", help="1. Download the public pages, politely")
     _add_target(p)
     p.add_argument(
         "--dry-run",
@@ -46,21 +49,26 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--limit", type=int, help="Fetch at most this many pages")
     p.add_argument("--refresh", action="store_true", help="Fetch again even if cached")
 
-    p = sub.add_parser("extract", help="Turn cached pages into data/<target>/snippets.csv")
+    p = sub.add_parser("extract", help="1. Split the pages into strings")
     _add_target(p)
-    p.add_argument("--dry-run", action="store_true", help="Count snippets without writing")
+    p.add_argument("--dry-run", action="store_true", help="Count strings without writing")
 
-    p = sub.add_parser("typed", help="Help with typed app strings")
+    p = sub.add_parser("terms", help="2. List the words that are written more than one way")
     _add_target(p)
-    what = p.add_mutually_exclusive_group(required=True)
-    what.add_argument("--template", action="store_true", help="Print the header and examples")
-    what.add_argument("--check", action="store_true", help="Check typed_strings.csv by line")
 
-    p = sub.add_parser("glossary", help="Check the glossary")
+    p = sub.add_parser("review", help="2. Decide terms and add app strings in your browser")
+    _add_target(p)
+    p.add_argument("--port", type=int, default=review.DEFAULT_PORT, help="Port on 127.0.0.1")
+    p.add_argument("--no-browser", action="store_true", help="Don't open a browser tab")
+
+    p = sub.add_parser("glossary", help="2. Check the glossary file")
     _add_target(p)
     p.add_argument("--check", action="store_true", required=True, help="Check glossary.csv")
 
-    p = sub.add_parser("patterns", help="Group look-alike sentences into pattern candidates")
+    p = sub.add_parser("check", help="3. Test the text against the glossary and patterns")
+    _add_target(p)
+
+    p = sub.add_parser("patterns", help="4. Find sentences that say the same thing differently")
     _add_target(p)
     p.add_argument(
         "--check",
@@ -68,12 +76,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Check patterns.csv and pattern_proposals.csv by line, instead of writing candidates",
     )
 
-    p = sub.add_parser("review", help="Review terms and add app strings in your browser")
-    _add_target(p)
-    p.add_argument("--port", type=int, default=review.DEFAULT_PORT, help="Port on 127.0.0.1")
-    p.add_argument("--no-browser", action="store_true", help="Don't open a browser tab")
-
-    p = sub.add_parser("view", help="Build the offline viewer")
+    p = sub.add_parser("view", help="Build the offline viewer to see the results")
     _add_target(p)
     p.add_argument(
         "--evidence-only",
@@ -81,16 +84,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="Build from committed data only, into viewer/<target>/evidence.html",
     )
 
-    for name, help_text in (
-        ("terms", "Build the term map"),
-        ("check", "Check the public text against the glossary"),
-        ("recommend", "Turn findings into recommendations"),
-        ("skill", "Build a content-standards skill from the audit"),
-        ("style", "Write observed style (pass 2)"),
-        ("tone", "Score tone across stages (pass 2)"),
-    ):
-        p = sub.add_parser(name, help=help_text)
-        _add_target(p)
+    p = sub.add_parser("typed", help="Help with app strings typed in by hand")
+    _add_target(p)
+    what = p.add_mutually_exclusive_group(required=True)
+    what.add_argument("--template", action="store_true", help="Print the header and examples")
+    what.add_argument("--check", action="store_true", help="Check typed_strings.csv by line")
+
+    # Paused steps (ROADMAP.md, "Later"). They still answer "Not built yet", but have no
+    # help text, so `audit --help` only lists what works.
+    for name in ("recommend", "skill", "style", "tone"):
+        _add_target(sub.add_parser(name))
     return parser
 
 

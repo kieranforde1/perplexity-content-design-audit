@@ -63,23 +63,32 @@
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 15px/1.5 var(--font-sans);
+    font: 16px/1.6 var(--font-sans);
+    overflow-wrap: break-word;
   }
-  header, main { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
-  main { padding-bottom: 40px; }
-  h1, h2, .card-title { font-family: var(--font-serif); font-weight: 500; }
-  header h1 { font-size: 30px; line-height: 1.2; margin: 28px 0 4px; letter-spacing: -0.01em; }
-  h2 { font-size: 20px; margin: 32px 0 12px; }
-  .lede, .notice { color: var(--muted); margin: 0 0 4px; }
-  .notice { font-size: 14px; }
+  header, main { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  main { padding-bottom: 64px; }
+  h1, h2, h3, .card-title { font-family: var(--font-serif); font-weight: 500; }
+  header h1 { font-size: 34px; line-height: 1.2; margin: 48px 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 24px; line-height: 1.3; margin: 48px 0 16px; }
+  h3 { font-size: 20px; line-height: 1.35; margin: 0 0 16px; }
+  /* Prose stays at a readable line length, even on a wide screen. */
+  .prose, .lede, .intro, .notice, .steps, .method { max-width: 70ch; }
+  .lede { color: var(--muted); font-size: 18px; margin: 0 0 8px; }
+  .notice { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+  .intro { margin: 0 0 24px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
   [role="tablist"] {
     display: flex; flex-wrap: wrap; gap: 4px;
     border-bottom: 1px solid var(--line);
-    margin: 20px 0 16px;
+    margin: 32px 0 32px;
   }
   [role="tab"] {
     background: none; border: 0; border-bottom: 2px solid transparent;
-    padding: 8px 12px; font: inherit; color: var(--muted); cursor: pointer;
+    padding: 10px 12px; font: inherit; color: var(--muted); cursor: pointer;
   }
   [role="tab"][aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
   [role="tab"]:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
@@ -90,69 +99,105 @@
   code { font-family: var(--font-mono); font-size: 0.92em; }
 
   /* Overview */
-  .stats { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 0; }
-  .stat {
-    display: flex; flex-direction: column-reverse;
-    border: 1px solid var(--line); border-radius: 8px; padding: 16px;
+  #panel-overview h2:first-child { margin-top: 8px; }
+  .steps { list-style: none; counter-reset: step; padding: 0; margin: 0; }
+  .steps li {
+    counter-increment: step; position: relative;
+    padding: 0 0 20px 48px; margin: 0;
   }
-  /* Shrinks on a phone, so a five-digit count still fits two cards to a row. */
-  .stat dd { margin: 0; font: 500 clamp(28px, 8vw, 40px)/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
-  .stat dt { color: var(--muted); margin-top: 4px; }
-  .bars { display: grid; grid-template-columns: minmax(8em, 12em) 1fr auto; gap: 8px 12px; align-items: center; max-width: 720px; }
-  .bar-track { background: var(--chip-bg); border-radius: 2px; height: 14px; }
-  .bar { display: block; background: var(--accent); border-radius: 2px; height: 100%; }
-  .bar-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
-  .cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 0; top: -2px;
+    width: 32px; height: 32px; border: 1px solid var(--accent); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font: 500 16px/1 var(--font-serif); color: var(--strong);
+  }
+  .steps strong { font-weight: 600; }
+  .method { color: var(--muted); margin: 8px 0 0; }
+  .cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .cards { grid-template-columns: 1fr 1fr; } }
+  td.prose-cell .linkish { margin-top: 8px; }
   .card {
     display: flex; flex-direction: column; gap: 8px; text-align: left;
     font: inherit; color: var(--text); background: none; cursor: pointer;
-    border: 1px solid var(--line); border-radius: 8px; padding: 16px;
+    border: 1px solid var(--line); border-radius: 8px; padding: 20px;
   }
   .card:hover { border-color: var(--accent); }
-  .card-title { font-size: 19px; line-height: 1.25; }
+  .card-title { font-size: 20px; line-height: 1.3; }
   .card-line { color: var(--muted); }
-  .card-link { color: var(--link); text-decoration: underline; font-size: 14px; margin-top: auto; }
-  .method { color: var(--muted); margin-top: 32px; }
+  .card-link { color: var(--link); text-decoration: underline; font-size: 14px; margin-top: auto; padding-top: 4px; }
+  .secondary {
+    font: inherit; padding: 8px 16px; border: 1px solid var(--line);
+    border-radius: 6px; background: var(--bg); color: var(--text); cursor: pointer;
+  }
+  .secondary:hover { border-color: var(--accent); }
+  .more-cards { margin-top: 24px; }
+  #more-cards { margin-top: 16px; }
+  .footnote { color: var(--muted); font-size: 14px; margin-top: 48px; }
+
+  /* Patterns */
+  .patterns { max-width: 80ch; }
+  .pattern { border-top: 1px solid var(--line); padding: 32px 0; }
+  .pattern:first-child { border-top: 0; padding-top: 0; }
+  .pattern dl { margin: 0; }
+  .pattern dt { font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 16px; }
+  .pattern dd { margin: 4px 0 0; }
+  .suggested {
+    border-left: 3px solid var(--accent); padding: 4px 0 4px 16px;
+    font-family: var(--font-serif); font-size: 17px;
+  }
+  .meta { color: var(--muted); font-size: 14px; }
+  .pattern details { margin-top: 20px; }
+  .pattern-actions { margin-top: 16px; }
+  .filter-note { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 0 0 24px; }
 
   /* Tables */
-  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; align-items: center; }
   .controls input, .controls select {
     font: inherit; padding: 6px 8px; border: 1px solid var(--line);
-    border-radius: 6px; background: var(--bg); color: var(--text);
+    border-radius: 6px; background: var(--bg); color: var(--text); max-width: 100%;
   }
   .controls input[type="search"] { flex: 1 1 240px; min-width: 0; }
   .count { color: var(--muted); font-size: 14px; }
-  /* The table scrolls inside its own box, so the header row can stick to the top of it. */
+  /* The table scrolls inside its own box, so the page never scrolls sideways and the header
+     row can stick to the top of the box. */
   .table-wrap { overflow: auto; max-height: 75vh; border: 1px solid var(--line); border-radius: 8px; }
   table { border-collapse: separate; border-spacing: 0; width: 100%; }
-  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th, td { text-align: left; vertical-align: top; padding: 12px; border-bottom: 1px solid var(--line); }
   th {
-    font-size: 13px; color: var(--muted); font-weight: 600;
+    font-size: 14px; color: var(--muted); font-weight: 600;
     position: sticky; top: 0; z-index: 1; background: var(--bg);
   }
   tr:last-child td { border-bottom: 0; }
   td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
-  .badge { display: inline-block; padding: 0 8px; border: 1px solid currentColor; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; color: var(--muted); }
+  .badge { display: inline-block; padding: 0 8px; border: 1px solid currentColor; border-radius: 999px; font-size: 13px; font-weight: 600; white-space: nowrap; color: var(--muted); }
   .badge.question { color: var(--warn); }
   .badge.consistent { color: var(--strong); }
-  .chip { display: inline-block; background: var(--chip-bg); border-radius: 999px; padding: 0 8px; margin: 0 4px 4px 0; font-size: 13px; }
+  .chip { display: inline-block; background: var(--chip-bg); border-radius: 999px; padding: 0 8px; margin: 0 4px 4px 0; font-size: 13px; white-space: nowrap; }
   .term { font-weight: 600; }
-  .definition { color: var(--muted); font-size: 13px; }
+  .definition { color: var(--muted); font-size: 14px; }
+  .label { font-size: 13px; color: var(--muted); }
   .question-text { max-width: 44ch; }
-  .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--link); text-decoration: underline; cursor: pointer; }
-  td.sources { min-width: 220px; }
-  .sources a { display: block; font-size: 13px; overflow-wrap: anywhere; margin-bottom: 4px; }
+  td.prose-cell { min-width: 240px; max-width: 44ch; }
+  .team-question { margin-top: 8px; color: var(--warn); font-size: 14px; }
+  .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--link); text-decoration: underline; cursor: pointer; text-align: left; }
+  td.sources { min-width: 200px; }
+  .sources a { display: block; font-size: 14px; overflow-wrap: anywhere; margin-bottom: 4px; }
   td.nowrap { white-space: nowrap; }
-  td.evidence { min-width: 320px; }
-  .evidence summary { color: var(--link); cursor: pointer; }
-  .evidence ul { margin: 8px 0 0; padding-left: 18px; }
-  .evidence li { margin-bottom: 8px; }
-  .more { margin: 12px 0; }
-  .more button {
-    font: inherit; padding: 6px 12px; border: 1px solid var(--line);
-    border-radius: 6px; background: var(--bg); color: var(--text); cursor: pointer;
-  }
+  td.evidence { min-width: 280px; }
+  .evidence summary, .pattern summary { color: var(--link); cursor: pointer; }
+  .evidence ul, .pattern ul { margin: 8px 0 0; padding-left: 18px; }
+  .evidence li, .pattern li { margin-bottom: 12px; }
+  .evidence li a, .pattern li a { display: block; font-size: 14px; overflow-wrap: anywhere; }
+  .more { margin: 16px 0; }
   .empty { padding: 24px; color: var(--muted); }
+
+  /* Source data: one table at a time, picked with a two-button toggle. */
+  .toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; padding: 2px; margin: 0 0 16px; }
+  .toggle button {
+    font: inherit; border: 0; border-radius: 6px; padding: 6px 16px;
+    background: none; color: var(--muted); cursor: pointer;
+  }
+  .toggle button[aria-pressed="true"] { background: var(--chip-bg); color: var(--text); font-weight: 600; }
 
   /* Review mode */
   .review { min-width: 240px; }
@@ -191,91 +236,163 @@
   <h1 id="title">Content audit</h1>
   <p class="lede" id="lede"></p>
   <p class="notice" id="review-note" hidden>Review mode: edits save to this computer.</p>
-  <p class="notice" id="notice" hidden></p>
 </header>
 <main>
   <div role="tablist" aria-label="Audit views">
     <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
-    <button role="tab" id="tab-terms" aria-controls="panel-terms" aria-selected="false" tabindex="-1">Terms</button>
-    <button role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="false" tabindex="-1">Glossary</button>
-    <button role="tab" id="tab-proposals" aria-controls="panel-proposals" aria-selected="false" tabindex="-1" hidden>Glossary proposals</button>
     <button role="tab" id="tab-findings" aria-controls="panel-findings" aria-selected="false" tabindex="-1">Findings</button>
+    <button role="tab" id="tab-patterns" aria-controls="panel-patterns" aria-selected="false" tabindex="-1">Patterns</button>
+    <button role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="false" tabindex="-1">Glossary</button>
+    <button role="tab" id="tab-source" aria-controls="panel-source" aria-selected="false" tabindex="-1">Source data</button>
+    <button role="tab" id="tab-proposals" aria-controls="panel-proposals" aria-selected="false" tabindex="-1" hidden>Glossary proposals</button>
     <button role="tab" id="tab-app-strings" aria-controls="panel-app-strings" aria-selected="false" tabindex="-1" hidden>App strings</button>
-    <button role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" tabindex="-1">Strings</button>
   </div>
 
   <section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
-    <dl class="stats" id="stats"></dl>
-    <h2>Findings by category</h2>
-    <div class="bars" id="category-bars"></div>
-    <h2 id="headlines-heading">Headlines</h2>
+    <h2>How it works</h2>
+    <ol class="steps" id="steps"></ol>
+    <p class="method">Everything comes from public pages, so the tool can't know why a choice was made.
+      Where only the team can answer, the finding asks.</p>
+    <h2 id="headlines-heading">What it found</h2>
     <div class="cards" id="headline-cards"></div>
-    <p class="method">Collected from public, first-party pages and checked against a hand-reviewed glossary.
-      <a href="https://github.com/kieranforde1/perplexity-content-design-audit#readme" target="_blank" rel="noopener noreferrer">How it works</a></p>
+    <div class="more-cards" id="more-cards-wrap" hidden>
+      <button class="secondary" type="button" id="more-cards-button" aria-expanded="false" aria-controls="more-cards">More findings</button>
+      <div class="cards" id="more-cards" hidden></div>
+    </div>
+    <p class="footnote"><a href="https://github.com/kieranforde1/perplexity-content-design-audit#readme" target="_blank" rel="noopener noreferrer">How the tool is built</a></p>
   </section>
 
-  <section role="tabpanel" id="panel-terms" aria-labelledby="tab-terms" hidden>
+  <section role="tabpanel" id="panel-findings" aria-labelledby="tab-findings" hidden>
+    <h2 class="sr-only">Findings</h2>
+    <p class="intro" id="findings-intro"></p>
     <div class="controls">
-      <label for="term-search" hidden>Search terms</label>
-      <input type="search" id="term-search" placeholder="Search terms, variants or questions">
-      <label for="term-status" hidden>Status</label>
-      <select id="term-status">
-        <option value="">All statuses</option>
-        <option value="question">Question</option>
-        <option value="consistent">Consistent</option>
-        <option value="too few to tell">Too few to tell</option>
-      </select>
-      <label for="term-review" hidden>Review</label>
-      <select id="term-review">
-        <option value="">Any review</option>
-        <option value="accept">Accepted</option>
-        <option value="reject">Rejected</option>
-        <option value="none">Not reviewed</option>
-      </select>
-      <span class="count" id="term-count" aria-live="polite"></span>
+      <label for="finding-search" class="sr-only">Search findings</label>
+      <input type="search" id="finding-search" placeholder="Search findings">
+      <label for="finding-category" class="sr-only">Kind of finding</label>
+      <select id="finding-category"><option value="">All kinds of finding</option></select>
+      <label for="finding-surface" class="sr-only">Where</label>
+      <select id="finding-surface"><option value="">Everywhere</option></select>
+      <span class="count" id="finding-count" aria-live="polite"></span>
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr id="term-head">
-          <th scope="col">Term</th><th scope="col">Status</th><th scope="col">Question to ask</th>
-          <th scope="col">Variants found</th><th scope="col">Pages</th><th scope="col">Sources</th>
-          <th scope="col">Examples</th>
+        <thead><tr>
+          <th scope="col">What's wrong</th><th scope="col">Fix</th>
+          <th scope="col">Where</th><th scope="col">Strings</th>
         </tr></thead>
-        <tbody id="term-rows"></tbody>
+        <tbody id="finding-rows"></tbody>
       </table>
-      <p class="empty" id="term-empty" hidden>No terms match.</p>
+      <p class="empty" id="finding-empty" hidden>No findings match.</p>
     </div>
   </section>
 
+  <section role="tabpanel" id="panel-patterns" aria-labelledby="tab-patterns" hidden>
+    <h2 class="sr-only">Patterns</h2>
+    <p class="intro">Some messages appear on many pages in slightly different words. Each pattern
+      suggests one string to reuse, so a change made once reaches every page.</p>
+    <div class="filter-note" id="pattern-filter" hidden>
+      <span class="count" id="pattern-count"></span>
+      <button class="linkish" type="button" id="pattern-clear"></button>
+    </div>
+    <div class="patterns" id="pattern-list"></div>
+    <p class="empty" id="pattern-empty" hidden>No patterns yet.</p>
+  </section>
+
   <section role="tabpanel" id="panel-glossary" aria-labelledby="tab-glossary" hidden>
+    <h2 class="sr-only">Glossary</h2>
+    <p class="intro">The words a person settled, and why.</p>
     <div class="controls">
-      <label for="glossary-search" hidden>Search the glossary</label>
-      <input type="search" id="glossary-search" placeholder="Search terms or definitions">
-      <label for="glossary-status" hidden>Status</label>
+      <label for="glossary-search" class="sr-only">Search the glossary</label>
+      <input type="search" id="glossary-search" placeholder="Search words or definitions">
+      <label for="glossary-status" class="sr-only">Decision</label>
       <select id="glossary-status">
-        <option value="">All statuses</option>
+        <option value="">Use, avoid or retired</option>
         <option value="use">Use</option>
         <option value="avoid">Avoid</option>
-        <option value="deprecated">Deprecated</option>
+        <option value="deprecated">Retired</option>
       </select>
-      <label for="glossary-basis" hidden>Basis</label>
-      <select id="glossary-basis">
-        <option value="">Any basis</option>
-        <option value="published">Published</option>
-        <option value="observed">Observed</option>
-        <option value="recommendation">Reviewer's suggestion</option>
-      </select>
+      <label for="glossary-basis" class="sr-only">Where the decision comes from</label>
+      <select id="glossary-basis"><option value="">Any reason</option></select>
       <span class="count" id="glossary-count" aria-live="polite"></span>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th scope="col">Term</th><th scope="col">Status</th><th scope="col">Use instead</th>
-          <th scope="col">Definition</th><th scope="col">Basis</th><th scope="col">Source</th>
+          <th scope="col">Word</th><th scope="col">Decision</th><th scope="col">Use instead</th>
+          <th scope="col">Definition</th><th scope="col">Why</th>
         </tr></thead>
         <tbody id="glossary-rows"></tbody>
       </table>
       <p class="empty" id="glossary-empty" hidden>No glossary rows match.</p>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="panel-source" aria-labelledby="tab-source" hidden>
+    <h2 class="sr-only">Source data</h2>
+    <p class="intro">What the findings are built from.</p>
+    <p class="notice" id="notice" hidden></p>
+    <div class="toggle" role="group" aria-label="Table to show">
+      <button type="button" id="show-terms" aria-pressed="true" aria-controls="source-terms">Terms</button>
+      <button type="button" id="show-strings" aria-pressed="false" aria-controls="source-strings">Strings</button>
+    </div>
+
+    <div id="source-terms">
+      <h3 class="sr-only">Terms</h3>
+      <p class="intro">The words the tool found that vary, before a person decided them.</p>
+      <div class="controls">
+        <label for="term-search" class="sr-only">Search terms</label>
+        <input type="search" id="term-search" placeholder="Search terms, variants or questions">
+        <label for="term-status" class="sr-only">Status</label>
+        <select id="term-status">
+          <option value="">All terms</option>
+          <option value="question">Needs a decision</option>
+          <option value="consistent">Consistent</option>
+          <option value="too few to tell">Too few to tell</option>
+        </select>
+        <label for="term-review" class="sr-only">Decision</label>
+        <select id="term-review">
+          <option value="">Any decision</option>
+          <option value="accept">Accepted</option>
+          <option value="reject">Rejected</option>
+          <option value="none">Not decided yet</option>
+        </select>
+        <span class="count" id="term-count" aria-live="polite"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr id="term-head">
+            <th scope="col">Term</th><th scope="col">Status</th><th scope="col">Question for the team</th>
+            <th scope="col">Versions found</th><th scope="col">Pages</th><th scope="col">Sources</th>
+            <th scope="col">Examples</th>
+          </tr></thead>
+          <tbody id="term-rows"></tbody>
+        </table>
+        <p class="empty" id="term-empty" hidden>No terms match.</p>
+      </div>
+    </div>
+
+    <div id="source-strings" hidden>
+      <h3 class="sr-only">Strings</h3>
+      <p class="intro">Every string the audit read, with its source.</p>
+      <div class="controls">
+        <label for="snippet-search" class="sr-only">Search strings</label>
+        <input type="search" id="snippet-search" placeholder="Search text or web address">
+        <label for="snippet-surface" class="sr-only">Where</label>
+        <select id="snippet-surface"><option value="">Everywhere</option></select>
+        <button class="linkish" type="button" id="snippet-clear" hidden>Clear term filter</button>
+        <span class="count" id="snippet-count" aria-live="polite"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th scope="col">Text</th><th scope="col">Where</th>
+            <th scope="col">Source</th><th scope="col">Collected</th>
+          </tr></thead>
+          <tbody id="snippet-rows"></tbody>
+        </table>
+        <p class="empty" id="snippet-empty" hidden>No strings match.</p>
+      </div>
+      <div class="more"><button class="secondary" type="button" id="snippet-more" hidden>Show more</button></div>
     </div>
   </section>
 
@@ -317,34 +434,6 @@
     </div>
   </section>
 
-  <section role="tabpanel" id="panel-findings" aria-labelledby="tab-findings" hidden>
-    <div class="controls">
-      <label for="finding-search" hidden>Search findings</label>
-      <input type="search" id="finding-search" placeholder="Search terms and fixes">
-      <label for="finding-category" hidden>Category</label>
-      <select id="finding-category"><option value="">All categories</option></select>
-      <label for="finding-surface" hidden>Surface</label>
-      <select id="finding-surface"><option value="">All surfaces</option></select>
-      <label for="finding-sort" hidden>Sort</label>
-      <select id="finding-sort">
-        <option value="category">Grouped by category</option>
-        <option value="count">Most strings first</option>
-      </select>
-      <span class="count" id="finding-count" aria-live="polite"></span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th scope="col">Category</th><th scope="col">Term or pattern</th><th scope="col">Written as</th>
-          <th scope="col">Strings</th><th scope="col">Where</th><th scope="col">Fix</th>
-          <th scope="col">Evidence</th>
-        </tr></thead>
-        <tbody id="finding-rows"></tbody>
-      </table>
-      <p class="empty" id="finding-empty" hidden>No findings match.</p>
-    </div>
-  </section>
-
   <section role="tabpanel" id="panel-app-strings" aria-labelledby="tab-app-strings" hidden>
     <p class="hint">Run <code>audit extract</code> and <code>audit terms</code> afterwards to include new strings.</p>
     <form class="string-form" id="string-form" novalidate>
@@ -376,32 +465,6 @@
       <p class="empty" id="string-empty" hidden>No app strings yet.</p>
     </div>
   </section>
-
-  <section role="tabpanel" id="panel-snippets" aria-labelledby="tab-snippets" hidden>
-    <div class="controls">
-      <label for="snippet-search" hidden>Search strings</label>
-      <input type="search" id="snippet-search" placeholder="Search text or URL">
-      <label for="snippet-surface" hidden>Surface</label>
-      <select id="snippet-surface"><option value="">All surfaces</option></select>
-      <label for="snippet-kind" hidden>Kind</label>
-      <select id="snippet-kind"><option value="">All kinds</option></select>
-      <label for="snippet-stage" hidden>Stage</label>
-      <select id="snippet-stage"><option value="">All stages</option></select>
-      <button class="linkish" id="snippet-clear" hidden>Clear term filter</button>
-      <span class="count" id="snippet-count" aria-live="polite"></span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th scope="col">Excerpt</th><th scope="col">Kind</th><th scope="col">Surface</th>
-          <th scope="col">Stage</th><th scope="col">Source</th><th scope="col">Captured</th>
-        </tr></thead>
-        <tbody id="snippet-rows"></tbody>
-      </table>
-      <p class="empty" id="snippet-empty" hidden>No strings match.</p>
-    </div>
-    <div class="more"><button id="snippet-more" hidden>Show more</button></div>
-  </section>
 </main>
 
 <script id="audit-data" type="application/json">__AUDIT_DATA__</script>
@@ -418,6 +481,8 @@
     return;
   }
   var data = JSON.parse(raw);
+  var company = data.display_name;
+  var patterns = data.patterns || [];
   var PAGE = 100;
   var shown = PAGE;
   var idFilter = null;
@@ -441,11 +506,37 @@
   }
 
   function formatNumber(n) { return Number(n).toLocaleString("en-GB"); }
+  function plural(n, one, many) { return formatNumber(n) + " " + (Number(n) === 1 ? one : many); }
 
-  document.getElementById("title").textContent = data.display_name + " content audit";
-  document.title = data.display_name + " content audit";
+  // Plain names for the values in the data files. The files keep their own values.
+  var SURFACE_LABELS = {
+    docs: "Docs", help: "Help Center", pricing: "Pricing", blog: "Blog", brand: "Brand pages",
+    changelog: "Changelog", "web-app": "Web app", "ios-app": "iOS app", comet: "Comet", email: "Email"
+  };
+  var CATEGORY_LABELS = {
+    "capitalisation": "Capital letters",
+    "spelling or spacing": "Spelling",
+    "deprecated name": "Old names still in use",
+    "avoided term": "Words to avoid",
+    "other variant": "Other spellings",
+    "same message, different words": "Same message, different words"
+  };
+  var STATUS_LABELS = { use: "Use", avoid: "Avoid", deprecated: "Retired" };
+  var TERM_STATUS_LABELS = { question: "Needs a decision", consistent: "Consistent", "too few to tell": "Too few to tell" };
+  function label(map, value) { return map[value] || value; }
+  // A recommendation is the reviewer's, so it's never shown as the company's own rule.
+  var BASIS_LABELS = {
+    published: "Published by " + company,
+    observed: "Seen in " + company + "'s public text",
+    recommendation: "Reviewer's suggestion"
+  };
+
+  document.getElementById("title").textContent = company + " content audit";
+  document.title = company + " content audit";
   document.getElementById("lede").textContent =
-    "An unofficial, outside-in audit of " + data.display_name + "'s public product text.";
+    "An unofficial audit of the words " + company + " uses on its public pages, and the places they don't agree.";
+  document.getElementById("findings-intro").textContent =
+    "Places where " + company + "'s public text doesn't follow the glossary or a pattern, with a fix for each.";
   if (data.notice) {
     document.getElementById("notice").textContent = data.notice;
     document.getElementById("notice").hidden = false;
@@ -492,6 +583,17 @@
     });
   });
 
+  // Source data: Terms or Strings, one at a time.
+  var toggles = { terms: document.getElementById("show-terms"), strings: document.getElementById("show-strings") };
+  function showSource(which) {
+    Object.keys(toggles).forEach(function (k) {
+      toggles[k].setAttribute("aria-pressed", k === which ? "true" : "false");
+      document.getElementById("source-" + k).hidden = k !== which;
+    });
+  }
+  toggles.terms.addEventListener("click", function () { showSource("terms"); });
+  toggles.strings.addEventListener("click", function () { showSource("strings"); });
+
   // Terms
   var termSearch = document.getElementById("term-search");
   var termStatus = document.getElementById("term-status");
@@ -518,19 +620,20 @@
       var ids = t.example_ids.split(" ").filter(Boolean);
       var examples = el("td");
       if (ids.length) {
-        var btn = el("button", { className: "linkish", text: "Show " + ids.length });
+        var btn = el("button", { className: "linkish", type: "button", text: "Show " + ids.length });
         btn.addEventListener("click", function () { showSnippets(ids, t.term); });
         examples.appendChild(btn);
       }
+      var decided = { accept: "Accepted", reject: "Rejected" }[t.review];
       var termCell = el("td", {}, [
         el("div", { className: "term", text: t.term }),
         t.definition ? el("div", { className: "definition", text: t.definition }) : null,
-        t.review ? el("div", { className: "definition", text: "Review: " + t.review }) : null
+        decided ? el("div", { className: "definition", text: decided }) : null
       ]);
       body.appendChild(el("tr", {}, [
         termCell,
         data.editable ? reviewCell(t) : null,
-        el("td", {}, [el("span", { className: "badge " + t.status, text: t.status })]),
+        el("td", {}, [el("span", { className: "badge " + t.status, text: label(TERM_STATUS_LABELS, t.status) })]),
         el("td", { className: "question-text", text: t.question }),
         variants,
         el("td", { className: "num", text: t.pages }),
@@ -539,7 +642,7 @@
       ]));
     });
     document.getElementById("term-empty").hidden = rows.length > 0;
-    document.getElementById("term-count").textContent = rows.length + " of " + data.terms.length + " terms";
+    document.getElementById("term-count").textContent = rows.length + " of " + plural(data.terms.length, "term", "terms");
   }
   [termSearch, termStatus, termReview].forEach(function (c) { c.addEventListener("input", renderTerms); });
 
@@ -578,14 +681,9 @@
   var glossarySearch = document.getElementById("glossary-search");
   var glossaryStatus = document.getElementById("glossary-status");
   var glossaryBasis = document.getElementById("glossary-basis");
-
-  // A recommendation is the reviewer's, so it's never shown as the company's own rule.
-  function basisText(basis) {
-    if (basis === "published") return "Published by " + data.display_name;
-    if (basis === "observed") return "Observed in " + data.display_name + "'s public text";
-    if (basis === "recommendation") return "Reviewer's suggestion, not " + data.display_name + "'s rule";
-    return basis;
-  }
+  data.allowed.glossary_basis.forEach(function (b) {
+    glossaryBasis.appendChild(el("option", { value: b, text: label(BASIS_LABELS, b) }));
+  });
 
   function renderGlossary() {
     var q = glossarySearch.value.trim().toLowerCase();
@@ -602,15 +700,17 @@
     rows.forEach(function (g) {
       body.appendChild(el("tr", {}, [
         el("td", { className: "term", text: g.term }),
-        el("td", {}, [el("span", { className: "chip", text: g.status })]),
+        el("td", {}, [el("span", { className: "chip", text: label(STATUS_LABELS, g.status) })]),
         el("td", { text: g.use_instead }),
-        el("td", { className: "definition", text: g.definition }),
-        el("td", { text: basisText(g.basis) }),
-        el("td", { className: "sources" }, [g.source_url ? sourceLink(g.source_url) : null])
+        el("td", { className: "definition prose-cell", text: g.definition }),
+        el("td", { className: "sources" }, [
+          el("div", { text: label(BASIS_LABELS, g.basis) }),
+          g.source_url ? sourceLink(g.source_url) : null
+        ])
       ]));
     });
     document.getElementById("glossary-empty").hidden = rows.length > 0;
-    document.getElementById("glossary-count").textContent = rows.length + " of " + data.glossary.length + " rows";
+    document.getElementById("glossary-count").textContent = rows.length + " of " + plural(data.glossary.length, "word", "words");
   }
   [glossarySearch, glossaryStatus, glossaryBasis].forEach(function (c) { c.addEventListener("input", renderGlossary); });
 
@@ -756,22 +856,38 @@
   var findingSearch = document.getElementById("finding-search");
   var findingCategory = document.getElementById("finding-category");
   var findingSurface = document.getElementById("finding-surface");
-  var findingSort = document.getElementById("finding-sort");
   var findingSurfaces = {};
   data.findings.forEach(function (f) { f.surfaces.split(" ").filter(Boolean).forEach(function (s) { findingSurfaces[s] = true; }); });
-  Object.keys(findingSurfaces).sort().forEach(function (s) { findingSurface.appendChild(el("option", { value: s, text: s })); });
+  Object.keys(findingSurfaces).sort().forEach(function (s) {
+    findingSurface.appendChild(el("option", { value: s, text: label(SURFACE_LABELS, s) }));
+  });
   // Categories come in the order `audit check` defines, and only the ones with findings are offered.
   var categoryOrder = data.allowed.finding_category;
   categoryOrder.filter(function (c) {
     return data.findings.some(function (f) { return f.category === c; });
-  }).forEach(function (c) { findingCategory.appendChild(el("option", { value: c, text: c })); });
+  }).forEach(function (c) { findingCategory.appendChild(el("option", { value: c, text: label(CATEGORY_LABELS, c) })); });
 
-  function evidenceItem(e) {
-    // In the evidence-only build, most strings have no excerpt. The link still shows where to read it.
+  function stringItem(e) {
+    // In the copy built from committed data, most strings have no text. The link still shows where to read it.
     var text = e.excerpt
       ? el("div", { text: e.excerpt })
-      : el("div", { className: "definition", text: "String " + e.id + ": the excerpt isn't in this build." });
+      : el("div", { className: "definition", text: "Not in this copy. The link opens the page it's on." });
     return el("li", {}, [text, e.source_url ? sourceLink(e.source_url) : null]);
+  }
+
+  var READING_ORDER = [
+    "same message, different words", "deprecated name", "other variant", "avoided term",
+    "capitalisation", "spelling or spacing"
+  ];
+  function readingRank(category) {
+    var i = READING_ORDER.indexOf(category);
+    return i === -1 ? READING_ORDER.length : i;
+  }
+
+  function patternOf(f) {
+    if (f.standard_id.indexOf("pattern:") !== 0) return null;
+    var id = f.standard_id.slice("pattern:".length);
+    return patterns.some(function (p) { return p.pattern_id === id; }) ? id : null;
   }
 
   function renderFindings() {
@@ -786,40 +902,115 @@
       var haystack = [f.term, f.written, f.issue, f.fix, f.question].join(" ").toLowerCase();
       return !q || haystack.indexOf(q) !== -1;
     });
-    // Biggest first either way, so within a category the widest problems come first.
+    // Findings a newcomer understands at once come first: one message in many wordings,
+    // then old names and two spellings of one thing. Style choices come last. Within each,
+    // the widest problems first.
     rows.sort(function (a, b) {
-      if (findingSort.value === "category") {
-        var byCategory = categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
-        if (byCategory !== 0) return byCategory;
-      }
-      return Number(b.count) - Number(a.count);
+      return readingRank(a.category) - readingRank(b.category) ||
+        Number(b.count) - Number(a.count);
     });
     rows.forEach(function (f) {
       var details = el("details", {}, [
-        el("summary", { text: "Show " + f.evidence.length + (f.evidence.length === 1 ? " string" : " strings") }),
-        el("ul", {}, f.evidence.map(evidenceItem))
+        el("summary", { text: "Show " + plural(f.evidence.length, "string", "strings") }),
+        el("ul", {}, f.evidence.map(stringItem))
       ]);
+      var pattern = patternOf(f);
+      var seePattern = null;
+      if (pattern) {
+        seePattern = el("button", { className: "linkish", type: "button", text: "See the pattern" });
+        seePattern.addEventListener("click", function () { openPattern(pattern); });
+      }
       // The question only appears where the answer isn't in the text and only the team knows it.
-      var fix = el("td", { className: "question-text" }, [
+      var fix = el("td", { className: "prose-cell" }, [
         el("div", { text: f.fix }),
-        f.question ? el("div", { className: "definition", text: "Question: " + f.question }) : null
+        f.question ? el("div", { className: "team-question" }, [
+          el("div", { className: "term", text: "Question for the team" }),
+          el("div", { text: f.question })
+        ]) : null
       ]);
       body.appendChild(el("tr", {}, [
-        el("td", { className: "nowrap", text: f.category }),
-        el("td", { className: "term", text: f.term }),
-        el("td", { text: f.written }),
-        el("td", { className: "num", text: f.count }),
-        el("td", {}, f.surfaces.split(" ").filter(Boolean).map(function (s) {
-          return el("span", { className: "chip", text: s });
-        })),
+        el("td", { className: "prose-cell" }, [
+          el("div", { className: "label", text: label(CATEGORY_LABELS, f.category) }),
+          el("div", { text: f.issue }),
+          seePattern
+        ]),
         fix,
+        el("td", {}, f.surfaces.split(" ").filter(Boolean).map(function (s) {
+          return el("span", { className: "chip", text: label(SURFACE_LABELS, s) });
+        })),
         el("td", { className: "evidence" }, [details])
       ]));
     });
     document.getElementById("finding-empty").hidden = rows.length > 0;
-    document.getElementById("finding-count").textContent = rows.length + " of " + data.findings.length + " findings";
+    document.getElementById("finding-count").textContent = rows.length + " of " + plural(data.findings.length, "finding", "findings");
   }
-  [findingSearch, findingCategory, findingSurface, findingSort].forEach(function (c) { c.addEventListener("input", renderFindings); });
+  [findingSearch, findingCategory, findingSurface].forEach(function (c) { c.addEventListener("input", renderFindings); });
+
+  function openFindings(term) {
+    findingSearch.value = term;
+    findingCategory.value = "";
+    findingSurface.value = "";
+    renderFindings();
+    selectTab(document.getElementById("tab-findings"));
+  }
+
+  // Patterns
+  var patternFilter = null;
+  document.getElementById("pattern-clear").addEventListener("click", function () {
+    patternFilter = null;
+    renderPatterns();
+  });
+
+  function patternBlock(p) {
+    var hasFinding = data.findings.some(function (f) { return f.standard_id === "pattern:" + p.pattern_id; });
+    var total = p.string_ids.split(" ").filter(Boolean).length;
+    var items = [
+      el("dt", { text: "Suggested string" }),
+      el("dd", { className: "suggested", text: p.shared_wording }),
+      el("dd", { className: "meta", text: plural(p.variants, "version", "versions") + " on " + plural(p.pages, "page", "pages") }),
+      el("dt", { text: "Question for the team" }),
+      el("dd", { text: p.question })
+    ];
+    if (p.how_to_use) {
+      items.push(el("dt", { text: "How to use it" }), el("dd", { text: p.how_to_use }));
+    }
+    var block = el("article", { className: "pattern", id: "pattern-" + p.pattern_id }, [
+      el("h3", { text: p.message }),
+      el("dl", {}, items)
+    ]);
+    if (p.strings.length) {
+      block.appendChild(el("details", {}, [
+        el("summary", { text: "Show " + plural(p.strings.length, "string", "strings") }),
+        p.strings.length < total
+          ? el("p", { className: "definition", text: "This copy holds " + p.strings.length + " of the " + total + " strings." })
+          : null,
+        el("ul", {}, p.strings.map(stringItem))
+      ]));
+    }
+    if (hasFinding) {
+      var see = el("button", { className: "linkish", type: "button", text: "See the finding" });
+      see.addEventListener("click", function () { openFindings(p.pattern_id); });
+      block.appendChild(el("div", { className: "pattern-actions" }, [see]));
+    }
+    return block;
+  }
+
+  function renderPatterns() {
+    var list = document.getElementById("pattern-list");
+    list.textContent = "";
+    var rows = patterns.filter(function (p) { return !patternFilter || p.pattern_id === patternFilter; });
+    rows.forEach(function (p) { list.appendChild(patternBlock(p)); });
+    document.getElementById("pattern-empty").hidden = patterns.length > 0;
+    document.getElementById("pattern-filter").hidden = !patternFilter;
+    document.getElementById("pattern-count").textContent = "Showing 1 of " + plural(patterns.length, "pattern", "patterns") + ".";
+    document.getElementById("pattern-clear").textContent = "Show all";
+  }
+
+  function openPattern(id) {
+    patternFilter = id;
+    renderPatterns();
+    selectTab(document.getElementById("tab-patterns"));
+  }
 
   // App strings (review mode only)
   function fillSelect(id, values, chosen) {
@@ -900,12 +1091,11 @@
 
   // Strings: every collected string. The code calls them snippets, after snippets.csv.
   var snippetSearch = document.getElementById("snippet-search");
-  var filters = { surface: "snippet-surface", kind: "snippet-kind", stage: "snippet-stage" };
-  Object.keys(filters).forEach(function (field) {
-    var select = document.getElementById(filters[field]);
-    data.values[field].forEach(function (v) { select.appendChild(el("option", { value: v, text: v })); });
-    select.addEventListener("input", function () { shown = PAGE; renderSnippets(); });
+  var snippetSurface = document.getElementById("snippet-surface");
+  data.values.surface.forEach(function (v) {
+    snippetSurface.appendChild(el("option", { value: v, text: label(SURFACE_LABELS, v) }));
   });
+  snippetSurface.addEventListener("input", function () { shown = PAGE; renderSnippets(); });
   snippetSearch.addEventListener("input", function () { shown = PAGE; renderSnippets(); });
   document.getElementById("snippet-more").addEventListener("click", function () { shown += PAGE; renderSnippets(); });
   document.getElementById("snippet-clear").addEventListener("click", function () { idFilter = null; shown = PAGE; renderSnippets(); });
@@ -914,61 +1104,81 @@
     idFilter = { ids: ids, term: term };
     shown = PAGE;
     renderSnippets();
-    selectTab(document.getElementById("tab-snippets"));
+    showSource("strings");
+    selectTab(document.getElementById("tab-source"));
   }
 
   function renderSnippets() {
     var q = snippetSearch.value.trim().toLowerCase();
-    var picked = {};
-    Object.keys(filters).forEach(function (f) { picked[f] = document.getElementById(filters[f]).value; });
+    var surface = snippetSurface.value;
     var rows = data.snippets.filter(function (s) {
       if (idFilter && idFilter.ids.indexOf(s.id) === -1) return false;
-      for (var f in picked) { if (picked[f] && s[f] !== picked[f]) return false; }
+      if (surface && s.surface !== surface) return false;
       if (!q) return true;
       return (s.excerpt + " " + s.source_url).toLowerCase().indexOf(q) !== -1;
     });
     var body = document.getElementById("snippet-rows");
     body.textContent = "";
     rows.slice(0, shown).forEach(function (s) {
-      // Only evidence excerpts are committed. Other rows still show where the text is.
-      var excerpt = s.excerpt
-        ? el("td", { text: s.excerpt })
-        : el("td", { className: "definition", text: "Excerpt not committed. Open the source to read it." });
+      // Without the local cache, most strings have no text. The row still shows where it is.
+      var text = s.excerpt
+        ? el("td", { className: "prose-cell", text: s.excerpt })
+        : el("td", { className: "definition prose-cell", text: "Not on this computer. Open the source to read it." });
       body.appendChild(el("tr", {}, [
-        excerpt,
-        el("td", { text: s.kind }),
-        el("td", { text: s.surface }),
-        el("td", { text: s.stage }),
+        text,
+        el("td", { className: "nowrap", text: label(SURFACE_LABELS, s.surface) }),
         el("td", { className: "sources" }, [sourceLink(s.source_url)]),
         el("td", { className: "nowrap", text: s.captured_on })
       ]));
     });
     var clear = document.getElementById("snippet-clear");
     clear.hidden = !idFilter;
-    if (idFilter) clear.textContent = "Showing examples for " + idFilter.term + ". Clear";
+    if (idFilter) clear.textContent = "Showing examples for " + idFilter.term + ". Show all";
     document.getElementById("snippet-empty").hidden = rows.length > 0;
     document.getElementById("snippet-more").hidden = rows.length <= shown;
-    document.getElementById("snippet-count").textContent =
-      formatNumber(Math.min(shown, rows.length)) + " shown of " + formatNumber(rows.length) +
-      " matching (" + formatNumber(data.snippets.length) + " total)";
+    var count = "Showing " + formatNumber(Math.min(shown, rows.length)) + " of " + plural(rows.length, "string", "strings");
+    if (rows.length !== data.snippets.length) count += " (" + formatNumber(data.snippets.length) + " in all)";
+    document.getElementById("snippet-count").textContent = count;
   }
 
   // Overview
   // A headline card opens its tab searched for the card's term, with the other filters reset,
   // so the evidence is the first thing on screen.
   var headlineTabs = {
-    findings: { search: findingSearch, reset: [findingCategory, findingSurface], render: renderFindings },
     glossary: { search: glossarySearch, reset: [glossaryStatus, glossaryBasis], render: renderGlossary },
     terms: { search: termSearch, reset: [termStatus, termReview], render: renderTerms }
   };
-  var tabNames = { findings: "Findings", glossary: "Glossary", terms: "Terms" };
+  var tabNames = { findings: "Findings", glossary: "Glossary", terms: "Source data", patterns: "Patterns" };
+  // The front page leads with this many cards. The rest wait behind "More findings".
+  var LEAD_CARDS = 4;
 
   function openHeadline(h) {
+    if (h.tab === "findings") return openFindings(h.term);
+    if (h.tab === "patterns") return openPattern(h.term);
     var target = headlineTabs[h.tab];
     target.search.value = h.term;
     target.reset.forEach(function (select) { select.value = ""; });
     target.render();
-    selectTab(document.getElementById("tab-" + h.tab));
+    if (h.tab === "terms") {
+      showSource("terms");
+      selectTab(document.getElementById("tab-source"));
+    } else {
+      selectTab(document.getElementById("tab-" + h.tab));
+    }
+  }
+
+  function card(h) {
+    var c = el("button", { className: "card", type: "button" }, [
+      el("span", { className: "card-title", text: h.title }),
+      el("span", { className: "card-line", text: h.line }),
+      el("span", { className: "card-link", text: "Open in " + tabNames[h.tab] })
+    ]);
+    c.addEventListener("click", function () { openHeadline(h); });
+    return c;
+  }
+
+  function step(lead, rest) {
+    return el("li", {}, [el("strong", { text: lead }), document.createTextNode(" " + rest)]);
   }
 
   function renderOverview() {
@@ -978,39 +1188,43 @@
       document.getElementById("panel-overview").textContent = "Restart `audit review` to see the overview.";
       return;
     }
-    var stats = document.getElementById("stats");
-    [[o.pages, "public pages"], [o.strings, "strings"], [o.glossary_terms, "glossary terms"], [o.findings, "findings"]]
-      .forEach(function (s) {
-        stats.appendChild(el("div", { className: "stat" }, [
-          el("dt", { text: s[1] }), el("dd", { text: formatNumber(s[0]) })
-        ]));
-      });
-    var bars = document.getElementById("category-bars");
-    var most = Math.max.apply(null, o.by_category.map(function (c) { return c[1]; }).concat([1]));
-    o.by_category.forEach(function (c) {
-      var bar = el("span", { className: "bar", style: "width: " + (100 * c[1] / most) + "%" });
-      bars.appendChild(el("span", { text: c[0] }));
-      bars.appendChild(el("span", { className: "bar-track", "aria-hidden": "true" }, [bar]));
-      bars.appendChild(el("span", { className: "bar-num", text: c[1] }));
-    });
-    var cards = document.getElementById("headline-cards");
+    var steps = document.getElementById("steps");
+    [
+      step("Collect.", plural(o.pages, "public page", "public pages") + " and " +
+        plural(o.app_strings, "app string", "app strings") + " typed in by hand: " +
+        plural(o.strings, "string", "strings") + " in all, each with a link to where it came from."),
+      step("Settle the words.", "The tool lists the words that vary. A person decided " +
+        formatNumber(o.glossary_terms) + " of them: which to use, which to avoid, and what they mean."),
+      step("Check.", "Every string is tested against those decisions. " +
+        plural(o.findings, "finding", "findings") + "."),
+      step("Find repeated messages.", "The same message said in different words on different pages. " +
+        plural(o.patterns, "pattern", "patterns") + ", each with one suggested string to reuse.")
+    ].forEach(function (li) { steps.appendChild(li); });
+
     var headlines = data.headlines || [];
     document.getElementById("headlines-heading").hidden = headlines.length === 0;
-    headlines.forEach(function (h) {
-      var card = el("button", { className: "card", type: "button" }, [
-        el("span", { className: "card-title", text: h.title }),
-        el("span", { className: "card-line", text: h.line }),
-        el("span", { className: "card-link", text: "Open in " + tabNames[h.tab] })
-      ]);
-      card.addEventListener("click", function () { openHeadline(h); });
-      cards.appendChild(card);
-    });
+    var lead = document.getElementById("headline-cards");
+    headlines.slice(0, LEAD_CARDS).forEach(function (h) { lead.appendChild(card(h)); });
+    var rest = headlines.slice(LEAD_CARDS);
+    if (rest.length) {
+      var more = document.getElementById("more-cards");
+      var button = document.getElementById("more-cards-button");
+      rest.forEach(function (h) { more.appendChild(card(h)); });
+      document.getElementById("more-cards-wrap").hidden = false;
+      button.addEventListener("click", function () {
+        var open = button.getAttribute("aria-expanded") !== "true";
+        button.setAttribute("aria-expanded", open ? "true" : "false");
+        button.textContent = open ? "Show fewer" : "More findings";
+        more.hidden = !open;
+      });
+    }
   }
 
   renderOverview();
   renderTerms();
   renderGlossary();
   renderFindings();
+  renderPatterns();
   renderSnippets();
 })();
 </script>

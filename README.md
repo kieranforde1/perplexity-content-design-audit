@@ -1,25 +1,31 @@
 Unofficial: no affiliation with Perplexity.
 
-# Outside-in product language audit
+# Outside-in content audit
 
-A small tool that audits a company's published product language from the outside, using
-public sources only. Perplexity is the first target. Any company can be audited by adding
-a config file in `targets/`.
+A small tool that reads a company's public product text and shows where the words don't
+agree: one thing with two names, a retired name still in use, the same message written
+five ways. Perplexity is the first company it's been run on. It only uses pages anyone
+can read without signing in.
 
-The tool proposes and a person decides: terms are reviewed by hand, and app text is
-typed in by hand from normal use.
-
-Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.md).
+To see the results, open [`docs/index.html`](docs/index.html) in a browser.
 
 ## How it works
 
-1. **Collect** a company's public text into one table of strings, each with its source link.
-2. **Find the terms** and show where the wording varies.
-3. **Group repeated content structures** into patterns. *(second pass)*
-4. **Score tone across stages**, and report how far the scores can be trusted. *(second pass)*
+1. **Collect.** Download the public pages and split them into strings, each with a link to
+   where it came from. App text is typed in by hand from normal use.
+2. **Settle the words.** The tool lists the words that are written more than one way. A
+   person decides which to use, which to avoid and what each one means. That's the
+   glossary.
+3. **Check.** Every string is tested against the glossary. Each finding says what's wrong,
+   the fix, and a question where only the company's team can answer.
+4. **Find repeated messages.** The tool groups sentences that say the same thing in
+   different words. A person picks the real ones and writes one string to reuse, so a
+   change made once reaches every page. The check then reports the pages that still say it
+   another way.
 
-Every step reads the strings table and writes its own table. Adding a step later means
-adding a file, not rebuilding.
+The tool suggests and a person decides, at every step.
+
+Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.md).
 
 ## Limits
 
@@ -32,9 +38,8 @@ adding a file, not rebuilding.
 
 ## Status
 
-The term map, the offline viewer, the glossary and the first check (against the
-glossary) work. Terms have been reviewed once.
-See [ROADMAP.md](ROADMAP.md).
+All four steps work. Scoring tone across the product is planned for later. See
+[ROADMAP.md](ROADMAP.md).
 
 ## Run it
 
@@ -50,8 +55,11 @@ uv run audit fetch --target perplexity --dry-run
 uv run audit fetch --target perplexity
 uv run audit extract --target perplexity
 uv run audit terms --target perplexity
+uv run audit check --target perplexity
 uv run audit view --target perplexity    # then open viewer/perplexity/index.html
 ```
+
+`uv run audit --help` lists the steps in order.
 
 `fetch` reads robots.txt and obeys it, waits at least a second between requests, and
 saves full pages to `cache/`, which is never committed. `extract` builds the strings
@@ -60,8 +68,9 @@ table from those pages. `terms` writes `data/<target>/terms.csv` for review and
 nothing is dropped silently.
 
 On a fresh clone, run `fetch` and `extract` before `terms`. The viewer also works from
-the committed data alone. Its Overview tab shows the main numbers and the headline cards
-from `data/<target>/headlines.csv`, which a person writes.
+the committed data alone. Its Overview page explains the method and leads with the cards
+in `data/<target>/headlines.csv`, which a person writes. The first four rows are shown
+first.
 
 ### Review terms and add app strings
 
@@ -92,10 +101,11 @@ uv run audit check --target perplexity              # writes data/<target>/findi
 
 `check` reports where words to avoid and deprecated names still appear, one finding per
 surface, and other spellings of the terms to use, with labels and running text compared
-separately. Each finding has a category (capitalisation, spelling or spacing, deprecated
-name, avoided term or other variant), the glossary term, what was written, what's wrong,
-the fix and, where only the team can answer, a question. It lists every string it
-counts.
+separately. It also reports, for each pattern in `data/<target>/patterns.csv`, the
+strings that say its message without its shared wording. Each finding has a category
+(capitalisation, spelling or spacing, deprecated name, avoided term, other variant, or
+same message, different words), the term or pattern, what was written, what's wrong, the
+fix and, where only the team can answer, a question. It lists every string it counts.
 
 ### Patterns
 
