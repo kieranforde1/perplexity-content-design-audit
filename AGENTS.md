@@ -54,8 +54,10 @@ being audited.
 - Don't publish anything (GitHub Pages, hosting, `reports/`) unless the owner asks.
 
 **How findings are worded**
-- Findings are observations from public text ("Observed: ..."). They never claim to
-  know how or why the company made its decisions.
+- Write findings the way an in-house content designer would write to their team: what's
+  wrong, the fix, and a short question only where only the team can answer it.
+- State facts as facts. Never present a guess about the reasons behind a choice as a
+  fact.
 - Recommendations are suggestions backed by evidence. Each one carries a question for
   the team, because outside-in work can't know the reasons behind a choice.
 - A standard is only called a company rule if the company published it.

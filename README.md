@@ -23,8 +23,8 @@ adding a file, not rebuilding.
 
 ## Limits
 
-- Outside-in. Everything here comes from public, first-party pages. It says nothing about
-  how or why the company made its decisions. Findings are observations and questions.
+- Outside-in. Everything here comes from public, first-party pages, so the reasons behind
+  a choice aren't known. Where only the team can answer, a finding asks.
 - A snapshot. Pages change. Each snippet records the date it was captured.
 - Paid-only features are covered only through their public help pages and launch posts.
 - App text is typed in by hand from normal use, or transcribed from screenshots of normal
@@ -89,10 +89,12 @@ uv run audit glossary --check --target perplexity   # reports problems by line
 uv run audit check --target perplexity              # writes data/<target>/findings.csv
 ```
 
-`check` reports where words to avoid and retired names still appear, one finding per
+`check` reports where words to avoid and deprecated names still appear, one finding per
 surface, and other spellings of the terms to use, with labels and running text compared
-separately. Each finding starts "Observed:", names its glossary row and lists every
-snippet it counts.
+separately. Each finding has a category (capitalisation, spelling or spacing, deprecated
+name, avoided term or other variant), the glossary term, what was written, what's wrong,
+the fix and, where only the team can answer, a question. It lists every snippet it
+counts.
 
 ### Typed app strings
 

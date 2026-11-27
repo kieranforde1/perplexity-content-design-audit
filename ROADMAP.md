@@ -51,9 +51,13 @@ A standard never claims to be a company rule unless the company published it.
 
 ### `audit check` → `data/<target>/findings.csv`
 
-finding_id, standard_id, observation, count, surfaces, snippet_ids
+finding_id, standard_id, category, term, written, count, surfaces, issue, fix, question,
+snippet_ids
 
-- `observation` is a neutral sentence starting "Observed:".
+- `category` is the kind of mismatch: capitalisation, spelling or spacing, deprecated
+  name, avoided term or other variant.
+- `issue` says what's wrong, `fix` says what to write instead, and `question` is filled
+  in only where only the team can answer.
 - `snippet_ids` lists every snippet the finding counts, so each one can be traced.
 - Tutorial and example-app pages are left out of checks by the `analysis_exclude`
   config setting, because they aren't product language.
@@ -85,8 +89,8 @@ rec_id, goal, level, change, finding_ids, reach, effort, confidence, question
 - `question` is what to ask the team, because outside-in work can't know why something
   was written the way it was.
 
-Recommendations are suggested changes backed by evidence. They make no claims about how or
-why the company made its decisions.
+Recommendations are suggested changes backed by evidence. They state facts as facts and
+never present a guess about the reasons behind a choice as a fact.
 
 ### `audit skill` → `data/<target>/skill/`
 

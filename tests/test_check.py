@@ -57,36 +57,86 @@ def test_avoid_word_is_counted_per_surface_and_skips_parameters(tmp_path: Path) 
     docs, helps = rows
     # The parameter "disabled" isn't prose, so only the docs sentence counts.
     assert docs["count"] == "1"
-    assert docs["observation"].startswith("Observed: 'Disabled' appears in 1 snippet")
-    assert "Glossary: avoid, use 'Turned off' instead (recommendation)." in helps["observation"]
+    assert docs["category"] == helps["category"] == "avoided term"
+    assert docs["issue"].startswith("'Disabled' is a word to avoid but appears in 1 snippet")
+    assert helps["fix"] == (
+        "Use 'Turned off' instead. This is a recommendation, not a published rule."
+    )
+    # Docs may use the word as a value in code, which only the team can confirm.
+    assert "literal value" in docs["question"]
+    assert helps["question"] == ""
 
 
-def test_retired_name_carries_its_published_basis(tmp_path: Path) -> None:
+def test_findings_are_written_for_the_team_not_as_observations(tmp_path: Path) -> None:
+    target = write_target(tmp_path, "Disabled,avoid,Turned off,,recommendation,\n")
+    for row in findings(target):
+        assert not row["issue"].startswith("Observed")
+        assert "how or why" not in " ".join(row.values())
+
+
+def test_deprecated_name_carries_its_published_basis(tmp_path: Path) -> None:
     target = write_target(
         tmp_path, "Widgets,deprecated,Gadgets,,published,https://e.com/news\n"
     )
     (row,) = findings(target)
     assert row["standard_id"] == "glossary:Widgets"
-    assert "Glossary: deprecated, use 'Gadgets' instead (published)." in row["observation"]
+    assert row["category"] == "deprecated name"
+    assert row["term"] == "Widgets"
+    assert row["written"] == "'Widgets' (1)"
+    assert row["fix"] == "Use 'Gadgets' instead. This is the published replacement."
+
+
+def test_an_avoid_word_with_no_replacement_asks_the_team(tmp_path: Path) -> None:
+    pieces = [("sentence", "Open the Gizmo from the menu.", "https://e.com/a", "help")]
+    target = write_target(tmp_path, "Gizmo,avoid,,,recommendation,\n", pieces)
+    (row,) = findings(target)
+    assert row["fix"].startswith("Reword without 'Gizmo'.")
+    assert row["question"] == "What should these pages say instead of 'Gizmo'?"
 
 
 def test_other_spellings_compare_labels_and_running_text_apart(tmp_path: Path) -> None:
     target = write_target(tmp_path, "Help Panel,use,,,observed,\n")
-    rows = {r["observation"].split(",")[0]: r for r in findings(target)}
+    rows = findings(target)
     # "help Panel" is another spelling. "help panel" may be the general word, so it's
-    # left out. "Help Panel" at the start of a sentence is the glossary form.
-    running = next(r for k, r in rows.items() if "running text" in k)
-    assert "'help Panel' (1)" in running["observation"]
+    # left out. "Help Panel" at the start of a sentence is the glossary form. Title case
+    # in a heading is the label form, so labels have nothing to report.
+    (running,) = rows
+    assert running["issue"].startswith("In running text,")
+    assert running["written"] == "'help Panel' (1)"
+    assert running["category"] == "capitalisation"
+    assert running["fix"] == "Write 'Help Panel'."
     assert running["count"] == "1"
-    # Title case in a heading is the label form, so labels have nothing to report.
-    assert not any("labels" in k for k in rows)
 
 
 def test_sentence_start_capital_is_not_another_spelling(tmp_path: Path) -> None:
     target = write_target(tmp_path, "help panel,use,,,observed,\n")
-    observations = " ".join(r["observation"] for r in findings(target))
-    assert "'Help Panel'" in observations
-    assert "'Help panel'" not in observations
+    written = " ".join(r["written"] for r in findings(target))
+    assert "'Help Panel'" in written
+    assert "'Help panel'" not in written
+
+
+def test_each_kind_of_variant_gets_its_own_category(tmp_path: Path) -> None:
+    pieces = [
+        ("sentence", "Make an API key first.", "https://e.com/a", "docs"),
+        ("sentence", "Copy the API Key to your app.", "https://e.com/b", "docs"),
+        ("sentence", "Send the API-key in a header.", "https://e.com/c", "docs"),
+    ]
+    target = write_target(tmp_path, "API key,use,,,observed,\n", pieces)
+    by_category = {r["category"]: r for r in findings(target)}
+    # Case alone is capitalisation. A change of spaces or hyphens is spelling or spacing.
+    assert set(by_category) == {"capitalisation", "spelling or spacing"}
+    assert by_category["capitalisation"]["written"] == "'API Key' (1)"
+    assert by_category["spelling or spacing"]["written"] == "'API-key' (1)"
+    # Each row is its own finding, so the two IDs differ.
+    assert len({r["finding_id"] for r in by_category.values()}) == 2
+
+
+def test_variant_category_rules() -> None:
+    allowed = {"API key"}
+    assert check.variant_category("API Key", allowed) == "capitalisation"
+    assert check.variant_category("API-key", allowed) == "spelling or spacing"
+    assert check.variant_category("API-Key", allowed) == "spelling or spacing"
+    assert check.variant_category("API token", allowed) == "other variant"
 
 
 def test_finding_ids_stay_the_same_between_runs(tmp_path: Path) -> None:
@@ -102,11 +152,11 @@ def test_a_broken_glossary_stops_the_check(tmp_path: Path) -> None:
         findings(target)
 
 
-def test_retired_name_ignores_the_lowercase_general_word(tmp_path: Path) -> None:
+def test_deprecated_name_ignores_the_lowercase_general_word(tmp_path: Path) -> None:
     target = write_target(tmp_path, "Help Panel,deprecated,Tips,,published,https://e.com/n\n")
-    observations = " ".join(r["observation"] for r in findings(target))
-    assert "'help panel'" not in observations
-    assert "'Help Panel'" in observations
+    written = " ".join(r["written"] for r in findings(target))
+    assert "'help panel'" not in written
+    assert "'Help Panel'" in written
 
 
 def test_spelling_findings_quote_real_forms_and_count_the_glossary_form(
@@ -118,10 +168,10 @@ def test_spelling_findings_quote_real_forms_and_count_the_glossary_form(
         ("sentence", "Open the Help Panels list.", "https://e.com/p3", "help"),
     ]
     target = write_target(tmp_path, "Help Panels,use,,,observed,\n", pieces)
-    running = next(r for r in findings(target) if "running text" in r["observation"])
+    running = next(r for r in findings(target) if "running text" in r["issue"])
     # The text says "help Panels", not the singular, so that's what gets quoted.
-    assert "'help Panels' (1)" in running["observation"]
-    assert "The glossary form appears 2 times." in running["observation"]
+    assert running["written"] == "'help Panels' (1)"
+    assert "The glossary form appears 2 times." in running["issue"]
 
 
 def test_finding_evidence_is_committed_and_kept_by_terms(tmp_path: Path) -> None:
@@ -153,7 +203,7 @@ def test_a_plural_of_a_singular_term_still_counts_as_another_spelling(tmp_path: 
     ]
     target = write_target(tmp_path, "Gadget helper,use,,,observed,\n", pieces)
     (row,) = findings(target)
-    assert "'Gadget Helpers' (1)" in row["observation"]
+    assert "'Gadget Helpers' (1)" in row["written"]
 
 
 def test_singular_use_of_a_plural_term_is_not_another_spelling(tmp_path: Path) -> None:
@@ -165,7 +215,7 @@ def test_singular_use_of_a_plural_term_is_not_another_spelling(tmp_path: Path) -
     target = write_target(tmp_path, "Gadget helpers,use,,,observed,\n", pieces)
     # The singular follows the sentence, so only "Gadget Helpers" is another spelling.
     (row,) = findings(target)
-    assert "'Gadget Helpers' (1)" in row["observation"]
+    assert "'Gadget Helpers' (1)" in row["written"]
     assert row["count"] == "1"
 
 
@@ -180,7 +230,7 @@ def test_phrases_that_name_something_else_are_skipped(tmp_path: Path) -> None:
     (row,) = findings(target)
     # "Zed Pro plan" is another company's, so only the one Pro plan sentence counts.
     assert row["count"] == "1"
-    assert "'Pro plan' (1)" in row["observation"]
+    assert "'Pro plan' (1)" in row["written"]
 
 
 def test_a_longer_glossary_term_is_not_counted_again_by_the_shorter_one(

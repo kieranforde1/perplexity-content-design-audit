@@ -267,15 +267,23 @@
       Each finding lists every snippet it counts.</p>
     <div class="controls">
       <label for="finding-search" hidden>Search findings</label>
-      <input type="search" id="finding-search" placeholder="Search observations">
+      <input type="search" id="finding-search" placeholder="Search terms and fixes">
+      <label for="finding-category" hidden>Category</label>
+      <select id="finding-category"><option value="">All categories</option></select>
       <label for="finding-surface" hidden>Surface</label>
       <select id="finding-surface"><option value="">All surfaces</option></select>
+      <label for="finding-sort" hidden>Sort</label>
+      <select id="finding-sort">
+        <option value="category">Grouped by category</option>
+        <option value="count">Most snippets first</option>
+      </select>
       <span class="count" id="finding-count" aria-live="polite"></span>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th scope="col">Observation</th><th scope="col">Snippets</th><th scope="col">Surfaces</th>
+          <th scope="col">Category</th><th scope="col">Glossary term</th><th scope="col">Written as</th>
+          <th scope="col">Snippets</th><th scope="col">Where</th><th scope="col">Fix</th>
           <th scope="col">Evidence</th>
         </tr></thead>
         <tbody id="finding-rows"></tbody>
@@ -690,10 +698,17 @@
 
   // Findings
   var findingSearch = document.getElementById("finding-search");
+  var findingCategory = document.getElementById("finding-category");
   var findingSurface = document.getElementById("finding-surface");
+  var findingSort = document.getElementById("finding-sort");
   var findingSurfaces = {};
   data.findings.forEach(function (f) { f.surfaces.split(" ").filter(Boolean).forEach(function (s) { findingSurfaces[s] = true; }); });
   Object.keys(findingSurfaces).sort().forEach(function (s) { findingSurface.appendChild(el("option", { value: s, text: s })); });
+  // Categories come in the order `audit check` defines, and only the ones with findings are offered.
+  var categoryOrder = data.allowed.finding_category;
+  categoryOrder.filter(function (c) {
+    return data.findings.some(function (f) { return f.category === c; });
+  }).forEach(function (c) { findingCategory.appendChild(el("option", { value: c, text: c })); });
 
   function evidenceItem(e) {
     // In the evidence-only build, most snippets have no excerpt. The link still shows where to read it.
@@ -705,31 +720,50 @@
 
   function renderFindings() {
     var q = findingSearch.value.trim().toLowerCase();
+    var category = findingCategory.value;
     var surface = findingSurface.value;
     var body = document.getElementById("finding-rows");
     body.textContent = "";
     var rows = data.findings.filter(function (f) {
+      if (category && f.category !== category) return false;
       if (surface && f.surfaces.split(" ").indexOf(surface) === -1) return false;
-      return !q || f.observation.toLowerCase().indexOf(q) !== -1;
+      var haystack = [f.term, f.written, f.issue, f.fix, f.question].join(" ").toLowerCase();
+      return !q || haystack.indexOf(q) !== -1;
+    });
+    // Biggest first either way, so within a category the widest problems come first.
+    rows.sort(function (a, b) {
+      if (findingSort.value === "category") {
+        var byCategory = categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
+        if (byCategory !== 0) return byCategory;
+      }
+      return Number(b.count) - Number(a.count);
     });
     rows.forEach(function (f) {
       var details = el("details", {}, [
         el("summary", { text: "Show " + f.evidence.length + (f.evidence.length === 1 ? " snippet" : " snippets") }),
         el("ul", {}, f.evidence.map(evidenceItem))
       ]);
+      // The question only appears where the answer isn't in the text and only the team knows it.
+      var fix = el("td", { className: "question-text" }, [
+        el("div", { text: f.fix }),
+        f.question ? el("div", { className: "definition", text: "Question: " + f.question }) : null
+      ]);
       body.appendChild(el("tr", {}, [
-        el("td", { className: "question-text", text: f.observation }),
+        el("td", { className: "nowrap", text: f.category }),
+        el("td", { className: "term", text: f.term }),
+        el("td", { text: f.written }),
         el("td", { className: "num", text: f.count }),
         el("td", {}, f.surfaces.split(" ").filter(Boolean).map(function (s) {
           return el("span", { className: "chip", text: s });
         })),
+        fix,
         el("td", { className: "evidence" }, [details])
       ]));
     });
     document.getElementById("finding-empty").hidden = rows.length > 0;
     document.getElementById("finding-count").textContent = rows.length + " of " + data.findings.length + " findings";
   }
-  [findingSearch, findingSurface].forEach(function (c) { c.addEventListener("input", renderFindings); });
+  [findingSearch, findingCategory, findingSurface, findingSort].forEach(function (c) { c.addEventListener("input", renderFindings); });
 
   // App strings (review mode only)
   function fillSelect(id, values, chosen) {

@@ -17,7 +17,7 @@ from dataclasses import asdict
 from datetime import date
 from pathlib import Path
 
-from audit import evidence, glossary, snippets, typed
+from audit import check, evidence, glossary, snippets, typed
 from audit.config import Target
 from audit.snippets import Snippet
 
@@ -85,9 +85,7 @@ def build_data(
             f"{len(glossary_rows)} glossary rows, {len(findings)} findings.{which}"
         ),
         "footer": (
-            f"Built by `audit view` on {today.isoformat()}. Findings are observations from "
-            "public, first-party sources. They make no claims about how or why the company "
-            "made its decisions."
+            f"Built by `audit view` on {today.isoformat()} from public, first-party sources."
         ),
         "values": {
             "surface": sorted({s.surface for s in rows}),
@@ -100,6 +98,8 @@ def build_data(
             "stage": list(snippets.STAGES),
             "glossary_status": list(glossary.STATUSES),
             "glossary_basis": list(glossary.BASES),
+            # The Findings tab groups and filters in this order.
+            "finding_category": list(check.CATEGORIES),
         },
         "terms": terms,
         "glossary": glossary_rows,

@@ -12942,7 +12942,7 @@ d96079a7f2bc,,nav,https://docs.perplexity.ai/docs/getting-started/integrations/a
 9e91400a3e1f,,nav,https://docs.perplexity.ai/docs/getting-started/integrations/agno.md,docs,other,2026-11-25,crawl,cc56ee238b8770fd
 70c9ceb030ab,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/agno.md,docs,other,2026-11-25,crawl,e203b1c1f867f53c
 b754c383b33a,,title,https://docs.perplexity.ai/docs/getting-started/integrations/antigravity.md,docs,other,2026-11-25,crawl,2a91969f26cad592
-4338fb02fd18,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/antigravity.md,docs,other,2026-11-25,crawl,fa6098712828d2ca
+4338fb02fd18,Connect Google Antigravity to Perplexity's hosted MCP server with bearer API-key authentication.,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/antigravity.md,docs,other,2026-11-25,crawl,fa6098712828d2ca
 a036f8834c40,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/antigravity.md,docs,other,2026-11-25,crawl,5d3ef51da3d2fd0c
 e121f3c9d172,,sentence,https://docs.perplexity.ai/docs/getting-started/integrations/antigravity.md,docs,other,2026-11-25,crawl,67ae51094aae2b09
 4c6146337b43,,heading,https://docs.perplexity.ai/docs/getting-started/integrations/antigravity.md,docs,other,2026-11-25,crawl,08b5fe8ef53d5263
@@ -18045,7 +18045,7 @@ b34834429e13,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,ch
 61171f028001,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,446589dc03e2f1d6
 7104551ad492,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,f7125505066768f9
 c71129f1c513,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,0da365275776c141
-4e4380aaaa83,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,7322a6fb8eda9253
+4e4380aaaa83,"Custom connectors are available to all Projects and support API-key or no authentication, with Streamable HTTP or SSE transport.",sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,7322a6fb8eda9253
 2c2194ca2b7b,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,7229aa179c8815fc
 28213c1786e7,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,26eacdba41bf8f50
 0cde113a9c0d,,sentence,https://docs.perplexity.ai/docs/resources/changelog.md,changelog,other,2026-11-25,crawl,4e3771bf1a278f33

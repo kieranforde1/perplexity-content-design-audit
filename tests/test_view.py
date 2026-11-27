@@ -66,9 +66,10 @@ def add_glossary_and_findings(target: config.Target, snippet_ids: str) -> None:
 
 
 FINDING = {
-    "finding_id": "abc", "standard_id": "glossary:Search API",
-    "observation": "Observed: 'Search API' is also written 'search API'.",
-    "count": "2", "surfaces": "docs", "snippet_ids": "",
+    "finding_id": "abc", "standard_id": "glossary:Search API", "category": "capitalisation",
+    "term": "Search API", "written": "'search API' (2)", "count": "2", "surfaces": "docs",
+    "issue": "In running text, 'Search API' is written 'search API' (2).",
+    "fix": "Write 'Search API'.", "question": "", "snippet_ids": "",
 }
 
 
@@ -86,6 +87,9 @@ def test_glossary_and_findings_are_included(tmp_path: Path) -> None:
         ]}
     ]
     assert "2 glossary rows, 1 findings" in str(data["summary"])
+    # The Findings tab groups by category in the order `audit check` defines.
+    assert data["allowed"]["finding_category"] == list(check.CATEGORIES)  # type: ignore[index]
+    assert "how or why" not in str(data["footer"])
 
 
 def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -> None:

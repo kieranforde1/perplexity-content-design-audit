@@ -2,16 +2,19 @@
 
 Two kinds of finding come out, one row each in data/<target>/findings.csv:
 
-- Words to avoid and retired names: where each one still appears, one row per surface.
-  Developer docs often use words like "disabled" as a setting's value, so surfaces are
-  kept apart rather than added together.
+- Words to avoid and deprecated (retired) names: where each one still appears, one row
+  per surface. Developer docs often use words like "disabled" as a setting's value, so
+  surfaces are kept apart rather than added together.
 - Terms to use: other spellings of the glossary form, with labels and running text kept
   apart, because labels use title case on purpose. All-lowercase uses are left out: they
-  may be the general word ("a project"), which only a person can tell.
+  may be the general word ("a project"), which only a person can tell. A term with two
+  kinds of variant (capitals and hyphens, say) gets one row for each kind.
 
-Findings are observations. Each one names its glossary row, and that row's `basis` says
-whether the standard is Perplexity's own (published, observed) or a recommendation.
-Every finding lists the IDs of every snippet it counts, so each one can be traced.
+Each finding has a category (see CATEGORIES) and short fields, so the viewer can show
+them as columns. The wording is a content designer's note to the team: what's wrong, the
+fix, and a question only where the answer isn't in the text. The fix says when it's a
+recommendation, so it's never passed off as a published rule. Every finding lists the
+IDs of every snippet it counts, so each one can be traced.
 """
 
 from __future__ import annotations
@@ -26,7 +29,18 @@ from audit import evidence, glossary, snippets, terms
 from audit.config import Target
 from audit.terms import Text
 
-FINDING_COLUMNS = ("finding_id", "standard_id", "observation", "count", "surfaces", "snippet_ids")
+FINDING_COLUMNS = (
+    "finding_id", "standard_id", "category", "term", "written", "count", "surfaces",
+    "issue", "fix", "question", "snippet_ids",
+)
+
+# The kinds of mismatch, in the order the viewer groups them. There's no separate
+# "retired name": the glossary marks a retired name as `deprecated`, so it's the same thing.
+CATEGORIES = (
+    "capitalisation", "spelling or spacing", "deprecated name", "avoided term",
+    "other variant",
+)
+STATUS_CATEGORIES = {"deprecated": "deprecated name", "avoid": "avoided term"}
 
 
 @dataclass(frozen=True)
@@ -120,30 +134,59 @@ def expected_shapes(term: str, group: str, at_start: bool, company: str) -> set[
     return allowed
 
 
+def squash(text: str) -> str:
+    """The letters alone, in lowercase: what's left once case, spaces and hyphens go."""
+    return re.sub(r"[\s-]", "", text).lower()
+
+
+def variant_category(written: str, allowed: set[str]) -> str:
+    """What kind of variant a spelling is, compared with the forms allowed in its place."""
+    if written.lower() in {a.lower() for a in allowed}:
+        return "capitalisation"
+    if squash(written) in {squash(a) for a in allowed}:
+        return "spelling or spacing"
+    # The matcher only finds changes of case, spaces and hyphens today, so this is a
+    # safety net for anything else it may find later.
+    return "other variant"
+
+
 @dataclass
 class Finding:
     standard_id: str
     group: str
-    observation: str = ""
+    category: str
+    term: str
+    written: str
+    issue: str
+    fix: str
+    question: str = ""
     snippet_ids: list[str] = field(default_factory=list)
     surfaces: set[str] = field(default_factory=set)
 
     def row(self) -> dict[str, str]:
-        key = f"{self.standard_id}\n{self.group}"
+        key = f"{self.standard_id}\n{self.group}\n{self.category}"
         return {
             "finding_id": hashlib.sha1(key.encode("utf-8")).hexdigest()[:10],
             "standard_id": self.standard_id,
-            "observation": self.observation,
+            "category": self.category,
+            "term": self.term,
+            "written": self.written,
             "count": str(len(self.snippet_ids)),
             "surfaces": " ".join(s for s in terms.AUTHORITY if s in self.surfaces),
+            "issue": self.issue,
+            "fix": self.fix,
+            "question": self.question,
             "snippet_ids": " ".join(self.snippet_ids),
         }
 
 
-def glossary_note(entry: dict[str, str]) -> str:
-    replacement = entry["use_instead"].strip()
-    instead = f", use '{replacement}' instead" if replacement else ""
-    return f"Glossary: {entry['status']}{instead} ({entry['basis']})."
+def how_firm(entry: dict[str, str], what: str) -> str:
+    """Added to a fix so nobody mistakes our suggestion for the company's own rule."""
+    if entry["basis"] == "published":
+        return f" This is the published {what}."
+    if entry["basis"] == "recommendation":
+        return " This is a recommendation, not a published rule."
+    return ""
 
 
 def is_correct_in_context(entry: dict[str, str], text: Text, target: Target) -> bool:
@@ -169,7 +212,7 @@ def avoid_findings(
     target: Target,
     entries: list[dict[str, str]],
 ) -> list[Finding]:
-    """Where a word to avoid, or a retired name, still appears. One finding per surface."""
+    """Where a word to avoid, or a deprecated name, still appears. One finding per surface."""
     term = entry["term"]
     company = target.display_name
     inside_longer = longer_uses(entry, entries, texts, target)
@@ -180,12 +223,14 @@ def avoid_findings(
             continue
         if is_inside(use.start, use.start + len(use.form), inside_longer[use.text.snippet.id]):
             continue
-        # A retired name is a name, so lowercase "space" is the general word, not the old
-        # product. Words to avoid count in any case.
+        # A deprecated name is a name, so lowercase "space" is the general word, not the
+        # old product. Words to avoid count in any case.
         is_lowercase = use.form == use.form.lower() and term != term.lower()
         if entry["status"] == "deprecated" and is_lowercase:
             continue
         by_surface[use.text.snippet.surface].append(use)
+    category = STATUS_CATEGORIES[entry["status"]]
+    replacement = entry["use_instead"].strip()
     findings = []
     for surface in terms.AUTHORITY:
         found = by_surface.get(surface)
@@ -195,14 +240,33 @@ def avoid_findings(
         pages = {u.text.snippet.source_url for u in found}
         forms = Counter(u.form for u in found)
         written = ", ".join(f"'{f}' ({n})" for f, n in forms.most_common(3))
+        what = "a deprecated name" if entry["status"] == "deprecated" else "a word to avoid"
+        question = ""
+        if replacement:
+            fix = f"Use '{replacement}' instead." + how_firm(entry, "replacement")
+            # Developer docs can use the word as a literal value in code, which has to
+            # stay. Only the team knows which uses those are.
+            if entry["status"] == "avoid" and surface == "docs":
+                most_used = forms.most_common(1)[0][0]
+                question = (
+                    f"Is '{most_used}' a literal value in code or the API here? "
+                    "If so, keep it."
+                )
+        else:
+            fix = f"Reword without '{term}'." + how_firm(entry, "rule")
+            question = f"What should these pages say instead of '{term}'?"
         findings.append(Finding(
-            standard_id=f"glossary:{entry['term']}",
+            standard_id=f"glossary:{term}",
             group=surface,
-            observation=(
-                f"Observed: '{entry['term']}' appears in {terms.plural(len(ids), 'snippet')} "
-                f"on {terms.plural(len(pages), surface + ' page')}, written {written}. "
-                + glossary_note(entry)
+            category=category,
+            term=term,
+            written=written,
+            issue=(
+                f"'{term}' is {what} but appears in {terms.plural(len(ids), 'snippet')} "
+                f"on {terms.plural(len(pages), surface + ' page')}, written {written}."
             ),
+            fix=fix,
+            question=question,
             snippet_ids=ids,
             surfaces={surface},
         ))
@@ -213,7 +277,7 @@ def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) 
     """Other spellings of a term to use, with labels and running text kept apart."""
     term = entry["term"]
     company = target.display_name
-    by_group: dict[str, list[Use]] = defaultdict(list)
+    by_group: dict[tuple[str, str], list[Use]] = defaultdict(list)
     as_glossary: Counter[str] = Counter()
     for use in uses_of(term, texts, company, target.check.other_things.get(term, ())):
         group = terms.group_of(use.text.snippet.kind)
@@ -231,33 +295,39 @@ def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) 
         if is_plural(term) and not is_plural(use.form):
             continue
         at_start = not terms.is_mid_sentence(use.text.text, use.start)
-        if written in expected_shapes(term, group, at_start, company):
+        allowed = expected_shapes(term, group, at_start, company)
+        if written in allowed:
             as_glossary[group] += 1
         else:
-            by_group[group].append(use)
+            by_group[(group, variant_category(written, allowed))].append(use)
     findings = []
     for group in ("labels", "running"):
-        found = by_group.get(group)
-        if not found:
-            continue
-        ids = list(dict.fromkeys(u.text.snippet.id for u in found))
-        pages = {u.text.snippet.source_url for u in found}
-        # Quote each spelling's most common real form, so a finding never quotes a
-        # spelling that doesn't appear in the text.
-        spellings = terms.spellings(Counter(u.form for u in found), company)
-        written = ", ".join(terms.quote(s) for s in spellings[:3])
-        findings.append(Finding(
-            standard_id=f"glossary:{term}",
-            group=group,
-            observation=(
-                f"Observed: in {terms.GROUP_NAMES[group]}, '{term}' is also written "
-                f"{written}, in {terms.plural(len(ids), 'snippet')} on "
-                f"{terms.plural(len(pages), 'page')}. The glossary form appears "
-                f"{terms.plural(as_glossary[group], 'time')}. " + glossary_note(entry)
-            ),
-            snippet_ids=ids,
-            surfaces={u.text.snippet.surface for u in found},
-        ))
+        for category in CATEGORIES:
+            found = by_group.get((group, category))
+            if not found:
+                continue
+            ids = list(dict.fromkeys(u.text.snippet.id for u in found))
+            pages = {u.text.snippet.source_url for u in found}
+            # Quote each spelling's most common real form, so a finding never quotes a
+            # spelling that doesn't appear in the text.
+            spellings = terms.spellings(Counter(u.form for u in found), company)
+            written = ", ".join(terms.quote(s) for s in spellings[:3])
+            findings.append(Finding(
+                standard_id=f"glossary:{term}",
+                group=group,
+                category=category,
+                term=term,
+                written=written,
+                issue=(
+                    f"In {terms.GROUP_NAMES[group]}, '{term}' is written {written} in "
+                    f"{terms.plural(len(ids), 'snippet')} on "
+                    f"{terms.plural(len(pages), 'page')}. The glossary form appears "
+                    f"{terms.plural(as_glossary[group], 'time')}."
+                ),
+                fix=f"Write '{term}'." + how_firm(entry, "form"),
+                snippet_ids=ids,
+                surfaces={u.text.snippet.surface for u in found},
+            ))
     return findings
 
 
@@ -286,10 +356,10 @@ def run(target: Target, *, log: Callable[[str], None] = print) -> list[dict[str,
     terms.write_csv(path, FINDING_COLUMNS, rows)
     # Findings decide part of the evidence, so the committed copy is redone.
     filled = evidence.write_public_copy(target, snippets.read(target.local_snippets), log=log)
-    avoid = sum(1 for f in findings if f.group not in ("labels", "running"))
+    per_category = Counter(f.category for f in findings)
     log(f"{len(entries)} glossary rows checked against {len(texts)} snippets.")
-    log(f"{len(rows)} findings: {avoid} for words to avoid or retired names, "
-        f"{len(rows) - avoid} for other spellings.")
+    breakdown = ", ".join(f"{per_category[c]} {c}" for c in CATEGORIES if per_category[c])
+    log(f"{len(rows)} findings" + (f": {breakdown}." if breakdown else "."))
     log(f"Wrote {path}")
     log(f"Wrote {target.public_snippets} (committed, {filled} evidence excerpts)")
     return rows
