@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- An outside-in audit of another company's text: keep it out of search results and AI training sets. -->
 <meta name="robots" content="noindex, nofollow, noarchive, noai, noimageai">
-<title>Content audit</title>
+<title>__COMPANY__ content design tools</title>
 <style>
   /* Colours are Perplexity's published Brand Hub values. The typefaces are licensed, so the
      page uses system fonts in their place and loads nothing. Flat on purpose: the brand
@@ -279,11 +279,12 @@
 </head>
 <body>
 <header>
-  <h1 id="title">Content audit</h1>
-  <p class="lede" id="lede"></p>
+  <h1 id="title">__COMPANY__ content design tools</h1>
+  <p class="lede" id="lede">An unofficial audit of the words __COMPANY__ uses on its public pages, and the places they don't agree.</p>
   <p class="notice" id="review-note" hidden>Review mode: edits save to this computer.</p>
 </header>
 <main>
+  <noscript><p class="intro">This page needs JavaScript to show the audit.</p></noscript>
   <div role="tablist" aria-label="Audit views">
     <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
     <button role="tab" id="tab-check" aria-controls="panel-check" aria-selected="false" tabindex="-1">Check</button>
@@ -297,8 +298,8 @@
   <section role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
     <h2>How it works</h2>
     <ol class="steps" id="steps"></ol>
-    <p class="method">Everything comes from public pages, so the tool can't know why a choice was made.
-      Where only the team can answer, the audit asks.</p>
+    <p class="method">The tool can spot two pages using different words, but not whether the
+      difference was deliberate. Where only the team can answer, the audit asks.</p>
     <h2 id="headlines-heading">What it found</h2>
     <div class="cards" id="headline-cards"></div>
     <div class="more-cards" id="more-cards-wrap" hidden>
@@ -328,7 +329,7 @@
     <p class="notice" id="check-notice" hidden>Where a string's text isn't in this copy, its page is linked instead.</p>
     <div class="controls">
       <label for="rule-search" class="sr-only">Search rules</label>
-      <input type="search" id="rule-search" placeholder="Search rules or words">
+      <input type="search" id="rule-search" placeholder="Search rules or terms">
       <label for="rule-category" class="sr-only">Kind of rule</label>
       <select id="rule-category"><option value="">All kinds of rule</option></select>
       <label for="rule-surface" class="sr-only">Where</label>
@@ -353,30 +354,30 @@
 
   <section role="tabpanel" id="panel-glossary" aria-labelledby="tab-glossary" hidden>
     <h2 class="sr-only">Glossary</h2>
-    <p class="intro">The words a person settled, and why.</p>
+    <p class="intro">The terms a person settled, and why.</p>
     <div class="controls">
       <label for="glossary-search" class="sr-only">Search the glossary</label>
-      <input type="search" id="glossary-search" placeholder="Search words or definitions">
-      <label for="glossary-status" class="sr-only">Decision</label>
+      <input type="search" id="glossary-search" placeholder="Search terms or definitions">
+      <label for="glossary-status" class="sr-only">Rule</label>
       <select id="glossary-status">
-        <option value="">Use, avoid or retired</option>
+        <option value="">Any rule</option>
         <option value="use">Use</option>
         <option value="avoid">Avoid</option>
         <option value="deprecated">Retired</option>
       </select>
-      <label for="glossary-basis" class="sr-only">Where the decision comes from</label>
-      <select id="glossary-basis"><option value="">Any reason</option></select>
+      <label for="glossary-basis" class="sr-only">Based on</label>
+      <select id="glossary-basis"><option value="">Any source</option></select>
       <span class="count" id="glossary-count" aria-live="polite"></span>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th scope="col">Word</th><th scope="col">Decision</th><th scope="col">Use instead</th>
-          <th scope="col">Definition</th><th scope="col">Why</th>
+          <th scope="col">Term</th><th scope="col">Rule</th><th scope="col">Use instead</th>
+          <th scope="col">Definition</th><th scope="col">Based on</th>
         </tr></thead>
         <tbody id="glossary-rows"></tbody>
       </table>
-      <p class="empty" id="glossary-empty" hidden>No glossary rows match.</p>
+      <p class="empty" id="glossary-empty" hidden>No terms match.</p>
     </div>
   </section>
 
@@ -391,7 +392,7 @@
 
     <div id="source-terms">
       <h3 class="sr-only">Terms</h3>
-      <p class="intro">The words the tool found that vary, before a person decided them.</p>
+      <p class="intro">The terms the tool found that vary, before a person decided them.</p>
       <div class="controls">
         <label for="term-search" class="sr-only">Search terms</label>
         <input type="search" id="term-search" placeholder="Search terms, variants or questions">
@@ -402,12 +403,12 @@
           <option value="consistent">Consistent</option>
           <option value="too few to tell">Too few to tell</option>
         </select>
-        <label for="term-review" class="sr-only">Decision</label>
+        <label for="term-review" class="sr-only">Review</label>
         <select id="term-review">
-          <option value="">Any decision</option>
+          <option value="">Any review</option>
           <option value="accept">Accepted</option>
           <option value="reject">Rejected</option>
-          <option value="none">Not decided yet</option>
+          <option value="none">Not reviewed</option>
         </select>
         <span class="count" id="term-count" aria-live="polite"></span>
       </div>
@@ -460,10 +461,10 @@
         <option value="update">Updates to existing terms</option>
         <option value="add">New terms</option>
       </select>
-      <label for="proposal-decision" hidden>Decision</label>
+      <label for="proposal-decision" hidden>Review</label>
       <select id="proposal-decision">
-        <option value="">Any decision</option>
-        <option value="none">Not decided</option>
+        <option value="">Any review</option>
+        <option value="none">Not reviewed</option>
         <option value="accept">Accepted</option>
         <option value="reject">Rejected</option>
         <option value="applied">Applied</option>
@@ -477,8 +478,8 @@
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th scope="col">Term</th><th scope="col">Decision</th><th scope="col">Status</th>
-          <th scope="col">Use instead</th><th scope="col">Definition</th><th scope="col">Basis</th>
+          <th scope="col">Term</th><th scope="col">Review</th><th scope="col">Rule</th>
+          <th scope="col">Use instead</th><th scope="col">Definition</th><th scope="col">Based on</th>
           <th scope="col">Note</th><th scope="col">Evidence</th>
         </tr></thead>
         <tbody id="proposal-rows"></tbody>
@@ -587,10 +588,6 @@ __CHECK_TEXT_JS__
     recommendation: "Reviewer's suggestion"
   };
 
-  document.getElementById("title").textContent = company + " content audit";
-  document.title = company + " content audit";
-  document.getElementById("lede").textContent =
-    "An unofficial audit of the words " + company + " uses on its public pages, and the places they don't agree.";
   if (data.notice) {
     document.getElementById("notice").textContent = data.notice;
     document.getElementById("notice").hidden = false;
@@ -764,7 +761,7 @@ __CHECK_TEXT_JS__
       ]));
     });
     document.getElementById("glossary-empty").hidden = rows.length > 0;
-    document.getElementById("glossary-count").textContent = rows.length + " of " + plural(data.glossary.length, "word", "words");
+    document.getElementById("glossary-count").textContent = rows.length + " of " + plural(data.glossary.length, "term", "terms");
   }
   [glossarySearch, glossaryStatus, glossaryBasis].forEach(function (c) { c.addEventListener("input", renderGlossary); });
 
@@ -805,19 +802,19 @@ __CHECK_TEXT_JS__
 
   function proposalRow(p) {
     var applied = p.decision === "applied";
-    var choices = applied ? [["applied", "Applied"]] : [["", "Not decided"], ["accept", "Accept"], ["reject", "Reject"]];
-    var decision = el("select", { "aria-label": "Decision for " + p.term });
+    var choices = applied ? [["applied", "Applied"]] : [["", "Not reviewed"], ["accept", "Accept"], ["reject", "Reject"]];
+    var decision = el("select", { "aria-label": "Review for " + p.term });
     choices.forEach(function (o) {
       var option = el("option", { value: o[0], text: o[1] });
       if (p.decision === o[0]) option.selected = true;
       decision.appendChild(option);
     });
-    var status = choiceSelect("Status for " + p.term, data.allowed.glossary_status, p.status);
+    var status = choiceSelect("Rule for " + p.term, data.allowed.glossary_status, p.status);
     var useInstead = el("input", { type: "text", "aria-label": "Use instead of " + p.term, maxlength: "400" });
     useInstead.value = p.use_instead;
     var definition = el("textarea", { "aria-label": "Definition of " + p.term, maxlength: "400" });
     definition.value = p.definition;
-    var basis = choiceSelect("Basis for " + p.term, data.allowed.glossary_basis, p.basis);
+    var basis = choiceSelect("Based on, for " + p.term, data.allowed.glossary_basis, p.basis);
     var saved = el("span", { className: "status", role: "status" });
     var fields = [decision, status, useInstead, definition, basis];
 
@@ -1278,6 +1275,7 @@ __CHECK_TEXT_JS__
   }
 
   // Overview
+  var SKILL_URL = "https://github.com/kieranforde1/perplexity-content-design-audit/tree/main/pplx-content";
   // A headline card opens its tab searched for the card's term, with the other filters reset,
   // so the evidence is the first thing on screen.
   var headlineTabs = {
@@ -1330,13 +1328,19 @@ __CHECK_TEXT_JS__
       step("Collect.", plural(o.pages, "public page", "public pages") + " and " +
         plural(o.app_strings, "app string", "app strings") + " typed in by hand: " +
         plural(o.strings, "string", "strings") + " in all, each with a link to where it came from."),
-      step("Settle the words.", "The tool lists the words that vary. A person decided " +
+      step("Settle the terms.", "The tool lists the terms that vary. A person decided " +
         formatNumber(o.glossary_terms) + " of them: which to use, which to avoid, and what they mean."),
       step("Check.", "Every string is tested against those rules. " +
         plural(o.breaking_strings, "string", "strings") + (o.breaking_strings === 1 ? " breaks" : " break") +
         " one of " + plural(o.rules, "rule", "rules") + "."),
       step("Find repeated messages.", "The same message said in different words on different pages. " +
-        plural(o.patterns, "pattern", "patterns") + ", each with one suggested string to reuse.")
+        plural(o.patterns, "pattern", "patterns") + ", each with one suggested string to reuse."),
+      el("li", {}, [
+        el("strong", { text: "Use it on new text." }),
+        document.createTextNode(" The glossary and patterns are built into a "),
+        el("a", { href: SKILL_URL, target: "_blank", rel: "noopener noreferrer", text: "skill" }),
+        document.createTextNode(" that a writer, or an AI writing tool, can run on new copy before it ships.")
+      ])
     ].forEach(function (li) { steps.appendChild(li); });
 
     var headlines = data.headlines || [];

@@ -14,6 +14,7 @@ snippets.csv data contract is locked.
 from __future__ import annotations
 
 import csv
+import html
 import json
 import re
 from collections.abc import Callable, Mapping, Sequence
@@ -30,6 +31,9 @@ TEMPLATE = Path(__file__).parent / "viewer.html"
 PLACEHOLDER = "__AUDIT_DATA__"
 CHECK_SCRIPT = Path(__file__).parent / "viewer_check.js"
 CHECK_PLACEHOLDER = "__CHECK_TEXT_JS__"
+# The company name is written into the title and lede at build time, so a reader that
+# doesn't run scripts, such as a link preview, still sees what the page is.
+COMPANY = "__COMPANY__"
 
 # A headline card opens one of these tabs, searched for the card's term. A patterns card
 # opens the Patterns tab at one pattern, so its term is a pattern_id.
@@ -303,7 +307,7 @@ def render(
     data = build_data(
         target, today or date.today(), editable=editable, evidence_only=evidence_only
     )
-    page = TEMPLATE.read_text(encoding="utf-8")
+    page = TEMPLATE.read_text(encoding="utf-8").replace(COMPANY, html.escape(target.display_name))
     page = page.replace(CHECK_PLACEHOLDER, CHECK_SCRIPT.read_text(encoding="utf-8"))
     return page.replace(PLACEHOLDER, embed(data))
 

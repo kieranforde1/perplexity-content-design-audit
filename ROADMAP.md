@@ -12,7 +12,7 @@ for the team. It doesn't need to be perfect or ready for production.
 | Step | Commands | What a person does |
 | --- | --- | --- |
 | 1. Collect | `fetch`, `extract`, `typed` | Types in app text from normal use |
-| 2. Settle the words | `terms`, `review`, `glossary --check` | Accepts or rejects terms, writes the glossary |
+| 2. Settle the terms | `terms`, `review`, `glossary --check` | Accepts or rejects terms, writes the glossary |
 | 3. Check | `check` | Nothing: the same text always gives the same result |
 | 4. Find repeated messages | `patterns`, `patterns --check` | Picks the real patterns and writes one string for each |
 | See the results | `view` | Writes the front-page cards in `headlines.csv` |

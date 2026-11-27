@@ -19,7 +19,7 @@ anyone can read without signing in.
 
 1. **Collect.** Download the public pages and split them into strings, each with a link to
    where it came from. App text is typed in by hand from normal use.
-2. **Settle the words.** The tool lists the words that are written more than one way. A
+2. **Settle the terms.** The tool lists the terms that are written more than one way. A
    person decides which to use, which to avoid and what each one means. That's the
    glossary.
 3. **Check.** Every string is tested against the glossary and the patterns, like a spell
