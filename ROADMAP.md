@@ -16,17 +16,11 @@ for the team. It doesn't need to be perfect or ready for production.
 | 3. Check | `check` | Nothing: the same text always gives the same result |
 | 4. Find repeated messages | `patterns`, `patterns --check` | Picks the real patterns and writes one string for each |
 | See the results | `view` | Writes the front-page cards in `headlines.csv` |
+| Use it on new text | `skill` | Nothing: the skill is generated from the glossary and patterns |
 
 The viewer is published from `docs/` on GitHub Pages, with a robots tag that keeps it out
-of search.
-
-## In progress
-
-- **The Check tab as a list of rules.** One row per rule, with the strings that break it
-  and the words highlighted. The machine-written sentences come off the tab. They read
-  as analysis, and the analysis is the front-page cards and the Patterns tab.
-- **A content-standards skill** built from the glossary and the patterns, laid out the
-  way Perplexity packages its public skills. See `audit skill` below.
+of search. Its Check tab lists one rule per row, with the strings that break it. The
+analysis is the front-page cards and the Patterns tab.
 
 ## Later
 

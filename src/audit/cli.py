@@ -16,6 +16,7 @@ from audit import (
     pattern_table,
     patterns,
     review,
+    skill,
     terms,
     typed,
     view,
@@ -76,6 +77,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Check patterns.csv and pattern_proposals.csv by line, instead of writing candidates",
     )
 
+    p = sub.add_parser(
+        "skill", help="Build a content-standards skill from the glossary and patterns"
+    )
+    _add_target(p)
+
     p = sub.add_parser("view", help="Build the offline viewer to see the results")
     _add_target(p)
     p.add_argument(
@@ -92,7 +98,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     # Paused steps (ROADMAP.md, "Later"). They still answer "Not built yet", but have no
     # help text, so `audit --help` only lists what works.
-    for name in ("recommend", "skill", "style", "tone"):
+    for name in ("recommend", "style", "tone"):
         _add_target(sub.add_parser(name))
     return parser
 
@@ -135,6 +141,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 0
         if args.command == "check":
             check.run(config.load(args.target, args.root))
+            return 0
+        if args.command == "skill":
+            skill.run(config.load(args.target, args.root))
             return 0
         if args.command == "view":
             view.run(config.load(args.target, args.root), evidence_only=args.evidence_only)

@@ -26,6 +26,10 @@ To see the results, open [`docs/index.html`](docs/index.html) in a browser.
 
 The tool suggests and a person decides, at every step.
 
+The glossary and the patterns also become a skill for writing new text:
+[`data/perplexity/skill/content-standards/`](data/perplexity/skill/content-standards/SKILL.md).
+Its script checks a draft against the glossary the same way the audit does.
+
 Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.md).
 
 ## Limits
