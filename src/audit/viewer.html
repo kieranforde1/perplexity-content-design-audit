@@ -42,6 +42,8 @@
     --warn: var(--warm-orange-6);
     --button-bg: var(--turquoise-600);
     --button-text: var(--off-white);
+    /* Marked words on the Check tab: Warm Orange behind the normal text colour, over 10:1. */
+    --mark-bg: var(--warm-orange-2);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -56,6 +58,8 @@
       --warn: var(--warm-orange-2);
       --button-bg: var(--turquoise-200);
       --button-text: var(--off-black);
+      /* Off White on Warm Orange 6 is about 6:1. */
+      --mark-bg: var(--warm-orange-6);
     }
   }
   * { box-sizing: border-box; }
@@ -150,6 +154,37 @@
   .pattern-actions { margin-top: 16px; }
   .filter-note { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 0 0 24px; }
 
+  /* Check: one row per rule. The summary is the row, and opening it lists the strings. */
+  .rules { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .rule { border-bottom: 1px solid var(--line); }
+  .rule > details > summary {
+    list-style: none; cursor: pointer; padding: 14px 4px 14px 28px; position: relative;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px;
+  }
+  .rule > details > summary::-webkit-details-marker { display: none; }
+  .rule > details > summary::before {
+    content: "▸"; position: absolute; left: 6px; top: 14px; color: var(--muted);
+  }
+  .rule > details[open] > summary::before { content: "▾"; }
+  .rule > details > summary:hover .rule-term { color: var(--strong); }
+  .rule-text { flex: 1 1 320px; min-width: 0; }
+  .rule-term { font-weight: 600; }
+  .rule-arrow, .rule-wrong { color: var(--muted); }
+  .rule-wording { font-family: var(--font-serif); font-size: 17px; }
+  .rule-count { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rule-where { flex: 1 0 100%; }
+  .rule-where .chip { margin-bottom: 0; }
+  .rule-body { padding: 0 4px 20px 28px; max-width: 80ch; }
+  .rule-strings { margin: 0; padding-left: 18px; }
+  .rule-strings li, .more-pages li { margin-bottom: 12px; }
+  .rule-strings li a, .more-pages li a { display: block; font-size: 14px; overflow-wrap: anywhere; }
+  .more-pages summary { color: var(--link); cursor: pointer; }
+  .more-pages ul { margin: 8px 0 0; padding-left: 18px; }
+  mark {
+    background: var(--mark-bg); color: var(--text);
+    border-bottom: 2px solid var(--warn); padding: 0 2px; border-radius: 2px;
+  }
+
   /* Tables */
   .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; align-items: center; }
   .controls input, .controls select {
@@ -178,12 +213,10 @@
   .label { font-size: 13px; color: var(--muted); }
   .question-text { max-width: 44ch; }
   td.prose-cell { min-width: 240px; max-width: 44ch; }
-  .team-question { margin-top: 8px; color: var(--warn); font-size: 14px; }
   .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--link); text-decoration: underline; cursor: pointer; text-align: left; }
   td.sources { min-width: 200px; }
   .sources a { display: block; font-size: 14px; overflow-wrap: anywhere; margin-bottom: 4px; }
   td.nowrap { white-space: nowrap; }
-  td.evidence { min-width: 280px; }
   .evidence summary, .pattern summary { color: var(--link); cursor: pointer; }
   .evidence ul, .pattern ul { margin: 8px 0 0; padding-left: 18px; }
   .evidence li, .pattern li { margin-bottom: 12px; }
@@ -240,7 +273,7 @@
 <main>
   <div role="tablist" aria-label="Audit views">
     <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
-    <button role="tab" id="tab-findings" aria-controls="panel-findings" aria-selected="false" tabindex="-1">Findings</button>
+    <button role="tab" id="tab-check" aria-controls="panel-check" aria-selected="false" tabindex="-1">Check</button>
     <button role="tab" id="tab-patterns" aria-controls="panel-patterns" aria-selected="false" tabindex="-1">Patterns</button>
     <button role="tab" id="tab-glossary" aria-controls="panel-glossary" aria-selected="false" tabindex="-1">Glossary</button>
     <button role="tab" id="tab-source" aria-controls="panel-source" aria-selected="false" tabindex="-1">Source data</button>
@@ -252,7 +285,7 @@
     <h2>How it works</h2>
     <ol class="steps" id="steps"></ol>
     <p class="method">Everything comes from public pages, so the tool can't know why a choice was made.
-      Where only the team can answer, the finding asks.</p>
+      Where only the team can answer, the audit asks.</p>
     <h2 id="headlines-heading">What it found</h2>
     <div class="cards" id="headline-cards"></div>
     <div class="more-cards" id="more-cards-wrap" hidden>
@@ -262,28 +295,22 @@
     <p class="footnote"><a href="https://github.com/kieranforde1/perplexity-content-design-audit#readme" target="_blank" rel="noopener noreferrer">How the tool is built</a></p>
   </section>
 
-  <section role="tabpanel" id="panel-findings" aria-labelledby="tab-findings" hidden>
-    <h2 class="sr-only">Findings</h2>
-    <p class="intro" id="findings-intro"></p>
+  <section role="tabpanel" id="panel-check" aria-labelledby="tab-check" hidden>
+    <h2 class="sr-only">Check</h2>
+    <p class="intro">Each row is a rule from the glossary or the patterns, with the strings that
+      break it. Run on the same text, the check always gives the same result.</p>
+    <p class="notice" id="check-notice" hidden>Where a string's text isn't in this copy, its page is linked instead.</p>
     <div class="controls">
-      <label for="finding-search" class="sr-only">Search findings</label>
-      <input type="search" id="finding-search" placeholder="Search findings">
-      <label for="finding-category" class="sr-only">Kind of finding</label>
-      <select id="finding-category"><option value="">All kinds of finding</option></select>
-      <label for="finding-surface" class="sr-only">Where</label>
-      <select id="finding-surface"><option value="">Everywhere</option></select>
-      <span class="count" id="finding-count" aria-live="polite"></span>
+      <label for="rule-search" class="sr-only">Search rules</label>
+      <input type="search" id="rule-search" placeholder="Search rules or words">
+      <label for="rule-category" class="sr-only">Kind of rule</label>
+      <select id="rule-category"><option value="">All kinds of rule</option></select>
+      <label for="rule-surface" class="sr-only">Where</label>
+      <select id="rule-surface"><option value="">Everywhere</option></select>
+      <span class="count" id="rule-count" aria-live="polite"></span>
     </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th scope="col">What's wrong</th><th scope="col">Fix</th>
-          <th scope="col">Where</th><th scope="col">Strings</th>
-        </tr></thead>
-        <tbody id="finding-rows"></tbody>
-      </table>
-      <p class="empty" id="finding-empty" hidden>No findings match.</p>
-    </div>
+    <ol class="rules" id="rule-list"></ol>
+    <p class="empty" id="rule-empty" hidden>No rules match.</p>
   </section>
 
   <section role="tabpanel" id="panel-patterns" aria-labelledby="tab-patterns" hidden>
@@ -329,7 +356,7 @@
 
   <section role="tabpanel" id="panel-source" aria-labelledby="tab-source" hidden>
     <h2 class="sr-only">Source data</h2>
-    <p class="intro">What the findings are built from.</p>
+    <p class="intro">What the audit is built from.</p>
     <p class="notice" id="notice" hidden></p>
     <div class="toggle" role="group" aria-label="Table to show">
       <button type="button" id="show-terms" aria-pressed="true" aria-controls="source-terms">Terms</button>
@@ -535,8 +562,6 @@
   document.title = company + " content audit";
   document.getElementById("lede").textContent =
     "An unofficial audit of the words " + company + " uses on its public pages, and the places they don't agree.";
-  document.getElementById("findings-intro").textContent =
-    "Places where " + company + "'s public text doesn't follow the glossary or a pattern, with a fix for each.";
   if (data.notice) {
     document.getElementById("notice").textContent = data.notice;
     document.getElementById("notice").hidden = false;
@@ -845,113 +870,144 @@
       renderGlossary();
       renderProposals();
       applyStatus.textContent = result.applied + (result.applied === 1 ? " row" : " rows") +
-        " applied to glossary.csv. Run `audit check` to update the findings.";
+        " applied to glossary.csv. Run `audit check` to update the Check tab.";
     }).catch(function (e) {
       applyStatus.className = "status error";
       applyStatus.textContent = e.message;
     });
   });
 
-  // Findings
-  var findingSearch = document.getElementById("finding-search");
-  var findingCategory = document.getElementById("finding-category");
-  var findingSurface = document.getElementById("finding-surface");
-  var findingSurfaces = {};
-  data.findings.forEach(function (f) { f.surfaces.split(" ").filter(Boolean).forEach(function (s) { findingSurfaces[s] = true; }); });
-  Object.keys(findingSurfaces).sort().forEach(function (s) {
-    findingSurface.appendChild(el("option", { value: s, text: label(SURFACE_LABELS, s) }));
+  // Check: one row per rule, in the order `audit view` sorts them.
+  var rules = data.rules || [];
+  var ruleSearch = document.getElementById("rule-search");
+  var ruleCategory = document.getElementById("rule-category");
+  var ruleSurface = document.getElementById("rule-surface");
+  var ruleSurfaces = {};
+  rules.forEach(function (r) { r.surfaces.forEach(function (s) { ruleSurfaces[s] = true; }); });
+  Object.keys(ruleSurfaces).sort().forEach(function (s) {
+    ruleSurface.appendChild(el("option", { value: s, text: label(SURFACE_LABELS, s) }));
   });
-  // Categories come in the order `audit check` defines, and only the ones with findings are offered.
-  var categoryOrder = data.allowed.finding_category;
-  categoryOrder.filter(function (c) {
-    return data.findings.some(function (f) { return f.category === c; });
-  }).forEach(function (c) { findingCategory.appendChild(el("option", { value: c, text: label(CATEGORY_LABELS, c) })); });
+  // Only the kinds of rule that something breaks are offered, in reading order.
+  data.allowed.finding_category.filter(function (c) {
+    return rules.some(function (r) { return r.categories.indexOf(c) !== -1; });
+  }).forEach(function (c) { ruleCategory.appendChild(el("option", { value: c, text: label(CATEGORY_LABELS, c) })); });
+  // Said once, above the rows, not on every string without text.
+  document.getElementById("check-notice").hidden = !rules.some(function (r) { return r.more.strings > 0; });
 
   function stringItem(e) {
-    // In the copy built from committed data, most strings have no text. The link still shows where to read it.
-    var text = e.excerpt
-      ? el("div", { text: e.excerpt })
-      : el("div", { className: "definition", text: "Not in this copy. The link opens the page it's on." });
-    return el("li", {}, [text, e.source_url ? sourceLink(e.source_url) : null]);
+    return el("li", {}, [el("div", { text: e.excerpt }), e.source_url ? sourceLink(e.source_url) : null]);
   }
 
-  var READING_ORDER = [
-    "same message, different words", "deprecated name", "other variant", "avoided term",
-    "capitalisation", "spelling or spacing"
-  ];
-  function readingRank(category) {
-    var i = READING_ORDER.indexOf(category);
-    return i === -1 ? READING_ORDER.length : i;
+  function quoted(word) { return "'" + word + "'"; }
+  function listOf(words) {
+    if (words.length < 2) return words.join("");
+    return words.slice(0, -1).join(", ") + " or " + words[words.length - 1];
   }
 
-  function patternOf(f) {
-    if (f.standard_id.indexOf("pattern:") !== 0) return null;
-    var id = f.standard_id.slice("pattern:".length);
-    return patterns.some(function (p) { return p.pattern_id === id; }) ? id : null;
+  // The rule in a few words, built only from the glossary and the patterns table.
+  function ruleStatement(r) {
+    if (r.kind === "pattern") {
+      return el("span", { className: "rule-text" }, [
+        el("span", { text: "Use one string: " }),
+        el("span", { className: "rule-wording", text: r.wording })
+      ]);
+    }
+    if (r.kind === "write") {
+      return el("span", { className: "rule-text" }, [
+        el("span", { text: "Write " }),
+        el("span", { className: "rule-term", text: quoted(r.term) }),
+        r.forms.length ? el("span", { className: "rule-wrong", text: ", not " + listOf(r.forms.map(quoted)) }) : null
+      ]);
+    }
+    // Some glossary rows say what to do instead of naming a word ("Delete the word").
+    // Those read as an instruction after the word, not as a swap after an arrow.
+    var instruction = /^(Delete|Name|Say|Reword|Remove|Describe|Drop|Cut)\b/.test(r.use_instead || "");
+    if (r.kind === "avoid" || instruction) {
+      return el("span", { className: "rule-text" }, [
+        el("span", { text: "Avoid " }),
+        el("span", { className: "rule-term", text: quoted(r.term) }),
+        instruction ? el("span", { className: "rule-wrong", text: ". " + r.use_instead + "." }) : null
+      ]);
+    }
+    // A word and what to use instead. The arrow is read out as words.
+    return el("span", { className: "rule-text" }, [
+      el("span", { className: "rule-term", text: r.term }),
+      el("span", { className: "rule-arrow", "aria-hidden": "true", text: " → " }),
+      el("span", { className: "sr-only", text: ": use " }),
+      el("span", { className: "rule-term", text: r.use_instead })
+    ]);
   }
 
-  function renderFindings() {
-    var q = findingSearch.value.trim().toLowerCase();
-    var category = findingCategory.value;
-    var surface = findingSurface.value;
-    var body = document.getElementById("finding-rows");
-    body.textContent = "";
-    var rows = data.findings.filter(function (f) {
-      if (category && f.category !== category) return false;
-      if (surface && f.surfaces.split(" ").indexOf(surface) === -1) return false;
-      var haystack = [f.term, f.written, f.issue, f.fix, f.question].join(" ").toLowerCase();
+  // A string with the words that break the rule marked.
+  function markedString(s) {
+    var text = el("div", {}, s.parts.map(function (part) {
+      return part[1] ? el("mark", { text: part[0] }) : document.createTextNode(part[0]);
+    }));
+    return el("li", {}, [text, s.source_url ? sourceLink(s.source_url) : null]);
+  }
+
+  function patternIdOf(r) {
+    return r.kind === "pattern" && patterns.some(function (p) { return p.pattern_id === r.term; }) ? r.term : null;
+  }
+
+  function ruleRow(r) {
+    var body = [];
+    if (r.strings.length) body.push(el("ul", { className: "rule-strings" }, r.strings.map(markedString)));
+    var more = r.more;
+    if (more.strings) {
+      var where = more.pages.length ? " on " + plural(more.pages.length, "page", "pages") : "";
+      var line = plural(more.strings, r.strings.length ? "more string" : "string", r.strings.length ? "more strings" : "strings") + where;
+      body.push(more.pages.length
+        ? el("details", { className: "more-pages" }, [
+            el("summary", { text: line }),
+            el("ul", {}, more.pages.map(function (url) { return el("li", {}, [sourceLink(url)]); }))
+          ])
+        : el("p", { className: "meta", text: line }));
+    }
+    var pattern = patternIdOf(r);
+    if (pattern) {
+      var see = el("button", { className: "linkish", type: "button", text: "See the pattern" });
+      see.addEventListener("click", function () { openPattern(pattern); });
+      body.push(el("div", { className: "pattern-actions" }, [see]));
+    }
+    return el("li", { className: "rule" }, [
+      el("details", {}, [
+        el("summary", {}, [
+          ruleStatement(r),
+          el("span", { className: "rule-count", text: plural(r.count, "string", "strings") }),
+          el("span", { className: "rule-where" }, r.surfaces.map(function (s) {
+            return el("span", { className: "chip", text: label(SURFACE_LABELS, s) });
+          }))
+        ]),
+        el("div", { className: "rule-body" }, body)
+      ])
+    ]);
+  }
+
+  function renderRules() {
+    var q = ruleSearch.value.trim().toLowerCase();
+    var category = ruleCategory.value;
+    var surface = ruleSurface.value;
+    var list = document.getElementById("rule-list");
+    list.textContent = "";
+    var rows = rules.filter(function (r) {
+      if (category && r.categories.indexOf(category) === -1) return false;
+      if (surface && r.surfaces.indexOf(surface) === -1) return false;
+      var haystack = [r.standard_id, r.use_instead, r.wording].concat(r.forms).join(" ").toLowerCase();
       return !q || haystack.indexOf(q) !== -1;
     });
-    // Findings a newcomer understands at once come first: one message in many wordings,
-    // then old names and two spellings of one thing. Style choices come last. Within each,
-    // the widest problems first.
-    rows.sort(function (a, b) {
-      return readingRank(a.category) - readingRank(b.category) ||
-        Number(b.count) - Number(a.count);
-    });
-    rows.forEach(function (f) {
-      var details = el("details", {}, [
-        el("summary", { text: "Show " + plural(f.evidence.length, "string", "strings") }),
-        el("ul", {}, f.evidence.map(stringItem))
-      ]);
-      var pattern = patternOf(f);
-      var seePattern = null;
-      if (pattern) {
-        seePattern = el("button", { className: "linkish", type: "button", text: "See the pattern" });
-        seePattern.addEventListener("click", function () { openPattern(pattern); });
-      }
-      // The question only appears where the answer isn't in the text and only the team knows it.
-      var fix = el("td", { className: "prose-cell" }, [
-        el("div", { text: f.fix }),
-        f.question ? el("div", { className: "team-question" }, [
-          el("div", { className: "term", text: "Question for the team" }),
-          el("div", { text: f.question })
-        ]) : null
-      ]);
-      body.appendChild(el("tr", {}, [
-        el("td", { className: "prose-cell" }, [
-          el("div", { className: "label", text: label(CATEGORY_LABELS, f.category) }),
-          el("div", { text: f.issue }),
-          seePattern
-        ]),
-        fix,
-        el("td", {}, f.surfaces.split(" ").filter(Boolean).map(function (s) {
-          return el("span", { className: "chip", text: label(SURFACE_LABELS, s) });
-        })),
-        el("td", { className: "evidence" }, [details])
-      ]));
-    });
-    document.getElementById("finding-empty").hidden = rows.length > 0;
-    document.getElementById("finding-count").textContent = rows.length + " of " + plural(data.findings.length, "finding", "findings");
+    rows.forEach(function (r) { list.appendChild(ruleRow(r)); });
+    document.getElementById("rule-empty").hidden = rows.length > 0;
+    document.getElementById("rule-count").textContent = rows.length + " of " + plural(rules.length, "rule", "rules");
   }
-  [findingSearch, findingCategory, findingSurface].forEach(function (c) { c.addEventListener("input", renderFindings); });
+  [ruleSearch, ruleCategory, ruleSurface].forEach(function (c) { c.addEventListener("input", renderRules); });
 
-  function openFindings(term) {
-    findingSearch.value = term;
-    findingCategory.value = "";
-    findingSurface.value = "";
-    renderFindings();
-    selectTab(document.getElementById("tab-findings"));
+  function openCheck(term) {
+    ruleSearch.value = term;
+    ruleCategory.value = "";
+    ruleSurface.value = "";
+    renderRules();
+    selectTab(document.getElementById("tab-check"));
   }
 
   // Patterns
@@ -962,7 +1018,7 @@
   });
 
   function patternBlock(p) {
-    var hasFinding = data.findings.some(function (f) { return f.standard_id === "pattern:" + p.pattern_id; });
+    var hasRule = rules.some(function (r) { return r.standard_id === "pattern:" + p.pattern_id; });
     var total = p.string_ids.split(" ").filter(Boolean).length;
     var items = [
       el("dt", { text: "Suggested string" }),
@@ -987,9 +1043,9 @@
         el("ul", {}, p.strings.map(stringItem))
       ]));
     }
-    if (hasFinding) {
-      var see = el("button", { className: "linkish", type: "button", text: "See the finding" });
-      see.addEventListener("click", function () { openFindings(p.pattern_id); });
+    if (hasRule) {
+      var see = el("button", { className: "linkish", type: "button", text: "Open in Check" });
+      see.addEventListener("click", function () { openCheck("pattern:" + p.pattern_id); });
       block.appendChild(el("div", { className: "pattern-actions" }, [see]));
     }
     return block;
@@ -1148,12 +1204,13 @@
     glossary: { search: glossarySearch, reset: [glossaryStatus, glossaryBasis], render: renderGlossary },
     terms: { search: termSearch, reset: [termStatus, termReview], render: renderTerms }
   };
-  var tabNames = { findings: "Findings", glossary: "Glossary", terms: "Source data", patterns: "Patterns" };
+  // headlines.csv keeps the value `findings` for the Check tab.
+  var tabNames = { findings: "Check", glossary: "Glossary", terms: "Source data", patterns: "Patterns" };
   // The front page leads with this many cards. The rest wait behind "More findings".
   var LEAD_CARDS = 4;
 
   function openHeadline(h) {
-    if (h.tab === "findings") return openFindings(h.term);
+    if (h.tab === "findings") return openCheck(h.term);
     if (h.tab === "patterns") return openPattern(h.term);
     var target = headlineTabs[h.tab];
     target.search.value = h.term;
@@ -1195,8 +1252,9 @@
         plural(o.strings, "string", "strings") + " in all, each with a link to where it came from."),
       step("Settle the words.", "The tool lists the words that vary. A person decided " +
         formatNumber(o.glossary_terms) + " of them: which to use, which to avoid, and what they mean."),
-      step("Check.", "Every string is tested against those decisions. " +
-        plural(o.findings, "finding", "findings") + "."),
+      step("Check.", "Every string is tested against those rules. " +
+        plural(o.breaking_strings, "string", "strings") + (o.breaking_strings === 1 ? " breaks" : " break") +
+        " one of " + plural(o.rules, "rule", "rules") + "."),
       step("Find repeated messages.", "The same message said in different words on different pages. " +
         plural(o.patterns, "pattern", "patterns") + ", each with one suggested string to reuse.")
     ].forEach(function (li) { steps.appendChild(li); });
@@ -1223,7 +1281,7 @@
   renderOverview();
   renderTerms();
   renderGlossary();
-  renderFindings();
+  renderRules();
   renderPatterns();
   renderSnippets();
 })();

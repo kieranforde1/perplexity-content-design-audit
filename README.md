@@ -16,8 +16,9 @@ To see the results, open [`docs/index.html`](docs/index.html) in a browser.
 2. **Settle the words.** The tool lists the words that are written more than one way. A
    person decides which to use, which to avoid and what each one means. That's the
    glossary.
-3. **Check.** Every string is tested against the glossary. Each finding says what's wrong,
-   the fix, and a question where only the company's team can answer.
+3. **Check.** Every string is tested against the glossary and the patterns, like a spell
+   checker: the same text always gives the same result. The Check tab shows each rule, how
+   many strings break it and where, with the words that break it marked.
 4. **Find repeated messages.** The tool groups sentences that say the same thing in
    different words. A person picks the real ones and writes one string to reuse, so a
    change made once reaches every page. The check then reports the pages that still say it
@@ -30,7 +31,7 @@ Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.
 ## Limits
 
 - Outside-in. Everything here comes from public, first-party pages, so the reasons behind
-  a choice aren't known. Where only the team can answer, a finding asks.
+  a choice aren't known. Where only the team can answer, the audit asks.
 - A snapshot. Pages change. Each string records the date it was captured.
 - Paid-only features are covered only through their public help pages and launch posts.
 - App text is typed in by hand from normal use, or transcribed from screenshots of normal

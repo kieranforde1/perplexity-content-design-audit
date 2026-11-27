@@ -219,6 +219,37 @@ def test_a_plural_ending_in_es_is_found(tmp_path: Path) -> None:
     assert by_term["box"]["count"] == "1"
 
 
+def test_a_plural_in_es_of_a_term_to_use_is_not_another_spelling(tmp_path: Path) -> None:
+    pieces = [
+        ("sentence", "Run two Quick Searches at once.", "https://e.com/a", "help"),
+        ("sentence", "Quick Searches are faster.", "https://e.com/b", "help"),
+        ("sentence", "Run two Quick searches at once.", "https://e.com/c", "help"),
+        ("sentence", "Ask the Team Admins for access.", "https://e.com/d", "help"),
+    ]
+    glossary = "Quick Search,use,,,observed,\nTeam admin,use,,,observed,\n"
+    target = write_target(tmp_path, glossary, pieces)
+    rows = findings(target)
+    # "Quick Searches" is the plural, so it isn't reported. "Quick searches" changes the
+    # capitals as well, and capitals on a plural are still reported.
+    assert {(r["term"], r["category"]) for r in rows} == {
+        ("Quick Search", "capitalisation"), ("Team admin", "capitalisation"),
+    }
+    by_term = {r["term"]: r for r in rows}
+    assert by_term["Quick Search"]["written"] == "'Quick searches' (1)"
+    assert by_term["Team admin"]["written"] == "'Team Admins' (1)"
+
+
+def test_marks_point_at_the_words_that_break_the_rule() -> None:
+    use = {"term": "API key", "status": "use"}
+    text = "Make an API key, then copy the API Key."
+    ((start, end),) = check.marks(use, text, "sentence", "Example")
+    assert text[start:end] == "API Key"
+    avoid = {"term": "enable", "status": "avoid"}
+    text = "Enable it here, or enables it there."
+    found = [text[s:e] for s, e in check.marks(avoid, text, "sentence", "Example")]
+    assert found == ["Enable", "enables"]
+
+
 def test_singular_use_of_a_plural_term_is_not_another_spelling(tmp_path: Path) -> None:
     pieces = [
         ("sentence", "Ask the Gadget Helpers for tips.", "https://e.com/a", "help"),
