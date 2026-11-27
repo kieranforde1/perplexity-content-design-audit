@@ -27,7 +27,7 @@ MCP server,use,,"A server that offers tools to AI assistants through MCP (Model 
 Help Center,use,,"Perplexity's public support site, with how-to and troubleshooting articles grouped into collections.",observed,https://www.perplexity.ai/hub/pricing
 Agent API models,use,,"The list of models you can choose when calling the Agent API, with their token prices.",observed,https://docs.perplexity.ai/docs/agent-api/batch.md
 Incognito,use,,A setting that keeps a search out of your saved history and memory.,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
-Pro Search,use,,Perplexity's more thorough search for complex questions. Search uses it automatically when your plan includes it.,observed,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
+Pro Search,use,,"A deeper search for complex questions that Perplexity applies automatically on eligible plans. It isn't a separate toggle, so don't tell people to turn it on.",observed,https://www.perplexity.ai/help-center/en/articles/10352903-what-is-pro-search.md
 File Uploads,use,,"Files you attach to a question, with the attach button or by drag and drop, so Perplexity can read them. Each plan limits how many you can attach.",observed,https://www.perplexity.ai/hub/pricing
 Teammate,use,,"An AI agent that takes on ongoing work, such as a project with many steps or regular monitoring.",observed,https://www.perplexity.ai/hub/brand
 Comet Assistant,use,,"The AI helper in a side panel next to the main Comet window. It summarizes pages, finds information and carries out tasks.",observed,https://www.perplexity.ai/hub/pricing
@@ -66,7 +66,6 @@ blind,avoid,"gaps, can't see",,recommendation,
 kill,avoid,"stop, end",,recommendation,
 Focus,deprecated,Choose sources,,published,https://www.perplexity.ai/help-center/en/articles/10352914-what-is-internal-knowledge-search.md
 preset,deprecated,effort,,published,https://docs.perplexity.ai/docs/resources/changelog.md
-pro-search,deprecated,low (effort level),,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
 fast-search,deprecated,fast (effort level),,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
 SharePoint connector,deprecated,Microsoft 365 connector,,published,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
 OneDrive connector,deprecated,Microsoft 365 connector,,published,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md

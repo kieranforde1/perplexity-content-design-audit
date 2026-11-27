@@ -15762,7 +15762,7 @@ fe6e6d96730d,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.
 beac93614b7b,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,4eb7eccd6f88c7d0
 38669864b0d1,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,f85fc5ebe7ea9dc0
 d0ec4f27d070,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,b77b2d673d9ae54a
-fe2cfb186985,"Metric selector: Choose from Chat Completions API Requests, Input Tokens, Output Tokens, Citation Tokens, Reasoning Tokens, Deep Research Requests Count, …",sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,dc4428dd8826bfd5
+fe2cfb186985,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,dc4428dd8826bfd5
 4859a6981e7c,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,5e584164c035d489
 3e04894ee193,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,f0bc67471857f4b5
 54324238dbba,,sentence,https://docs.perplexity.ai/docs/getting-started/projects.md,docs,settings,2026-11-25,crawl,9f0ca2c161b4e0d9
@@ -21709,7 +21709,7 @@ fe33079b9e14,,sentence,https://www.perplexity.ai/help-center/en/articles/1035289
 40e7af193b8d,,heading,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,cc1761ed689c3e00
 37af6a41493d,"Pro Search: Pro Search is an advanced AI-powered search feature that provides comprehensive, in-depth answers to any query.",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,3743096b39b73ca6
 b1755653f6ff,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,7e1d79fc72aff4eb
-a845daa544db,"Pro Search isn't a separate toggle: when you use Search, Perplexity applies it automatically if your plan includes it.",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,172b2716c91147c3
+a845daa544db,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,172b2716c91147c3
 07ac3d9fd9ef,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,e9751bc7a248c2c3
 c33d48af0a2f,,sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,9c1c4839f8a5981f
 187389d7b86a,"Deep Research performs dozens of searches automatically, reads hundreds of sources, reasons through material autonomously, and delivers comprehensive reports in …",sentence,https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work.md,help,other,2026-11-26,crawl,679cae1230415bff

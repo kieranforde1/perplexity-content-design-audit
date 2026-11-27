@@ -11,3 +11,4 @@ Two names for the audit key,"Docs say ""audit log API key"". Help says ""Audit A
 Sidecar or Assistant panel?,"Help uses both in one sentence: ""Send to sidecar to continue the conversation in your Assistant panel.""",findings,sidecar
 "One credit setting, four names","Adding credits when the balance runs low is Auto reload, auto top-up, Automatic Top Up or auto_recharge, depending on the page.",findings,Auto reload
 Free plan or Standard?,"The pricing page calls it Free. Two help articles add Standard, as in ""What do I get with the Free (Standard) plan?""",findings,Free (Standard) plan
+A toggle that isn't there,"One help article says Pro Search is automatic, with ""nothing to turn on"". Another says ""turn on Pro Search"".",glossary,Pro Search
