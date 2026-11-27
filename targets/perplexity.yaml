@@ -1,5 +1,5 @@
 # Target: Perplexity's public product language. Unofficial, outside-in.
-# First-party public sources only. No third-party coverage, no app automation.
+# Sources listed here are first-party and public. Third-party pages are research only (see AGENTS.md). No app automation.
 name: perplexity
 display_name: Perplexity
 
@@ -15,6 +15,85 @@ sources:
     surface: changelog
     urls:
       - https://docs.perplexity.ai/docs/resources/changelog.md
+  # The company's own "What we shipped" notes for the apps. English entries from its sitemap.
+  - name: product-changelog
+    surface: changelog
+    urls:
+      - https://www.perplexity.ai/changelog
+      - https://www.perplexity.ai/changelog/april-11th-2025-product-update
+      - https://www.perplexity.ai/changelog/april-2025-product-update
+      - https://www.perplexity.ai/changelog/automations-inline-visualizations-and-gpt-6-1-sol
+      - https://www.perplexity.ai/changelog/brain-faster-computer-models-website-publishing
+      - https://www.perplexity.ai/changelog/comet-voice-mode-improvements
+      - https://www.perplexity.ai/changelog/computer-in-email-gpt-5-6-terra-luna-and-grok-4-6
+      - https://www.perplexity.ai/changelog/computer-in-microsoft-365-improved-context-visibility-and-new-analytics
+      - https://www.perplexity.ai/changelog/deep-research-command-panel-forking-inline-actions-and-enterprise-controls
+      - https://www.perplexity.ai/changelog/effort-mode-gpt-6-astra-and-skills-marketplace
+      - https://www.perplexity.ai/changelog/improved-computer-models-and-enterprise-updates---may-4-2026
+      - https://www.perplexity.ai/changelog/multiagent-teammates-on-mobile-and-chrome-extension
+      - https://www.perplexity.ai/changelog/personal-computer-for-all-users-on-mac
+      - https://www.perplexity.ai/changelog/personal-computer-on-mac-launch-and-computer-updates---april-17-2026
+      - https://www.perplexity.ai/changelog/role-based-access-controls-api-credentials-and-brain-for-max
+      - https://www.perplexity.ai/changelog/shared-workspaces-personal-computer-for-windows-and-model-council
+      - https://www.perplexity.ai/changelog/teammates-fully-local-computer-on-mac-and-voice-mode
+      - https://www.perplexity.ai/changelog/ultrafast-computer-models-decisions-api-and-connector-controls
+      - https://www.perplexity.ai/changelog/what-we-shipped---december-12th
+      - https://www.perplexity.ai/changelog/what-we-shipped---december-5th
+      - https://www.perplexity.ai/changelog/what-we-shipped---february-13-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped---february-20th-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped---february-27-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped---february-6th-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped---january-16-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped---march-13-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped---march-6-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped--march-27-2026
+      - https://www.perplexity.ai/changelog/what-we-shipped-april-18th
+      - https://www.perplexity.ai/changelog/what-we-shipped-april-25th
+      - https://www.perplexity.ai/changelog/what-we-shipped-august-15th
+      - https://www.perplexity.ai/changelog/what-we-shipped-august-8th
+      - https://www.perplexity.ai/changelog/what-we-shipped-july-18th
+      - https://www.perplexity.ai/changelog/what-we-shipped-july-25th
+      - https://www.perplexity.ai/changelog/what-we-shipped-june-13th
+      - https://www.perplexity.ai/changelog/what-we-shipped-june-27th
+      - https://www.perplexity.ai/changelog/what-we-shipped-june-6th
+      - https://www.perplexity.ai/changelog/what-we-shipped-may-19th
+      - https://www.perplexity.ai/changelog/what-we-shipped-may-23rd
+      - https://www.perplexity.ai/changelog/what-we-shipped-may-2nd
+      - https://www.perplexity.ai/changelog/what-we-shipped-may-30th
+      - https://www.perplexity.ai/changelog/what-we-shipped-november-14th
+      - https://www.perplexity.ai/changelog/what-we-shipped-november-22nd
+      - https://www.perplexity.ai/changelog/what-we-shipped-october-17th
+      - https://www.perplexity.ai/changelog/what-we-shipped-october-25th
+      - https://www.perplexity.ai/changelog/what-we-shipped-october-3rd
+      - https://www.perplexity.ai/changelog/what-we-shipped-september-12th
+      - https://www.perplexity.ai/changelog/what-we-shipped-september-19th
+      - https://www.perplexity.ai/changelog/what-we-shipped-september-26th
+      - https://www.perplexity.ai/changelog/what-we-shipped-september-5th
+  # Guides in the company hub, listed in its sitemap.
+  - name: hub-guides
+    surface: blog
+    urls:
+      - https://www.perplexity.ai/hub/guides/30-queries-enterprise-teams-can-put-to-work
+      - https://www.perplexity.ai/hub/guides/ai-adoption-guide-for-technical-leaders
+      - https://www.perplexity.ai/hub/guides/ai-adoption-in-the-enterprise
+      - https://www.perplexity.ai/hub/guides/ai-governance-in-the-world-of-agents
+      - https://www.perplexity.ai/hub/guides/comet-for-sales
+      - https://www.perplexity.ai/hub/guides/computer-for-counsel
+      - https://www.perplexity.ai/hub/guides/computer-for-go-to-market-teams
+      - https://www.perplexity.ai/hub/guides/computer-for-growing-businesses
+      - https://www.perplexity.ai/hub/guides/computer-for-hedge-funds
+      - https://www.perplexity.ai/hub/guides/computer-for-private-equity
+      - https://www.perplexity.ai/hub/guides/computer-for-professional-finance
+      - https://www.perplexity.ai/hub/guides/computer-for-wealth-management
+      - https://www.perplexity.ai/hub/guides/computer-how-to-find-where-a-business-is-overspending
+      - https://www.perplexity.ai/hub/guides/economic-impact-of-ai-on-enterprise-it-organizations
+      - https://www.perplexity.ai/hub/guides/enterprise-ai-buyers-guide
+      - https://www.perplexity.ai/hub/guides/evaluating-ai-for-high-stakes-work
+      - https://www.perplexity.ai/hub/guides/how-perplexity-uses-computer
+      - https://www.perplexity.ai/hub/guides/perplexity-at-work
+      - https://www.perplexity.ai/hub/guides/perplexity-computer-at-work
+      - https://www.perplexity.ai/hub/guides/premium-sources-guide
+      - https://www.perplexity.ai/hub/guides/strategic-planning-guide
   # The help centre publishes a Markdown copy of every article, listed per language.
   - name: help-centre
     surface: help
