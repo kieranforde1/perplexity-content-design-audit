@@ -18849,7 +18849,7 @@ fcb52250e854,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,doc
 3854d4d9ea62,,nav,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,b332c3492d5eb10a
 d96142b244b3,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,4bcdfe6ac9e4f45b
 103057328303,,nav,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,945df932a0401b24
-b6ecf08b7bc9,,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,d46380c563542cb1
+b6ecf08b7bc9,Leveraging types for safer code,sentence,https://docs.perplexity.ai/docs/sdk/best-practices.md,docs,other,2026-11-25,crawl,d46380c563542cb1
 6eb3ed1320c5,,title,https://docs.perplexity.ai/docs/sdk/configuration.md,docs,other,2026-11-25,crawl,b332c3492d5eb10a
 e5ab4534b2cb,,sentence,https://docs.perplexity.ai/docs/sdk/configuration.md,docs,other,2026-11-25,crawl,e88172ff90e30a46
 3f4580e4adc4,,heading,https://docs.perplexity.ai/docs/sdk/configuration.md,docs,other,2026-11-25,crawl,d4b1ea5708dd5329
@@ -29228,13 +29228,13 @@ fceea3cad713,,heading,https://www.perplexity.ai/help-center/en/articles/12868503
 dab9f2871d28,,sentence,https://www.perplexity.ai/help-center/en/articles/12868503-using-perplexity-with-wiley.md,help,other,2026-11-26,crawl,a6377d96efa989bc
 7a4757a5a5e5,,sentence,https://www.perplexity.ai/help-center/en/articles/12868503-using-perplexity-with-wiley.md,help,other,2026-11-26,crawl,613adc5ba055a445
 5871fce91d17,,sentence,https://www.perplexity.ai/help-center/en/articles/12868503-using-perplexity-with-wiley.md,help,other,2026-11-26,crawl,5f4e6dbde1583d31
-3ed66f506f04,,title,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,81447edd8219062c
+3ed66f506f04,Leveraging PitchBook data with Perplexity,title,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,81447edd8219062c
 b94bd3486a75,,sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,37ac1c9fbdeb0183
 b962c919f5a3,,sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,9ee344dd002ed5c8
 1a072a884b37,,sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,93eb777488c82caa
 55bf4b893f66,,heading,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,4a5370556eff6e0b
 fddf533eeb46,,sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,1b524c71601a167b
-076d2a288588,,sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,b19327fb8a71ccf6
+076d2a288588,"Perform true comparables analysis and deep due diligence, leveraging precise market, financial, and firmographic information.",sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,b19327fb8a71ccf6
 731d9693d930,,sentence,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,bfe94598bfb16d01
 5caaf2f8e628,,heading,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,afd2f3c821d641f2
 7656e0146bc2,,button,https://www.perplexity.ai/help-center/en/articles/12869442-leveraging-pitchbook-data-with-perplexity.md,help,other,2026-11-26,crawl,211a9ff30a79fc03
@@ -29542,7 +29542,7 @@ e9eb20147cf1,,sentence,https://www.perplexity.ai/help-center/en/articles/1287080
 34ba09491a90,,sentence,https://www.perplexity.ai/help-center/en/articles/12870803-premium-data-sources.md,help,other,2026-11-26,crawl,5a7c831cbd486d3c
 b514dca81feb,,sentence,https://www.perplexity.ai/help-center/en/articles/12870803-premium-data-sources.md,help,other,2026-11-26,crawl,c3241b754c848e5c
 37fcf1e5ee2a,,sentence,https://www.perplexity.ai/help-center/en/articles/12870803-premium-data-sources.md,help,other,2026-11-26,crawl,aac90466106f8583
-ebb98838f65f,,sentence,https://www.perplexity.ai/help-center/en/articles/12870803-premium-data-sources.md,help,other,2026-11-26,crawl,81447edd8219062c
+ebb98838f65f,Leveraging PitchBook data with Perplexity,sentence,https://www.perplexity.ai/help-center/en/articles/12870803-premium-data-sources.md,help,other,2026-11-26,crawl,81447edd8219062c
 2cd22b422b97,,title,https://www.perplexity.ai/help-center/en/articles/12932923-instant-buy-buy-with-paypal.md,help,other,2026-11-26,crawl,16c91e0c61937412
 153d269ba231,,sentence,https://www.perplexity.ai/help-center/en/articles/12932923-instant-buy-buy-with-paypal.md,help,other,2026-11-26,crawl,afeea7c2f878d07c
 87b6eb1e4544,,sentence,https://www.perplexity.ai/help-center/en/articles/12932923-instant-buy-buy-with-paypal.md,help,other,2026-11-26,crawl,2f614787d8cb7a33
@@ -40232,7 +40232,7 @@ c5cad5f963f1,,heading,https://www.perplexity.ai/help-center/en/collections/18799
 b8ceb7495da5,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,56369d1ca8a14a95
 85f274a7a92d,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,051cda600ffb2353
 c80937c7afa9,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,40a84c595ce94dbe
-b3a9930fca44,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,6708ec2bd320eef0
+b3a9930fca44,"Leveraging PitchBook data with Perplexity Access trusted profiles, deals, investors, and market data from PitchBook on millions of companies directly …",sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,6708ec2bd320eef0
 db95c5204bfe,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,0aa20392ee8349dd
 d1ca3438c074,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,a87d94a5dd78c271
 90065683af40,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,45e7937c2065f88c
@@ -40243,7 +40243,7 @@ e7f00451e41c,,sentence,https://www.perplexity.ai/help-center/en/collections/1879
 5cf7ba302d76,,heading,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,5a38da0df0abc9a5
 f5542ebc9d8e,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,c3241b754c848e5c
 102111c38d91,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,aac90466106f8583
-c97f8a567d18,,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,81447edd8219062c
+c97f8a567d18,Leveraging PitchBook data with Perplexity,sentence,https://www.perplexity.ai/help-center/en/collections/18799296-premium-data-sources.md,help,other,2026-11-26,crawl,81447edd8219062c
 86753d6c0414,,title,https://www.perplexity.ai/help-center/en/collections/18799298-comet.md,help,other,2026-11-26,crawl,b8cdd253c1ad5a0f
 3fa10458872d,,sentence,https://www.perplexity.ai/help-center/en/collections/18799298-comet.md,help,other,2026-11-26,crawl,9c9850ea77ca5910
 cd000cb77bf6,,heading,https://www.perplexity.ai/help-center/en/collections/18799298-comet.md,help,other,2026-11-26,crawl,b8cdd253c1ad5a0f
