@@ -1,0 +1,20 @@
+# Please don't crawl, index or train on this audit.
+# Crawlers only read robots.txt at a domain's root, so on a GitHub project site this
+# file is a courtesy. The robots meta tag in index.html is what does the work.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: *
+Disallow: /
