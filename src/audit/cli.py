@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from audit import check, config, extract, fetch, glossary, review, terms, typed, view
+from audit import check, config, extract, fetch, glossary, patterns, review, terms, typed, view
 
 NOT_BUILT = "Not built yet. See ROADMAP.md"
 
@@ -63,10 +63,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     for name, help_text in (
         ("terms", "Build the term map"),
+        ("patterns", "Group look-alike sentences into pattern candidates"),
         ("check", "Check the public text against the glossary"),
         ("recommend", "Turn findings into recommendations"),
         ("skill", "Build a content-standards skill from the audit"),
-        ("patterns", "Group repeated content structures (pass 2)"),
         ("style", "Write observed style (pass 2)"),
         ("tone", "Score tone across stages (pass 2)"),
     ):
@@ -91,6 +91,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 0
         if args.command == "terms":
             terms.run(config.load(args.target, args.root))
+            return 0
+        if args.command == "patterns":
+            patterns.run(config.load(args.target, args.root))
             return 0
         if args.command == "check":
             check.run(config.load(args.target, args.root))

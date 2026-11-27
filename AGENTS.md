@@ -83,6 +83,7 @@ being audited.
 | `src/audit/extract.py` | Turns cached pages into the snippets table |
 | `src/audit/snippets.py` | The snippets table: columns, IDs, allowed values |
 | `src/audit/terms.py` | The term map: candidates, clusters, decisions, questions |
+| `src/audit/patterns.py` | `audit patterns`: groups look-alike sentences. Writes `cache/<target>/pattern_candidates.csv` |
 | `src/audit/view.py`, `viewer.html` | The offline viewer |
 | `src/audit/review.py` | The local review page, which saves a person's edits |
 | `src/audit/typed.py` | Rules for typed app strings, used by `audit typed`, extract and review |

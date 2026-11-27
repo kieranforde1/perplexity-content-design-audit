@@ -75,6 +75,18 @@ class CheckSettings:
 
 
 @dataclass(frozen=True)
+class PatternSettings:
+    """Settings for `audit patterns`."""
+
+    # Two sentences are look-alikes when they share at least this share of their words.
+    # Groups chain, so a looser setting pulls unrelated sentences into one group. The owner
+    # chose 0.75 on 2026-11-27 (about 690 groups, against about 1,180 at 0.6).
+    min_overlap: float = 0.75
+    # Plan names from the glossary. Variants that name different plans disagree on a fact.
+    plan_names: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class Target:
     name: str
     display_name: str
@@ -87,6 +99,7 @@ class Target:
     analysis_exclude: tuple[str, ...] = ()
     terms: TermSettings = TermSettings()
     check: CheckSettings = CheckSettings()
+    patterns: PatternSettings = PatternSettings()
     max_committed_excerpts: int = 500
     evidence_per_finding: int = 5
 
@@ -202,6 +215,15 @@ def load(name: str, root: Path = Path(".")) -> Target:
         },
     )
 
+    raw_patterns: dict[str, Any] = raw.get("patterns", {}) or {}
+    min_overlap = float(raw_patterns.get("min_overlap", PatternSettings.min_overlap))
+    if not 0 < min_overlap <= 1:
+        raise ConfigError(f"patterns.min_overlap must be above 0 and at most 1, not {min_overlap}")
+    pattern_settings = PatternSettings(
+        min_overlap=min_overlap,
+        plan_names=tuple(raw_patterns.get("plan_names", [])),
+    )
+
     return Target(
         name=raw.get("name", name),
         display_name=raw.get("display_name", name),
@@ -214,6 +236,7 @@ def load(name: str, root: Path = Path(".")) -> Target:
         analysis_exclude=tuple(raw.get("analysis_exclude", [])),
         terms=term_settings,
         check=check_settings,
+        patterns=pattern_settings,
         max_committed_excerpts=int(raw.get("max_committed_excerpts", 500)),
         evidence_per_finding=int(raw.get("evidence_per_finding", 5)),
     )

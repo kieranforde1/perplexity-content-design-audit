@@ -15,7 +15,7 @@ step means adding a file, not rebuilding.
 
 `audit style` and `audit tone` print "Not built yet" for now. Their output formats will be
 written here, so they fit without changing earlier steps. `audit patterns` is designed
-below and waiting for the owner to agree it before it's built.
+below. The owner agreed it on 2026-11-27.
 
 ### `audit patterns`: the same message in different words
 
@@ -56,7 +56,7 @@ unless the company published it. Every row carries a question for the team, beca
 outside-in work can't know why the wording differs.
 
 **What it connects to**
-- `audit check` reads the patterns marked `use` and reports pages that say the message
+- `audit check` reads every pattern and reports pages that say the message
   another way, as findings in a new "same message, different words" category.
 - The viewer gets a Patterns tab, and the review page gets a tab to accept or reject
   proposed patterns, built the same way as Glossary proposals.
@@ -70,11 +70,15 @@ outside-in work can't know why the wording differs.
 3. The viewer tab and review tab.
 4. The `audit check` link.
 
-**Decisions for the owner before step 1:** whether the 60% overlap is the right setting
-(75% gives about 690 groups against about 1,180); whether patterns should wait for the
-glossary review, because several candidates (API Portal against API Console, Disabled
-against Turned off) overlap with glossary rows and would be counted twice; and whether
-the first release stops at step 2, with the viewer tab after.
+**Decided by the owner on 2026-11-27:**
+- Look-alikes share at least 75% of their words, not 60%. Groups chain, so a looser
+  setting pulls unrelated sentences into one group (about 690 groups against about
+  1,180). It's a setting in the target config, not a fixed number.
+- Patterns don't wait any longer: the glossary review is finished, and rule 4 already
+  drops groups whose only difference is a glossary word to avoid.
+- The first release includes the viewer and review tabs (steps 1 to 3).
+- Every row in `patterns.csv` is a real pattern, because only a person writes it. There's
+  no status column, and `audit check` reads every row.
 
 ## Later
 
