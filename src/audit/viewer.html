@@ -857,7 +857,7 @@
   }
 
   if (data.editable) {
-    var appSurfaces = data.allowed.surface.filter(function (v) { return ["web-app", "ios-app", "comet"].indexOf(v) !== -1; });
+    var appSurfaces = data.allowed.surface.filter(function (v) { return ["web-app", "ios-app", "comet", "email"].indexOf(v) !== -1; });
     fillSelect("s-kind", data.allowed.kind.filter(function (v) { return v !== "parameter"; }), "button");
     fillSelect("s-surface", appSurfaces, "web-app");
     fillSelect("s-stage", data.allowed.stage, "other");

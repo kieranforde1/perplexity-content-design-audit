@@ -42,6 +42,7 @@ from audit.snippets import Snippet
 # guidance, so it comes first. Changelog sits with the blog.
 AUTHORITY = (
     "brand", "pricing", "docs", "help", "blog", "changelog", "web-app", "ios-app", "comet",
+    "email",
 )
 
 # No apostrophes inside a word, so "Agent API's" is read as "Agent API".

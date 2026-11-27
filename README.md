@@ -123,7 +123,7 @@ depend on those names.
 | excerpt | The text, cut to 20 words at most. |
 | kind | title, heading, nav, button, label, parameter, error or sentence |
 | source_url | Where the text was found |
-| surface | docs, help, pricing, blog, brand, changelog, web-app, ios-app or comet |
+| surface | docs, help, pricing, blog, brand, changelog, web-app, ios-app, comet or email |
 | stage | sign-up, first-use, answering, error, upgrade, settings or other |
 | captured_on | Date fetched or typed |
 | method | crawl or typed |

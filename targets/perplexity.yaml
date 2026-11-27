@@ -288,7 +288,7 @@ check:
 
 # The committed snippets table only fills in excerpts for evidence rows. A test fails if
 # it holds more than this many.
-max_committed_excerpts: 500
+max_committed_excerpts: 1000
 # How many of each finding's snippets keep their excerpt, to illustrate it rather than
 # list every one.
 evidence_per_finding: 5

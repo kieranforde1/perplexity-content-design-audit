@@ -13,6 +13,7 @@ from pathlib import Path
 
 SURFACES = (
     "docs", "help", "pricing", "blog", "brand", "changelog", "web-app", "ios-app", "comet",
+    "email",
 )
 STAGES = ("sign-up", "first-use", "answering", "error", "upgrade", "settings", "other")
 KINDS = ("title", "heading", "nav", "button", "label", "parameter", "error", "sentence")

@@ -53,7 +53,465 @@ Continue,button,"iOS app, Teammates intro, page 1",ios-app,first-use,2026-11-26
 Requires Perplexity Max,label,"iOS app, Teammates intro",ios-app,upgrade,2026-11-26
 Storefront Manager,label,"iOS app, Teammates intro, page 3, example",ios-app,first-use,2026-11-26
 Compare our Shopify assortment with e-commerce brands that have similar best-sellers.,sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26
-"Send me a weekly Slack update on products and categories we should add to grow GMV…",sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26
+Send me a weekly Slack update on products and categories we should add to grow GMV…,sentence,"iOS app, Teammates intro, page 3, example prompt",ios-app,first-use,2026-11-26
 Thinking…,label,"iOS app, Teammates intro, page 3, example",ios-app,first-use,2026-11-26
 "They have access to your tools, skills, and context, and a computer of their own.",sentence,"iOS app, Teammates intro, page 3",ios-app,first-use,2026-11-26
 Try Teammates,button,"iOS app, Teammates intro, page 3",ios-app,first-use,2026-11-26
+Your task is complete: <task>,title,"email, task complete notification",email,other,2026-11-26
+Your task is complete.,heading,"email, task complete notification",email,other,2026-11-26
+Task name:,label,"email, task complete notification",email,other,2026-11-26
+View task,button,"email, task complete notification",email,other,2026-11-26
+Manage your notification preferences here.,sentence,"email, task complete notification",email,settings,2026-11-26
+Unsubscribe,button,"email, task complete notification",email,settings,2026-11-26
+Privacy Policy,nav,"email, task complete notification",email,other,2026-11-26
+Terms and conditions,nav,"email, task complete notification",email,other,2026-11-26
+New,nav,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+Automations,nav,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+Artefacts,nav,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+Plugins,nav,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+More,nav,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+Teammates,heading,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+Hire your first teammate,heading,"web app, home (signed out), sidebar teammates card",web-app,first-use,2026-11-27
+Persistent agents that work for you.,sentence,"web app, home (signed out), sidebar teammates card",web-app,first-use,2026-11-27
+Create new teammate,button,"web app, home (signed out), sidebar teammates card",web-app,first-use,2026-11-27
+Projects,heading,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+No projects,sentence,"web app, home (signed out), sidebar empty state",web-app,first-use,2026-11-27
+Sessions,heading,"web app, home (signed out), sidebar",web-app,first-use,2026-11-27
+No recent sessions,sentence,"web app, home (signed out), sidebar empty state",web-app,first-use,2026-11-27
+Sign In,button,"web app, home (signed out), sidebar footer",web-app,sign-up,2026-11-27
+View plans,button,"web app, home (signed out), sidebar footer",web-app,upgrade,2026-11-27
+What do you want to know?,title,"web app, home (signed out)",web-app,first-use,2026-11-27
+Type @ for connectors,label,"web app, home (signed out), input placeholder",web-app,first-use,2026-11-27
+Search,button,"web app, home (signed out), input mode toggle",web-app,first-use,2026-11-27
+Computer,button,"web app, home (signed out), input mode toggle",web-app,first-use,2026-11-27
+Model,button,"web app, home (signed out), input model picker",web-app,first-use,2026-11-27
+Search anything,heading,"web app, home (signed out), suggestion card",web-app,first-use,2026-11-27
+Get fast and accurate answers from the most trusted sources.,sentence,"web app, home (signed out), suggestion card",web-app,first-use,2026-11-27
+Get work done with Computer,heading,"web app, home (signed out), suggestion card",web-app,first-use,2026-11-27
+NEW,label,"web app, home (signed out), suggestion card badge",web-app,first-use,2026-11-27
+"Hand off your projects to get polished, reliable deliverables around the clock.",sentence,"web app, home (signed out), suggestion card",web-app,first-use,2026-11-27
+Terms of Service,nav,"web app, home (signed out), footer",web-app,other,2026-11-27
+Privacy Notice,nav,"web app, home (signed out), footer",web-app,other,2026-11-27
+Cookie Policy,heading,"web app, home (signed out), cookie banner",web-app,other,2026-11-27
+"We use cookies, pixels, SDKs, APIs, and server-to-server integrations for the correct functioning of our website. You can choose…",sentence,"web app, home (signed out), cookie banner",web-app,other,2026-11-27
+Read more,button,"web app, home (signed out), cookie banner",web-app,other,2026-11-27
+Allow all,button,"web app, home (signed out), cookie banner",web-app,other,2026-11-27
+Only necessary,button,"web app, home (signed out), cookie banner",web-app,other,2026-11-27
+Login or sign up for free,heading,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+Save and sync your searches,sentence,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+Continue with Google,button,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+Continue with Apple,button,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+Enter your email,label,"web app, sign-up dialog, input placeholder",web-app,sign-up,2026-11-27
+Continue with email,button,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+Single sign-on (SSO),button,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+"By continuing, you agree to the Perplexity Terms of Service and Privacy Notice",sentence,"web app, sign-up dialog",web-app,sign-up,2026-11-27
+Access the top AI models,heading,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+GPT-6.2 Sol,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+GPT-6.2 Astra,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+Gemini 4 Carbon,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+Gemini 4 Neon,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+Claude Sonnet 5.5,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+Claude Opus 5.5,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+Claude Fable 5.2,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+Kimi K3,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+GLM 5.3,label,"web app, Model menu (signed out)",web-app,upgrade,2026-11-27
+New,label,"web app, Model menu (signed out), badge",web-app,upgrade,2026-11-27
+Max,label,"web app, Model menu (signed out), badge",web-app,upgrade,2026-11-27
+Add images and files,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+"Upload photos, PDFs and documents from your computer",sentence,"web app, input plus menu, Add images and files hover panel",web-app,first-use,2026-11-27
+Add files from cloud,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Use a plugin,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Work in a project,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Deep Research,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Included in Pro,label,"web app, input plus menu, Deep Research badge",web-app,upgrade,2026-11-27
+Model Council,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Control Browser,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Skills,button,"web app, input plus menu (signed out)",web-app,first-use,2026-11-27
+Deep Research,heading,"web app, input plus menu, Deep Research hover panel",web-app,first-use,2026-11-27
+Research deeply across many sources and produce a comprehensive answer.,sentence,"web app, input plus menu, Deep Research hover panel",web-app,first-use,2026-11-27
+Sign in,button,"web app, input plus menu, Deep Research hover panel",web-app,sign-up,2026-11-27
+The Computer tab has moved. Find your Computer sessions under Sessions.,sentence,"web app, signed in, notice",web-app,other,2026-11-27
+Open Sessions,button,"web app, signed in, notice",web-app,other,2026-11-27
+Sessions,heading,"web app, signed in, sidebar",web-app,other,2026-11-27
+Discover,nav,"web app, sidebar, More menu",web-app,other,2026-11-27
+Finance,nav,"web app, sidebar, More menu",web-app,other,2026-11-27
+Health,nav,"web app, sidebar, More menu",web-app,other,2026-11-27
+Academic,nav,"web app, sidebar, More menu",web-app,other,2026-11-27
+Patents,nav,"web app, sidebar, More menu",web-app,other,2026-11-27
+Sessions,title,"web app, Sessions page",web-app,other,2026-11-27
+All your work in one place,sentence,"web app, Sessions page",web-app,other,2026-11-27
+All,label,"web app, Sessions page, tabs",web-app,other,2026-11-27
+Unread,label,"web app, Sessions page, tabs",web-app,other,2026-11-27
+Archived,label,"web app, Sessions page, tabs",web-app,other,2026-11-27
+Yesterday,label,"web app, Sessions page, date group",web-app,other,2026-11-27
+13 hr ago,label,"web app, Sessions page, list row time",web-app,other,2026-11-27
+Type,label,"web app, Sessions page, filter menu",web-app,other,2026-11-27
+Source,label,"web app, Sessions page, filter menu",web-app,other,2026-11-27
+Status,label,"web app, Sessions page, filter menu",web-app,other,2026-11-27
+Temporary Sessions,label,"web app, Sessions page, filter menu",web-app,other,2026-11-27
+All,label,"web app, Sessions page, filter menu, Type",web-app,other,2026-11-27
+Computer,label,"web app, Sessions page, filter menu, Type",web-app,other,2026-11-27
+Search,label,"web app, Sessions page, filter menu, Type",web-app,other,2026-11-27
+Deep research,label,"web app, Sessions page, filter menu, Type",web-app,other,2026-11-27
+Create files and apps,label,"web app, Sessions page, filter menu, Type",web-app,other,2026-11-27
+Model council,label,"web app, Sessions page, filter menu, Type",web-app,other,2026-11-27
+All,label,"web app, Sessions page, filter menu, Source",web-app,other,2026-11-27
+Comet,label,"web app, Sessions page, filter menu, Source",web-app,other,2026-11-27
+Include additional sources,label,"web app, Sessions page, filter menu, Source",web-app,other,2026-11-27
+MCP,label,"web app, Sessions page, filter menu, Source",web-app,other,2026-11-27
+All,label,"web app, Sessions page, filter menu, Status",web-app,other,2026-11-27
+Active,label,"web app, Sessions page, filter menu, Status",web-app,other,2026-11-27
+Needs input,label,"web app, Sessions page, filter menu, Status",web-app,other,2026-11-27
+Completed,label,"web app, Sessions page, filter menu, Status",web-app,other,2026-11-27
+Notifications,heading,"web app, Notifications panel",web-app,other,2026-11-27
+Unread,label,"web app, Notifications panel",web-app,other,2026-11-27
+All,label,"web app, Notifications panel",web-app,other,2026-11-27
+Mark all as read,button,"web app, Notifications panel",web-app,other,2026-11-27
+You’re all caught up,heading,"web app, Notifications panel, empty state",web-app,other,2026-11-27
+Check back later for new activity.,sentence,"web app, Notifications panel, empty state",web-app,other,2026-11-27
+Type a command or search,label,"web app, command search",web-app,other,2026-11-27
+Commands,heading,"web app, command search",web-app,other,2026-11-27
+Search with Perplexity,nav,"web app, command search",web-app,other,2026-11-27
+Start a Computer session,nav,"web app, command search",web-app,other,2026-11-27
+Create a new project,nav,"web app, command search",web-app,other,2026-11-27
+Results,heading,"web app, command search",web-app,other,2026-11-27
+Computer,label,"web app, command search, result type",web-app,other,2026-11-27
+Search,label,"web app, command search, result type",web-app,other,2026-11-27
+Select your plan,title,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Upgrade for a broader search experience and premium AI models.,sentence,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Personal,nav,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Education,nav,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Business,nav,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
++US$40 bonus Computer credits,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
++US$350 bonus Computer credits,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Popular,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Advanced answers and top AI models,sentence,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+US$17 per month billed yearly,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Or equivalent in your local currency.,sentence,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Everything in Free and:,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Expanded Computer access,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Deep research,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Access to top AI models,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Select between AI models,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Create polished documents & apps,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+More usage limits and memory,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Get Pro,button,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Maximum usage and top performance,sentence,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+US$167 per month billed yearly,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Everything in Pro and:,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Maximum Computer usage,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Early access to Teammate,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+"10,000 monthly credits",label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Expert level research,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Frontier AI models,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Highest usage limits and memory,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Priority access to new features,label,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Get Max,button,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+For personal use only and subject to our policies. Learn more about billing.,sentence,"web app, Select your plan, Personal",web-app,upgrade,2026-11-27
+Select your plan,title,"web app, Select your plan, Education",web-app,upgrade,2026-11-27
+50% off,label,"web app, Select your plan, Education",web-app,upgrade,2026-11-27
+In-depth research and AI model selection,sentence,"web app, Select your plan, Education",web-app,upgrade,2026-11-27
+US$9 per month billed yearly,label,"web app, Select your plan, Education",web-app,upgrade,2026-11-27
+Verify as student,button,"web app, Select your plan, Education",web-app,upgrade,2026-11-27
+Verify as educator,button,"web app, Select your plan, Education",web-app,upgrade,2026-11-27
++US$80 bonus Computer credits,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
++US$400 bonus Computer credits,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+US$34 per seat per month billed yearly,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Access to Perplexity Computer,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Guaranteed no training on your data,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+"Access to the latest AI models, post-trained for higher accuracy",label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+"Search across the web, files and apps",label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+"Premium source citations from PitchBook, Statista and more",label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Manage user permissions and integrate with SSO,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+"SOC 2 Type II, HIPAA, GDPR, PCI DSS compliance",label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Dedicated Enterprise support,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Continue with Enterprise Pro,button,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+US$271 per seat per month billed yearly,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Everything in Enterprise Pro and:,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Get the best answers with the most advanced AI reasoning models,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Run deep investigations at any scale,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Work with massive datasets and files,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Compare responses across multiple AI models,label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+"Premium security features including SCIM, audit logs, and data retention settings",label,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Continue with Enterprise Max,button,"web app, Select your plan, Business",web-app,upgrade,2026-11-27
+Automations,title,"web app, Automations",web-app,first-use,2026-11-27
+Automate anything with Computer,heading,"web app, Automations, empty state",web-app,first-use,2026-11-27
+Run workflows on a custom schedule or when specific conditions are met and get results delivered automatically,sentence,"web app, Automations, empty state",web-app,first-use,2026-11-27
+Create,button,"web app, Automations, empty state",web-app,first-use,2026-11-27
+Suggested for you,heading,"web app, Automations",web-app,first-use,2026-11-27
+Industry news digest,label,"web app, Automations, suggestion card",web-app,first-use,2026-11-27
+Send a rundown of relevant news for my industry.,sentence,"web app, Automations, suggestion card",web-app,first-use,2026-11-27
+Morning Slack Digest,label,"web app, Automations, suggestion card",web-app,first-use,2026-11-27
+"Every morning, send me a summary of all my Slack…",sentence,"web app, Automations, suggestion card",web-app,first-use,2026-11-27
+Draft Weekly notes,label,"web app, Automations, suggestion card",web-app,first-use,2026-11-27
+Scan relevant information to work and draft stand-up…,sentence,"web app, Automations, suggestion card",web-app,first-use,2026-11-27
+Or type what you want your automation to do,label,"web app, Automations, input",web-app,first-use,2026-11-27
+Computer,button,"web app, Automations, input",web-app,first-use,2026-11-27
+Light,button,"web app, Automations, input",web-app,first-use,2026-11-27
+Choose a project,button,"web app, Automations, input",web-app,first-use,2026-11-27
+Plugins,button,"web app, Automations, input",web-app,first-use,2026-11-27
+Artefacts,title,"web app, Artefacts",web-app,other,2026-11-27
+Files and links Perplexity creates for you.,sentence,"web app, Artefacts",web-app,other,2026-11-27
+Learn more,button,"web app, Artefacts",web-app,other,2026-11-27
+All,label,"web app, Artefacts, filters",web-app,other,2026-11-27
+Created by you,label,"web app, Artefacts, filters",web-app,other,2026-11-27
+Uploaded by you,label,"web app, Artefacts, filters",web-app,other,2026-11-27
+Shared with you,label,"web app, Artefacts, filters",web-app,other,2026-11-27
+This month,heading,"web app, Artefacts",web-app,other,2026-11-27
+Plugins,title,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Extend what Computer can do with custom plugin bundles,sentence,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Add custom,button,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+"Search plugins, skills, and connectors",label,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Skills,nav,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Discover,nav,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Installed,nav,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+All categories,label,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Recommended for you,heading,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Plugins recommended for you.,sentence,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Popular,label,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Search and manage your GitHub repositories,sentence,"web app, Plugins, Plugins tab, GitHub card",web-app,other,2026-11-27
+Search your emails and calendar events,sentence,"web app, Plugins, Plugins tab, Outlook card",web-app,other,2026-11-27
+"Comprehensive Figma connector for managing files, projects, teams,…",sentence,"web app, Plugins, Plugins tab, Figma card",web-app,other,2026-11-27
+"Plan and track projects, issues, and team workflows in Linear",sentence,"web app, Plugins, Plugins tab, Linear card",web-app,other,2026-11-27
+Google Analytics enables you to measure and report on user activity …,sentence,"web app, Plugins, Plugins tab, Google Analytics card",web-app,other,2026-11-27
+Productivity & Collaboration,heading,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+"Plugins for communication, documents, meetings, and everyday teamwork.",sentence,"web app, Plugins, Plugins tab",web-app,other,2026-11-27
+Get in-depth answers from your Box content,sentence,"web app, Plugins, Plugins tab, Box card",web-app,other,2026-11-27
+"Manage boards, items, and groups; create updates and sub-items;…",sentence,"web app, Plugins, Plugins tab, Monday.com card",web-app,other,2026-11-27
+"Ideate, diagram, and align teams",sentence,"web app, Plugins, Plugins tab, Lucid card",web-app,other,2026-11-27
+Plugins,title,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+Skills,nav,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+Discover,nav,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+Installed,nav,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+All publishers,label,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+All categories,label,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+Growing Businesses,heading,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+"Plugins that help growing businesses manage customers, operations, and growth.",sentence,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+Account outreach,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+"Research target accounts, build personalised campaigns, and generate automated…",sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Account profiles,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Research and summarise a company or account using connected apps and public…,sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Billable hours,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Estimate billable hours for a professional-services work product with a…,sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Brand inspiration,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+"Analyse competitor websites, capture creative examples, and build a visual…",sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Brand reputation,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+"Analyse a brand's reputation across social media, review sites, and news with sentime…",sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Competitive intelligence,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+"Monitor competitor product launches, pricing changes, and partnership announcements o…",sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Builders,heading,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+"Plugins for engineers and makers who write code, automate workflows, and ship products.",sentence,"web app, Plugins, Skills tab",web-app,other,2026-11-27
+Graphify,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Build and explore source-grounded knowledge graphs from repositories and…,sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+PHP2Shell Exposure Check,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Check authorised PHP apps for PHP2Shell exposure without running exploits.,sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Reverse Engineer,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+"Reverse-engineer authorised applications, shipped binaries, JavaScript bundles, and…",sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+security-audit,label,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+"Security guidance and vulnerability review for codebases, APIs, services, CLI tools, librarie…",sentence,"web app, Plugins, Skills tab, skill card",web-app,other,2026-11-27
+Upgrade to access Teammate,title,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+US$167 per month billed yearly,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Or equivalent in your local currency.,sentence,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Everything in Pro and:,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Maximum Computer usage,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Early access to Teammate,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+"35,000 bonus credits",label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+"10,000 monthly credits",label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Expert level research,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Frontier AI models,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Highest usage limits and memory,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Priority access to new features,label,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Get Max,button,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Compare plans,button,"web app, Upgrade to access Teammate",web-app,upgrade,2026-11-27
+Create a new project,title,"web app, Create a new project",web-app,first-use,2026-11-27
+"Projects keep related sessions, files, and instructions together so context carries across your work—and can be shared with others.",sentence,"web app, Create a new project",web-app,first-use,2026-11-27
+Name,label,"web app, Create a new project",web-app,first-use,2026-11-27
+Name this project,label,"web app, Create a new project, placeholder",web-app,first-use,2026-11-27
+Instructions (optional),label,"web app, Create a new project",web-app,first-use,2026-11-27
+Custom instructions for the agent in this project,label,"web app, Create a new project, placeholder",web-app,first-use,2026-11-27
+0 / 8000,label,"web app, Create a new project, counter",web-app,first-use,2026-11-27
+Cancel,button,"web app, Create a new project",web-app,first-use,2026-11-27
+Create,button,"web app, Create a new project",web-app,first-use,2026-11-27
+Your subscription,heading,"web app, Settings, Account",web-app,settings,2026-11-27
+Unlock the most powerful search experience with Perplexity,heading,"web app, Settings, Account",web-app,upgrade,2026-11-27
+Pro,label,"web app, Settings, Account",web-app,upgrade,2026-11-27
+Get the most out of Perplexity with Pro.,sentence,"web app, Settings, Account",web-app,upgrade,2026-11-27
+Learn more,button,"web app, Settings, Account",web-app,upgrade,2026-11-27
+Upgrade plan,button,"web app, Settings, Account",web-app,upgrade,2026-11-27
+Security,heading,"web app, Settings, Account",web-app,settings,2026-11-27
+Two-factor authentication,label,"web app, Settings, Account",web-app,settings,2026-11-27
+Add an extra layer of security to your account,sentence,"web app, Settings, Account",web-app,settings,2026-11-27
+Set up,button,"web app, Settings, Account",web-app,settings,2026-11-27
+System,heading,"web app, Settings, Account",web-app,settings,2026-11-27
+Support,label,"web app, Settings, Account",web-app,settings,2026-11-27
+Contact,button,"web app, Settings, Account",web-app,settings,2026-11-27
+Sign out,button,"web app, Settings, Account",web-app,settings,2026-11-27
+Sign out of all sessions,label,"web app, Settings, Account",web-app,settings,2026-11-27
+Devices or browsers where you are signed in,sentence,"web app, Settings, Account",web-app,settings,2026-11-27
+Data export,label,"web app, Settings, Account",web-app,settings,2026-11-27
+Request a copy of your personal data,sentence,"web app, Settings, Account",web-app,settings,2026-11-27
+Export my data,button,"web app, Settings, Account",web-app,settings,2026-11-27
+Delete account,label,"web app, Settings, Account",web-app,settings,2026-11-27
+Permanently delete your account and data,sentence,"web app, Settings, Account",web-app,settings,2026-11-27
+Search settings,label,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Account,heading,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Preferences,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Personalisation,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Memory,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Notifications,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Usage and credits,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Analytics,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Computer,heading,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Configuration,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Browser use,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Devices,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Credential vault,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Connectors,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Plugins and skills,nav,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Other,heading,"web app, Settings, sidebar",web-app,settings,2026-11-27
+Upgrade to Enterprise,nav,"web app, Settings, sidebar",web-app,upgrade,2026-11-27
+Preferences,title,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Appearance,heading,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Theme,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+How Perplexity looks on your device,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Light,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Dark,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Auto,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Answer font,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Font style for AI response text,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Serif,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Sans-serif,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Language,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+The language Perplexity displays in,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Default,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Preferred response language,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+The language used for AI responses,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Automatic (detect input),label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Autosuggest,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Enable dropdown suggestions while typing your search,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Keyboard shortcut hints,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Display keyboard shortcuts as symbols (⌘⇧) or full key names (Cmd+Shift),sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Symbols,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Turn on notifications,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Get notified when Computer finishes tasks or needs your input,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Opt out of advertising tracking,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Save an advertising tracking opt-out for your account. Turning this off does not grant cookie consent or override other privacy,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Artificial Intelligence,heading,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Image generation model,label,"web app, Settings, Preferences",web-app,upgrade,2026-11-27
+Upgrade to select,button,"web app, Settings, Preferences",web-app,upgrade,2026-11-27
+Video generation model,label,"web app, Settings, Preferences",web-app,upgrade,2026-11-27
+Upgrade to Max,button,"web app, Settings, Preferences",web-app,upgrade,2026-11-27
+AI data retention,label,"web app, Settings, Preferences",web-app,settings,2026-11-27
+AI Data Retention allows Perplexity to use your searches to improve AI models. Turn this setting off if you wish,sentence,"web app, Settings, Preferences",web-app,settings,2026-11-27
+Personalisation,title,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Your occupation,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Company name,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+"Acme Corp, etc.",label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Custom instructions,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+"Preferences, interests and more about you",label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Location,heading,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Share location,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Share to use precise location for the most relevant results.,sentence,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Response preferences,heading,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Set the style of how Perplexity responds to general queries. This doesn't impact Perplexity's capabilities.,sentence,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Response Length,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Headers and Lists,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Default,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Watchlists,heading,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Finance,label,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Set your watchlist for daily updates and summaries,sentence,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Manage,button,"web app, Settings, Personalisation",web-app,settings,2026-11-27
+Memory,title,"web app, Settings, Memory",web-app,settings,2026-11-27
+Use search history,label,"web app, Settings, Memory",web-app,settings,2026-11-27
+Use previous searches to answer future questions,sentence,"web app, Settings, Memory",web-app,settings,2026-11-27
+Notifications,title,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Browser notifications,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Enable,button,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Activity and updates,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Get notified when your tasks need input or are completed,sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Email,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Automations,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Get updates when your automations run or complete,sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Shared activity,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Get notified when someone shares sessions or files with you,sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Usage and credits,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Get notified about usage updates and remaining credits,sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Product updates,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+"Get notified about new features, tips and occasional updates",sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Create a Scheduled Search,heading,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Schedule recurring searches to get updates on topics you care about.,sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Send me a daily summary of AI news every morning,label,"web app, Settings, Notifications",web-app,settings,2026-11-27
+News Digest,label,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Morning roundup of the most impactful news stories from around the world.,sentence,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Market Forecast,label,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Weekly portfolio of stocks to watch based on performance and upcoming events,sentence,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Tech Insights,label,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+"Weekly analysis of emerging technologies, AI developments, and their…",sentence,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Science Explorer,label,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+"Monthly digest of scientific breakthroughs, research papers, and space explorati…",sentence,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Sports Roundup,label,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+"Daily summary of major sports events, scores, and breaking news.",sentence,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Entertainment Weekly,label,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+"Weekly roundup of new streaming releases, trending shows, and entertainment…",sentence,"web app, Settings, Notifications, scheduled search",web-app,settings,2026-11-27
+Scheduled searches,heading,"web app, Settings, Notifications",web-app,settings,2026-11-27
+New schedule,button,"web app, Settings, Notifications",web-app,settings,2026-11-27
+No scheduled searches yet,sentence,"web app, Settings, Notifications",web-app,first-use,2026-11-27
+Price alerts,heading,"web app, Settings, Notifications",web-app,settings,2026-11-27
+Get notified when stocks or cryptocurrencies hit your target price.,sentence,"web app, Settings, Notifications",web-app,settings,2026-11-27
+New alert,button,"web app, Settings, Notifications",web-app,settings,2026-11-27
+No price alerts yet,sentence,"web app, Settings, Notifications",web-app,first-use,2026-11-27
+Analytics,title,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Data in UTC · Updated Daily,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+7d,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+30d,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+90d,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Total credits,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Active days,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Avg credits / active day,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Credit usage,heading,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Group by,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Model,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+No data available,sentence,"web app, Settings, Analytics",web-app,first-use,2026-11-27
+Artefacts,heading,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Markdown,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Connectors,heading,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Connector,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Uses,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Skills,heading,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Skill,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Projects,heading,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Project,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Tasks,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Task durations,heading,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Duration,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+<30s,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+30–120s,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+10–60min,label,"web app, Settings, Analytics",web-app,settings,2026-11-27
+Configuration,title,"web app, Settings, Configuration",web-app,settings,2026-11-27
+"Configure your Computer’s context window, messaging and other settings",sentence,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Extended context window,label,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Keep more of your conversation visible to Computer before it gets compacted. Helps maintain accuracy in long threads. Uses more,sentence,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Queue messages while Computer works,label,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Follow-ups are held until Computer finishes its current task. Use Send now to send one straight away.,sentence,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Attribute commits and pull requests,label,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Includes Computer as a co-author on commits and a link to the session in pull requests.,sentence,"web app, Settings, Configuration",web-app,settings,2026-11-27
+Browser use,title,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Control how Computer uses your browsers and the sites you visit,sentence,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Let Computer use your local browsers,label,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Via the browser extension or the Perplexity desktop app,sentence,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Ask for permission,label,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Control this browser,label,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Lets Computer run tasks in this browser using the sites you’re already signed in to,sentence,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Get extension,button,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Site permissions,heading,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Choose how Computer uses specific sites in your local browsers,sentence,"web app, Settings, Browser use",web-app,settings,2026-11-27
+example.com,label,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Add,button,"web app, Settings, Browser use",web-app,settings,2026-11-27
+Credential vault,title,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+Store credentials securely. Secret values are write-only after save.,sentence,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+Scope,label,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+"Define credentials for external APIs that are not supported by Connectors. Only you can use these credentials, in any of",sentence,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+Personal,label,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+Add credential,label,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+Saved credentials,heading,"web app, Settings, Credential vault",web-app,settings,2026-11-27
+No personal credentials saved.,sentence,"web app, Settings, Credential vault",web-app,first-use,2026-11-27
