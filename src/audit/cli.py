@@ -78,7 +78,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     p = sub.add_parser(
-        "skill", help="Build a content-standards skill from the glossary and patterns"
+        "skill", help="Build the content skill from the glossary and patterns"
     )
     _add_target(p)
 

@@ -1,5 +1,5 @@
 ---
-name: content-standards
+name: {{skill_name}}
 description: "Load when writing, auditing, repairing or reviewing product text for {{display_name}}: navigation labels, buttons, headings, error messages, empty states, settings, docs pages and help articles. Also load when naming, renaming or retiring a feature, when a message is said in more than one place, and when checking a draft against the glossary. Brand voice and visual identity go to {{display_name}}'s published Brand Hub. Charts and data visuals go to {{display_name}}'s own chart skill, pplx-graph. Built from an outside-in audit of public sources. Unofficial."
 license: MIT
 compatibility: "Python 3.9 or later, standard library only, for scripts/check_text.py."
@@ -12,24 +12,23 @@ metadata:
 
 > Unofficial: built from {{display_name}}'s public, first-party text by an outside-in audit, not by {{display_name}}.
 
-## Gates: read first
+## Four rules for every draft
 
-These hold for every piece of text. A script or a file settles each one, not taste.
-
-1. **Terms come from `references/glossary.csv`.** The gate is `python scripts/check_text.py <file>` exiting 0 on the draft.
-2. **A message that matches a pattern uses its string** from `references/patterns.csv`, word for word, with only the [slots] filled in.
-3. **A request that breaks a gate isn't applied silently.** Name the rule it breaks and ask the content owner for that surface, a role and not a named person. If they can't be reached, ship the version that follows the rule and list the request as an open decision.
-4. **A rule needs a source or counted evidence.** Without one, suggest it as a candidate for the glossary or the patterns. Don't add it here.
+1. **Use the glossary's words.** Before you hand over any text, run `python scripts/check_text.py draft.txt`. It must report nothing.
+2. **If the message already has a string, use it.** Check the list under Patterns. Copy the string from `references/patterns.csv` and change only the words in [brackets].
+3. **Don't break a rule because someone asked.** Say which rule the request breaks and ask whoever owns that part of the product. If you can't reach them, ship the version that follows the rule and note the request.
+4. **Don't add a rule without evidence.** A new term or string needs a source link or counted examples. Without one, suggest it instead of adding it.
 
 ## Changelog
 
-- **{{version}}** (evidence to {{captured_to}}): Terms and patterns are generated from the audit's glossary and patterns table. Added the text check script, the content contract, the QA report and benchmark prompts. Read `references/glossary.csv` and `references/patterns.csv`.
+- **0.3** (evidence to {{captured_to}}): Renamed {{skill_name}}. The rules are rewritten in plain words. The full term list and the pattern strings moved to `references/`, so this file holds only what you need while drafting.
+- **0.2:** Terms and patterns generated from the audit. Added the check script, the content contract, the QA report and the test prompts.
 - **0.1:** Skeleton. Format only, no rules.
 
-# Content standards
+# {{skill_title}}
 
-This skill helps a writer, or an AI writing tool, use {{display_name}}'s settled terms and shared strings in new text, and check a draft the same way every time.
-It exists to prevent wording drift: one thing named three ways, a retired name that lives on, and one message said differently on every page.
+`{{skill_name}}` is a working guide for {{display_name}} product text: which words to use, which strings to reuse, and a script that checks a draft the same way every time.
+It exists to stop wording drift: one thing with three names, a retired name that lives on, and one message written differently on every page.
 
 ## Load this skill for
 
@@ -64,8 +63,8 @@ The surface decides the track, and the track decides what matters most.
 
 ## References
 
-- `references/glossary.csv`: every settled term, with its status (use, avoid or deprecated), the replacement, a definition, its basis and a source link. Read it when a draft names a product, feature, plan, role or setting, and when the script flags a word.
-- `references/patterns.csv`: every pattern, with its message, the shared wording to reuse, how to use it and an open question for the team. Read it when the contract's message matches a pattern below.
+- `references/glossary.csv`: every term, with whether to use it, avoid it or treat it as retired, what to write instead, what it means, and where the rule comes from. Read it when a draft names a product, feature, plan, role or setting, and when the script flags a word.
+- `references/patterns.csv`: every pattern, with its message, the string to reuse, how to use it, and a question the team hasn't answered yet. Read it when your message is in the list under Patterns.
 - `scripts/check_text.py`: checks a draft against the glossary. Run it on every draft before the QA report.
 
 ## Terms
@@ -181,7 +180,7 @@ When writing text, return:
 When auditing text, return:
 
 1. A verdict
-2. The problems, each with the term, pattern or gate it breaks
+2. The problems, each with the term, pattern or rule it breaks
 3. Required changes
 4. Optional changes
 5. The QA report
@@ -202,7 +201,7 @@ Use these to test the skill. Most have an answer that the glossary or a pattern 
 ## Packaging note
 
 ```text
-content-standards/
+{{skill_name}}/
   SKILL.md               this file
   references/
     glossary.csv         {{term_count}} settled terms, words to avoid and retired names
@@ -213,4 +212,4 @@ content-standards/
 
 `audit skill` generates the whole folder from the audit's `glossary.csv` and `patterns.csv`. Don't edit it by hand. Change the audit data and generate it again, so the audit and the skill can't drift apart.
 
-The layout follows the structure of {{display_name}}'s public, MIT-licensed pplx-graph skill: gates first, a changelog, when to load it, routing, tracks, a blocking rule, an operating flow, a QA report, critique language and benchmark prompts. No text, fonts or assets from that package are included.
+The layout follows {{display_name}}'s public pplx-graph skill: rules first, a changelog, when to load it, routing, tracks, a blocking rule, a way of working, a QA report, critique language and test prompts. No text, fonts or assets from that package are included.

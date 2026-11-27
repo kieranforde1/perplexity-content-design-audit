@@ -1,13 +1,19 @@
 Unofficial: no affiliation with Perplexity.
 
-# Outside-in content audit
+# Perplexity content design tools
 
-A small tool that reads a company's public product text and shows where the words don't
-agree: one thing with two names, a retired name still in use, the same message written
-five ways. Perplexity is the first company it's been run on. It only uses pages anyone
-can read without signing in.
+Tools for keeping Perplexity's product language consistent. They find where the words
+don't agree (one thing with two names, a retired name still in use, the same message
+written five ways) and help new text get it right the first time. They only use pages
+anyone can read without signing in.
 
-To see the results, open [`docs/index.html`](docs/index.html) in a browser.
+| Tool | What it does | Where it is |
+| --- | --- | --- |
+| Glossary | The settled terms: what to use, what to avoid, what's retired and what each one means | [`data/perplexity/glossary.csv`](data/perplexity/glossary.csv) |
+| Check | Finds every public string that breaks a glossary rule or a pattern. The same text always gives the same result | `audit check` |
+| Pattern finder | Finds messages written several ways, so each can become one string | `audit patterns` and [`data/perplexity/patterns.csv`](data/perplexity/patterns.csv) |
+| pplx-content | A skill for writing new text with the glossary and the patterns, with a script that checks a draft | [`pplx-content/`](pplx-content/SKILL.md) |
+| Viewer | The results in one page: what the audit found, the check, the patterns and the glossary | Open [`docs/index.html`](docs/index.html) in a browser |
 
 ## How it works
 
@@ -24,11 +30,9 @@ To see the results, open [`docs/index.html`](docs/index.html) in a browser.
    change made once reaches every page. The check then reports the pages that still say it
    another way.
 
-The tool suggests and a person decides, at every step.
-
-The glossary and the patterns also become a skill for writing new text:
-[`data/perplexity/skill/content-standards/`](data/perplexity/skill/content-standards/SKILL.md).
-Its script checks a draft against the glossary the same way the audit does.
+The tools suggest and a person decides, at every step. `audit skill` then turns the
+glossary and the patterns into the pplx-content skill, so the rules used to check the
+public text are the same ones used to write new text.
 
 Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.md).
 
@@ -43,8 +47,8 @@ Working on this with an AI tool, or contributing? Start with [AGENTS.md](AGENTS.
 
 ## Status
 
-All four steps work. Scoring tone across the product is planned for later. See
-[ROADMAP.md](ROADMAP.md).
+All four steps and the skill work. Scoring tone across the product is planned for later.
+See [ROADMAP.md](ROADMAP.md).
 
 ## Run it
 
@@ -62,6 +66,7 @@ uv run audit extract --target perplexity
 uv run audit terms --target perplexity
 uv run audit check --target perplexity
 uv run audit view --target perplexity    # then open viewer/perplexity/index.html
+uv run audit skill --target perplexity   # rebuilds pplx-content/
 ```
 
 `uv run audit --help` lists the steps in order.

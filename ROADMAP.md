@@ -77,12 +77,12 @@ rec_id, goal, level (`string`, `pattern` or `system`), change, finding_ids, reac
 state facts as facts and never present a guess about the reasons behind a choice as a
 fact.
 
-### `audit skill` → `data/<target>/skill/`
+### `audit skill` → `pplx-content/`
 
-A content-standards skill that applies the glossary and the patterns to new text. It's
+The pplx-content skill applies the glossary and the patterns to new text. It's
 generated from the committed data, so the audit and the skill can't drift apart. Its
 layout follows Perplexity's public `pplx-graph` skill package (downloaded once from the
-Brand Hub, read for its structure and deleted): a `SKILL.md` with gates first, a
+Brand Hub, read for its structure and deleted): a `SKILL.md` with its rules first, a
 changelog, when to load it, routing, tracks, an operating flow, a QA report and
 critique language, plus `references/` and a checking script. Perplexity's `pplx-brand`
 skill needs a sign-in, so it wasn't used.

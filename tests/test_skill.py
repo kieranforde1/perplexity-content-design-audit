@@ -96,15 +96,30 @@ def test_skill_writes_its_files(built: Path) -> None:
     assert "evidence_captured: '2026-11-20 to 2026-11-22'" in text
     assert "| Gadget | Tool |" in text
     assert "| Admin Portal, portal | Admin Console |" in text
-    assert "> Ask your admin to [action]." in text
-    # Only the first sentence of the "How to use it:" note is for the writer.
-    assert "Name the action." in text and "More notes." not in text
+    # SKILL.md lists which messages have a string. The strings stay in the references,
+    # so a long string isn't loaded every time the skill is.
+    assert "Ask your admin to [action]." not in text
     assert "(https://e.com/brand)" in text
     with (built / "references" / "patterns.csv").open(newline="") as f:
         (row,) = list(csv.DictReader(f))
+    assert row["shared_wording"] == "Ask your admin to [action]."
+    # Only the first sentence of the "How to use it:" note is for the writer.
     assert row["how_to_use"] == "Name the action."
     assert list(row) == list(skill.PATTERN_COLUMNS)
     assert 'COMPANY = "Example"' in (built / "scripts" / "check_text.py").read_text()
+
+
+def test_words_to_avoid_are_in_alphabetical_order(built: Path) -> None:
+    text = (built / "SKILL.md").read_text()
+    table = text.split("### Words to avoid")[1].split("\n\n")[1]
+    first_words = [line.split(" | ")[0].lstrip("| ") for line in table.splitlines()[2:]]
+    assert first_words == sorted(first_words, key=str.lower)
+
+
+def test_the_config_names_the_skill_and_its_folder(tmp_path: Path) -> None:
+    target = write_target(tmp_path)
+    assert skill.skill_dir(target) == tmp_path / "content-standards"
+    assert config.load("perplexity", REPO_ROOT).skill_name == "pplx-content"
 
 
 def test_script_flags_each_case(built: Path) -> None:
@@ -184,7 +199,7 @@ def test_script_and_audit_check_agree(built: Path, tmp_path: Path) -> None:
 
 # The committed skill.
 
-COMMITTED = REPO_ROOT / "data" / "perplexity" / "skill" / skill.SKILL_NAME
+COMMITTED = REPO_ROOT / config.load("perplexity", REPO_ROOT).skill_name
 
 
 def test_committed_skill_matches_a_fresh_build() -> None:
