@@ -167,7 +167,7 @@ def form_pattern(form: str, company: str) -> re.Pattern[str]:
     words = strip_company(form.replace("-", " ").split(), company)
     words[-1] = words[-1].removesuffix("s") if len(words[-1]) > 3 else words[-1]
     body = r"[\s-]?".join(re.escape(w) for w in words)
-    return re.compile(rf"\b(?:{re.escape(company)}\s+)?{body}s?\b", re.IGNORECASE)
+    return re.compile(rf"\b(?:{re.escape(company)}\s+)?{body}(?:es|s)?\b", re.IGNORECASE)
 
 
 @dataclass
@@ -289,7 +289,8 @@ def count_uses(
         first_word = words[0].lower()
         # Only look in snippets that contain the first word, singular or plural.
         stem = first_word.removesuffix("s")
-        pool = {id(t): t for w in (first_word, stem, stem + "s") for t in by_token.get(w, [])}
+        forms = (first_word, stem, stem + "s", stem + "es")
+        pool = {id(t): t for w in forms for t in by_token.get(w, [])}
         pattern = form_pattern(cluster.label, company)
         for t in pool.values():
             for match in pattern.finditer(t.text):

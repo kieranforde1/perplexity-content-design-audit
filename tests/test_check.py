@@ -206,6 +206,20 @@ def test_a_plural_of_a_singular_term_still_counts_as_another_spelling(tmp_path: 
     assert "'Gadget Helpers' (1)" in row["written"]
 
 
+def test_a_plural_ending_in_es_is_found(tmp_path: Path) -> None:
+    pieces = [
+        ("sentence", "Quick Searches are gone for good.", "https://e.com/a", "help"),
+        ("sentence", "Use a quick search to find it.", "https://e.com/b", "help"),
+        ("sentence", "Bring your own boxes to the meetup.", "https://e.com/c", "help"),
+    ]
+    glossary = "quick search,avoid,,,recommendation,\nbox,avoid,,,recommendation,\n"
+    target = write_target(tmp_path, glossary, pieces)
+    by_term = {r["term"]: r for r in findings(target)}
+    assert by_term["quick search"]["count"] == "2"
+    assert "'Quick Searches' (1)" in by_term["quick search"]["written"]
+    assert by_term["box"]["count"] == "1"
+
+
 def test_singular_use_of_a_plural_term_is_not_another_spelling(tmp_path: Path) -> None:
     pieces = [
         ("sentence", "Ask the Gadget Helpers for tips.", "https://e.com/a", "help"),

@@ -80,7 +80,7 @@ def uses_of(
     for t in texts:
         if t.snippet.kind == "parameter":
             continue
-        if not {first, stem, stem + "s"} & t.tokens:
+        if not {first, stem, stem + "s", stem + "es"} & t.tokens:
             continue
         elsewhere = spans_of(other_things, t.text)
         for match in pattern.finditer(t.text):
