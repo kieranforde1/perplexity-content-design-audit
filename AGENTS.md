@@ -12,13 +12,15 @@ a systematic way of solving content problems:
 
 1. Collect public text into one table, with a source link for every piece.
 2. Find the terms and show where the wording varies.
-3. Group repeated content structures into patterns (second pass).
-4. Score tone across stages, and report how far the scores can be trusted (second pass).
+3. Check the public text against the settled terms, the same way every time.
+4. Group messages said in more than one place into patterns, each with one string to
+   reuse.
 
-A person settles the terms in a glossary, and `audit check` tests the public text against
-it. The other checks, recommendations and a content-standards skill are paused. Their
-designs are under "Later" in [ROADMAP.md](ROADMAP.md). Don't build them unless the owner
-asks.
+All four steps are built. A person settles the terms in a glossary and picks the real
+patterns, and `audit check` tests the public text against both. `audit skill` turns the
+glossary and the patterns into a content-standards skill that a writer, or an AI writing
+tool, uses on new text. Recommendations, tone and style are paused. Their designs are
+under "Later" in [ROADMAP.md](ROADMAP.md). Don't build them unless the owner asks.
 
 The code has to stay simple enough for a content designer to explain every part:
 plain names, small files, and comments that say why. If a choice is between simple and
@@ -91,8 +93,9 @@ being audited.
 | `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` and by applying proposals |
 | `src/audit/check.py` | `audit check`: tests the public text against the glossary and the patterns table |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
+| `src/audit/skill.py`, `skill_template.md`, `skill_check_text.py` | `audit skill`: builds the content-standards skill from the template and the check script |
 | `data/<target>/` | Committed outputs: the public strings table, terms, term candidates, typed app strings, patterns, front-page headlines |
-| `later/` | Paused designs, such as the content-skill template |
+| `data/<target>/skill/` | The generated content-standards skill. Committed, never edited by hand |
 | `tests/` | One test file per step, plus checks on the committed data |
 
 ### Data contracts
@@ -156,6 +159,14 @@ leave out anything personal: usernames, account details and the person's own cha
 words at most), tab (findings, glossary or terms) and term. A card opens that tab searched
 for the term, so the term must be in the glossary. Anything quoted in a line is 20 words
 at most. A test checks both.
+
+`data/<target>/skill/content-standards/` is written by `audit skill` and by nothing
+else: `SKILL.md`, `references/glossary.csv` (the glossary's columns, copied),
+`references/patterns.csv` (pattern_id, message, shared_wording, how_to_use, question,
+where how_to_use is the first sentence of the proposal's "How to use it:" note) and
+`scripts/check_text.py` (standard library only). It has no build date, so a test can
+compare the committed copy with a fresh build. To change it, change the glossary, the
+patterns or the template, then run `audit skill` again.
 
 ## How people take part
 
