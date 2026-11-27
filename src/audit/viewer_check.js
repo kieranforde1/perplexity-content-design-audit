@@ -1,4 +1,4 @@
-// The "Try it" box on the Check tab. This is a JavaScript copy of the rules in
+// The "Test a line of copy" box on the Check tab. This is a JavaScript copy of the rules in
 // skill_check_text.py, which is what the pplx-content skill ships. A test runs both on the
 // same sentences and fails if they ever disagree, so change the two files together.
 // `audit view` pastes this file into the viewer, so it can't contain a closing script tag.
@@ -153,4 +153,34 @@ function checkText(text, entries, company) {
   return { lines: lines, problems: found };
 }
 
-if (typeof module !== "undefined" && module.exports) module.exports = { checkText: checkText };
+// Up to three sample strings for the box, taken from the Check tab's glossary rules, so
+// every sample is published text the audit found, not invented copy. One per kind of
+// rule where it can, the shortest string in each, and only strings checkText flags.
+// A sample has to read as copy on its own: one word ("Enable") or code ("search_type")
+// doesn't show a visitor anything.
+function readsAsCopy(text) {
+  return text.split(/\s+/).filter(Boolean).length >= 4 && !/[_`{}<>]/.test(text);
+}
+
+function sampleLines(rules, entries, company) {
+  "use strict";
+  var picked = [];
+  var kinds = [];
+  rules.forEach(function (rule) {
+    if (picked.length >= 3 || rule.standard_id.indexOf("glossary:") !== 0) return;
+    if (kinds.indexOf(rule.kind) !== -1) return;
+    var texts = rule.strings.map(function (s) {
+      return s.parts.map(function (part) { return part[0]; }).join("");
+    }).filter(function (text) {
+      return readsAsCopy(text) && checkText(text, entries, company).problems.some(function (p) { return p.term === rule.term; });
+    }).sort(function (a, b) { return a.length - b.length; });
+    if (!texts.length) return;
+    picked.push(texts[0]);
+    kinds.push(rule.kind);
+  });
+  return picked;
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { checkText: checkText, sampleLines: sampleLines };
+}
