@@ -28,6 +28,8 @@ from audit.terms import AUTHORITY
 
 TEMPLATE = Path(__file__).parent / "viewer.html"
 PLACEHOLDER = "__AUDIT_DATA__"
+CHECK_SCRIPT = Path(__file__).parent / "viewer_check.js"
+CHECK_PLACEHOLDER = "__CHECK_TEXT_JS__"
 
 # A headline card opens one of these tabs, searched for the card's term. A patterns card
 # opens the Patterns tab at one pattern, so its term is a pattern_id.
@@ -301,7 +303,9 @@ def render(
     data = build_data(
         target, today or date.today(), editable=editable, evidence_only=evidence_only
     )
-    return TEMPLATE.read_text(encoding="utf-8").replace(PLACEHOLDER, embed(data))
+    page = TEMPLATE.read_text(encoding="utf-8")
+    page = page.replace(CHECK_PLACEHOLDER, CHECK_SCRIPT.read_text(encoding="utf-8"))
+    return page.replace(PLACEHOLDER, embed(data))
 
 
 def run(
