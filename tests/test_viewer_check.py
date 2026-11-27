@@ -46,7 +46,7 @@ def load_python_checker() -> ModuleType:
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    module.COMPANY = COMPANY
+    vars(module)["COMPANY"] = COMPANY
     return module
 
 
