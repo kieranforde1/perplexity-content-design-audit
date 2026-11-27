@@ -8,7 +8,7 @@ Organization settings is written two ways,"""Organization Settings"" and ""Organ
 The Comet data deletion article still says Spaces,"Spaces became Projects, but this article wasn't updated.",findings,Space
 A saved conversation is a session in Help and a thread in the docs,"The help article's URL also still says thread.",findings,thread
 The admin role has four names,"Help says organization admin, Enterprise admin and organization administrator. The docs mostly say org admin. The roles page says Admin.",findings,Enterprise admin
-One cookbook page says API Group instead of Project,"It also says API Group administrator. Other docs pages say Project and Project administrator.",findings,API Group
+One cookbook page says API Group instead of Project,"It also says API Group administrator. Other docs pages say Project and Project administrator.",glossary,API Group
 The audit key has two names,"Docs say ""audit log API key"". Help says ""Audit API key"". Each has its own heading about creating one.",findings,Audit API key
 One help sentence uses both sidecar and Assistant panel,"""Send to sidecar to continue the conversation in your Assistant panel.""",findings,sidecar
 The setting that adds credits automatically has four names,"Auto reload, auto top-up, Automatic Top Up or auto_recharge, depending on the page.",findings,Auto reload

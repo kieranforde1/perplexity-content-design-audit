@@ -42,9 +42,12 @@ def test_viewer_is_offline_and_labelled(tmp_path: Path) -> None:
     # hidden unless the page is served by `audit review`.
     tabs = re.findall(r'role="tab" id="tab-([a-z-]+)"[^>]*?(hidden)?>', html)
     assert [t for t, hidden in tabs if not hidden] == [
-        "overview", "findings", "patterns", "glossary", "source",
+        "overview", "check", "patterns", "glossary", "source",
     ]
+    assert ">Check</button>" in html and ">Findings</button>" not in html
     assert ">Source data</button>" in html
+    # headlines.csv keeps `findings` as the tab's value, and a card names the tab Check.
+    assert 'findings: "Check"' in html
 
 
 def test_page_asks_crawlers_not_to_index_or_train(tmp_path: Path) -> None:
@@ -88,23 +91,125 @@ FINDING = {
 }
 
 
-def test_glossary_and_findings_are_included(tmp_path: Path) -> None:
+def test_glossary_and_rules_are_included(tmp_path: Path) -> None:
     target = make_target(tmp_path)
     normal = snippets.read(target.public_snippets)[1]
     add_glossary_and_findings(target, f"{normal.id} notarealid")
     data = view.build_data(target, date(2026, 11, 26))
     assert data["glossary"] == glossary.read(target.glossary)
-    assert data["findings"] == [
-        FINDING | {"snippet_ids": f"{normal.id} notarealid", "evidence": [
-            {"id": normal.id, "excerpt": "Use the Search API.", "source_url": normal.source_url},
-            # An ID the table doesn't have still shows, so the gap is visible.
-            {"id": "notarealid", "excerpt": "", "source_url": ""},
-        ]}
-    ]
+    assert data["rules"] == [{
+        "standard_id": "glossary:Search API", "kind": "write", "term": "Search API",
+        "use_instead": "", "wording": "", "forms": ["search API"],
+        "categories": ["capitalisation"], "count": 2, "surfaces": ["docs"],
+        # "Search API" is the glossary form, so nothing in this string is marked.
+        "strings": [{
+            "id": normal.id, "parts": [("Use the Search API.", False)],
+            "source_url": normal.source_url,
+        }],
+        # An ID the table doesn't have is still counted, so the gap is visible.
+        "more": {"strings": 1, "pages": []},
+    }]
     assert data["overview"]["glossary_terms"] == 2  # type: ignore[index]
-    assert data["overview"]["findings"] == 1  # type: ignore[index]
-    # The Findings tab groups by category in the order `audit check` defines.
-    assert data["allowed"]["finding_category"] == list(check.CATEGORIES)  # type: ignore[index]
+    assert data["overview"]["rules"] == 1  # type: ignore[index]
+    assert data["overview"]["breaking_strings"] == 2  # type: ignore[index]
+    # The Check tab offers categories in reading order.
+    assert data["allowed"]["finding_category"] == list(view.READING_ORDER)  # type: ignore[index]
+    assert set(view.READING_ORDER) == set(check.CATEGORIES)
+
+
+def finding(standard_id: str, category: str, ids: list[str], **more: str) -> dict[str, str]:
+    return FINDING | {
+        "standard_id": standard_id, "category": category, "term": standard_id.split(":")[1],
+        "snippet_ids": " ".join(ids), "count": str(len(ids)),
+    } | more
+
+
+def snippet(text: str, url: str, excerpt: bool = True) -> snippets.Snippet:
+    s = snippets.build(text, "sentence", url, "help", "other", "2026-11-25", "crawl")
+    return s if excerpt else replace(s, excerpt="")
+
+
+GLOSSARY = [
+    {"term": "Widget", "status": "avoid", "use_instead": "Tool"},
+    {"term": "Gizmo", "status": "avoid", "use_instead": ""},
+    {"term": "Gadget", "status": "deprecated", "use_instead": "Tool"},
+    {"term": "API key", "status": "use", "use_instead": ""},
+]
+
+
+def test_findings_for_one_rule_become_one_row() -> None:
+    a = snippet("Open the Widget here.", "https://e.com/a")
+    b = snippet("Widgets help.", "https://e.com/b")
+    by_id = {s.id: s for s in (a, b)}
+    findings = [
+        # The same string on two surfaces' findings is still one string.
+        finding("glossary:Widget", "avoided term", [a.id], surfaces="help",
+                written="'Widget' (1)"),
+        finding("glossary:Widget", "avoided term", [b.id, a.id], surfaces="docs help",
+                written="'Widgets' (1), 'Widget' (1)"),
+    ]
+    (rule,) = view.check_rules(findings, GLOSSARY, {}, by_id, "Example")
+    assert rule["kind"] == "replace" and rule["use_instead"] == "Tool"
+    assert rule["count"] == 2
+    assert rule["surfaces"] == ["docs", "help"]
+    assert rule["forms"] == ["Widget", "Widgets"]
+    # The words that break the rule are marked.
+    assert rule["strings"][0]["parts"] == [  # type: ignore[index]
+        ("Open the ", False), ("Widget", True), (" here.", False),
+    ]
+
+
+def test_rules_are_stated_from_the_data_and_sorted_for_reading() -> None:
+    s = snippet("Copy the API Key, then the API-key.", "https://e.com/a")
+    by_id = {s.id: s}
+    findings = [
+        finding("glossary:API key", "capitalisation", [s.id], written="'API Key' (1)"),
+        finding("glossary:API key", "spelling or spacing", [s.id], written="'API-key' (1)"),
+        finding("glossary:Gizmo", "avoided term", [s.id, "x1", "x2"]),
+        finding("glossary:Widget", "avoided term", [s.id]),
+        finding("glossary:Gadget", "deprecated name", [s.id]),
+        finding("pattern:reset-link", check.PATTERN_CATEGORY, [s.id]),
+    ]
+    wordings = {"reset-link": "Check your email for a reset link."}
+    rules = view.check_rules(findings, GLOSSARY, wordings, by_id, "Example")
+    # Patterns first, then retired names, words to avoid (most strings first), capitals.
+    assert [(r["standard_id"], r["kind"]) for r in rules] == [
+        ("pattern:reset-link", "pattern"),
+        ("glossary:Gadget", "retired"),
+        ("glossary:Gizmo", "avoid"),
+        ("glossary:Widget", "replace"),
+        ("glossary:API key", "write"),
+    ]
+    assert rules[0]["wording"] == "Check your email for a reset link."
+    api_key = rules[-1]
+    assert api_key["categories"] == ["capitalisation", "spelling or spacing"]
+    assert api_key["forms"] == ["API Key", "API-key"]
+    assert [p for p, marked in api_key["strings"][0]["parts"] if marked] == [  # type: ignore[index]
+        "API Key", "API-key",
+    ]
+
+
+def test_strings_without_text_are_one_line_with_their_pages() -> None:
+    shown = snippet("Open the Widget here.", "https://e.com/a")
+    hidden = [snippet(f"Widget number {n}.", f"https://e.com/{n % 2}", excerpt=False)
+              for n in range(3)]
+    by_id = {s.id: s for s in [shown, *hidden]}
+    ids = [shown.id] + [s.id for s in hidden]
+    (rule,) = view.check_rules(
+        [finding("glossary:Widget", "avoided term", ids)], GLOSSARY, {}, by_id, "Example"
+    )
+    assert [s["id"] for s in rule["strings"]] == [shown.id]  # type: ignore[attr-defined]
+    # Three strings on two pages, each page listed once.
+    assert rule["more"] == {"strings": 3, "pages": ["https://e.com/0", "https://e.com/1"]}
+
+
+def test_check_tab_says_more_strings_once_not_per_string(tmp_path: Path) -> None:
+    html = view.run(make_target(tmp_path), log=lambda _: None).read_text()
+    assert '"more string"' in html and '"more strings"' in html
+    assert "Not in this copy" not in html
+    # The generated sentence and the team question aren't on the Check tab.
+    script = html.split("// Check:", 1)[1].split("// Patterns", 1)[0]
+    assert ".issue" not in script and ".question" not in script
 
 
 def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -> None:
@@ -122,15 +227,15 @@ def test_evidence_only_build_uses_committed_rows_with_excerpts(tmp_path: Path) -
 
     data = view.build_data(target, date(2026, 11, 26), evidence_only=True)
     assert data["snippets"] == [asdict(hostile)]
-    assert "only the strings that back a finding" in str(data["notice"])
+    assert "only the strings cited as evidence" in str(data["notice"])
     # The numbers still count every committed row, not just the ones with an excerpt.
     assert data["overview"]["strings"] == 2  # type: ignore[index]
-    # The dropped row's excerpt is gone, but the finding still links to its page.
-    assert data["findings"] == [
-        FINDING | {"snippet_ids": normal.id, "evidence": [
-            {"id": normal.id, "excerpt": "", "source_url": normal.source_url},
-        ]}
-    ]
+    # The dropped row's excerpt is gone, but the rule still links to its page.
+    rules = data["rules"]
+    assert isinstance(rules, list)
+    (rule,) = rules
+    assert rule["strings"] == []
+    assert rule["more"] == {"strings": 1, "pages": [normal.source_url]}
 
     out = view.run(target, evidence_only=True, log=lambda _: None)
     assert out.name == "evidence.html"
@@ -160,15 +265,17 @@ def test_front_page_numbers(tmp_path: Path) -> None:
     )
     snippets.write(target.public_snippets, [*snippets.read(target.public_snippets), typed_row])
     write_csv(target.data_dir / "findings.csv", check.FINDING_COLUMNS, [
-        FINDING,
-        FINDING | {"finding_id": "def", "category": "avoided term"},
-        FINDING | {"finding_id": "ghi", "category": "avoided term"},
+        FINDING | {"snippet_ids": "a b"},
+        FINDING | {"finding_id": "def", "category": "avoided term", "snippet_ids": "b c"},
+        FINDING | {"finding_id": "ghi", "standard_id": "glossary:Widget", "snippet_ids": "d"},
     ])
     data = view.build_data(target, date(2026, 11, 26))
     assert data["overview"] == {
         # A typed app string is a string, but it has no public page.
-        "pages": 2, "app_strings": 1, "strings": 3, "glossary_terms": 0, "findings": 3,
-        "patterns": 0,
+        "pages": 2, "app_strings": 1, "strings": 3, "glossary_terms": 0,
+        # A string that breaks two findings is counted once, and two findings of one
+        # rule are one rule.
+        "breaking_strings": 4, "rules": 2, "patterns": 0,
     }
     # No local cache here, so the page says most of the text is missing.
     assert "audit extract" in str(data["notice"])

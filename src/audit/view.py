@@ -24,6 +24,7 @@ from pathlib import Path
 from audit import check, evidence, glossary, pattern_table, snippets, typed
 from audit.config import Target
 from audit.snippets import Snippet
+from audit.terms import AUTHORITY
 
 TEMPLATE = Path(__file__).parent / "viewer.html"
 PLACEHOLDER = "__AUDIT_DATA__"
@@ -76,7 +77,7 @@ def read_headlines(path: Path, pattern_ids: set[str] | None = None) -> list[dict
 def overview(
     rows: list[Snippet],
     glossary_rows: list[dict[str, str]],
-    findings: Sequence[Mapping[str, object]],
+    findings: Sequence[Mapping[str, str]],
     pattern_rows: Sequence[Mapping[str, object]],
 ) -> dict[str, object]:
     """The numbers in the front page's steps. Counted before an evidence-only build drops
@@ -87,22 +88,119 @@ def overview(
         "app_strings": sum(1 for s in rows if s.method == "typed"),
         "strings": len(rows),
         "glossary_terms": len(glossary_rows),
-        "findings": len(findings),
+        # A string that breaks two rules is counted once.
+        "breaking_strings": len({i for f in findings for i in f["snippet_ids"].split()}),
+        "rules": len({f["standard_id"] for f in findings}),
         "patterns": len(pattern_rows),
     }
 
 
-def finding_evidence(finding: dict[str, str], by_id: dict[str, Snippet]) -> list[dict[str, str]]:
-    """Each snippet a finding counts, with its excerpt if this build has one."""
-    found = []
-    for snippet_id in finding.get("snippet_ids", "").split():
-        s = by_id.get(snippet_id)
-        found.append({
-            "id": snippet_id,
-            "excerpt": s.excerpt if s else "",
-            "source_url": s.source_url if s else "",
-        })
-    return found
+# The Check tab's default order: the problems a newcomer understands at once come first, so
+# one message in many wordings, then old names and two spellings of one thing. Style
+# choices come last.
+READING_ORDER = (
+    check.PATTERN_CATEGORY, "deprecated name", "other variant", "avoided term",
+    "capitalisation", "spelling or spacing",
+)
+# A finding's `written` column quotes up to three forms, each with its count.
+QUOTED_FORM = re.compile(r"'(.*?)' \(\d+\)(?:, |$)")
+
+
+def string_parts(text: str, spans: list[tuple[int, int]]) -> list[tuple[str, bool]]:
+    """The text cut into pieces, each marked True if it breaks the rule."""
+    parts: list[tuple[str, bool]] = []
+    at = 0
+    for start, end in sorted(spans):
+        if start < at:
+            continue
+        if start > at:
+            parts.append((text[at:start], False))
+        parts.append((text[start:end], True))
+        at = end
+    if at < len(text):
+        parts.append((text[at:], False))
+    return parts
+
+
+def rule_kind(source: str, entry: dict[str, str] | None) -> str:
+    """How the Check tab states a rule: "pattern" (one string to reuse), "write" (the
+    glossary form), "replace" or "retired" (a word and what to use instead), or "avoid"
+    (a word with nothing to use instead)."""
+    if entry is None:
+        return "pattern" if source == "pattern" else "avoid"
+    if entry["status"] == "use":
+        return "write"
+    if not entry["use_instead"].strip():
+        return "avoid"
+    return "retired" if entry["status"] == "deprecated" else "replace"
+
+
+def check_rules(
+    findings: list[dict[str, str]],
+    glossary_rows: list[dict[str, str]],
+    wordings: dict[str, str],
+    by_id: dict[str, Snippet],
+    company: str,
+) -> list[dict[str, object]]:
+    """One row per rule for the Check tab. A rule can have several findings, one per
+    surface or kind of variant, so they're put together and each string counted once.
+
+    Strings with text in this build are listed with the words that break the rule marked.
+    The rest are counted, with the pages they're on, so the reader can still open them.
+    `wordings` is each pattern's shared wording, by pattern_id."""
+    by_rule: dict[str, list[dict[str, str]]] = {}
+    for f in findings:
+        by_rule.setdefault(f["standard_id"], []).append(f)
+    entries = {g["term"]: g for g in glossary_rows}
+    ranked: list[tuple[tuple[int, int, str], dict[str, object]]] = []
+    for standard_id, group in by_rule.items():
+        source, _, name = standard_id.partition(":")
+        entry = entries.get(name) if source == "glossary" else None
+        kind = rule_kind(source, entry)
+        categories = [c for c in READING_ORDER if any(f["category"] == c for f in group)]
+        ids = list(dict.fromkeys(i for f in group for i in f["snippet_ids"].split()))
+        forms = list(dict.fromkeys(
+            form for f in group for form in QUOTED_FORM.findall(f["written"])
+        ))
+        marked: list[dict[str, object]] = []
+        unmarked: list[dict[str, object]] = []
+        hidden: list[str] = []
+        for snippet_id in ids:
+            s = by_id.get(snippet_id)
+            if s and s.excerpt:
+                spans = check.marks(entry, s.excerpt, s.kind, company) if entry else []
+                # An excerpt stops at 20 words, so the words that break a glossary rule
+                # can fall past its end. Strings that show them go first.
+                (marked if spans or not entry else unmarked).append({
+                    "id": snippet_id,
+                    "parts": string_parts(s.excerpt, spans),
+                    "source_url": s.source_url,
+                })
+            else:
+                hidden.append(s.source_url if s else "")
+        shown = marked + unmarked
+        surfaces = {s for f in group for s in f["surfaces"].split()}
+        rule: dict[str, object] = {
+            "standard_id": standard_id,
+            "kind": kind,
+            "term": name,
+            "use_instead": entry["use_instead"].strip() if entry else "",
+            "wording": wordings.get(name, "") if source == "pattern" else "",
+            # Only other spellings are shown next to the rule. A word to avoid is wrong in
+            # any form, but every form is searchable.
+            "forms": forms if source == "glossary" else [],
+            "categories": categories,
+            "count": len(ids),
+            "surfaces": [s for s in AUTHORITY if s in surfaces],
+            "strings": shown,
+            "more": {
+                "strings": len(hidden),
+                "pages": list(dict.fromkeys(url for url in hidden if url)),
+            },
+        }
+        rank = READING_ORDER.index(categories[0]) if categories else len(READING_ORDER)
+        ranked.append(((rank, -len(ids), name.lower()), rule))
+    return [rule for _, rule in sorted(ranked, key=lambda pair: pair[0])]
 
 
 def how_to_use(note: str) -> str:
@@ -139,15 +237,14 @@ def build_data(
     target: Target, today: date, *, editable: bool = False, evidence_only: bool = False
 ) -> dict[str, object]:
     rows, full = evidence.load_table(target, committed_only=evidence_only)
-    # Findings are resolved before rows are dropped, so a finding still links to the page
-    # for a snippet whose excerpt isn't in this build.
+    # Rules are resolved before rows are dropped, so a rule still links to the page for a
+    # snippet whose excerpt isn't in this build.
     by_id = {s.id: s for s in rows}
-    findings = [
-        {**f, "evidence": finding_evidence(f, by_id)}
-        for f in read_csv(target.data_dir / "findings.csv")
-    ]
+    findings = read_csv(target.data_dir / "findings.csv")
     patterns = read_patterns(target, by_id)
     glossary_rows = glossary.read(target.glossary)
+    wordings = {str(p["pattern_id"]): str(p["shared_wording"]) for p in patterns}
+    rules = check_rules(findings, glossary_rows, wordings, by_id, target.display_name)
     numbers = overview(rows, glossary_rows, findings, patterns)
     if evidence_only:
         rows = [s for s in rows if s.excerpt]
@@ -155,7 +252,7 @@ def build_data(
     # Said on the Source data tab, only when it holds fewer strings than the numbers count.
     if evidence_only:
         notice = (
-            "This copy shows only the strings that back a finding. "
+            "This copy shows only the strings cited as evidence. "
             "The full table stays on the computer that built it."
         )
     elif not full:
@@ -178,8 +275,8 @@ def build_data(
             "stage": list(snippets.STAGES),
             "glossary_status": list(glossary.STATUSES),
             "glossary_basis": list(glossary.BASES),
-            # The Findings tab offers categories in this order.
-            "finding_category": list(check.CATEGORIES),
+            # The Check tab offers categories in this order.
+            "finding_category": list(READING_ORDER),
         },
         "terms": terms,
         "glossary": glossary_rows,
@@ -187,7 +284,7 @@ def build_data(
         "glossary_proposals": (
             read_csv(target.data_dir / "glossary_proposals.csv") if editable else []
         ),
-        "findings": findings,
+        "rules": rules,
         "patterns": patterns,
         "typed_strings": typed.read(target.typed_strings),
         "snippets": [asdict(s) for s in rows],

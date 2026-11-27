@@ -148,6 +148,16 @@ def squash(text: str) -> str:
     return re.sub(r"[\s-]", "", text).lower()
 
 
+def without_plural_es(written: str, allowed: set[str]) -> str:
+    """'Pro Searches' is the plural of 'Pro Search', not another spelling.
+
+    `terms.shape` drops a final 's', which leaves 'Pro Searche', so the 'e' goes too when
+    that leaves an allowed form in any case. A change of case is still reported."""
+    if written.endswith("e") and written[:-1].lower() in {a.lower() for a in allowed}:
+        return written[:-1]
+    return written
+
+
 def variant_category(written: str, allowed: set[str]) -> str:
     """What kind of variant a spelling is, compared with the forms allowed in its place."""
     if written.lower() in {a.lower() for a in allowed}:
@@ -277,6 +287,52 @@ def avoid_findings(
     return findings
 
 
+def spelling_of(term: str, form: str, text: str, start: int, kind: str, company: str) -> str | None:
+    """How one use of a term to use is written: "" for the glossary form, a category for
+    another spelling, or None where it isn't compared at all."""
+    group = terms.group_of(kind)
+    if group is None:
+        return None
+    written = terms.shape(form, company)
+    if written == written.lower() and term != term.lower():
+        return None
+    # ALL CAPS is styling, usually a header, not a different spelling.
+    if len(written) > 1 and written == written.upper() and term != term.upper():
+        return None
+    # "AI Assistant" is the name of one thing, not a variant of "AI assistants". Only
+    # this direction is skipped: a plural of a singular term ("API Keys") still has
+    # its capitals to compare.
+    if is_plural(term) and not is_plural(form):
+        return None
+    at_start = not terms.is_mid_sentence(text, start)
+    allowed = expected_shapes(term, group, at_start, company)
+    written = without_plural_es(written, allowed)
+    if written in allowed:
+        return ""
+    return variant_category(written, allowed)
+
+
+def marks(entry: dict[str, str], text: str, kind: str, company: str) -> list[tuple[int, int]]:
+    """Where a string breaks a glossary rule, so the viewer can highlight those words.
+
+    It uses the same tests as the check itself, on the string's own text."""
+    term = entry["term"]
+    found = []
+    for match in terms.form_pattern(term, company).finditer(text):
+        start, end = match.start(), match.end()
+        if terms.inside_identifier(text, start, end):
+            continue
+        form = match.group()
+        if entry["status"] in STATUS_CATEGORIES:
+            is_lowercase = form == form.lower() and term != term.lower()
+            if entry["status"] == "deprecated" and is_lowercase:
+                continue
+        elif not spelling_of(term, form, text, start, kind, company):
+            continue
+        found.append((start, end))
+    return found
+
+
 def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) -> list[Finding]:
     """Other spellings of a term to use, with labels and running text kept apart."""
     term = entry["term"]
@@ -284,26 +340,16 @@ def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) 
     by_group: dict[tuple[str, str], list[Use]] = defaultdict(list)
     as_glossary: Counter[str] = Counter()
     for use in uses_of(term, texts, company, target.check.other_things.get(term, ())):
-        group = terms.group_of(use.text.snippet.kind)
-        if group is None:
+        kind = use.text.snippet.kind
+        category = spelling_of(term, use.form, use.text.text, use.start, kind, company)
+        if category is None:
             continue
-        written = terms.shape(use.form, company)
-        if written == written.lower() and term != term.lower():
-            continue
-        # ALL CAPS is styling, usually a header, not a different spelling.
-        if len(written) > 1 and written == written.upper() and term != term.upper():
-            continue
-        # "AI Assistant" is the name of one thing, not a variant of "AI assistants". Only
-        # this direction is skipped: a plural of a singular term ("API Keys") still has
-        # its capitals to compare.
-        if is_plural(term) and not is_plural(use.form):
-            continue
-        at_start = not terms.is_mid_sentence(use.text.text, use.start)
-        allowed = expected_shapes(term, group, at_start, company)
-        if written in allowed:
-            as_glossary[group] += 1
+        group = terms.group_of(kind)
+        assert group is not None
+        if category:
+            by_group[(group, category)].append(use)
         else:
-            by_group[(group, variant_category(written, allowed))].append(use)
+            as_glossary[group] += 1
     findings = []
     for group in ("labels", "running"):
         for category in CATEGORIES:
