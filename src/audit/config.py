@@ -102,6 +102,9 @@ class Target:
     patterns: PatternSettings = PatternSettings()
     max_committed_excerpts: int = 500
     evidence_per_finding: int = 5
+    # The skill's folder name (at the top of the repo) and its title.
+    skill_name: str = "content-standards"
+    skill_title: str = "Content standards"
 
     def stage_for(self, url: str) -> str:
         """First rule whose `match` text appears in the URL wins. No match means 'other'."""
@@ -249,4 +252,6 @@ def load(name: str, root: Path = Path(".")) -> Target:
         patterns=pattern_settings,
         max_committed_excerpts=int(raw.get("max_committed_excerpts", 500)),
         evidence_per_finding=int(raw.get("evidence_per_finding", 5)),
+        skill_name=str((raw.get("skill") or {}).get("name", Target.skill_name)),
+        skill_title=str((raw.get("skill") or {}).get("title", Target.skill_title)),
     )

@@ -1,10 +1,10 @@
 ---
-name: content-standards
+name: pplx-content
 description: "Load when writing, auditing, repairing or reviewing product text for Perplexity: navigation labels, buttons, headings, error messages, empty states, settings, docs pages and help articles. Also load when naming, renaming or retiring a feature, when a message is said in more than one place, and when checking a draft against the glossary. Brand voice and visual identity go to Perplexity's published Brand Hub. Charts and data visuals go to Perplexity's own chart skill, pplx-graph. Built from an outside-in audit of public sources. Unofficial."
 license: MIT
 compatibility: "Python 3.9 or later, standard library only, for scripts/check_text.py."
 metadata:
-  version: '0.2'
+  version: '0.3'
   target: 'perplexity'
   generated_by: 'audit skill --target perplexity'
   evidence_captured: '2026-11-25 to 2026-11-27'
@@ -12,24 +12,23 @@ metadata:
 
 > Unofficial: built from Perplexity's public, first-party text by an outside-in audit, not by Perplexity.
 
-## Gates: read first
+## Four rules for every draft
 
-These hold for every piece of text. A script or a file settles each one, not taste.
-
-1. **Terms come from `references/glossary.csv`.** The gate is `python scripts/check_text.py <file>` exiting 0 on the draft.
-2. **A message that matches a pattern uses its string** from `references/patterns.csv`, word for word, with only the [slots] filled in.
-3. **A request that breaks a gate isn't applied silently.** Name the rule it breaks and ask the content owner for that surface, a role and not a named person. If they can't be reached, ship the version that follows the rule and list the request as an open decision.
-4. **A rule needs a source or counted evidence.** Without one, suggest it as a candidate for the glossary or the patterns. Don't add it here.
+1. **Use the glossary's words.** Before you hand over any text, run `python scripts/check_text.py draft.txt`. It must report nothing.
+2. **If the message already has a string, use it.** Check the list under Patterns. Copy the string from `references/patterns.csv` and change only the words in [brackets].
+3. **Don't break a rule because someone asked.** Say which rule the request breaks and ask whoever owns that part of the product. If you can't reach them, ship the version that follows the rule and note the request.
+4. **Don't add a rule without evidence.** A new term or string needs a source link or counted examples. Without one, suggest it instead of adding it.
 
 ## Changelog
 
-- **0.2** (evidence to 2026-11-27): Terms and patterns are generated from the audit's glossary and patterns table. Added the text check script, the content contract, the QA report and benchmark prompts. Read `references/glossary.csv` and `references/patterns.csv`.
+- **0.3** (evidence to 2026-11-27): Renamed pplx-content. The rules are rewritten in plain words. The full term list and the pattern strings moved to `references/`, so this file holds only what you need while drafting.
+- **0.2:** Terms and patterns generated from the audit. Added the check script, the content contract, the QA report and the test prompts.
 - **0.1:** Skeleton. Format only, no rules.
 
-# Content standards
+# PPLX Content
 
-This skill helps a writer, or an AI writing tool, use Perplexity's settled terms and shared strings in new text, and check a draft the same way every time.
-It exists to prevent wording drift: one thing named three ways, a retired name that lives on, and one message said differently on every page.
+`pplx-content` is a working guide for Perplexity product text: which words to use, which strings to reuse, and a script that checks a draft the same way every time.
+It exists to stop wording drift: one thing with three names, a retired name that lives on, and one message written differently on every page.
 
 ## Load this skill for
 
@@ -64,146 +63,75 @@ The surface decides the track, and the track decides what matters most.
 
 ## References
 
-- `references/glossary.csv`: every settled term, with its status (use, avoid or deprecated), the replacement, a definition, its basis and a source link. Read it when a draft names a product, feature, plan, role or setting, and when the script flags a word.
-- `references/patterns.csv`: every pattern, with its message, the shared wording to reuse, how to use it and an open question for the team. Read it when the contract's message matches a pattern below.
+- `references/glossary.csv`: every term, with whether to use it, avoid it or treat it as retired, what to write instead, what it means, and where the rule comes from. Read it when a draft names a product, feature, plan, role or setting, and when the script flags a word.
+- `references/patterns.csv`: every pattern, with its message, the string to reuse, how to use it, and a question the team hasn't answered yet. Read it when your message is in the list under Patterns.
 - `scripts/check_text.py`: checks a draft against the glossary. Run it on every draft before the QA report.
 
 ## Terms
 
-106 glossary rows: 9 published by Perplexity, 64 observed in its public text and 33 recommended by this audit. Only published rows are Perplexity's own rules. Each row's basis and source are in `references/glossary.csv`.
-
-### Use
-
-Write these as shown, including capitals. A plural, or Perplexity in front, is the same term.
-
-Agent API, Agent API models, AI assistants, AI models, AI-powered, API Console, API key, API project, API reference, App Connectors, Assistant panel, audit log API key, automatic top-up, Brain, Chat Completions, Comet, Comet Assistant, Comet Browser, Computer, Computer credits, Connectors, Content Generation, Credits, Deep Research, Discover, Enterprise, Enterprise Max, Enterprise Pro, Enterprise users, Fast Search, File Connectors, File Uploads, Free plan, Health, Help Center, Home, Incognito, Incognito mode, MCP server, Model Council, Monitor API, My organization, Orchestrator API, organization admin, organization analytics API key, Organization settings, OS, People Search, Perplexity API Platform, Perplexity Enterprise organizations, Perplexity Max, Perplexity Pro, Portable Computer, Pro Search, Project, Role-based, Search API, Session, Sessions page, Skills, Teammate, Trust Center.
+`references/glossary.csv` has 106 terms. 9 come from Perplexity's own pages, 64 from how its public text uses them, and 33 are this audit's suggestions.
 
 ### Retired names
 
 | Retired name | Current name |
 | --- | --- |
-| Space | Project |
-| Sonar | Agent API |
-| Focus | Choose sources |
-| preset | effort |
-| fast-search | fast (effort level) |
-| SharePoint connector | Microsoft 365 connector |
-| OneDrive connector | Microsoft 365 connector |
 | Azure AD | Microsoft Entra ID |
-| Workflows | Skills |
+| fast-search | fast (effort level) |
+| Focus | Choose sources |
+| OneDrive connector | Microsoft 365 connector |
+| preset | effort |
 | seat-tier caps | usage limits |
+| SharePoint connector | Microsoft 365 connector |
+| Sonar | Agent API |
+| Space | Project |
+| Workflows | Skills |
 
 ### Words to avoid
 
 | Avoid | Instead |
 | --- | --- |
-| Disabled | turned off |
-| API Portal, portal | API Console |
-| Enterprise-grade | Reword without it |
-| disable | turn off |
-| whitelist | allowlist |
-| master | main switch, main toggle |
-| sanity check | quick check |
-| blind | gaps, can't see |
-| kill | stop, end |
-| comprehensive | Say what's covered, for example "reads hundreds of sources" |
-| leverage | use |
-| robust | Name the safeguard or behaviour |
-| simply | Delete the word |
-| thread | session |
-| Enterprise admin, Enterprise administrator, organization administrator, org admin | organization admin |
-| API Group | API project |
-| Audit API key | audit log API key |
 | Analytics API key | organization analytics API key |
-| sidecar | Assistant panel |
-| Browser Agent (Comet Assistant) Queries, browser agent queries | Comet Assistant queries |
+| API Group | API project |
+| API Portal, portal | API Console |
+| Audit API key | audit log API key |
 | Auto reload, auto top-up | automatic top-up |
-| Free (Standard) plan, free Standard tier | Free plan |
+| blind | gaps, can't see |
+| Browser Agent (Comet Assistant) Queries, browser agent queries | Comet Assistant queries |
+| comprehensive | Say what's covered, for example "reads hundreds of sources" |
+| disable | turn off |
+| Disabled | turned off |
 | disabling | turning off |
 | enable | turn on |
 | Enabled | turned on |
 | enabling | turning on |
+| Enterprise admin, Enterprise administrator, org admin, organization administrator | organization admin |
+| Enterprise-grade | Reword without it |
+| Free (Standard) plan, free Standard tier | Free plan |
+| kill | stop, end |
+| leverage | use |
 | leveraging | using |
+| master | main switch, main toggle |
+| robust | Name the safeguard or behaviour |
+| sanity check | quick check |
+| sidecar | Assistant panel |
+| simply | Delete the word |
+| thread | session |
+| whitelist | allowlist |
 
 ## Patterns
 
-10 messages are said in more than one place. Each one gives the message, then the string to reuse, then how to use it where the audit has a note. Words in [brackets] are slots to fill in each time. The strings are this audit's suggestions, not wording Perplexity has published. Each pattern's open question for the team is in `references/patterns.csv`.
+These 10 messages each have one string to reuse, in `references/patterns.csv`. The strings are this audit's suggestions, not wording Perplexity has published.
 
-### api-key-setup
-
-To call the API, create an API key in the API Console and set it as an environment variable.
-
-> Create an API key on the API Keys page of the API Console. Set it as the PERPLEXITY_API_KEY environment variable.
-
-### api-console-sign-in
-
-The docs and the Help Center each explain how to sign in to the API Console, and the two pages should say the same thing.
-
-> Signing in creates a Perplexity account. It doesn't give you an API project or API access on its own.
-
-Keep one of the two pages as the source and link to it from the other.
-
-### turned-off-by-organization
-
-An organization admin has turned this off for you, so you can't use it.
-
-> Turned off by your organization: an organization admin has turned this off.
-
-Use this status for connectors, local file access and custom connectors alike, in one status set shown in a fixed order: Connected, Connect, Upgrade required, Unavailable, Turned off by your organization.
-
-### ask-organization-admin
-
-You can't fix this yourself, so ask your organization admin and say what to ask for.
-
-> Ask your organization admin to [the specific action].
-
-Example: Ask your organization admin to turn on desktop tools.
-
-### plan-one-liners
-
-Each plan has one line that says who it's for and what it gives you.
-
-> Free plan: Cited answers from the web, with [daily or weekly] limits. Perplexity Pro: Higher limits, top AI models and Computer, for serious work. Perplexity Max: The highest limits and newest models, for heavy, sustained work.
-
-Use the same line on the pricing card, the pricing FAQ, the Help Center and the app.
-
-### computer-plan-features
-
-The Computer feature list says what Computer can do on Perplexity Pro and on Perplexity Max.
-
-> Both plans: Create and edit documents, slides and spreadsheets. Both plans: Connect 400+ apps. Perplexity Pro: Deep Research. Perplexity Max: Expert-level research and data analysis.
-
-One feature list: a row both plans have reads the same on both, and a Perplexity Max row only says what's more.
-
-### teammates-definition
-
-One line says what Teammates are, and one says who can use them.
-
-> Teammates are AI agents that own ongoing work. They keep working while you're away, using your tools and context. Research preview on Perplexity Max, Enterprise Pro and Enterprise Max.
-
-The second sentence is optional where space is short.
-
-### enterprise-data-protection
-
-Connector pages say whether connected data is used to train AI models, and which security protections Enterprise organizations get.
-
-> Will my [Connector] data be used to train AI models? No. [Connector] data, like all Enterprise data, is never used to train AI models. Perplexity Enterprise organizations get SOC 2 Type II certification, end-to-end encryption, strict data privacy measures and granular user access controls.
-
-One fixed block on every connector page, with one slot for the connector name.
-
-### plans-that-include
-
-A connector or feature page says which plans include it.
-
-> Available on Perplexity Pro, Perplexity Max, Enterprise Pro and Enterprise Max.
-
-Always list the plans in that order, and leave out any plan that doesn't apply.
-
-### subscription-ends
-
-When a paid subscription ends, the account moves to the Free plan.
-
-> Your account moves to the Free plan when your current billing period ends.
+- `api-key-setup`: To call the API, create an API key in the API Console and set it as an environment variable.
+- `api-console-sign-in`: The docs and the Help Center each explain how to sign in to the API Console, and the two pages should say the same thing.
+- `turned-off-by-organization`: An organization admin has turned this off for you, so you can't use it.
+- `ask-organization-admin`: You can't fix this yourself, so ask your organization admin and say what to ask for.
+- `plan-one-liners`: Each plan has one line that says who it's for and what it gives you.
+- `computer-plan-features`: The Computer feature list says what Computer can do on Perplexity Pro and on Perplexity Max.
+- `teammates-definition`: One line says what Teammates are, and one says who can use them.
+- `enterprise-data-protection`: Connector pages say whether connected data is used to train AI models, and which security protections Enterprise organizations get.
+- `plans-that-include`: A connector or feature page says which plans include it.
+- `subscription-ends`: When a paid subscription ends, the account moves to the Free plan.
 
 ## Blocking rule
 
@@ -310,7 +238,7 @@ When writing text, return:
 When auditing text, return:
 
 1. A verdict
-2. The problems, each with the term, pattern or gate it breaks
+2. The problems, each with the term, pattern or rule it breaks
 3. Required changes
 4. Optional changes
 5. The QA report
@@ -332,7 +260,7 @@ Use these to test the skill. Most have an answer that the glossary or a pattern 
 - Write the help text for this message: When a paid subscription ends, the account moves to the Free plan.
 - Rename Space to Project in a help article, and keep the old name findable once.
 - Repair a draft that uses 'Disabled', 'API Portal' and 'disable'.
-- A request asks for 'whitelist' on a settings page. Answer as the gates say.
+- A request asks for 'whitelist' on a settings page. Answer as the rules say.
 - Fix the term in this sentence: "This works on Enterprise pro."
 - Write the empty state for a list the reader hasn't added anything to yet.
 - Decide whether a new feature name belongs in the glossary, and say what evidence it needs.
@@ -341,7 +269,7 @@ Use these to test the skill. Most have an answer that the glossary or a pattern 
 ## Packaging note
 
 ```text
-content-standards/
+pplx-content/
   SKILL.md               this file
   references/
     glossary.csv         106 settled terms, words to avoid and retired names
@@ -352,4 +280,4 @@ content-standards/
 
 `audit skill` generates the whole folder from the audit's `glossary.csv` and `patterns.csv`. Don't edit it by hand. Change the audit data and generate it again, so the audit and the skill can't drift apart.
 
-The layout follows the structure of Perplexity's public, MIT-licensed pplx-graph skill: gates first, a changelog, when to load it, routing, tracks, a blocking rule, an operating flow, a QA report, critique language and benchmark prompts. No text, fonts or assets from that package are included.
+The layout follows Perplexity's public pplx-graph skill: rules first, a changelog, when to load it, routing, tracks, a blocking rule, a way of working, a QA report, critique language and test prompts. No text, fonts or assets from that package are included.

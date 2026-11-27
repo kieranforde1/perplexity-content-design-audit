@@ -18,7 +18,7 @@ a systematic way of solving content problems:
 
 All four steps are built. A person settles the terms in a glossary and picks the real
 patterns, and `audit check` tests the public text against both. `audit skill` turns the
-glossary and the patterns into a content-standards skill that a writer, or an AI writing
+glossary and the patterns into the pplx-content skill that a writer, or an AI writing
 tool, uses on new text. Recommendations, tone and style are paused. Their designs are
 under "Later" in [ROADMAP.md](ROADMAP.md). Don't build them unless the owner asks.
 
@@ -93,9 +93,9 @@ being audited.
 | `src/audit/glossary.py` | Rules for the glossary, used by `audit glossary --check` and by applying proposals |
 | `src/audit/check.py` | `audit check`: tests the public text against the glossary and the patterns table |
 | `src/audit/evidence.py` | Decides which excerpts are committed |
-| `src/audit/skill.py`, `skill_template.md`, `skill_check_text.py` | `audit skill`: builds the content-standards skill from the template and the check script |
+| `src/audit/skill.py`, `skill_template.md`, `skill_check_text.py` | `audit skill`: builds the pplx-content skill from the template and the check script |
 | `data/<target>/` | Committed outputs: the public strings table, terms, term candidates, typed app strings, patterns, front-page headlines |
-| `data/<target>/skill/` | The generated content-standards skill. Committed, never edited by hand |
+| `pplx-content/` | The generated skill, named by the config's `skill.name`. Committed, never edited by hand |
 | `tests/` | One test file per step, plus checks on the committed data |
 
 ### Data contracts
@@ -160,7 +160,7 @@ words at most), tab (findings, glossary or terms) and term. A card opens that ta
 for the term, so the term must be in the glossary. Anything quoted in a line is 20 words
 at most. A test checks both.
 
-`data/<target>/skill/content-standards/` is written by `audit skill` and by nothing
+`pplx-content/` (the folder named by the config's `skill.name`) is written by `audit skill` and by nothing
 else: `SKILL.md`, `references/glossary.csv` (the glossary's columns, copied),
 `references/patterns.csv` (pattern_id, message, shared_wording, how_to_use, question,
 where how_to_use is the first sentence of the proposal's "How to use it:" note) and

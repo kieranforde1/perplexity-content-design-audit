@@ -329,3 +329,9 @@ evidence_per_finding: 5
 
 # Strings from my own use of the web and iOS apps, typed in by hand.
 typed_strings: data/perplexity/typed_strings.csv
+
+# The skill `audit skill` builds, in a folder of this name at the top of the repo. It
+# follows Perplexity's naming for its public skills, and SKILL.md says it's unofficial.
+skill:
+  name: pplx-content
+  title: PPLX Content

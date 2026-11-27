@@ -1,8 +1,14 @@
-"""`audit skill`: build a content-standards skill from the glossary and the patterns.
+"""`audit skill`: build a content skill from the glossary and the patterns.
 
 The skill is what a writer, or an AI writing tool, uses on new text: the settled terms,
 the strings to reuse, and a script that checks a draft the same way every time. It's
-written to data/<target>/skill/content-standards/ and committed.
+written to a folder at the top of the repo, named by the config's `skill.name`, and
+committed.
+
+SKILL.md holds the rules and the way of working, plus the two short lists a writer has
+to keep in mind while drafting (retired names and words to avoid). The full glossary and
+the pattern strings live only in references/, so they're read when needed, not every
+time the skill loads.
 
 Everything in it comes from committed data (glossary.csv, patterns.csv and the "How to
 use it:" start of each note in pattern_proposals.csv), so the audit and the skill can't
@@ -24,10 +30,9 @@ from pathlib import Path
 from audit import glossary, pattern_table, patterns, snippets
 from audit.config import Target
 
-VERSION = "0.2"
+VERSION = "0.3"
 TEMPLATE = Path(__file__).parent / "skill_template.md"
 SCRIPT = Path(__file__).parent / "skill_check_text.py"
-SKILL_NAME = "content-standards"
 PATTERN_COLUMNS = ("pattern_id", "message", "shared_wording", "how_to_use", "question")
 HOW_TO_USE = "How to use it:"
 # Benchmark prompts that don't depend on the data. The rest are built from it.
@@ -39,7 +44,7 @@ GENERAL_PROMPTS = (
 
 
 def skill_dir(target: Target) -> Path:
-    return target.data_dir / "skill" / SKILL_NAME
+    return target.root / target.skill_name
 
 
 def to_csv(columns: tuple[str, ...], rows: list[dict[str, str]]) -> str:
@@ -84,55 +89,56 @@ def brand_link(target: Target) -> str:
     return ""
 
 
+def alphabetical(text: str) -> str:
+    return text.lower()
+
+
 def terms_section(entries: list[dict[str, str]], company: str) -> str:
+    """The two lists a writer keeps in mind while drafting. Everything else about a term,
+    including the words to use, is in references/glossary.csv."""
     bases = {b: sum(1 for e in entries if e["basis"] == b) for b in glossary.BASES}
-    use = sorted((e["term"] for e in entries if e["status"] == "use"), key=str.lower)
     lines = [
-        f"{len(entries)} glossary rows: {bases['published']} published by {company}, "
-        f"{bases['observed']} observed in its public text and {bases['recommendation']} "
-        f"recommended by this audit. Only published rows are {company}'s own rules. Each "
-        "row's basis and source are in `references/glossary.csv`.",
-        "",
-        "### Use",
-        "",
-        f"Write these as shown, including capitals. A plural, or {company} in front, is "
-        "the same term.",
-        "",
-        ", ".join(use) + ".",
+        f"`references/glossary.csv` has {len(entries)} terms. {bases['published']} come "
+        f"from {company}'s own pages, {bases['observed']} from how its public text uses "
+        f"them, and {bases['recommendation']} are this audit's suggestions.",
         "",
         "### Retired names",
         "",
         "| Retired name | Current name |",
         "| --- | --- |",
     ]
-    for e in entries:
-        if e["status"] == "deprecated":
-            lines.append(f"| {cell(e['term'])} | {cell(e['use_instead'])} |")
-    # Words with the same replacement share a row, so the table stays short.
+    retired = [e for e in entries if e["status"] == "deprecated"]
+    for e in sorted(retired, key=lambda e: alphabetical(e["term"])):
+        lines.append(f"| {cell(e['term'])} | {cell(e['use_instead'])} |")
+    # Words with the same replacement share a row, so the table stays short. Rows sort by
+    # the first word to avoid, so a writer can find a word quickly.
     by_replacement: dict[str, list[str]] = {}
     for e in entries:
         if e["status"] == "avoid":
             replacement = e["use_instead"].strip() or "Reword without it"
             by_replacement.setdefault(replacement, []).append(e["term"])
+    avoid_rows = [
+        (sorted(avoided, key=alphabetical), replacement)
+        for replacement, avoided in by_replacement.items()
+    ]
+    avoid_rows.sort(key=lambda row: alphabetical(row[0][0]))
     lines += ["", "### Words to avoid", "", "| Avoid | Instead |", "| --- | --- |"]
-    for replacement, avoided in by_replacement.items():
+    for avoided, replacement in avoid_rows:
         lines.append(f"| {cell(', '.join(avoided))} | {cell(replacement)} |")
     return "\n".join(lines)
 
 
-def patterns_section(rows: list[dict[str, str]]) -> str:
+def patterns_section(rows: list[dict[str, str]], company: str) -> str:
+    """Which messages already have a string. The strings themselves, how to use them and
+    the open questions are in references/patterns.csv."""
     lines = [
-        f"{len(rows)} messages are said in more than one place. Each one gives the message, "
-        "then the string to reuse, then how to use it where the audit has a note. Words "
-        "in [brackets] are slots to fill in each time. The strings are this audit's "
-        "suggestions, not wording Perplexity has published. Each pattern's open question "
-        "for the team is in `references/patterns.csv`.",
+        f"These {len(rows)} messages each have one string to reuse, in "
+        f"`references/patterns.csv`. The strings are this audit's suggestions, not "
+        f"wording {company} has published.",
+        "",
     ]
     for row in rows:
-        lines += ["", f"### {row['pattern_id']}", "", row["message"]]
-        lines += ["", f"> {row['shared_wording']}"]
-        if row["how_to_use"]:
-            lines += ["", row["how_to_use"]]
+        lines.append(f"- `{row['pattern_id']}`: {row['message']}")
     return "\n".join(lines)
 
 
@@ -163,7 +169,7 @@ def benchmark_prompts(
         prompts.append(f"Repair a draft that uses {words[0]}, {words[1]} and {words[2]}.")
     if len(avoided) > 3:
         word = list(avoided.values())[3]
-        prompts.append(f"A request asks for '{word}' on a settings page. Answer as the gates say.")
+        prompts.append(f"A request asks for '{word}' on a settings page. Answer as the rules say.")
     for e in entries:
         # The company name in front doesn't count, so "Perplexity Pro" is one word here.
         words_in = e["term"].split()
@@ -205,6 +211,8 @@ def render(target: Target) -> dict[str, str]:
     company = target.display_name
 
     values = {
+        "skill_name": target.skill_name,
+        "skill_title": target.skill_title,
         "display_name": company,
         "target": target.name,
         "version": VERSION,
@@ -213,7 +221,7 @@ def render(target: Target) -> dict[str, str]:
         "brand_link": brand_link(target),
         "stages": " | ".join(snippets.STAGES),
         "terms": terms_section(entries, company),
-        "patterns": patterns_section(rows),
+        "patterns": patterns_section(rows, company),
         "benchmarks": "\n".join(f"- {p}" for p in benchmark_prompts(entries, rows, company)),
         "term_count": str(len(entries)),
         "pattern_count": str(len(rows)),
