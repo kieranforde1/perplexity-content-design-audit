@@ -14,8 +14,9 @@ Three kinds of finding come out, one row each in data/<target>/findings.csv:
 
 Each finding has a category (see CATEGORIES) and short fields, so the viewer can show
 them as columns. The wording is a content designer's note to the team: what's wrong, the
-fix, and a question only where the answer isn't in the text. The fix says when it's a
-recommendation, so it's never passed off as a published rule. Every finding lists the
+fix, and a question only where the answer isn't in the text. Whether a rule was
+published or is a recommendation is shown once, in the glossary, not repeated on every
+fix. Every finding lists the
 IDs of every snippet it counts, so each one can be traced. Readers see a snippet as a
 "string", so the wording the viewer shows says "string".
 """
@@ -188,15 +189,6 @@ class Finding:
         }
 
 
-def how_firm(entry: dict[str, str], what: str) -> str:
-    """Added to a fix so nobody mistakes our suggestion for the company's own rule."""
-    if entry["basis"] == "published":
-        return f" This is the published {what}."
-    if entry["basis"] == "recommendation":
-        return " This is a recommendation, not a published rule."
-    return ""
-
-
 def is_correct_in_context(entry: dict[str, str], text: Text, target: Target) -> bool:
     """True where the name has to be said, so saying it isn't a mistake:
 
@@ -255,7 +247,7 @@ def avoid_findings(
         what = "a deprecated name" if entry["status"] == "deprecated" else "a word to avoid"
         question = ""
         if replacement:
-            fix = f"Use '{replacement}' instead." + how_firm(entry, "replacement")
+            fix = f"Use '{replacement}' instead."
             # Developer docs can use the word as a literal value in code, which has to
             # stay. Only the team knows which uses those are.
             if entry["status"] == "avoid" and surface == "docs":
@@ -265,7 +257,7 @@ def avoid_findings(
                     "If so, keep it."
                 )
         else:
-            fix = f"Reword without '{term}'." + how_firm(entry, "rule")
+            fix = f"Reword without '{term}'."
             question = f"What should these pages say instead of '{term}'?"
         findings.append(Finding(
             standard_id=f"glossary:{term}",
@@ -336,7 +328,7 @@ def spelling_findings(entry: dict[str, str], texts: list[Text], target: Target) 
                     f"{terms.plural(len(pages), 'page')}. The glossary form appears "
                     f"{terms.plural(as_glossary[group], 'time')}."
                 ),
-                fix=f"Write '{term}'." + how_firm(entry, "form"),
+                fix=f"Write '{term}'.",
                 snippet_ids=ids,
                 surfaces={u.text.snippet.surface for u in found},
             ))
@@ -415,7 +407,6 @@ def pattern_finding(row: dict[str, str], by_id: dict[str, Text]) -> Finding | No
     fix = f"Use one string everywhere: '{row['shared_wording']}'"
     if SLOT.search(row["shared_wording"]):
         fix += " Fill in the parts in [brackets] each time."
-    fix += how_firm(row, "wording")
     # App text isn't on any public page, so editing the pages can't change it.
     if in_app:
         are = "is" if in_app == 1 else "are"
