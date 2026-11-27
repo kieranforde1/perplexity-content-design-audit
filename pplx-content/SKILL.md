@@ -97,7 +97,7 @@ The surface decides the track, and the track decides what matters most.
 | Auto reload, auto top-up | automatic top-up |
 | blind | gaps, can't see |
 | Browser Agent (Comet Assistant) Queries, browser agent queries | Comet Assistant queries |
-| comprehensive | Say what's covered, for example "reads hundreds of sources" |
+| comprehensive, Enterprise-grade, robust, simply | Reword without it |
 | disable | turn off |
 | Disabled | turned off |
 | disabling | turning off |
@@ -105,25 +105,21 @@ The surface decides the track, and the track decides what matters most.
 | Enabled | turned on |
 | enabling | turning on |
 | Enterprise admin, Enterprise administrator, org admin, organization administrator | organization admin |
-| Enterprise-grade | Reword without it |
 | Free (Standard) plan, free Standard tier | Free plan |
 | kill | stop, end |
 | leverage | use |
 | leveraging | using |
 | master | main switch, main toggle |
-| robust | Name the safeguard or behaviour |
 | sanity check | quick check |
 | sidecar | Assistant panel |
-| simply | Delete the word |
 | thread | session |
 | whitelist | allowlist |
 
 ## Patterns
 
-These 10 messages each have one string to reuse, in `references/patterns.csv`. The strings are this audit's suggestions, not wording Perplexity has published.
+These 9 messages each have one string to reuse, in `references/patterns.csv`. The strings are this audit's suggestions, not wording Perplexity has published.
 
 - `api-key-setup`: To call the API, create an API key in the API Console and set it as an environment variable.
-- `api-console-sign-in`: The docs and the Help Center each explain how to sign in to the API Console, and the two pages should say the same thing.
 - `turned-off-by-organization`: An organization admin has turned this off for you, so you can't use it.
 - `ask-organization-admin`: You can't fix this yourself, so ask your organization admin and say what to ask for.
 - `plan-one-liners`: Each plan has one line that says who it's for and what it gives you.
@@ -273,7 +269,7 @@ pplx-content/
   SKILL.md               this file
   references/
     glossary.csv         106 settled terms, words to avoid and retired names
-    patterns.csv         10 patterns, each with a string to reuse
+    patterns.csv         9 patterns, each with a string to reuse
   scripts/
     check_text.py        checks a draft against the glossary
 ```

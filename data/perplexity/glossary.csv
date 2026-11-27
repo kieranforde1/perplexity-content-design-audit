@@ -72,10 +72,10 @@ OneDrive connector,deprecated,Microsoft 365 connector,,published,https://www.per
 Azure AD,deprecated,Microsoft Entra ID,,observed,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
 Workflows,deprecated,Skills,,published,https://www.perplexity.ai/help-center/en/articles/13914413-how-to-use-computer-skills.md
 seat-tier caps,deprecated,usage limits,,published,https://www.perplexity.ai/help-center/en/articles/13901296-how-credits-work-for-enterprise-organizations-admin-guide.md
-comprehensive,avoid,"Say what's covered, for example ""reads hundreds of sources""",,recommendation,
+comprehensive,avoid,,"Say what's covered, for example ""reads hundreds of sources"".",recommendation,
 leverage,avoid,use,,recommendation,
-robust,avoid,Name the safeguard or behaviour,,recommendation,
-simply,avoid,Delete the word,,recommendation,
+robust,avoid,,Name the safeguard or behavior.,recommendation,
+simply,avoid,,Delete the word.,recommendation,
 Session,use,,A saved conversation with Perplexity that keeps context across follow-up questions and saves its sources.,observed,https://www.perplexity.ai/help-center/en/articles/10354769-what-is-a-thread.md
 Sessions page,use,,The page on the web where your saved sessions are stored. Only you can see it.,observed,https://www.perplexity.ai/help-center/en/articles/10354769-what-is-a-thread.md
 thread,avoid,session,"Another word for a saved conversation, which this glossary calls a session.",recommendation,
