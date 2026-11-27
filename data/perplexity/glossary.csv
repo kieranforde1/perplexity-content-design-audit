@@ -27,11 +27,11 @@ MCP server,use,,"A server that offers tools to AI assistants through MCP (Model 
 Help Center,use,,"Perplexity's public support site, with how-to and troubleshooting articles grouped into collections.",observed,https://www.perplexity.ai/hub/pricing
 Agent API models,use,,"The list of models you can choose when calling the Agent API, with their token prices.",observed,https://docs.perplexity.ai/docs/agent-api/batch.md
 Incognito,use,,A setting that keeps a search out of your saved history and memory.,observed,https://docs.perplexity.ai/docs/getting-started/integrations/computer-mcp-server.md
-Pro Search,use,,Perplexity's more thorough search for complex questions. Search uses it automatically when your plan includes it.,observed,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
+Pro Search,use,,"A deeper search for complex questions that Perplexity applies automatically on eligible plans. It isn't a separate toggle, so don't tell people to turn it on.",observed,https://www.perplexity.ai/help-center/en/articles/10352903-what-is-pro-search.md
 File Uploads,use,,"Files you attach to a question, with the attach button or by drag and drop, so Perplexity can read them. Each plan limits how many you can attach.",observed,https://www.perplexity.ai/hub/pricing
 Teammate,use,,"An AI agent that takes on ongoing work, such as a project with many steps or regular monitoring.",observed,https://www.perplexity.ai/hub/brand
 Comet Assistant,use,,"The AI helper in a side panel next to the main Comet window. It summarizes pages, finds information and carries out tasks.",observed,https://www.perplexity.ai/hub/pricing
-Space,deprecated,Project,,published,https://www.perplexity.ai/hub/blog/spaces-are-now-projects
+Space,deprecated,Project,The old name for a Project. Spaces were renamed Projects.,published,https://www.perplexity.ai/hub/blog/spaces-are-now-projects
 AI-powered,use,,Describes a feature that uses AI models to do its work.,observed,https://www.perplexity.ai/help-center/comet/en/articles/11583745-getting-started-with-comet-set-up.md
 Perplexity API Platform,use,,"Perplexity's set of developer APIs (seven of them), which share one API key and one web address, api.perplexity.ai.",observed,https://www.perplexity.ai/hub/brand
 API Portal,avoid,API Console,"Another name for the API Console: both point to console.perplexity.ai. This glossary uses ""API Console"".",recommendation,
@@ -49,14 +49,14 @@ Content Generation,use,,"The name of a Help Center category (""AI Models & Conte
 File Connectors,use,,"Connectors that let Enterprise Pro and Enterprise Max members search cloud storage, attach cloud files to a question and import files into Projects.",observed,https://www.perplexity.ai/help-center/en/articles/10352973-what-is-enterprise-pro.md
 People Search,use,,An Agent API tool that searches public professional profiles.,observed,https://docs.perplexity.ai/docs/agent-api/building-agents/run-code.md
 Computer credits,use,,The credits that pay for Computer tasks. They're separate from your subscription and from API credits.,observed,https://www.perplexity.ai/hub/pricing
-Enterprise-grade,use,,,observed,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md
+Enterprise-grade,avoid,,"A catch-all claim about security or admin controls on the Enterprise plans. It doesn't say much on its own, so name the control instead, such as SSO, audit logs or admin roles.",recommendation,https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you.md
 Fast Search,use,,"A quick search type in the Search API, charged per request with no token charges. It's not the same as the Agent API's ""fast"" effort level.",observed,https://docs.perplexity.ai/docs/agent-api/effort.md
 OS,use,,"Short for operating system, such as macOS, Windows or Linux.",observed,https://www.perplexity.ai/help-center/comet/en/articles/11583748-installing-comet.md
 Portable Computer,use,,"A way to run Computer on your own Windows or Linux device, so tasks stay local and only reach the cloud with your permission.",observed,https://www.perplexity.ai/help-center/en/articles/10354937-what-is-the-difference-between-a-prompt-and-a-search.md
 Model Council,use,,A feature that runs your question through several AI models at once and combines their answers into one.,observed,https://www.perplexity.ai/hub/pricing
 Monitor API,use,,The API that checks the web on a schedule and reports what it finds.,observed,https://docs.perplexity.ai/api-reference/monitors-create-post.md
 My organization,use,,"Not a feature: the phrase comes from the help article title ""My organization has restricted Comet"".",observed,https://www.perplexity.ai/help-center/comet/en/articles/11583823-do-i-need-a-perplexity-account-to-use-comet.md
-Sonar,deprecated,Agent API,,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
+Sonar,deprecated,Agent API,"Perplexity's earlier API for search-backed answers. It's retired, and its features moved to the Agent API.",published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
 portal,avoid,API Console,"Another name for the API Console: both point to console.perplexity.ai. This glossary uses ""API Console"".",recommendation,
 disable,avoid,turn off,"To switch off a setting or feature, for yourself or for an organization. This glossary uses ""turn off"": it's plainer and pairs with ""turn on"". When it's about people's access, ""don't allow"" may fit better. Leave code values and API flags as they are.",recommendation,
 whitelist,avoid,allowlist,,observed,https://www.perplexity.ai/help-center/en/articles/14092010-configuring-network-firewall-policy-for-computer.md
@@ -66,7 +66,6 @@ blind,avoid,"gaps, can't see",,recommendation,
 kill,avoid,"stop, end",,recommendation,
 Focus,deprecated,Choose sources,,published,https://www.perplexity.ai/help-center/en/articles/10352914-what-is-internal-knowledge-search.md
 preset,deprecated,effort,,published,https://docs.perplexity.ai/docs/resources/changelog.md
-pro-search,deprecated,low (effort level),,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
 fast-search,deprecated,fast (effort level),,published,https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/how-to.md
 SharePoint connector,deprecated,Microsoft 365 connector,,published,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
 OneDrive connector,deprecated,Microsoft 365 connector,,published,https://www.perplexity.ai/help-center/en/articles/12569435-microsoft-365-connector-sharepoint-and-onedrive.md
@@ -105,3 +104,4 @@ disabling,avoid,turning off,"The -ing form of ""disable"", as in ""disabling ext
 enable,avoid,turn on,"To switch on a setting or feature, for yourself or for an organization. This glossary uses ""turn on"": it's plainer and pairs with ""turn off"". Where it means ""lets"", as in ""enables you to"", use ""lets"". Leave code values and API flags as they are.",recommendation,
 Enabled,avoid,turned on,"The state of a setting or feature that's switched on. This glossary uses ""turned on"". Where a screen shows ""Enabled"" as a value, quote it as shown.",recommendation,
 enabling,avoid,turning on,"The -ing form of ""enable"". This glossary uses ""turning on"".",recommendation,
+leveraging,avoid,using,,recommendation,
