@@ -274,7 +274,7 @@ def test_plural_avoided_words_are_swapped_too() -> None:
 COPIED_SENTENCES = [
     "Gadgets sync with the cloud every night automatically.",
     "Your invoices list every seat that was active this month.",
-    "Teams can pin favourite dashboards to the sidebar.",
+    "Teams can pin favorite dashboards to the sidebar.",
     "Removing a member frees their seat straight away.",
     "Archived boards stay readable but nobody can edit them.",
     "Keyboard shortcuts appear when you press the question mark.",

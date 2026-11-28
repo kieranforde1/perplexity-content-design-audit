@@ -42,7 +42,7 @@ FINDING_COLUMNS = (
 # "retired name": the glossary marks a retired name as `deprecated`, so it's the same thing.
 PATTERN_CATEGORY = "same message, different words"
 CATEGORIES = (
-    "capitalisation", "spelling or spacing", "deprecated name", "avoided term",
+    "capitalization", "spelling or spacing", "deprecated name", "avoided term",
     "other variant", PATTERN_CATEGORY,
 )
 # A [slot] in a shared wording stands for one to four words, the same short gap that
@@ -161,7 +161,7 @@ def without_plural_es(written: str, allowed: set[str]) -> str:
 def variant_category(written: str, allowed: set[str]) -> str:
     """What kind of variant a spelling is, compared with the forms allowed in its place."""
     if written.lower() in {a.lower() for a in allowed}:
-        return "capitalisation"
+        return "capitalization"
     if squash(written) in {squash(a) for a in allowed}:
         return "spelling or spacing"
     # The matcher only finds changes of case, spaces and hyphens today, so this is a

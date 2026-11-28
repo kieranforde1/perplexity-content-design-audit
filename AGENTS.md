@@ -42,7 +42,7 @@ being audited.
   owner to confirm before they reach `typed_strings.csv`.
 - Never use brand analyses made by outsiders, community "design system" reconstructions,
   or leaked or compiled prompts.
-- Never use anything behind a sign-in or an organisation-only page, even if an account
+- Never use anything behind a sign-in or an organization-only page, even if an account
   could open it.
 - Never automate the company's apps. App text is typed in by hand, or transcribed from
   the owner's own screenshots (see below). Screenshots are never committed.
@@ -58,7 +58,7 @@ being audited.
 - No code reads `private/`. It's for the owner's own notes.
 - Never name individual people who work at the company being audited, anywhere in the
   repo: code, data, docs or commit messages.
-- The viewer uses Perplexity's published brand colours from the Brand Hub. No logos, no
+- The viewer uses Perplexity's published brand colors from the Brand Hub. No logos, no
   brand font files, no screenshots.
 - Don't publish anything (GitHub Pages, hosting, `reports/`) unless the owner asks.
 
@@ -205,5 +205,5 @@ Run all three before committing. CI runs them on every pull request.
   personal identity for this repo.
 - **Fetch needs `AUDIT_CONTACT` set.** Most work doesn't need fetch at all: `extract`,
   `terms`, `view` and `review` all run from the cache and the committed data.
-- **New behaviour gets a test.** Fixtures in `tests/fixtures/` are invented examples, not
+- **New behavior gets a test.** Fixtures in `tests/fixtures/` are invented examples, not
   copies of the company's pages.

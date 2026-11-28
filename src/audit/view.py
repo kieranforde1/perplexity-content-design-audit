@@ -102,7 +102,7 @@ def overview(
 # choices come last.
 READING_ORDER = (
     check.PATTERN_CATEGORY, "deprecated name", "other variant", "avoided term",
-    "capitalisation", "spelling or spacing",
+    "capitalization", "spelling or spacing",
 )
 # A finding's `written` column quotes up to three forms, each with its count.
 QUOTED_FORM = re.compile(r"'(.*?)' \(\d+\)(?:, |$)")

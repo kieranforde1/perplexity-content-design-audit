@@ -113,7 +113,7 @@ uv run audit check --target perplexity              # writes data/<target>/findi
 surface, and other spellings of the terms to use, with labels and running text compared
 separately. It also reports, for each pattern in `data/<target>/patterns.csv`, the
 strings that say its message without its shared wording. Each finding has a category
-(capitalisation, spelling or spacing, deprecated name, avoided term, other variant, or
+(capitalization, spelling or spacing, deprecated name, avoided term, other variant, or
 same message, different words), the term or pattern, what was written, what's wrong, the
 fix and, where only the team can answer, a question. It lists every string it counts.
 
@@ -169,6 +169,6 @@ committed `data/<target>/snippets.csv` keeps every row, but only fills in the ex
 evidence: strings the term map cites as examples, the first few strings of each
 finding from `audit check` (`evidence_per_finding` in the config), and every typed string.
 
-## Licence
+## License
 
 MIT

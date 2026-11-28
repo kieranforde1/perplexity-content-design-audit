@@ -75,7 +75,7 @@ function checkText(text, entries, company) {
       written = written.slice(0, -1);
     }
     if (allowed.indexOf(written) !== -1) return "";
-    if (lowered.indexOf(written.toLowerCase()) !== -1) return "capitalisation";
+    if (lowered.indexOf(written.toLowerCase()) !== -1) return "capitalization";
     var squashed = allowed.map(squash);
     if (squashed.indexOf(squash(written)) !== -1) return "spelling or spacing";
     return "other variant";
