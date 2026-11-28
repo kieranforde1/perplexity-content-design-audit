@@ -1,5 +1,5 @@
 [project]
-name = "perplexity-content-design-audit"
+name = "perplexity-content-design-tools"
 version = "0.1.0"
 description = "Unofficial: no affiliation with Perplexity. An outside-in audit of published product language, built from public sources."
 readme = "README.md"

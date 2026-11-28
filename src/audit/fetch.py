@@ -25,7 +25,7 @@ from urllib.robotparser import RobotFileParser
 from audit import REPO_URL, __version__
 from audit.config import Target
 
-BOT_NAME = "perplexity-content-design-audit"
+BOT_NAME = "perplexity-content-design-tools"
 MAX_BYTES = 5_000_000
 MANIFEST_COLUMNS = ("url", "file", "surface", "fetched_on", "content_type")
 
